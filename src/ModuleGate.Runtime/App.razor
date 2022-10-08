@@ -1,0 +1,15 @@
+﻿@namespace ModuleGate.Runtime.Pages
+@inject ModulePackageGeneralize general
+
+<CascadingAuthenticationState>
+    @foreach (var component in general.ModulePatch.AppComponentTypes.Where(p => p.Meta.Router != null))
+    {
+        <DynamicComponent Type="component.Type"></DynamicComponent>
+    }
+
+</CascadingAuthenticationState>
+
+@foreach (var component in general.ModulePatch.AppComponentTypes.Where(p => !p.Meta.Router != null))
+{
+    <DynamicComponent Type="component.Type"></DynamicComponent>
+}

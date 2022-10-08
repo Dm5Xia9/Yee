@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\ModuleGate\ModuleGate.csproj" />
+    <ProjectReference Include="..\ModuleGate.EntityFrameworkCore\ModuleGate.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.0-rc2" />
+	</ItemGroup>
+</Project>
