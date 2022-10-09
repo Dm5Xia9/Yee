@@ -11,16 +11,12 @@ using System.Reflection;
 var builder = MGRuntimeApplication.CreateBuilder(args);
 
 builder.AddProvider(new DllPackageProvider());
-builder.AddModule("C:\\Users\\jackf\\Documents\\ModuleGate\\modules\\ModuleGate.Database\\ModuleGate.EntityFrameworkCore\\" +
-    "bin\\Debug\\net6.0\\ModuleGate.EntityFrameworkCore.dll");
 
-builder.AddModule("C:\\Users\\jackf\\Documents\\ModuleGate\\modules\\ModuleGate.Database\\ModuleGate.EntityFrameworkCore.Npgsql\\" +
-    "bin\\Debug\\net6.0\\ModuleGate.EntityFrameworkCore.Npgsql.dll");
+//builder.AddModule("C:\\Users\\jackf\\Documents\\ModuleGate\\examples\\ModuleGate.DefualtExample\\" +
+//    "bin\\Debug\\net6.0\\ModuleGate.DefualtExample.dll");
 
-builder.AddModule("C:\\Users\\jackf\\Documents\\ModuleGate\\examples\\ModuleGate.DefualtExample\\" +
-    "bin\\Debug\\net6.0\\ModuleGate.DefualtExample.dll");
-
-
+builder.AddRootPath("C:\\Users\\jackf\\Documents\\ModuleGate\\test");
+builder.AddInputPath("C:\\Users\\jackf\\Documents\\ModuleGate");
 var mgapp = builder.Build();
 mgapp.App.Run();
 

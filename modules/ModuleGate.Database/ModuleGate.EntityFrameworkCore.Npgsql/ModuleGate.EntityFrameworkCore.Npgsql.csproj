@@ -12,6 +12,6 @@
     <ProjectReference Include="..\ModuleGate.EntityFrameworkCore\ModuleGate.EntityFrameworkCore.csproj" />
   </ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.0-rc2" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
 	</ItemGroup>
 </Project>

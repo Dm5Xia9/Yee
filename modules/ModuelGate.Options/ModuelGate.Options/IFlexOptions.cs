@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModuleGate.Database.Abstraction
+namespace ModuelGate.Options
 {
-    public interface IGateSet<T> : IQueryable<T> where T : class
+    public interface IFlexOptions<T>
     {
-
+        public T Value { get; }
     }
 }

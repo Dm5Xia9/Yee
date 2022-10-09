@@ -1,0 +1,51 @@
+﻿@layout MainLayout
+@using ModuleGate.Services
+@inject NavigationManager uriHelper
+@inject ModuleGateService mgService
+@inject ReloadService reloadService
+@page "/"
+
+@{ 
+    var exModules = storage.GetAllModules();
+}
+<h3>Подключенные модули</h3>
+@foreach (var module in exModules)
+{
+    <div>@(Path.GetFileName(module))</div>
+}
+
+<h3>Доступные для подключения</h3>
+
+@foreach (var module in mgService.GetAllModules().Where(p => !exModules.Contains(p)))
+{
+    <button onclick="@(() => AddModule(module))">@(Path.GetFileName(module))</button>
+}
+
+<div>
+    <p></p>
+    <button onclick="@(() => Save())">Сохранить и перезапустить</button>
+
+</div>
+
+@code {
+    private ModuleGateStorage storage;
+
+    protected override void OnInitialized()
+    {
+        storage = mgService.GetStorage("root");
+        base.OnInitialized();
+    }
+
+    private void AddModule(string path)
+    {
+        storage.AddModule(path);
+        StateHasChanged();
+    }
+
+    private void Save()
+    {
+        storage.Save();
+        reloadService.Reaload();
+
+    }
+}

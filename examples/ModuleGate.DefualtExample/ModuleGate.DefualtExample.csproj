@@ -4,7 +4,6 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-	  <GenerateDependencyFile>false</GenerateDependencyFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\modules\ModuelGate.Options\ModuelGate.Options\ModuelGate.Options.csproj" />
     <ProjectReference Include="..\..\modules\ModuleGate.Database\ModuleGate.EntityFrameworkCore.Npgsql\ModuleGate.EntityFrameworkCore.Npgsql.csproj" />
     <ProjectReference Include="..\..\src\ModuleGate\ModuleGate.csproj" />
   </ItemGroup>

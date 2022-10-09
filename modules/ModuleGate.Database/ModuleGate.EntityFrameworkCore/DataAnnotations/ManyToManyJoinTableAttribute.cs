@@ -8,7 +8,7 @@ namespace Ability.Core.Models
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class ManyToManyJoinTableAttribute : Attribute
     {
-        internal static void CheckAttribute(ModelBuilder builder, Type entityType, PropertyInfo[] columns)
+        public static void CheckAttribute(ModelBuilder builder, Type entityType, PropertyInfo[] columns)
         {
             var many2many = entityType.GetCustomAttribute<ManyToManyJoinTableAttribute>();
             if (many2many != null)

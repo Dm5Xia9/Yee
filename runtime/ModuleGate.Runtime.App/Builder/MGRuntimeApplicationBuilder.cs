@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using ModuleGate.Abstractions;
 using ModuleGate.Configuration;
 using ModuleGate.Middlewares;
 using ModuleGate.Runtime.App.Abstractions;
 using ModuleGate.Runtime.App.Helpers;
+using ModuleGate.Runtime.App.PackageProviders;
+using ModuleGate.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +22,8 @@ namespace ModuleGate.Runtime.App.Builder
         private string[] _args;
         private List<string> _modules = new List<string>();
         private List<IPackageProvider> _providers = new List<IPackageProvider>();
+        private string _rootPath;
+        private string _inputPath;
         public MGRuntimeApplicationBuilder(string[] args, IConfiguration configuration)
         {
             _args = args;
@@ -39,13 +44,44 @@ namespace ModuleGate.Runtime.App.Builder
             return this;
         }
 
+        public MGRuntimeApplicationBuilder AddRootPath(string rootPath)
+        {
+            _rootPath = rootPath;
+            return this;
+        }
+
+        public MGRuntimeApplicationBuilder AddInputPath(string inputPath)
+        {
+            _inputPath = inputPath;
+            return this;
+        }
+
         public MGRuntimeApplication Build()
         {
+            var mgService = new ModuleGateService(_rootPath, _inputPath);
+            var storage = mgService.GetStorage("root");
+            foreach (var module in storage.GetAllModules())
+                AddModule(module);
+
+
             var loader = new PackageLoader(_providers);
             List<ModulePackage> packages = new List<ModulePackage>();
-            foreach(var module in _modules)
+
+            if (_modules.Any())
             {
-                packages.Add(loader.Load(module));
+                loader.SetAll(_modules);
+                DllPackageProvider.AllModules
+                    .AddRange(_modules);
+                foreach (var module in _modules)
+                {
+                    packages.Add(loader.Load(module, null));
+                }
+            }
+            else
+            {
+                var starterAssembly = typeof(ModuleGate.App.Starter.Startup).Assembly;
+
+                packages.Add(loader.Load(starterAssembly.Location, null));
             }
 
             var qeneralize = ModulePackageHelper.Generalize(packages);
@@ -54,14 +90,18 @@ namespace ModuleGate.Runtime.App.Builder
             builder.Environment
                 .UseStaticWebAssetsFromAssemblies(builder.Configuration, qeneralize.Assemblies.ToArray());
 
+            
             qeneralize.Startups.ForEach(p => p.ConfigureBuilder(builder));
             builder.Services.AddRazorPages();
+            builder.Services.AddScoped(p => new ReloadService(_args, p
+                    .GetRequiredService<IHostApplicationLifetime>()));
             builder.Services.AddServerSideBlazor();
+            builder.Services.AddSingleton(mgService);
             builder.Services.AddSingleton<IMetaModuleGate, MetaModuleGate>();
             qeneralize.Startups.ForEach(p => p.ConfigureBuilder(builder));
             builder.Services.AddSingleton(qeneralize);
             builder.Services.AddSingleton(HostConfiguration.FromStaticFileGroup(qeneralize.ModulePatch.RootStaticFiles));
-            qeneralize.Startups.ForEach(p => p.ConfigureServices(new ModuleConfiguration(), builder.Services));
+            qeneralize.Startups.ForEach(p => p.ConfigureServices(builder.Services));
             var app = builder.Build();
             var service = app.Services.GetRequiredService<IMetaModuleGate>() as MetaModuleGate;
             service!.SetServices(builder.Services);
@@ -78,6 +118,8 @@ namespace ModuleGate.Runtime.App.Builder
             {
                 middle.Next(app);
             }
+
+            qeneralize.Startups.ForEach(p => p.Finish(app.Services));
 
             return new MGRuntimeApplication
             {

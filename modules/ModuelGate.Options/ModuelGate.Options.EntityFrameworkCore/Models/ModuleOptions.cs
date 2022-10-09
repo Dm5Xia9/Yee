@@ -12,7 +12,7 @@ namespace ModuelGate.Options.EntityFrameworkCore.Models
         public long Id { get; set; }
         
         //нужно сделать единый id каждого модуля
-        public string AssemblyName { get; set; }
+        public string TypeName { get; set; }
 
         public string Value { get; set; }
     }

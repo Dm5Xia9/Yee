@@ -9,7 +9,7 @@ namespace ModuleGate.Runtime.App.Abstractions
     public interface IPackageProvider
     {
         public string FileExtension { get; }
-        public ModulePackage Load(string path);
+        public ModulePackage Load(string path, Action next);
 
     }
 }
