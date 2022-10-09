@@ -19,7 +19,7 @@
     }
     @foreach (var assembly in general.Assemblies)
     {
-        <link href="@($"/{assembly.GetName().Name}.styles.css")" rel="stylesheet" />
+        <link href="@($"/{assembly.GetName().Name}.bundle.scp.css")" rel="stylesheet" />
     }
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 </head>
