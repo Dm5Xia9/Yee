@@ -16,7 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\ModuleGate\ModuleGate.csproj" />
-    <ProjectReference Include="..\ModuleGate.App.Starter\ModuleGate.App.Starter.csproj" />
   </ItemGroup>
 
 </Project>

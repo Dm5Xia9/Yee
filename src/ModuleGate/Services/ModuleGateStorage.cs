@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using ModuleGate.Abstractions;
+using ModuleGate.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,70 +13,46 @@ namespace ModuleGate.Services
     public class ModuleGateStorage
     {
         private readonly Modules _modules = new Modules();
-        private readonly string _rootPath;
-        public ModuleGateStorage(string rootPath)
+        private readonly string _modulePath;
+        private readonly ModuleGateOptions _gateOptions;
+
+        public ModuleGateStorage(ModuleGateOptions options)
         {
-            _rootPath = rootPath;
-            string modulePath = Path.Combine(_rootPath, "modules.json");
-            if (!Directory.Exists(rootPath))
-            {
-                NotCreated = true;
-            }
-            else
-            {
-                if (!File.Exists(modulePath))
-                {
-                    NotCreated = true;
+            _gateOptions = options;
 
-                }
-                else
-                {
-                    var json = File.ReadAllText(modulePath);
+            _modulePath = options.ContextPath;
+            if(File.Exists(_modulePath))
+            {
+                var json = File.ReadAllText(_modulePath);
 
-                    _modules = JsonConvert.DeserializeObject<Modules>(json)!;
-                    NotCreated = false;
-                }
+                _modules = JsonConvert.DeserializeObject<Modules>(json)!;
             }
         }
 
-        public bool NotCreated { get; private set; }
-        public void AddModule(string path)
+        public void AddModule(MgModuleMetadata mgModule)
         {
-            _modules.Add(new Module
-            {
-                Path = path
-            });
+            _modules.Add(mgModule);
         }
 
         public void Save()
         {
-            string modulePath = Path.Combine(_rootPath, "modules.json");
-
-            if (NotCreated == true)
+            if (!File.Exists(_modulePath))
             {
-                Directory.CreateDirectory(_rootPath);
-
-                File.Create(modulePath).Close();
-
-                NotCreated = false;
+                File.Create(_modulePath).Close();
             }
 
-            File.WriteAllText(modulePath, JsonConvert.SerializeObject(_modules));
+            File.WriteAllText(_modulePath, JsonConvert.SerializeObject(_modules));
         }
 
-        public List<string> GetAllModules()
+        public Modules GetAllModules()
         {
-            return _modules.Select(p => p.Path).ToList();
+            return _modules;
         } 
     }
 
-    public class Modules : List<Module>
+    public class Modules : List<MgModuleMetadata>
     {
         
     }
 
-    public class Module
-    {
-        public string Path { get; set; }
-    }
 }

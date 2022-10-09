@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using ModuleGate.Abstractions;
+using ModuleGate.Models;
+using Newtonsoft.Json;
 using NuGet.Configuration;
 using NuGet.Packaging;
 using NuGet.Packaging.Core;
@@ -18,17 +20,12 @@ namespace ModuleGate.Runtime.App.Nupkg
 {
     public class NupkgStorage
     {
-        private readonly string _globalPackagesFolder;
-        private readonly ISettings _settings;
-        private readonly INugetRepository _nugetRepository;
         private readonly string _mgPath;
         private readonly string _mgRootPath;
         private readonly List<MgModuleMetadata> _mgModuleMetadata;
-        public NupkgStorage(string rootPath, INugetRepository nugetRepository)
+        public NupkgStorage(NupkgOptions nupkgOptions)
         {
-            _settings = Settings.LoadDefaultSettings(rootPath);
-            _globalPackagesFolder = SettingsUtility.GetGlobalPackagesFolder(_settings);
-            _nugetRepository = nugetRepository;
+            var rootPath = nupkgOptions.StoragePath;
 
             if (!Directory.Exists(rootPath))
                 Directory.CreateDirectory(rootPath);
@@ -58,17 +55,18 @@ namespace ModuleGate.Runtime.App.Nupkg
 
         }
 
-        public async Task<string> GetAssemblyPathFromAssemblyName(AssemblyName assemblyName)
+        public async Task<string> GetAssemblyPathFromAssemblyName(AssemblyName assemblyName, 
+            INugetRepository nugetRepository)
         {
             var module = SearchFromAssemblyName(assemblyName);
             if (module == null)
             {
-                using var pack = await _nugetRepository.GetNupkgFromAssemblyName(assemblyName);
+                using var pack = await nugetRepository.GetNupkgFromAssemblyName(assemblyName);
                 if (pack == null)
                     return null;
                 
                 using var reader = new PackageArchiveReader(pack);
-                SaveMgModule(assemblyName, reader);
+                SaveMgModule(assemblyName, reader, nugetRepository.NugetSource);
                 module = SearchFromAssemblyName(assemblyName);
                 if(module == null)
                     return null;
@@ -84,7 +82,8 @@ namespace ModuleGate.Runtime.App.Nupkg
                 && p.ModuleVersion == assemblyName.Version!.ToString());
         }
 
-        public void SaveMgModule(AssemblyName assemblyName, PackageReaderBase packageReaderBase)
+        public void SaveMgModule
+            (AssemblyName assemblyName, PackageReaderBase packageReaderBase, string nugetSource)
         {
             var newModules = new List<MgModuleMetadata>();
             foreach (var lib in packageReaderBase.GetLibItems())
@@ -94,6 +93,7 @@ namespace ModuleGate.Runtime.App.Nupkg
                 module.ModuleName = assemblyName.Name!;
                 module.ModuleVersion = assemblyName.Version!.ToString();
                 module.Framework = lib.TargetFramework.ToString();
+                module.NugetSource = nugetSource;
                 foreach (var item in lib.Items)
                 {
                     switch (Path.GetExtension(item))
@@ -126,9 +126,12 @@ namespace ModuleGate.Runtime.App.Nupkg
                 var moduleSourcePath = Path.Combine(packetSource, module.InternalSource);
                 CreateAndCopyModule(moduleSourcePath, module.InternalSource, packageReaderBase);
                 module.Source = moduleSourcePath;
-                var moduleXmlPath = Path.Combine(packetSource, module.InternalXml);
-                CreateAndCopyModule(moduleXmlPath, module.InternalXml, packageReaderBase);
-                module.Xml = moduleXmlPath;
+                if(module.InternalXml != null)
+                {
+                    var moduleXmlPath = Path.Combine(packetSource, module.InternalXml);
+                    CreateAndCopyModule(moduleXmlPath, module.InternalXml, packageReaderBase);
+                    module.Xml = moduleXmlPath;
+                }
 
                 List<string> other = new List<string>();
                 foreach (var otherModule in module.InternalOther)
@@ -157,19 +160,5 @@ namespace ModuleGate.Runtime.App.Nupkg
         }
     }
 
-    public class MgModuleMetadata
-    {
-        public string ModuleName { get; set; }
-        public string ModuleVersion { get; set; }
-        public string Framework { get; set; }
-        public string Source { get; set; }
-        internal string InternalSource { get; set; }
-        public string Xml { get; set; }
-        internal string InternalXml { get; set; }
 
-        public string[] Other { get; set; }
-
-        internal List<string> InternalOther { get; set; }
-
-    }
 }

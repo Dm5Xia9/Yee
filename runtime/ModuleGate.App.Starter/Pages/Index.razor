@@ -1,24 +1,29 @@
 ﻿@layout MainLayout
 @using ModuleGate.Services
+@using ModuleGate.Abstractions
 @inject NavigationManager uriHelper
-@inject ModuleGateService mgService
+@inject ModuleGateStorage storage
+@inject INugetRepository nugetRepository
 @inject ReloadService reloadService
 @page "/"
 
-@{ 
+@{
     var exModules = storage.GetAllModules();
 }
 <h3>Подключенные модули</h3>
 @foreach (var module in exModules)
 {
-    <div>@(Path.GetFileName(module))</div>
+    <div>@($"{module.ModuleName}:{module.ModuleVersion}")</div>
 }
 
 <h3>Доступные для подключения</h3>
 
-@foreach (var module in mgService.GetAllModules().Where(p => !exModules.Contains(p)))
+@if (packages != null)
 {
-    <button onclick="@(() => AddModule(module))">@(Path.GetFileName(module))</button>
+    @foreach (var module in packages)
+    {
+        <button onclick="@(() => AddModule(module))">@(module.Value.Title)</button>
+    }
 }
 
 <div>
@@ -28,17 +33,26 @@
 </div>
 
 @code {
-    private ModuleGateStorage storage;
 
-    protected override void OnInitialized()
+    private IEnumerable<ModuleGate.Models.PackageMetadata> packages;
+    protected override async Task OnInitializedAsync()
     {
-        storage = mgService.GetStorage("root");
+        packages = await nugetRepository
+            .Search(new ModuleGate.Models.SearchPreferences() { NuGetSource = "http://49.12.227.30:555/v3/index.json" },
+            new NuGet.Protocol.Core.Types.SearchFilter(true), null);
+
+
         base.OnInitialized();
     }
 
-    private void AddModule(string path)
+    private void AddModule(ModuleGate.Models.PackageMetadata package)
     {
-        storage.AddModule(path);
+        storage.AddModule(new Models.MgModuleMetadata
+        {
+            NugetSource = package.Source,
+            ModuleName = package.Value.Identity.Id,
+            ModuleVersion = package.Value.Identity.Version.ToFullString()
+        });
         StateHasChanged();
     }
 

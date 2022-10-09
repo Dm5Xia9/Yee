@@ -43,7 +43,8 @@ namespace ModuleGate.Services
 
         public ModuleGateStorage GetStorage(string name)
         {
-            return new ModuleGateStorage(Path.Combine(_rootPath, name));
+            return null;
+            //return new ModuleGateStorage(Path.Combine(_rootPath, name));
 
         }
 

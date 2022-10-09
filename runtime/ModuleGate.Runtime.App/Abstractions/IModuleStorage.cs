@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using ModuleGate.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace ModuleGate.Runtime.App.Abstractions
 {
-    public interface IPackageProvider
+    public interface IModuleStorage
     {
-        public ModulePackage? Load(IWebHostEnvironment webHost, MgModuleMetadata mgModule);
-
+        public List<ModulePackage> Load(IWebHostEnvironment webHost);
     }
 }

@@ -1,4 +1,6 @@
-﻿using NuGet.Common;
+﻿using ModuleGate.Abstractions;
+using ModuleGate.Models;
+using NuGet.Common;
 using NuGet.Configuration;
 using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
@@ -22,6 +24,9 @@ namespace ModuleGate.Runtime.App.Nupkg
         private readonly FindPackageByIdResource _findPackageByIdResource;
         private readonly PackageSearchResource _packageSearchResource;
         private readonly string _source;
+
+        public string NugetSource => _source;
+
         public NugetRepository(string source)
         {
             _source = source;
@@ -52,7 +57,7 @@ namespace ModuleGate.Runtime.App.Nupkg
             return packageStream;
         }
 
-        public async Task<IEnumerable<PackageMetadata>> Search(SearchFilter searchFilter, string searchTerm)
+        public async Task<IEnumerable<PackageMetadata>> Search(SearchPreferences searchPreferences, SearchFilter searchFilter, string searchTerm)
         {
             var results = await _packageSearchResource.SearchAsync(
                 searchTerm,
@@ -66,18 +71,6 @@ namespace ModuleGate.Runtime.App.Nupkg
         }
     }
 
-    public class PackageMetadata
-    {
-        public PackageMetadata(string source, IPackageSearchMetadata value)
-        {
-            Source = source;
-            Value = value;
-        }
-
-        public string Source { get; }
-        public IPackageSearchMetadata Value { get; }
-    }
-
     public class CombineNugetRepository : INugetRepository
     {
         private readonly INugetRepository[] _nugetRepositories;
@@ -86,6 +79,8 @@ namespace ModuleGate.Runtime.App.Nupkg
         {
             _nugetRepositories = nugetRepositories;
         }
+
+        public string NugetSource => null;
 
         public async Task<Stream?> GetNupkgFromAssemblyName(AssemblyName assemblyName)
         {
@@ -100,28 +95,30 @@ namespace ModuleGate.Runtime.App.Nupkg
             return null;
         }
 
-        public async Task<IEnumerable<PackageMetadata>> Search(SearchFilter searchFilter, string searchTerm)
+        public async Task<IEnumerable<PackageMetadata>> Search(SearchPreferences searchPreferences, 
+            SearchFilter searchFilter, string searchTerm)
         {
             List<PackageMetadata> list = new List<PackageMetadata>();
 
-            Parallel.ForEach(_nugetRepositories, async p =>
+            var reps = _nugetRepositories.AsEnumerable();
+            if(searchPreferences.NuGetSource != null)
             {
-                var result = await p.Search(searchFilter, searchTerm);
+                reps = _nugetRepositories
+                    .Where(p => p.NugetSource == searchPreferences.NuGetSource);
+            }
+            foreach (var p in reps)
+            {
+                var result = await p.Search(searchPreferences, searchFilter, searchTerm);
 
                 lock (_lock)
                 {
                     list.AddRange(result);
                 }
-            });
+
+            }
 
             return list;
         }
     }
 
-    public interface INugetRepository
-    {
-        public Task<Stream?> GetNupkgFromAssemblyName(AssemblyName assemblyName);
-        public Task<IEnumerable<PackageMetadata>> Search(SearchFilter searchFilter, string searchTerm);
-
-    }
 }
