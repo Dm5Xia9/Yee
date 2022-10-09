@@ -17,7 +17,7 @@ builder.AddProvider<NupkgPackageProvider>();
 builder.Services.AddSingleton<StarterOptions>(new StarterOptions
 {
     ModuleName = "ModuleGate.App.Starter",
-    ModuleVersion = "0.0.2",
+    ModuleVersion = "0.0.4",
     NugetSource = "http://49.12.227.30:555/v3/index.json",
     //Source = "C:\\Users\\jackf\\Documents\\ModuleGate\\" +
     //    "runtime\\ModuleGate.App.Starter\\bin\\Debug\\net6.0" +

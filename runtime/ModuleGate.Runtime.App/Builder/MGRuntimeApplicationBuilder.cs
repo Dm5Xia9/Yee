@@ -71,7 +71,7 @@ namespace ModuleGate.Runtime.App.Builder
             //builder.Environment
             //    .UseStaticWebAssetsFromAssemblies(builder.Configuration, qeneralize.Assemblies.ToArray());
 
-            
+
             qeneralize.Startups.ForEach(p => p.ConfigureBuilder(builder));
             builder.Services.AddRazorPages();
             builder.Services.AddScoped(p => new ReloadService(_args, p

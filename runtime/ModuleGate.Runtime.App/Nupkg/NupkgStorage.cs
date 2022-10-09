@@ -55,7 +55,7 @@ namespace ModuleGate.Runtime.App.Nupkg
 
         }
 
-        public async Task<string> GetAssemblyPathFromAssemblyName(AssemblyName assemblyName, 
+        public async Task<MgModuleMetadata> GetAssemblyMetadataFromAssemblyName(AssemblyName assemblyName, 
             INugetRepository nugetRepository)
         {
             var module = SearchFromAssemblyName(assemblyName);
@@ -72,7 +72,7 @@ namespace ModuleGate.Runtime.App.Nupkg
                     return null;
             }
 
-            return module.Source;
+            return module;
         }
 
         private MgModuleMetadata? SearchFromAssemblyName(AssemblyName assemblyName)
@@ -121,27 +121,40 @@ namespace ModuleGate.Runtime.App.Nupkg
             }
 
             var packetSource = Path.Combine(_mgRootPath, $"{assemblyName.Name}_{assemblyName.Version}");
+            foreach (var file in packageReaderBase.GetFiles())
+            {
+                var moduleOtherPath = Path.Combine(packetSource, file);
+                CreateAndCopyModule(moduleOtherPath, file, packageReaderBase);
+            }
+
             foreach(var module in newModules)
             {
                 var moduleSourcePath = Path.Combine(packetSource, module.InternalSource);
-                CreateAndCopyModule(moduleSourcePath, module.InternalSource, packageReaderBase);
                 module.Source = moduleSourcePath;
+
                 if(module.InternalXml != null)
                 {
                     var moduleXmlPath = Path.Combine(packetSource, module.InternalXml);
-                    CreateAndCopyModule(moduleXmlPath, module.InternalXml, packageReaderBase);
                     module.Xml = moduleXmlPath;
                 }
-
                 List<string> other = new List<string>();
                 foreach (var otherModule in module.InternalOther)
                 {
                     var moduleOtherPath = Path.Combine(packetSource, otherModule);
-                    CreateAndCopyModule(moduleOtherPath, otherModule, packageReaderBase);
                     other.Add(moduleOtherPath);
                 }
                 module.Other = other.ToArray();
+
+                var webAssets = Path.Combine(packetSource, "staticwebassets");
+
+                if (Directory.Exists(webAssets))
+                {
+                    module.StaticWebAssetsPath = webAssets;
+                }
+
+
             }
+
 
             _mgModuleMetadata.AddRange(newModules);
 

@@ -24,5 +24,6 @@ namespace ModuleGate.Models
         [JsonIgnore]
         public Assembly Assembly { get; set; }
 
+        public string StaticWebAssetsPath { get; set; }
     }
 }
