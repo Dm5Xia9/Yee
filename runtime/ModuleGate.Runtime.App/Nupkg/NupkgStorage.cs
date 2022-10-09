@@ -13,6 +13,7 @@ using System.IO;
 using System.IO.Pipes;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Loader;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,6 +24,9 @@ namespace ModuleGate.Runtime.App.Nupkg
         private readonly string _mgPath;
         private readonly string _mgRootPath;
         private readonly List<MgModuleMetadata> _mgModuleMetadata;
+
+        private readonly string _dependenciesPath;
+        private readonly NuGetPackageDependencies _nuGetPackageDependencies;
         public NupkgStorage(NupkgOptions nupkgOptions)
         {
             var rootPath = nupkgOptions.StoragePath;
@@ -31,43 +35,68 @@ namespace ModuleGate.Runtime.App.Nupkg
                 Directory.CreateDirectory(rootPath);
 
             _mgPath = Path.Combine(rootPath, "mg.json");
+            _mgModuleMetadata = CreateOrRead<List<MgModuleMetadata>>(_mgPath);
 
-            if (!File.Exists(_mgPath))
-            {
-                File.Create(_mgPath).Close();
-                _mgModuleMetadata = new List<MgModuleMetadata>();
-                File.WriteAllText(_mgPath,
-                    JsonConvert.SerializeObject(_mgModuleMetadata));
-            }
-            else
-            {
-                var json = File.ReadAllText(_mgPath);
-                _mgModuleMetadata =
-                    JsonConvert.DeserializeObject<List<MgModuleMetadata>>(json) 
-                    ?? new List<MgModuleMetadata>();
-            }
+            _dependenciesPath = Path.Combine(rootPath, "global-deps.json");
+            _nuGetPackageDependencies = CreateOrRead<NuGetPackageDependencies>(_dependenciesPath);
+
 
             _mgRootPath = Path.Combine(rootPath, "mg_modules");
 
             if (!Directory.Exists(_mgRootPath))
                 Directory.CreateDirectory(_mgRootPath);
-
-
         }
 
-        public async Task<MgModuleMetadata> GetAssemblyMetadataFromAssemblyName(AssemblyName assemblyName, 
+        private T CreateOrRead<T>(string path) where T: new()
+        {
+            T result;
+            if (!File.Exists(path))
+            {
+                File.Create(path).Close();
+                result = new T();
+                File.WriteAllText(path,
+                    JsonConvert.SerializeObject(result));
+            }
+            else
+            {
+                var json = File.ReadAllText(path);
+                result =
+                    JsonConvert.DeserializeObject<T>(json)
+                    ?? new T();
+            }
+
+            return result;
+        }
+
+        public async Task<MgModuleMetadata> GetAssemblyMetadataFromAssemblyName(NugetPacket nugetPacket, 
             INugetRepository nugetRepository)
         {
-            var module = SearchFromAssemblyName(assemblyName);
+            var module = SearchFromAssemblyName(nugetPacket);
             if (module == null)
             {
-                using var pack = await nugetRepository.GetNupkgFromAssemblyName(assemblyName);
+
+
+                var pack = await nugetRepository.GetNupkg(nugetPacket);
                 if (pack == null)
-                    return null;
+                {
+                    var searchPacks = await nugetRepository
+                        .Search(new SearchPreferences(), 
+                        new SearchFilter(true), nugetPacket.Id);
+
+                    var sPack = searchPacks.FirstOrDefault(p => p.Value.Identity.Id == nugetPacket.Id);
+                    if (sPack == null)
+                        return null;
+                    pack = await nugetRepository.GetNupkg(new NugetPacket
+                    {
+                        Id = sPack.Value.Identity.Id,
+                        Version = sPack.Value.Identity.Version.OriginalVersion
+                    });
+
+                }
                 
                 using var reader = new PackageArchiveReader(pack);
-                SaveMgModule(assemblyName, reader, nugetRepository.NugetSource);
-                module = SearchFromAssemblyName(assemblyName);
+                SaveMgModule(nugetPacket, reader, nugetRepository.NugetSource);
+                module = SearchFromAssemblyName(nugetPacket);
                 if(module == null)
                     return null;
             }
@@ -75,23 +104,95 @@ namespace ModuleGate.Runtime.App.Nupkg
             return module;
         }
 
-        private MgModuleMetadata? SearchFromAssemblyName(AssemblyName assemblyName)
+
+        public async Task<List<PackageDependency>> SearchDependency
+            (NugetPacket nugetPacket, INugetRepository nugetRepository)
+        {
+            if (_nuGetPackageDependencies.Packages
+                .Any(p => p.Packet.Id == nugetPacket.Id))
+                return _nuGetPackageDependencies.Packages
+                    .First(p => p.Packet.Id == nugetPacket.Id).Dependencies
+                    .Select(p =>  new PackageDependency(p.Id, 
+                        new VersionRange(NuGetVersion.Parse(p.Version), originalString: p.Version)))
+                    .ToList();
+
+
+            var package = new NuGetPackageDependencies.Package();
+            package.Packet = nugetPacket;
+            List<PackageDependency> packageDependencies = new List<PackageDependency>();
+            await SearchAllDependency(nugetPacket, packageDependencies, nugetRepository);
+            package.Dependencies = packageDependencies
+                .Select(p => new NuGetPackageDependencies.NPackageDependency
+                {
+                    Id = p.Id,
+                    Version = p.VersionRange.OriginalString
+                }).ToList();
+
+            _nuGetPackageDependencies.Packages.Add(package);
+
+            File.WriteAllText(_dependenciesPath, 
+                JsonConvert.SerializeObject(_nuGetPackageDependencies));
+            return packageDependencies;
+        }
+
+        public async Task SearchAllDependency(NugetPacket nugetPacket,
+            List<PackageDependency> packageDependencies, INugetRepository nugetRepository)
+        {
+            var deps = await nugetRepository
+               .GetDependencies(nugetPacket);
+
+
+            var allAssemblies = AssemblyLoadContext.All.SelectMany(p => p.Assemblies)
+                .Select(p => p.GetName())
+                .ToList();
+
+            var newDeps = deps
+                .Where(p =>
+                    !packageDependencies.Any(z => z.Id == p.Id &&
+                    z.VersionRange.OriginalString == p.VersionRange.OriginalString))
+                .Where(p => !allAssemblies.Any(z => z.Name == p.Id))
+                .ToList();
+            if (newDeps.Any())
+            {
+                packageDependencies.AddRange(newDeps);
+                foreach (var dependency in newDeps)
+                {
+                    try
+                    {
+                        Assembly.Load(dependency.Id);
+                    }
+                    catch
+                    {
+                        await SearchAllDependency(new NugetPacket
+                        {
+                            Id = dependency.Id,
+                            Version = dependency.VersionRange.OriginalString
+                        }, packageDependencies, nugetRepository);
+                    }
+
+                }
+            }
+
+        }
+
+
+        private MgModuleMetadata? SearchFromAssemblyName(NugetPacket nugetPacket)
         {
             return _mgModuleMetadata
-                .FirstOrDefault(p => p.ModuleName == assemblyName.Name
-                && p.ModuleVersion == assemblyName.Version!.ToString());
+                .FirstOrDefault(p => p.ModuleName == nugetPacket.Id
+                && p.ModuleVersion == nugetPacket.Version!.ToString());
         }
 
         public void SaveMgModule
-            (AssemblyName assemblyName, PackageReaderBase packageReaderBase, string nugetSource)
+            (NugetPacket nugetPacket, PackageReaderBase packageReaderBase, string nugetSource)
         {
             var newModules = new List<MgModuleMetadata>();
             foreach (var lib in packageReaderBase.GetLibItems())
             {
                 var module = new MgModuleMetadata();
                 module.InternalOther = new List<string>();
-                module.ModuleName = assemblyName.Name!;
-                module.ModuleVersion = assemblyName.Version!.ToString();
+                module.ModuleName = nugetPacket.Id!;
+                module.ModuleVersion = nugetPacket.Version!.ToString();
                 module.Framework = lib.TargetFramework.ToString();
                 module.NugetSource = nugetSource;
                 foreach (var item in lib.Items)
@@ -120,7 +221,7 @@ namespace ModuleGate.Runtime.App.Nupkg
                 newModules.Add(module);
             }
 
-            var packetSource = Path.Combine(_mgRootPath, $"{assemblyName.Name}_{assemblyName.Version}");
+            var packetSource = Path.Combine(_mgRootPath, $"{nugetPacket.Id}_{nugetPacket.Version}");
             foreach (var file in packageReaderBase.GetFiles())
             {
                 var moduleOtherPath = Path.Combine(packetSource, file);

@@ -33,9 +33,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleGate.App.Starter", "r
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuelGate.Options", "modules\ModuelGate.Options\ModuelGate.Options\ModuelGate.Options.csproj", "{3EA0ACBD-A3F2-48FD-9086-86EDFFC8E12B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleGate.EntityFrameworkCore.Migrator", "modules\ModuleGate.Database\ModuleGate.EntityFrameworkCore.Migrator\ModuleGate.EntityFrameworkCore.Migrator.csproj", "{5106CE71-2398-4F19-8651-7EB848ED0618}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleGate.EntityFrameworkCore.Migrator", "modules\ModuleGate.Database\ModuleGate.EntityFrameworkCore.Migrator\ModuleGate.EntityFrameworkCore.Migrator.csproj", "{5106CE71-2398-4F19-8651-7EB848ED0618}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleGate.EntityFrameworkCore.Identity", "modules\ModuleGate.Database\ModuleGate.EntityFrameworkCore.Identity\ModuleGate.EntityFrameworkCore.Identity.csproj", "{97180A5C-1B94-4FFF-8E64-6C25F55D6D14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleGate.EntityFrameworkCore.Identity", "modules\ModuleGate.Database\ModuleGate.EntityFrameworkCore.Identity\ModuleGate.EntityFrameworkCore.Identity.csproj", "{97180A5C-1B94-4FFF-8E64-6C25F55D6D14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ModuleGate.AntDesign", "ModuleGate.AntDesign", "{EE44C59B-2A0C-4C32-9A76-5C4954179836}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleGate.Ant", "modules\ModuleGate.AntDesign\ModuleGate.Ant\ModuleGate.Ant.csproj", "{E3B23884-62F0-43CD-995A-B709CCA9DE13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +91,10 @@ Global
 		{97180A5C-1B94-4FFF-8E64-6C25F55D6D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97180A5C-1B94-4FFF-8E64-6C25F55D6D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97180A5C-1B94-4FFF-8E64-6C25F55D6D14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3B23884-62F0-43CD-995A-B709CCA9DE13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3B23884-62F0-43CD-995A-B709CCA9DE13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3B23884-62F0-43CD-995A-B709CCA9DE13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3B23884-62F0-43CD-995A-B709CCA9DE13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +115,8 @@ Global
 		{3EA0ACBD-A3F2-48FD-9086-86EDFFC8E12B} = {8AE9E399-986C-4481-AA73-B815BF3E4E5A}
 		{5106CE71-2398-4F19-8651-7EB848ED0618} = {46845F2B-7A0D-4724-AB5F-BFD62BB04433}
 		{97180A5C-1B94-4FFF-8E64-6C25F55D6D14} = {46845F2B-7A0D-4724-AB5F-BFD62BB04433}
+		{EE44C59B-2A0C-4C32-9A76-5C4954179836} = {E42521F6-1404-4EB0-9E2F-2888917A7E8B}
+		{E3B23884-62F0-43CD-995A-B709CCA9DE13} = {EE44C59B-2A0C-4C32-9A76-5C4954179836}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {52E8E044-AF0D-43DE-B61C-1A655698869E}

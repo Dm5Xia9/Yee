@@ -2,6 +2,9 @@
 using ModuleGate.Models;
 using NuGet.Common;
 using NuGet.Configuration;
+using NuGet.Frameworks;
+using NuGet.Packaging;
+using NuGet.Packaging.Core;
 using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
 using NuGet.Versioning;
@@ -40,12 +43,12 @@ namespace ModuleGate.Runtime.App.Nupkg
                 _sourceRepository.GetResource<PackageSearchResource>();
         }
 
-        public async Task<Stream?> GetNupkgFromAssemblyName(AssemblyName assemblyName)
+        public async Task<Stream?> GetNupkg(NugetPacket nugetPacket)
         {
             MemoryStream packageStream = new MemoryStream();
             var result = await _findPackageByIdResource.CopyNupkgToStreamAsync(
-                assemblyName.Name,
-                new NuGetVersion(assemblyName.Version),
+                nugetPacket.Id,
+                new NuGetVersion(nugetPacket.Version),
                 packageStream,
                 _cache,
                 _logger,
@@ -69,6 +72,11 @@ namespace ModuleGate.Runtime.App.Nupkg
 
             return results.Select(p => new PackageMetadata(_source, p));
         }
+
+        public Task<IEnumerable<PackageDependency>> GetDependencies(NugetPacket nugetPacket)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class CombineNugetRepository : INugetRepository
@@ -82,17 +90,38 @@ namespace ModuleGate.Runtime.App.Nupkg
 
         public string NugetSource => null;
 
-        public async Task<Stream?> GetNupkgFromAssemblyName(AssemblyName assemblyName)
+        public async Task<Stream?> GetNupkg(NugetPacket nugetPacket)
         {
             foreach(var nuget in _nugetRepositories)
             {
-                var result = await nuget.GetNupkgFromAssemblyName(assemblyName);
+                var result = await nuget.GetNupkg(nugetPacket);
 
                 if (result != null)
                     return result;
             }
 
             return null;
+        }
+
+        public async Task<IEnumerable<PackageDependency>> GetDependencies(NugetPacket nugetPacket)
+        {
+            var stream = await GetNupkg(nugetPacket);
+            if (stream == null)
+                return null;
+
+            using var packageReader = new PackageArchiveReader(stream);
+            var nuspecReader = await packageReader
+                .GetNuspecReaderAsync(CancellationToken.None);
+
+            var deps = nuspecReader.GetDependencyGroups();
+            if (!deps.Any())
+                return new List<PackageDependency>();
+
+            var net6depns = nuspecReader.GetDependencyGroups()
+                .First(p => DefaultCompatibilityProvider
+                .Instance.IsCompatible(NuGetFramework.Parse("net6.0"), p.TargetFramework));
+
+            return net6depns.Packages;
         }
 
         public async Task<IEnumerable<PackageMetadata>> Search(SearchPreferences searchPreferences, 
