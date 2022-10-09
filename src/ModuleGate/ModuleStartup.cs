@@ -20,18 +20,17 @@ namespace ModuleGate
 
         }
 
-        public virtual void ConfigureServices(ModuleConfiguration configuration, 
-            IServiceCollection services)
-        {
-            ConfigureServices(services);
-        }
-
         public virtual void Configure(MiddlewareBuilder middles)
         {
 
         }
 
         public virtual void Build(IServiceProvider provider)
+        {
+
+        }
+
+        public virtual void Finish(IServiceProvider provider)
         {
 
         }

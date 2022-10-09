@@ -13,9 +13,13 @@ namespace ModuleGate.EntityFrameworkCore.Npgsql
 {
     public class Startup : ModuleStartup
     {
-        public override void ConfigureServices(ModuleConfiguration configuration, IServiceCollection services)
+        public override void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<NpgsqlOptions>(configuration);
+            services.AddScoped<NpgsqlOptions>(p => new NpgsqlOptions
+            {
+                ConnectionString = "Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=QAZqaz_123;Pooling=true;",
+                Timeout = 600
+            });
             services.AddScoped<IDbContextOptionsProvider, NpgsqlOptionsProvider>();
         }
     }

@@ -2,26 +2,23 @@
 using ModuelGate.Options.EntityFrameworkCore.Models;
 using ModuleGate;
 using ModuleGate.Attributes;
-using ModuleGate.EntityFrameworkCore.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-[assembly: ModuleGate(Special = ModuleGateSpecialType.OptionsModule)]
+[assembly: ModuleGate]
 
 namespace ModuelGate.Options.EntityFrameworkCore
 {
     public class Startup : ModuleStartup
     {
 
-        public override void Build(IServiceProvider provider)
+        public override void ConfigureServices(IServiceCollection services)
         {
-            var anotationService = provider.GetRequiredService<DatabaseAnotationService>();
-            anotationService.AddModel<ModuleOptions>();
-
-
-            base.Build(provider);
+            services.AddScoped<IFlexOptionsProvider, OptionsProvider>();
+            base.ConfigureServices(services);
         }
+
     }
 }

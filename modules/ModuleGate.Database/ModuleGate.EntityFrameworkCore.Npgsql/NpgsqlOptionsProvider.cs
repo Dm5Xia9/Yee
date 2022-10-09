@@ -11,9 +11,9 @@ namespace ModuleGate.EntityFrameworkCore.Npgsql
 {
     public class NpgsqlOptionsProvider : IDbContextOptionsProvider
     {
-        private readonly IOptions<NpgsqlOptions> _options;
+        private readonly NpgsqlOptions _options;
 
-        public NpgsqlOptionsProvider(IOptions<NpgsqlOptions> options)
+        public NpgsqlOptionsProvider(NpgsqlOptions options)
         {
             _options = options;
         }
@@ -21,8 +21,8 @@ namespace ModuleGate.EntityFrameworkCore.Npgsql
         public DbContextOptions GetOptions()
         {
             return new DbContextOptionsBuilder()
-                .UseNpgsql(_options.Value.ConnectionString, 
-                    p => p.CommandTimeout(_options.Value.Timeout))
+                .UseNpgsql(_options.ConnectionString, 
+                    p => p.CommandTimeout(_options.Timeout))
                 .Options;
         }
     }

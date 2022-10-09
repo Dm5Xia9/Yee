@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
+using ModuelGate.Options.Extensions;
 using ModuleGate.Attributes;
 using ModuleGate.DefualtExample.Data;
 using System;
@@ -17,7 +18,13 @@ namespace ModuleGate.DefualtExample
         public override void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<WeatherForecastService>();
+            services.AddFlexOptions<Flex>();
         }
+    }
+
+    public class Flex
+    {
+        public string Value { get; set; }
     }
 }
     

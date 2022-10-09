@@ -14,13 +14,22 @@ namespace ModuleGate.Runtime.App.Helpers
         {
             var linePackages = TreeToLine(packages);
 
+            var rLinePackages = new List<ModulePackage>();
+
+            foreach(var package in linePackages)
+            {
+                if (rLinePackages.Any(p => p.Target.FullName == package.Target.FullName))
+                    continue;
+
+                rLinePackages.Add(package);
+            }
             var generalize = new ModulePackageGeneralize();
-            generalize.Startups = linePackages
+            generalize.Startups = rLinePackages
                 .Where(p => p.Startup != null)
                 .Select(p => p.Startup)
                 .ToList();
 
-            var patches = linePackages
+            var patches = rLinePackages
                 .Select(p => p.Patch)
                 .ToList();
 
@@ -32,7 +41,7 @@ namespace ModuleGate.Runtime.App.Helpers
 
             };
 
-            generalize.Assemblies = linePackages.Select(p => p.Target).ToList();
+            generalize.Assemblies = rLinePackages.Select(p => p.Target).ToList();
             return generalize;
         }
 

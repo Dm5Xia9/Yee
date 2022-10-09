@@ -3,6 +3,7 @@ using ModuleGate;
 using ModuleGate.Middlewares;
 using ModuleGate.Runtime.App;
 using ModuleGate.Runtime.App.Helpers;
+using ModuleGate.Runtime.App.Models;
 using ModuleGate.Runtime.App.PackageProviders;
 using System.Collections.Generic;
 using System.Reflection;
@@ -10,16 +11,19 @@ using System.Reflection;
 
 var builder = MGRuntimeApplication.CreateBuilder(args);
 
-builder.AddProvider(new DllPackageProvider());
-builder.AddModule("C:\\Users\\jackf\\Documents\\ModuleGate\\modules\\ModuleGate.Database\\ModuleGate.EntityFrameworkCore\\" +
-    "bin\\Debug\\net6.0\\ModuleGate.EntityFrameworkCore.dll");
-
-builder.AddModule("C:\\Users\\jackf\\Documents\\ModuleGate\\modules\\ModuleGate.Database\\ModuleGate.EntityFrameworkCore.Npgsql\\" +
-    "bin\\Debug\\net6.0\\ModuleGate.EntityFrameworkCore.Npgsql.dll");
-
-builder.AddModule("C:\\Users\\jackf\\Documents\\ModuleGate\\examples\\ModuleGate.DefualtExample\\" +
-    "bin\\Debug\\net6.0\\ModuleGate.DefualtExample.dll");
-
+//builder.AddModule("C:\\Users\\jackf\\Documents\\ModuleGate\\examples\\ModuleGate.DefualtExample\\" +
+//    "bin\\Debug\\net6.0\\ModuleGate.DefualtExample.dll");
+builder.AddProvider<NupkgPackageProvider>();
+builder.Services.AddSingleton<StarterOptions>(new StarterOptions
+{
+    ModuleName = "ModuleGate.App.Starter",
+    ModuleVersion = "0.0.4",
+    NugetSource = "http://49.12.227.30:555/v3/index.json",
+    //Source = "C:\\Users\\jackf\\Documents\\ModuleGate\\" +
+    //    "runtime\\ModuleGate.App.Starter\\bin\\Debug\\net6.0" +
+    //    "\\ModuleGate.App.Starter.dll",
+    //Assembly = typeof(ModuleGate.App.Starter.Startup).Assembly
+});
 
 var mgapp = builder.Build();
 mgapp.App.Run();

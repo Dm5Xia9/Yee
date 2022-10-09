@@ -9,7 +9,7 @@
 
 </CascadingAuthenticationState>
 
-@foreach (var component in general.ModulePatch.AppComponentTypes.Where(p => !p.Meta.Router != null))
+@foreach (var component in general.ModulePatch.AppComponentTypes.Where(p => !p.Meta.Router == null))
 {
     <DynamicComponent Type="component.Type"></DynamicComponent>
 }

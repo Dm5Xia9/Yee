@@ -19,7 +19,7 @@
     }
     @foreach (var assembly in general.Assemblies)
     {
-        <link href="@($"/{assembly.GetName().Name}.styles.css")" rel="stylesheet" />
+        <link href="@($"/{assembly.GetName().Name}.bundle.scp.css")" rel="stylesheet" />
     }
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 </head>
@@ -28,7 +28,7 @@
 
     @RenderBody()
 
-    <div id="blazor-error-ui">
+    @*<div id="blazor-error-ui">
         <environment include="Staging,Production">
             An error has occurred. This application may no longer respond until reloaded.
         </environment>
@@ -37,7 +37,7 @@
         </environment>
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
-    </div>
+    </div>*@
 
     @foreach (var script in hostConf.Scripts)
     {

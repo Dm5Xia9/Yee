@@ -8,8 +8,4 @@ using System.Threading.Tasks;
 
 namespace ModuleGate.Abstractions
 {
-    public interface IOptionsProvider
-    {
-        public IConfiguration GetModuleConfiguration(Assembly assembly);
-    }
 }

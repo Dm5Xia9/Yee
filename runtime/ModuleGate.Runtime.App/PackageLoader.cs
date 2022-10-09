@@ -1,4 +1,6 @@
-﻿using ModuleGate.Runtime.App.Abstractions;
+﻿using Microsoft.AspNetCore.Hosting;
+using ModuleGate.Models;
+using ModuleGate.Runtime.App.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +18,16 @@ namespace ModuleGate.Runtime.App
             _packageProviders = packageProviders;
         }
 
-        public ModulePackage Load(string file)
+        public ModulePackage Load(IWebHostEnvironment webHost, MgModuleMetadata mgModule)
         {
-            var ex = Path.GetExtension(file);
+            foreach(var provider in _packageProviders)
+            {
+                var pack = provider.Load(webHost, mgModule);
+                if (pack != null)
+                    return pack;
+            }
 
-            var provider = _packageProviders.FirstOrDefault(p => p.FileExtension == ex);
-            if (provider == null)
-                throw new Exception("ex unknown");
-
-            return provider.Load(file);
+            return null;
         }
     }
 }

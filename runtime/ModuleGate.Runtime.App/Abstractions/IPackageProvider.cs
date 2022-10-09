@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using ModuleGate.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +10,7 @@ namespace ModuleGate.Runtime.App.Abstractions
 {
     public interface IPackageProvider
     {
-        public string FileExtension { get; }
-        public ModulePackage Load(string path);
+        public ModulePackage? Load(IWebHostEnvironment webHost, MgModuleMetadata mgModule);
 
     }
 }

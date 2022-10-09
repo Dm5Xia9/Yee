@@ -1,0 +1,65 @@
+﻿@layout MainLayout
+@using ModuleGate.Services
+@using ModuleGate.Abstractions
+@inject NavigationManager uriHelper
+@inject ModuleGateStorage storage
+@inject INugetRepository nugetRepository
+@inject ReloadService reloadService
+@page "/"
+
+@{
+    var exModules = storage.GetAllModules();
+}
+<h3>Подключенные модули</h3>
+@foreach (var module in exModules)
+{
+    <div>@($"{module.ModuleName}:{module.ModuleVersion}")</div>
+}
+
+<h3>Доступные для подключения</h3>
+
+@if (packages != null)
+{
+    @foreach (var module in packages)
+    {
+        <button onclick="@(() => AddModule(module))">@(module.Value.Title)</button>
+    }
+}
+
+<div>
+    <p></p>
+    <button onclick="@(() => Save())">Сохранить и перезапустить</button>
+
+</div>
+
+@code {
+
+    private IEnumerable<ModuleGate.Models.PackageMetadata> packages;
+    protected override async Task OnInitializedAsync()
+    {
+        packages = await nugetRepository
+            .Search(new ModuleGate.Models.SearchPreferences() { NuGetSource = "http://49.12.227.30:555/v3/index.json" },
+            new NuGet.Protocol.Core.Types.SearchFilter(true), null);
+
+
+        base.OnInitialized();
+    }
+
+    private void AddModule(ModuleGate.Models.PackageMetadata package)
+    {
+        storage.AddModule(new Models.MgModuleMetadata
+        {
+            NugetSource = package.Source,
+            ModuleName = package.Value.Identity.Id,
+            ModuleVersion = package.Value.Identity.Version.ToFullString()
+        });
+        StateHasChanged();
+    }
+
+    private void Save()
+    {
+        storage.Save();
+        reloadService.Reaload();
+
+    }
+}

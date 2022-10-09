@@ -13,6 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  
 	  <ProjectReference Include="..\..\runtime\ModuleGate.Runtime.App\ModuleGate.Runtime.App.csproj" />
 	</ItemGroup>
 
