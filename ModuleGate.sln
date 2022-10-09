@@ -29,7 +29,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleGate.Runtime.App", "r
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ModuelGate.Options", "ModuelGate.Options", "{8AE9E399-986C-4481-AA73-B815BF3E4E5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuelGate.Options.EntityFrameworkCore", "modules\ModuelGate.Options\ModuelGate.Options.EntityFrameworkCore\ModuelGate.Options.EntityFrameworkCore.csproj", "{9A40C3DB-A0C2-4D2E-BE4B-DA560BD8CA7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuelGate.Options.EntityFrameworkCore", "modules\ModuelGate.Options\ModuelGate.Options.EntityFrameworkCore\ModuelGate.Options.EntityFrameworkCore.csproj", "{9A40C3DB-A0C2-4D2E-BE4B-DA560BD8CA7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ModuleGate.ComponentEngine", "ModuleGate.ComponentEngine", "{1F31656F-B80B-4A8A-ACF3-66C526A60FA9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleGate.ComponentEngine", "modules\ModuleGate.ComponentEngine\ModuleGate.ComponentEngine\ModuleGate.ComponentEngine.csproj", "{CB33BB9E-DF81-4B1F-8C92-37E309FF63F2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleGate.ComponentEngine.Test", "modules\ModuleGate.ComponentEngine\ModuleGate.ComponentEngine.Test\ModuleGate.ComponentEngine.Test.csproj", "{A445C762-810B-45FF-AA13-92FC27F83376}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +75,14 @@ Global
 		{9A40C3DB-A0C2-4D2E-BE4B-DA560BD8CA7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A40C3DB-A0C2-4D2E-BE4B-DA560BD8CA7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A40C3DB-A0C2-4D2E-BE4B-DA560BD8CA7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB33BB9E-DF81-4B1F-8C92-37E309FF63F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB33BB9E-DF81-4B1F-8C92-37E309FF63F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB33BB9E-DF81-4B1F-8C92-37E309FF63F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB33BB9E-DF81-4B1F-8C92-37E309FF63F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A445C762-810B-45FF-AA13-92FC27F83376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A445C762-810B-45FF-AA13-92FC27F83376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A445C762-810B-45FF-AA13-92FC27F83376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A445C762-810B-45FF-AA13-92FC27F83376}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +100,9 @@ Global
 		{2168ACCD-FA3D-4297-BCB3-77E7003C1748} = {C18BEF49-1221-453C-B351-72DCEB50DBC2}
 		{8AE9E399-986C-4481-AA73-B815BF3E4E5A} = {E42521F6-1404-4EB0-9E2F-2888917A7E8B}
 		{9A40C3DB-A0C2-4D2E-BE4B-DA560BD8CA7B} = {8AE9E399-986C-4481-AA73-B815BF3E4E5A}
+		{1F31656F-B80B-4A8A-ACF3-66C526A60FA9} = {E42521F6-1404-4EB0-9E2F-2888917A7E8B}
+		{CB33BB9E-DF81-4B1F-8C92-37E309FF63F2} = {1F31656F-B80B-4A8A-ACF3-66C526A60FA9}
+		{A445C762-810B-45FF-AA13-92FC27F83376} = {1F31656F-B80B-4A8A-ACF3-66C526A60FA9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {52E8E044-AF0D-43DE-B61C-1A655698869E}

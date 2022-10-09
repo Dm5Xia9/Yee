@@ -1,0 +1,15 @@
+﻿@using ModuleGate.ComponentEngine.Models
+@inherits BaseDomElement
+
+<h3>ListItem</h3>
+
+@foreach (var child in Childs)
+{
+    @child
+}
+
+@((MarkupString)InnerHtml)
+
+@code {
+
+}
