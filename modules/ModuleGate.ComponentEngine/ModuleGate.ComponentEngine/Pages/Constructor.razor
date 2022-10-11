@@ -1,19 +1,11 @@
 ﻿@page "/constructor"
-@using AntDesign
 @using ModuleGate.ComponentEngine.ViewModels
 
 @foreach (var seg in SegmentForms)
 {
-    <Space Direction="DirectionVHType.Vertical">
-        <SpaceItem>
-            <Card Title=@("Новый сегмент")>
-
-            </Card>
-        </SpaceItem>
-    </Space>
+    
 }
-<Button Type="@ButtonType.Primary" Icon="@IconType.Outline.Plus" OnClick="@AddSegment">  
-</Button>
+
 
 @code {
     public List<SegmentForm> SegmentForms = new List<SegmentForm>();
