@@ -1,0 +1,57 @@
+﻿<div class="row">
+	<div class="col-lg-12">
+		<div class="card card-custom gutter-b example example-compact">
+			<div class="card-header"><h3 class="card-title">Создание дочернего элемента</h3></div>
+			<form class="form">
+				<div class="card-body">
+					<div>
+						<div class="form-group">
+							<label>Название:</label>
+							<input type="email" class="form-control" placeholder="Добавление источника данных">
+							<span class="form-text text-muted">Название источника данных</span>
+						</div>
+						<div class="form-group">
+							<div>
+								<label>Отображаемое имя:</label>
+								<input type="email" class="form-control" placeholder="Введите DisplayName">
+							</div>
+							<div>
+								<label for="exampleSelect1">
+									Выберите компонент
+									<span class="text-danger">*</span>
+								</label>
+								@*<select class="form-control" id="exampleSelect1" @onchange="SelectComponent">
+									@foreach (var opt in Components)
+									{
+										<option>@opt</option>
+									}
+								</select>*@
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<div class="row">
+						<div class="col-lg-6">
+							<button class="btn btn-primary mr-2">Сохранить</button>
+						</div>
+						<div class="col-lg-6 text-lg-right"><button type="reset" class="btn btn-danger" @onclick="RemoveElement">Удалить</button></div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+@code {
+	//private async Task RemoveChild(ChildComponentForm child)
+	//{
+	//	SegmentForm?.Children?.Remove(child);
+	//	StateHasChanged();
+	//}
+
+	private void RemoveElement()
+	{
+		//RemoveSegmentEvent.InvokeAsync(SegmentForm);
+	}
+}

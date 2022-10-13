@@ -6,7 +6,6 @@
     <meta charset="utf-8" />
     <title>@ViewData["Title"]</title>
     <base href="/">
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -24,7 +23,8 @@
     <link href="~/themes/metronic/dist/assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
     <link href="~/themes/metronic/dist/assets/css/themes/layout/header/menu/light.css" rel="stylesheet" type="text/css" />
     <link href="~/themes/metronic/dist/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
-    <link href="~/themes/metronic/dist/assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
+	<link href="~/themes/metronic/dist/assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
+	<link href="_content/AntDesign/css/ant-design-blazor.css" rel="stylesheet" />
     <!--end::Layout Themes-->
     <link rel="shortcut icon" href="~/favicon.ico" />
 </head>
@@ -36,7 +36,7 @@
     <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
         <!--begin::Logo-->
         <a href="/" style="width: 40px; height: 40px;">
-            <img alt="Logo" src="~/themes/metronic/dist/assets/media/logos/yee-logo.png" />
+            <img alt="Logo" src="~/themes/metronic/dist/assets/media/logos/yee-logo.png" style="width: 40px; height: 40px;"/>
         </a>
         <!--end::Logo-->
         <!--begin::Toolbar-->
@@ -1517,7 +1517,7 @@
             </div>
             <!--end::Aside-->
             <!--begin::Wrapper-->
-            <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+			<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper" style="padding-top: 66px;">
                 <!--begin::Header-->
                 <div id="kt_header" class="header header-fixed">
                     <!--begin::Container-->
@@ -1718,6 +1718,7 @@
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
     <script src="~/themes/metronic/dist/assets/js/pages/widgets.js"></script>
+	<script src="_content/AntDesign/js/ant-design-blazor.js"></script>
     <!--end::Page Scripts-->
     <!--Custom scripts-->
     @RenderSection("Scripts", required: false)

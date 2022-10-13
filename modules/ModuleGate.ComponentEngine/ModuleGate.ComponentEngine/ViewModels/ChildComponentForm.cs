@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ModuleGate.ComponentEngine.ViewModels
 {
-    public class SegmentForm : ChildComponentForm
+	public class ChildComponentForm
     {
-        
+        public string Name { get; set; }
+        public List<ChildComponentForm> Children { get; set; } = new();
     }
 }

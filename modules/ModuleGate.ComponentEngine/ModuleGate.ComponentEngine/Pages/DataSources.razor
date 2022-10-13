@@ -1,4 +1,4 @@
-﻿@page "/constructor"
+﻿@page "/sources"
 @using AntDesign
 @using ModuleGate.ComponentEngine.ViewModels
 @using ModuleGate.ComponentEngine.Components.AdminPanel
@@ -11,7 +11,7 @@
 			<!--begin::Page Heading-->
 			<div class="d-flex align-items-baseline flex-wrap mr-5">
 				<!--begin::Page Title-->
-				<h5 class="text-dark font-weight-bold my-1 mr-5">Конструктор страницы</h5>
+				<h5 class="text-dark font-weight-bold my-1 mr-5">Источники данных</h5>
 				<!--end::Page Title-->
 			</div>
 			<!--end::Page Heading-->
@@ -19,7 +19,7 @@
 		<!--end::Info-->
 		<div class="d-flex align-items-center">
 			<!--begin::Button-->
-			<a @onclick="AddSegment" class="btn btn-light-primary font-weight-bold ml-2">Добавить сегмент</a>
+			<a @onclick="AddSource" class="btn btn-light-primary font-weight-bold ml-2">Добавить источник данных</a>
 			<!--end::Button-->
 		</div>
 	</div>
@@ -29,9 +29,9 @@
 <div class="d-flex flex-column-fluid" style="padding-top: 50px;">
 	<!--begin::Container-->
 	<div class="container">
-		@foreach(var segment in SegmentForms)
+		@foreach (var segment in SegmentForms)
 		{
-			<SegmentPanel RemoveSegmentEvent="@RemoveSegment" SegmentForm="@segment"></SegmentPanel>
+			<DataSource RemoveSegmentEvent="@RemoveSegment" SegmentForm="@segment"></DataSource>
 		}
 	</div>
 	<!--end::Container-->
@@ -53,7 +53,7 @@
 		StateHasChanged();
 	}
 
-	public void AddSegment()
+	public void AddSource()
 	{
 		SegmentForms.Add(new SegmentForm());
 		StateHasChanged();
