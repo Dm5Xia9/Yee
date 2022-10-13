@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@namespace Yee.Runtime.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Yee.Web.Services
+@using Yee.Web.Extensions
+@inject YeeViewManager manager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    @*<base href="~/" />*@
+    @foreach (var style in manager.GetAllStyles())
+    {
+        @Html.Raw(Yee.Web.Extensions.HtmlHelper.CreateStyle(style).ToString());
+    }
+
+    @foreach (var assembly in manager.GetAssemblies())
+    {
+        @Html.Raw(Yee.Web.Extensions.HtmlHelper
+            .CreateStyle($"/_content/Yee.ExampleModule/{assembly.GetName().Name}.bundle.scp.css"));
+    }
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+</head>
+<body class="cab-homepage-v1" id="bodyTop">
+    @*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*@
+    @RenderBody()
+
+    <script src="_framework/blazor.server.js"></script>
+
+    @{
+        var scripts = manager.GetAllScripts();
+    }
+    @Html.Raw(Yee.Web.Extensions.HtmlHelper.CreateHtmlFromScripts(scripts))
+</body>
+</html>
+
+

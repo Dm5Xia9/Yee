@@ -1,0 +1,84 @@
+// All Cab Search Section Styles
+.cab-search-overlay {
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    transform: scale(0.94);
+    &.show{
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+    }
+    .cab-search-inner {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        .search-form {
+            width: 34%;
+            margin: auto;
+            position: relative;
+            .close-search-overlay{
+                color: $white;
+                position: absolute;
+                right: 16px;
+                top: -60px;
+                font-size: 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                &:hover{
+                    color: $greyColor;
+                }
+            }
+            form {
+                position: relative;
+                width: 100%;
+                input {
+                    width: 100%;
+                    height: 70px;
+                    padding: 14px 160px 14px 26px;
+                    border: 2px solid $greyColor3;
+                    border-radius: 50px;
+                    font-size: 20px;
+                    color: $secondaryColor;
+                    font-family: $secondaryFont;
+                    transition: all 0.3s ease;
+                    &::placeholder {
+                        color: $tertiaryColor2;
+                        font-family: $secondaryFont;
+                        text-transform: capitalize;
+                    }
+                    &:focus {
+                        outline: 0;
+                        border-color: $primaryColor;
+                    }
+                }
+                button{
+                    min-width: 150px;
+                    height: 64px;
+                    border-radius: 50px;
+                    background: $primaryColor;
+                    outline: 0;
+                    font-size: 18px;
+                    border: 2px solid $primaryColor;
+                    color: $white;
+                    font-family: $accentFont;
+                    position: absolute;
+                    right: 4px;
+                    top: 3px;
+                    transition: all 0.3s ease;
+                    &:hover {
+                        background: $secondaryColor;
+                        border-color: $secondaryColor;
+                    }
+                }
+            }
+        }
+    }
+}

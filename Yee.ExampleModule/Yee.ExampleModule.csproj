@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AntDesign" Version="0.12.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yee.Cabaret.CoreFrontLibraries\Yee.Cabaret.CoreFrontLibraries.csproj" />
+    <ProjectReference Include="..\Yee.Cabaret.Sections\Yee.Cabaret.Sections.csproj" />
+    <ProjectReference Include="..\Yee.EntityFrameworkCore.Identity\Yee.EntityFrameworkCore.Identity.csproj" />
+    <ProjectReference Include="..\Yee.Forms\Yee.Forms.csproj" />
+    <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />
+    <ProjectReference Include="..\Yee\Yee.csproj" />
+  </ItemGroup>
+
+</Project>

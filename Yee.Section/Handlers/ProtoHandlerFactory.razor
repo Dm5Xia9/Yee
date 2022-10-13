@@ -1,0 +1,38 @@
+﻿@typeparam T
+@using Yee.Section.Services
+@inject ProtoHandlerCollection collection
+
+@if (Type != null)
+{
+    <DynamicComponent Type="Type" Parameters="CreateParameters()"></DynamicComponent>
+}
+else
+{
+    <div>Прототип @(typeof(T).Name) не имеет реализации</div>
+}
+
+@code {
+
+    public Type Type { get; set; }
+
+    [Parameter]
+    public EventCallback<T> OnInput { get; set; }
+
+    [Parameter]
+    public T InputValue { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Type = collection.FirstOrDefault(p => p.Key == typeof(T)).Value;
+        base.OnInitialized();
+    }
+
+    private Dictionary<string, object> CreateParameters()
+    {
+        return new Dictionary<string, object>
+        {
+            {"OnInput", OnInput },
+            {"InputValue", InputValue }
+        };
+    }
+}

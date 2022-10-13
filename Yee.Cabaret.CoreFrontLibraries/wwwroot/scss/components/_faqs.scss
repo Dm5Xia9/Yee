@@ -1,0 +1,64 @@
+// CAb FAQ Styles
+.accordion {
+    width: 100%;
+    .accordion-item {
+        padding: 28px 38px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+        margin-bottom: 20px;
+        &.active{
+            .accordion-header {
+                &::after {
+                    transform: rotate(180deg);
+                }
+            }
+            &:last-child{
+                .accordion-header {
+                    border-radius: none;
+                }
+            }
+        }
+        .accordion-header {
+            padding: 4px 40px 0 0;
+            background: transparent;
+            color: $secondaryColor;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            &:hover {
+                background: transparent;
+                position: relative;
+                z-index: 5;
+            }
+            &::after {
+                font-family: 'themify';
+                content: "\e64b";
+                font-size: 14px;
+                float: right;
+                position: absolute;
+                top: 0;
+                right: 0;
+                transition: .3s all;
+                transform: rotate(0deg);
+                width: 32px;
+                height: 32px;
+                display: flex;
+                border-radius: 50%;
+                border: 1px solid $tertiaryColor;
+                justify-content: center;
+                align-items: center;
+                transform-origin: 50% 50%;
+            }
+        }
+        .accordion-body {
+            background: $white;
+            display: none;
+            .accordion-body-contents {
+                margin-top: 14px;
+                color: $tertiaryColor;
+                font-size: 14px;
+            }
+        }
+    }
+}

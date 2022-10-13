@@ -1,0 +1,63 @@
+﻿@inherits YeeSection
+@using Yee.Section.Navigation
+@inject NavigationManager _navManager
+@using Yee.Section.Prototypes
+@using Yee.Cabaret.Sections.Prototypes
+
+
+<section class="cab-hero-section v1 p-0">
+    <div class="cab-hero-slider swiper-container">
+        <div class="swiper-wrapper">
+            @foreach (var slide in SwiperSlides.Value.Slides)
+            {
+                <div class="swiper-slide">
+                    <div class="cab-hero-slide-inner">
+                        <img src="@slide.Img.Value" alt="Hero Slide Image">
+                        <div class="cab-hero-slide-caption">
+                            <div class="cab-sub-heading-box">
+                                @foreach (var word in slide.CabSubHeading.Split(" "))
+                                {
+                                    <h6>@word</h6>
+                                    <span class="sep"></span>
+                                }
+                            </div>
+                            <div class="cab-big-heading">
+                                <h1 class="display-1">
+                                    @slide.CabBigHeading
+                                </h1>
+                            </div>
+                            <div class="cab-hero-cta-btn-box text-center">
+                                <a href="#" class="cab-btn cab-btn-primary">@slide.ButtonContent</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next">
+            @foreach (var ch in SwiperSlides.Value.NextButtonContent)
+            {
+                <span>@ch</span>
+
+            }
+        </div>
+        <div class="swiper-button-prev">
+            @foreach (var ch in SwiperSlides.Value.PrevButtonContent)
+            {
+                <span>@ch</span>
+
+            }
+        </div>
+    </div>
+</section>
+
+@code {
+
+    [Parameter]
+    [System.ComponentModel.DisplayName("Логотип")]
+    public ProtoSwiperSlides SwiperSlides { get; set; }
+
+
+
+}

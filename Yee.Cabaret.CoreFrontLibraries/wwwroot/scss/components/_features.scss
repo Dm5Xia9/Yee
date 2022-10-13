@@ -1,0 +1,59 @@
+// All Cab Features Styles
+.cab-features-section{
+    height: 220px;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+    &.v1{
+        .cab-features-inner{
+            padding: 0 24px;
+            position: relative;
+            top: -120px;
+            & > .row{
+                & > div:nth-child(even){
+                    & > .feature-box{
+                        background: #f5f5f5;
+                    }
+                }
+            }
+            .feature-box{
+                padding: 40px 30px 50px;
+                background: #f9f9f9;
+                transition: all 0.3s ease;
+                &:hover{
+                    box-shadow: rgba(0,0,0,0.08) 0 1px 8px;
+                    .feature-img{
+                        
+                            transform: translateY(-10px);
+                    }
+                }
+                .feature-img{
+                    transition: all 0.3s ease;
+                    i{
+                        &::before{
+                            font-size: 5em;
+                            color: $primaryColor;
+                        }
+                        
+                    }
+                }
+                .feature-title{
+                    margin-bottom: 18px;
+                    h4{
+                        font-size: 20px;
+                        font-weight: 500;
+                        color: $secondaryColor;
+                        text-transform: capitalize;
+                    }
+                }
+                .feature-desc{
+                    p{
+                        font-size: 15px;
+                        font-weight: 400;
+                        color: $secondaryColor;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+﻿@using Yee.Web.Services 
+@inject YeeViewManager manager
+
+
+<CascadingAuthenticationState>
+    @foreach (var component in manager.GetRoutingComponents())
+    {
+        <DynamicComponent Type="component"></DynamicComponent>
+    }
+
+</CascadingAuthenticationState>
+
+@foreach (var component in manager.GetRootComponents())
+{
+    <DynamicComponent Type="component"></DynamicComponent>
+}

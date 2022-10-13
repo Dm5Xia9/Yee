@@ -1,0 +1,142 @@
+﻿@inherits LayoutComponentBase
+@using Yee.Section.Navigation 
+@using Yee.Section.Prototypes
+<PageTitle>Glue</PageTitle>
+
+@*<Yee.Cabaret.Sections.CabNavigation LeftMenuItems="LeftNavigation"></Yee.Cabaret.Sections.CabNavigation>*@
+@Body
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private ProtoNavigation LeftNavigation;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        LeftNavigation = new ProtoNavigation
+        {
+            Value = new List<IMenuItem>
+            {
+                new GroupMenuItem
+                {
+                    Link = new ProtoLink{ Value = "/cfrif"},
+                    Title = "Название",
+                    ChildItems = new List<IMenuItem>
+                    {
+                        new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                         new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                          new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                           new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                    }
+                },
+                new GroupMenuItem
+                {
+                    Link = new ProtoLink{ Value = "/cfrif"},
+                    Title = "Название",
+                    ChildItems = new List<IMenuItem>
+                    {
+                        new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                         new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                          new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                           new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                    }
+                },
+                new GroupMenuItem
+                {
+                    Link = new ProtoLink{ Value = "/cfrif"},
+                    Title = "Название",
+                    ChildItems = new List<IMenuItem>
+                    {
+                        new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                         new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                          new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                           new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                    }
+                },
+                new GroupMenuItem
+                {
+                    Link = new ProtoLink{ Value = "/cfrif"},
+                    Title = "Название",
+                    ChildItems = new List<IMenuItem>
+                    {
+                        new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                         new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                          new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                           new ActionMenuItem
+                        {
+                            Link = new ProtoLink{ Value = "/cfrif"},
+                            Title = "Название"
+                        },
+                    }
+                }
+            }
+        };
+        }
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

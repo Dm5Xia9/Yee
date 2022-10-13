@@ -1,0 +1,326 @@
+// Cab Menu Section Styles
+.cab-menu-section{
+    .cab-menu-content-box{
+        margin-top: 10px;
+        .nav-pills{
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            li{
+                display: inline-block;
+                &.active{
+                    a,
+                    a:hover{
+                        background: url(../img/tab-active-bg.png) no-repeat;
+                        background-position: center;
+                        background-size: 100% 80%;
+                        color: $secondaryColor;
+                    }
+                }
+                a{
+                    color: $secondaryColor;
+                    font-size: 18px;
+                    font-weight: 500;
+                    padding: 8px 34px;
+                    transition: color 0.3s ease-in-out;
+                    &:hover{
+                        color: $primaryColor;
+                        background: transparent;
+                    }
+                }
+            }
+        }
+        .tab-content{
+            margin-top: 36px;
+            .cab-menu-list{
+                background: $lightGreyColor3;
+                padding: 20px 46px 46px;
+                transition: all 0.3s ease-in-out;
+                &:hover{
+                    background: $lightGreyColor2;
+                }
+                &.list-second{
+                    background: $lightGreyColor4;
+                    &:hover{
+                        background: $lightGreyColor2;
+                    }
+                }
+                .cab-menu-item{
+                    padding: 16px 0;
+                    border-bottom: 1px dashed $greyColor2;
+                    transition: all 0.3s ease-in-out;
+                    &:last-child{
+                        border: none;
+                    }
+                    .menu-title{
+                        float: left;
+                        h6{
+                            font-size: 18px;
+                            color: $secondaryColor;
+                            font-weight: 600;
+                            font-family: $primaryFont;
+                        }
+                        .tag-new{
+                            background: $tertiaryColor;
+                            color: $white;
+                            display: inline-block;
+                            padding: 4px 10px 3px;
+                            font-size: 13px;
+                            font-family: $accentFont;
+                            font-weight: 400;
+                            text-align: center;
+                            border-radius: 5px;
+                            margin-left: 10px;
+                        }
+                        p{
+                            color: $tertiaryColor;
+                            font-size: 15px;
+                        }
+                    }
+                    .menu-price{
+                        float: right;
+                        position: relative;
+                        top: 10px;
+                        .price-tag{
+                            background: $primaryColor;
+                            color: $white;
+                            display: inline-block;
+                            padding: 5px 9px 2px;
+                            font-size: 14px;
+                            text-align: center;
+                            border-radius: 5px;
+                            line-height: 14px;
+                        }
+                    }
+                }
+            }
+            .view-all-menu-btn{
+                display: inline-block;
+                position: relative;
+                top: -24px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        .cab-menu-section-bottom{
+            text-align: center;
+            margin-top: 10px;
+            img{
+                position: relative;
+                left: -16px;
+                width: 500px;
+                height: 200px;
+                object-fit: contain;
+            }
+        }
+    }
+    &.v2{
+        .cab-menu-content-box{
+            .nav-pills{
+                &.v2{
+                    li{
+                        a{
+                            border-radius: 0;
+                            padding: 12px 4px !important;
+                            min-width: 110px;
+                            background: $lightGreyColor;
+                            color: $secondaryColor;
+                            font-weight: 500;
+                            text-align: center;
+                            margin: 0 1px 4px;
+                            i{
+                                &::before{
+                                    font-size: 40px;
+                                }
+                            }
+                            span{
+                                display: block;
+                                margin-top: -8px;
+                                font-size: 14px;
+                            }
+                            &:hover{
+                                background: $greyColor2;
+                            }
+                        }
+                        &.active{
+                            a,
+                            a:hover{
+                                background: $primaryColor;
+                                color: $white;
+                            }
+                        }
+                        a{
+                            position: relative;
+                            padding: 8px 26px;
+                            transition: all 0.3s ease;
+                            &::before{
+                                display: none;
+                            }
+                            &::after{
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                li{
+                    &.active{
+                        a,
+                        a:hover{
+                            background: none;
+                            color: $primaryColor;
+                            &::before{
+                                width: 20px;
+                            }
+                            &::after{
+                                width: 20px;
+                            }
+                        }
+                    }
+                    a{
+                        position: relative;
+                        padding: 8px 26px;
+                        transition: all 0.3s ease;
+                        &::before{
+                            content: '';
+                            position: absolute;
+                            left: -2px;
+                            top: 49%;
+                            float: left;
+                            background: $primaryColor;
+                            height: 1px;
+                            width: 0;
+                            transition: all 0.3s ease;
+                        }
+                        &::after{
+                            content: '';
+                            position: absolute;
+                            right: -2px;
+                            top: 49%;
+                            float: right;
+                            background: $primaryColor;
+                            height: 1px;
+                            width: 0;
+                            transition: all 0.3s ease;
+                        }
+                    }
+                }
+            }
+            .tab-content{
+                .cab-menu-list{
+                    border: 1px solid $lightGreyColor;
+                    .cab-menu-item{
+                        .menu-title{
+                            h6 {
+                                font-family: $accentFont;
+                                font-weight: 500;
+                            }
+                            .tag-new{
+                                background: $primaryColor;
+                            }
+                        }
+                        .menu-price{
+                            .price-tag {
+                                background: transparent;
+                                color: $secondaryColor;
+                                font-family: $primaryFont;
+                                font-weight: 600;
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.v3{
+        background: url(../img/about-v4-bg.jpg) no-repeat center;
+        background-size: cover;
+        .cab-menu-content-box{
+            .nav-pills{
+                li{
+                    &.active{
+                        a,
+                        a:hover{
+                            background: none;
+                            color: $primaryColor;
+                            &::before{
+                                width: 20px;
+                            }
+                            &::after{
+                                width: 20px;
+                            }
+                        }
+                    }
+                    a{
+                        position: relative;
+                        padding: 8px 26px;
+                        transition: all 0.3s ease;
+                        color: $white;
+                        &::before{
+                            content: '';
+                            position: absolute;
+                            left: -2px;
+                            top: 49%;
+                            float: left;
+                            background: $primaryColor;
+                            height: 1px;
+                            width: 0;
+                            transition: all 0.3s ease;
+                        }
+                        &::after{
+                            content: '';
+                            position: absolute;
+                            right: -2px;
+                            top: 49%;
+                            float: right;
+                            background: $primaryColor;
+                            height: 1px;
+                            width: 0;
+                            transition: all 0.3s ease;
+                        }
+                    }
+                }
+            }
+            .tab-content{
+                .cab-menu-list{
+                    border: none;
+                    background: $secondaryDarkColor;
+                    &:hover{
+                        background: $lightSecondaryDarkColor;
+                    }
+                    &.list-second{
+                        background: $accentColor2;
+                        &:hover{
+                            background: $lightSecondaryDarkColor;
+                        }
+                    }
+                    .cab-menu-item{
+                        border-color: $lightSecondaryDarkColor;
+                        .menu-title{
+                            h6 {
+                                font-family: $accentFont;
+                                font-weight: 500;
+                                color: $white;
+                            }
+                            p{
+                                color: $tertiaryColor3;
+                            }
+                            .tag-new{
+                                background: $primaryColor;
+                            }
+                        }
+                        .menu-price{
+                            .price-tag {
+                                background: transparent;
+                                color: $white;
+                                font-family: $primaryFont;
+                                font-weight: 400;
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

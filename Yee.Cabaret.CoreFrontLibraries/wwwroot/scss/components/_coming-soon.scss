@@ -1,0 +1,50 @@
+// Cab Coming Soon Styles
+.cab-coming-soon-section{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    .cab-coming-soon-inner{
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        h1{
+            color: $white;
+        }
+        .cab-get-ready-tag{
+            margin-top: 40px;
+            background: $primaryColor;
+            color: $white;
+            font-size: 16px;
+            padding: 11px 40px;
+            display: inline-block;
+        }
+        .cab-countdown-timer{
+            margin-top: 20px;
+            &>div{
+                display: inline-block;
+                margin: 0 12px;
+                margin-top: 20px !important;
+                color: $white;
+                min-width: 152px;
+                height: auto;
+                padding: 30px 12px 36px;
+                border: 1px solid $tertiaryColor3;
+                h1{
+                    font-family: $primaryFont;
+                    font-weight: 300;
+                    margin: 0;
+                    margin-bottom: 4px;
+                }
+                span{
+                    display: block;
+                    &:last-child{
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
