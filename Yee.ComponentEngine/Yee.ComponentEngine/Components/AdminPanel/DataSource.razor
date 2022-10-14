@@ -1,7 +1,9 @@
-﻿<div class="row">
+﻿@using Yee.ComponentEngine.ViewModels
+
+<div class="row">
 	<div class="col-lg-12">
 		<div class="card card-custom gutter-b example example-compact">
-			<div class="card-header"><h3 class="card-title">Создание дочернего элемента</h3></div>
+			<div class="card-header"><h3 class="card-title">Создание источника данных</h3></div>
 			<form class="form">
 				<div class="card-body">
 					<div>
@@ -10,7 +12,7 @@
 							<input type="email" class="form-control" placeholder="Добавление источника данных">
 							<span class="form-text text-muted">Название источника данных</span>
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="display: flex; gap: 15px;">
 							<div>
 								<label>Отображаемое имя:</label>
 								<input type="email" class="form-control" placeholder="Введите DisplayName">
@@ -20,13 +22,25 @@
 									Выберите компонент
 									<span class="text-danger">*</span>
 								</label>
-								@*<select class="form-control" id="exampleSelect1" @onchange="SelectComponent">
-									@foreach (var opt in Components)
+								<select class="form-control" id="exampleSelect1" @onchange="SelectType">
+									@foreach (var opt in DataTypes)
 									{
 										<option>@opt</option>
 									}
-								</select>*@
+								</select>
 							</div>
+							<div style="margin-top: 35px;">
+								<label class="checkbox">
+									<input type="checkbox" name="Checkboxes1">
+									<span></span>Not null
+								</label>
+							</div>
+							<div style="margin-top: 27px;">
+								<button class="btn btn-primary mr-2">Добавить свойство</button>
+							</div>
+						</div>
+						<div class="col-lg-6" style="padding-left: 0px;">
+							<button class="btn btn-primary mr-2">Добавить колонку</button>
 						</div>
 					</div>
 				</div>
@@ -44,6 +58,12 @@
 </div>
 
 @code {
+	[Parameter]
+	public DataSourceForm Form { get; set; }
+	[Parameter]
+	public EventCallback<DataSourceForm> RemoveSourceEvent { get; set; }
+	private List<string> DataTypes = new List<string> {"bool", "string", "int"};
+
 	//private async Task RemoveChild(ChildComponentForm child)
 	//{
 	//	SegmentForm?.Children?.Remove(child);
@@ -52,6 +72,11 @@
 
 	private void RemoveElement()
 	{
-		//RemoveSegmentEvent.InvokeAsync(SegmentForm);
+		RemoveSourceEvent.InvokeAsync(Form);
+	}
+
+	private void SelectType()
+	{
+
 	}
 }

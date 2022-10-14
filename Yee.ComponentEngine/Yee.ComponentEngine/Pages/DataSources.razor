@@ -29,9 +29,9 @@
 <div class="d-flex flex-column-fluid" style="padding-top: 50px;">
 	<!--begin::Container-->
 	<div class="container">
-		@foreach (var segment in SegmentForms)
+		@foreach (var dataSource in DataSourceForms)
 		{
-			<DataSource RemoveSegmentEvent="@RemoveSegment" SegmentForm="@segment"></DataSource>
+			<DataSource RemoveSourceEvent="@RemoveSource" Form="@dataSource"></DataSource>
 		}
 	</div>
 	<!--end::Container-->
@@ -39,29 +39,26 @@
 
 
 @code {
-	public List<SegmentForm> SegmentForms = new List<SegmentForm>();
+	public List<DataSourceForm> DataSourceForms = new List<DataSourceForm>();
 
 	protected async override Task OnInitializedAsync()
 	{
 		//AddSegment();
-		var seg = new SegmentForm();
-		var ch2 = new ChildComponentForm();
-		var ch1 = new ChildComponentForm();
-		ch1.Children.Add(ch2);
-		seg.Children.Add(ch1);
-		SegmentForms.Add(seg);
+		DataSourceForms.Add(new DataSourceForm());
+		DataSourceForms.Add(new DataSourceForm());
+		DataSourceForms.Add(new DataSourceForm());
 		StateHasChanged();
 	}
 
 	public void AddSource()
 	{
-		SegmentForms.Add(new SegmentForm());
+		DataSourceForms.Add(new DataSourceForm());
 		StateHasChanged();
 	}
 
-	private async Task RemoveSegment(SegmentForm segment)
+	private async Task RemoveSource(DataSourceForm segment)
 	{
-		SegmentForms?.Remove(segment);
+		DataSourceForms?.Remove(segment);
 		StateHasChanged();
 	}
 }
