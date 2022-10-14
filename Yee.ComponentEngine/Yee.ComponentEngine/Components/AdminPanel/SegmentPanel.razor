@@ -1,0 +1,95 @@
+﻿@using Yee.ComponentEngine.ViewModels
+
+<div class="row">
+	<div class="col-lg-12">
+		<!--begin::Card-->
+		<div class="card card-custom gutter-b example example-compact">
+			<div class="card-header">
+				<h3 class="card-title">Создание сегмента</h3>
+			</div>
+			<!--begin::Form-->
+			<form class="form">
+				<div class="card-body">
+					<div style="display: flex; align-items: flex-start; justify-content: center; gap: 20px;">
+						<div style="width: 50%;">
+							<div class="form-group">
+								<label for="exampleSelect1">
+									Выберите компонент
+									<span class="text-danger">*</span>
+								</label>
+								<Select class="form-control" id="exampleSelect1" @onchange="SelectComponent">
+									@foreach (var opt in Components)
+									{
+										<option>@opt</option>
+									}
+								</Select>
+							</div>
+							<div class="form-group">
+								<label>Название:</label>
+								<input type="email" class="form-control" placeholder="Введите название">
+								<span class="form-text text-muted">Название компонента</span>
+							</div>
+							<div class="form-group">
+								<label>Класс компонента:</label>
+								<input type="email" class="form-control" placeholder="Введите класс компонента">
+								<span class="form-text text-muted">Введите класс компонента</span>
+							</div>
+						</div>
+						<div style="width: 50%; display: flex; align-items: center; justify-content: center;">
+							<div class="form-group mb-1" style="width: 100%;">
+								<label for="exampleTextarea">Код элемента</label>
+								<textarea class="form-control" id="exampleTextarea" rows="12"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<div class="row">
+						<div class="col-lg-6">
+							<button class="btn btn-primary mr-2">Сохранить</button>
+							<button class="btn btn-primary mr-2" @onclick="AddChild">Добавить дочерний элемент</button></div>
+						<div class="col-lg-6 text-lg-right"><button type="reset" class="btn btn-danger" @onclick="RemoveElement">Удалить</button></div>						
+					</div>
+				</div>
+			</form>
+			<!--end::Form-->
+		</div>
+		<!--end::Card-->
+	</div>
+</div>
+
+@foreach(var child in SegmentForm.Children)
+{
+	<ChildComponent ComponentForm="@child" ColLg="11" RemoveChildEvent="@RemoveChild"></ChildComponent>
+}
+
+@code {
+	[Parameter]
+	public SegmentForm SegmentForm { get; set; }
+	[Parameter]
+	public EventCallback<SegmentForm> RemoveSegmentEvent { get; set; }
+	public List<string> Components = new List<string> { "Comp1", "Comp2", "Comp3" };
+
+	private void SelectComponent(ChangeEventArgs a)
+	{
+
+	}
+
+	private void AddChild()
+	{
+		var child = new ChildComponentForm();
+		SegmentForm.Children.Add(child);
+		StateHasChanged();
+	}
+
+	private async Task RemoveChild(ChildComponentForm child)
+	{
+		SegmentForm?.Children?.Remove(child);
+		StateHasChanged();
+	}
+
+	private void RemoveElement()
+	{
+		RemoveSegmentEvent.InvokeAsync(SegmentForm);
+	}
+}

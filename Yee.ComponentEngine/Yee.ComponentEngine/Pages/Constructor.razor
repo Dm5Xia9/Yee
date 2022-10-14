@@ -1,0 +1,67 @@
+﻿@page "/constructor"
+@using AntDesign
+@using Yee.ComponentEngine.ViewModels
+@using Yee.ComponentEngine.Components.AdminPanel
+
+<!--begin::Subheader-->
+<div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
+	<div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+		<!--begin::Info-->
+		<div class="d-flex align-items-center flex-wrap mr-1">
+			<!--begin::Page Heading-->
+			<div class="d-flex align-items-baseline flex-wrap mr-5">
+				<!--begin::Page Title-->
+				<h5 class="text-dark font-weight-bold my-1 mr-5">Конструктор страницы</h5>
+				<!--end::Page Title-->
+			</div>
+			<!--end::Page Heading-->
+		</div>
+		<!--end::Info-->
+		<div class="d-flex align-items-center">
+			<!--begin::Button-->
+			<a @onclick="AddSegment" class="btn btn-light-primary font-weight-bold ml-2">Добавить сегмент</a>
+			<!--end::Button-->
+		</div>
+	</div>
+</div>
+<!--end::Subheader-->
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid" style="padding-top: 50px;">
+	<!--begin::Container-->
+	<div class="container">
+		@foreach(var segment in SegmentForms)
+		{
+			<SegmentPanel RemoveSegmentEvent="@RemoveSegment" SegmentForm="@segment"></SegmentPanel>
+		}
+	</div>
+	<!--end::Container-->
+</div>
+
+
+@code {
+	public List<SegmentForm> SegmentForms = new List<SegmentForm>();
+
+	protected async override Task OnInitializedAsync()
+	{
+		//AddSegment();
+		var seg = new SegmentForm();
+		var ch2 = new ChildComponentForm();
+		var ch1 = new ChildComponentForm();
+		ch1.Children.Add(ch2);
+		seg.Children.Add(ch1);
+		SegmentForms.Add(seg);
+		StateHasChanged();
+	}
+
+	public void AddSegment()
+	{
+		SegmentForms.Add(new SegmentForm());
+		StateHasChanged();
+	}
+
+	private async Task RemoveSegment(SegmentForm segment)
+	{
+		SegmentForms?.Remove(segment);
+		StateHasChanged();
+	}
+}
