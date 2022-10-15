@@ -13,9 +13,9 @@ namespace Yee.Abstractions
     {
         public IEnumerable<RootOption<JObject>> GetAll();
         public void Set<T>(string key, T value);
-        public T? Get<T>(string key);
+        public T? Get<T>(string key) where T : class;
 
-        public RootOption<T> GetDetail<T>(string key);
+        public RootOption<T> GetDetail<T>(string key) where T : class;
 
     }
 
