@@ -21,9 +21,16 @@
         @Html.Raw(Yee.Web.Extensions.HtmlHelper
             .CreateStyle($"/_content/Yee.ExampleModule/{assembly.GetName().Name}.bundle.scp.css"));
     }
+    <script>
+        function setAttributesAndClassToBody(id, className) {
+            var element = document.getElementsByTagName('body')[0];
+            element.id = id;
+            element.className = className;
+        }
+    </script>
 
 </head>
-<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize aside-minimize-hoverable aside-minimize-hover">
+<body>
 
     @RenderBody()
 
@@ -38,22 +45,7 @@
         }
         @Html.Raw(Yee.Web.Extensions.HtmlHelper.CreateHtmlFromScripts(scripts))
 
-    @*<script src="_content/Yee.Metronic/themes/metronic/dist/assets/plugins/global/plugins.bundle.js"></script>*@
     <script src="_framework/blazor.server.js" defer></script>
-    @*<script>
-
-
-            document.onload = (event) => {
-                dynamicallyLoadScript("_framework/blazor.server.js");
-            };
-
-            function dynamicallyLoadScript(url) {
-                var script = document.createElement("script");  // create a script DOM node
-                script.src = url;  // set its src to the provided URL
-
-                document.head.appendChild(script);  // add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
-            }
-        </script>*@
 </body>
 
 

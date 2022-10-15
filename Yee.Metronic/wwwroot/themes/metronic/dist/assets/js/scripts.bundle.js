@@ -11182,3 +11182,32 @@ if (typeof module !== 'undefined') {
 
 var KTLayoutSearchInline = KTLayoutSearch;
 var KTLayoutSearchOffcanvas = KTLayoutSearch;
+$(document).on('click', '#kt_aside_toggle', toggleAsideMenu);
+
+$(document).on('click', '#kt_aside_mobile_toggle', toggleAsideMenu);
+
+function toggleAsideMenu() {
+    var $body = $('body'),
+        $aside = $('.aside'),
+        $contentWrapper = $('#kt_wrapper'),
+        $content = $('#kt_content');
+
+    if ($body.hasClass('aside-minimize')) {
+        $body.removeClass('aside-minimize');
+        $aside.addClass('aside-on');
+        $body.attr('data-offcanvas-aside', 'on');
+        $contentWrapper.on('click', function () {
+            $('#kt_aside_toggle').click();
+        });
+        $contentWrapper.css('cursor', 'pointer');
+        $content.css('pointer-events', 'none');
+    } else {
+        $body.addClass('aside-minimize');
+        $aside.removeClass('aside-on');
+        $body.attr('data-offcanvas-aside', 'off');
+        $('.aside-overlay').remove();
+        $contentWrapper.off('click');
+        $contentWrapper.css('cursor', '');
+        $content.css('pointer-events', '');
+    }
+}
