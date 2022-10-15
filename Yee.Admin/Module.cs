@@ -9,6 +9,7 @@ using Yee.Abstractions;
 using Yee.Admin.Defualt;
 using Yee.Admin.Extensions;
 using Yee.Admin.Services;
+using Yee.Ant.Extensions;
 using Yee.Extensions;
 using Yee.Metronic.Extensions;
 using Yee.Services;
@@ -31,6 +32,7 @@ namespace Yee.Admin
                     p.Navigations.AddRange(DefualtNavigations.Value);
                 })
                 .UseMetronic()
+                .UseAntDesign()
                 .WebApp(p =>
                 {
                     p.AddRouter(typeof(App));

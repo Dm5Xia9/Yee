@@ -20,6 +20,8 @@
     </Header>
     <Body>
         <div style="padding: 1rem">
+
+            <Yee.Admin.Component.Modules.ModulesTree Modules="moduleManager.Modules"></Yee.Admin.Component.Modules.ModulesTree>
             @foreach (var module in moduleManager.ToAlignmentTrees())
             {
 

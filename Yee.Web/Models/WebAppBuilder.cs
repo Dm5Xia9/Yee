@@ -24,12 +24,13 @@ namespace Yee.Web.Models
         public List<Type> RootComponents { get; set; }
         public List<Type> HeadComponents { get; set; }
         public List<Type> FooterComponents { get; set; }
-        public WebAppBuilder AddScript(string uri)
+        public WebAppBuilder AddScript(string uri, bool asStandart = false)
         {
             StaticFiles.Add(new WebStaticFile
             {
                 StaticFileType = StaticFileType.Sctipt,
                 Uri = uri,
+                AsStandard = asStandart,
             });
 
             return this;
@@ -78,6 +79,7 @@ namespace Yee.Web.Models
 
     public class WebStaticFile
     {
+        public bool AsStandard { get; set; }
         public string Uri { get; set; }
         public StaticFileType StaticFileType { get; set; }
     }

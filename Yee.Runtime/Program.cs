@@ -8,6 +8,8 @@ using Yee.Web.Services;
 using Yee.Runtime.Builder.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 
+
+
 var example = YeeAssemblyHelpers.CreateDefualtModule
             (typeof(Yee.Admin.Module).Assembly)
             .AddDeps(new List<BaseYeeModule>
@@ -16,9 +18,19 @@ var example = YeeAssemblyHelpers.CreateDefualtModule
                     (typeof(Yee.Section.Module).Assembly)
                     .AddDeps(new List<BaseYeeModule>
                     {
-                        YeeAssemblyHelpers.CreateDefualtModule
-                            (typeof(Yee.Metronic.Module).Assembly)
+
                     }),
+                YeeAssemblyHelpers.CreateDefualtModule
+                            (typeof(Yee.Metronic.Module).Assembly),
+
+                YeeAssemblyHelpers.CreateDefualtModule
+                            (typeof(Yee.Ant.Module).Assembly)
+                            .AddDeps(new List<BaseYeeModule>
+                            {
+                                YeeAssemblyHelpers.CreateDefualtModule
+                                    (typeof(AntDesign.Affix).Assembly)
+                            }),
+
                 YeeAssemblyHelpers.CreateDefualtModule
                     (typeof(Yee.EntityFrameworkCore.Identity.Module).Assembly)
                     .AddDeps(new List<BaseYeeModule>
@@ -31,6 +43,13 @@ var example = YeeAssemblyHelpers.CreateDefualtModule
                                     (typeof(Yee.EntityFrameworkCore.Module).Assembly)
                             })
                     }),
+            });
+
+var adminSwagger = YeeAssemblyHelpers.CreateDefualtModule
+            (typeof(Yee.Admin.Swagger.Module).Assembly)
+            .AddDeps(new List<BaseYeeModule>
+            {
+                example
             });
 
 var swagger = YeeAssemblyHelpers.CreateDefualtModule
@@ -50,6 +69,7 @@ builder.Services.AddSingleton<YeeModuleStorage>();
 builder.Services
     .AddSingleton<IYeeProvider<BaseYeeModule>, NupkgYeeProvider>();
 builder.Services.AddSingleton<YeeViewManager>();
+builder.Services.AddSingleton<BaseYeeModule>(adminSwagger);
 builder.Services.AddSingleton<BaseYeeModule>(example);
 builder.Services.AddSingleton<BaseYeeModule>(swagger);
 builder.Services.AddSingleton<BaseYeeModule>(core);

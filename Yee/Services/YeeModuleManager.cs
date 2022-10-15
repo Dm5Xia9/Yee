@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
 using Yee.Abstractions;
@@ -38,12 +39,15 @@ namespace Yee.Services
 
             foreach (var module in modules)
             {
-                buffer.AddRange(AlignmentTree(module));
+                if (buffer.Any(p => p.Assembly == module.Assembly))
+                    continue;
+
+                AlignmentTree(module, buffer);
             }
 
             return buffer;
         }
-        private List<BaseYeeModule> AlignmentTree(BaseYeeModule module, List<BaseYeeModule> buffer = null)
+        private void AlignmentTree(BaseYeeModule module, List<BaseYeeModule> buffer = null)
         {
             if (buffer == null)
                 buffer = new List<BaseYeeModule>();
@@ -52,11 +56,13 @@ namespace Yee.Services
             {
                 foreach (var dep in module.Deps)
                 {
-                    buffer.AddRange(AlignmentTree(dep));
+                    if (buffer.Any(p => p.Assembly == dep.Assembly))
+                        continue;
+
+                    AlignmentTree(dep, buffer);
                 }
             }
             buffer.Add(module);
-            return buffer;
 
         }
     }

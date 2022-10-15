@@ -1,0 +1,85 @@
+﻿@using AntDesign
+@using Yee.Services;
+@using Yee.Abstractions
+<div>
+    <Search @bind-Value="@searchKey" Placeholder="Search.." />
+    <Tree ShowIcon
+          SearchValue="@searchKey"
+          MatchedClass="site-tree-search-value"
+          DataSource="Modules"
+          TitleExpression="x => x.DataItem.AssemblyName.Name"
+          ChildrenExpression="x => x.DataItem.Deps"></Tree>
+</div>
+
+<style>
+    .site-tree-search-value {
+        color: #f50;
+    }
+</style>
+
+@code {
+
+    [Parameter]
+    public IEnumerable<BaseYeeModule> Modules { get; set; }
+    string searchKey;
+
+    //    List<Data> datas = new List<Data>()
+    //{
+    //        new("0-0","0-0")
+    //        {
+    //            Children = new()
+    //{
+    //                new("0-0-0", "0-0-0")
+    //                {
+    //                    Children = new()
+    //        {
+    //                        new("0-0-0-0", "0-0-0-0"),
+    //                        new("0-0-0-1", "0-0-0-1"),
+    //                        new("0-0-0-2", "0-0-0-2"),
+    //                    }
+    //                },
+    //                new("0-0-1","0-0-1")
+    //                {
+    //                    Children = new()
+    //        {
+    //                        new("0-0-1-0", "0-0-1-0"),
+    //                        new("0-0-1-1", "0-0-1-1"),
+    //                        new("0-0-1-2", "0-0-1-2"),
+    //                    }
+    //                },
+    //                new("0-0-2","0-0-2"),
+    //            }
+    //        },
+    //        new("0-1","0-1")
+    //        {
+    //            Children = new()
+    //{
+    //                new("0-1-0", "0-1-0")
+    //                {
+    //                    Children = new()
+    //        {
+    //                        new("0-1-0-0","0-1-0-0"),
+    //                        new("0-1-0-1","0-1-0-1"),
+    //                        new("0-1-0-2","0-1-0-2"),
+    //                    },
+    //                },
+    //                new ("0-1-1","0-1-1")
+    //                {
+    //                    Children = new()
+    //        {
+    //                        new("0-1-1-0","0-1-1-0"),
+    //                        new("0-1-1-1","0-1-1-1"),
+    //                        new("0-1-1-2","0-1-1-2"),
+    //                    },
+    //                },
+    //                new("0-1-2","0-1-2"),
+    //            }
+    //        },
+    //        new("0-2","0-2"),
+    //    };
+
+    //    private record Data(string Id, string Title)
+    //    {
+    //        public List<Data> Children { get; set; } = new List<Data>();
+    //    }
+}

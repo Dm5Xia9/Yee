@@ -1,0 +1,13 @@
+﻿@using Yee.Ant.Services
+@inject AntDesignRouteAssemblies data
+
+@foreach (var assembly in data)
+{
+    <Router AppAssembly="@assembly">
+        <Found Context="routeData">
+            <Yee.Ant.Components.AntBlazorStyles></Yee.Ant.Components.AntBlazorStyles>
+        </Found>
+        <NotFound>
+        </NotFound>
+    </Router>
+}

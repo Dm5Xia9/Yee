@@ -38,7 +38,10 @@ namespace Yee.EntityFrameworkCore.Manager
 
                 if (dbContext == null)
                 {
-                    SearchDbContext(module.Deps, nodes);
+                    if(module.Deps != null)
+                    {
+                        SearchDbContext(module.Deps, nodes);
+                    }
                     continue;
                 }
 
