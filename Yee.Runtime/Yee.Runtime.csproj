@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Yee.Admin\Yee.Admin.csproj" />
+    <ProjectReference Include="..\Yee.CoreLayout\Yee.CoreLayout.csproj" />
     <ProjectReference Include="..\Yee.Nuget\Yee.Nuget.csproj" />
     <ProjectReference Include="..\Yee.Runtime.Builder\Yee.Runtime.Builder.csproj" />
     <ProjectReference Include="..\Yee.Swagger\Yee.Swagger.csproj" />

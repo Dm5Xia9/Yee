@@ -77,6 +77,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Admin", "Yee.Admin\Yee.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Metronic", "Yee.Metronic\Yee.Metronic.csproj", "{782D5D05-25DC-47A5-8C46-EA1C3091BDBA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.CoreLayout", "Yee.CoreLayout\Yee.CoreLayout.csproj", "{84959B73-C446-4478-9FFC-54EF3976EBF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -187,6 +189,10 @@ Global
 		{782D5D05-25DC-47A5-8C46-EA1C3091BDBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{782D5D05-25DC-47A5-8C46-EA1C3091BDBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{782D5D05-25DC-47A5-8C46-EA1C3091BDBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84959B73-C446-4478-9FFC-54EF3976EBF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84959B73-C446-4478-9FFC-54EF3976EBF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84959B73-C446-4478-9FFC-54EF3976EBF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84959B73-C446-4478-9FFC-54EF3976EBF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -214,6 +220,7 @@ Global
 		{DB9F736D-56A3-4B1E-A625-F99B49CD9E23} = {E7544511-F976-4B8B-83BA-94B5AEF8D473}
 		{11AADC6F-61EB-4B36-A996-9165B24A89ED} = {A7CAAC5E-C63C-4C42-864F-32465E014473}
 		{782D5D05-25DC-47A5-8C46-EA1C3091BDBA} = {4FFC7A4D-CE12-46E4-93AA-9FFEDE6DBD89}
+		{84959B73-C446-4478-9FFC-54EF3976EBF6} = {A7CAAC5E-C63C-4C42-864F-32465E014473}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17570007-AC6E-4027-992F-55101D4A5C90}
