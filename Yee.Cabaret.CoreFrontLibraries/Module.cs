@@ -17,8 +17,8 @@ namespace Yee.Cabaret.CoreFrontLibraries
             builder
                 .WebApp(p =>
                 {
-                    p.AddStyle("css/cab_app.css");
-                    p.AddStyle("css/cab_main.css");
+                    //p.AddStyle("css/cab_app.css");
+                    //p.AddStyle("css/cab_main.css");
                     p.AddScript("js/cab_app.js");
                     p.AddScript("js/cab_main.js");
                 });

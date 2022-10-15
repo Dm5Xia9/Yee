@@ -1,11 +1,11 @@
-﻿@inherits ProtoHandler<ProtoString, string>
+﻿@inherits ProtoHandler<ProtoLink, string>
 
 <div style=" width: 33rem; display: flex; align-items: center;">
     <label style="padding-right: 2rem;">@(Proto.DisplayName ?? "Строка")</label>
     <AntDesign.Input TValue="string" @bind-Value="Model"></AntDesign.Input>
 </div>
 
-@code { 
+@code {
 
-    protected override string NewModel => "";
+    protected override string NewModel => "/";
 }

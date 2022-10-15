@@ -8,8 +8,8 @@ namespace Yee.Section.Navigation
 {
     public interface IMenuItem
     {
-        string Title { get; }
-        ProtoLink Link { get; }
+        string Title { get; set; }
+        ProtoLink Link { get; set; }
         string Icon { get; }
         bool IsActive(string currentUri);
     }
@@ -23,6 +23,6 @@ namespace Yee.Section.Navigation
     public interface IGroupMenuItem : IMenuItem
     {
         bool HasChilds { get; }
-        IEnumerable<IMenuItem> ChildItems { get; }
+        List<IMenuItem> ChildItems { get; }
     }
 }

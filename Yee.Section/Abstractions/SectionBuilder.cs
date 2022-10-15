@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Yee.Section.Abstractions
 {
-    public class SectionBuilder : Dictionary<string, SectionParameter>
+    public class SectionBuilder : Dictionary<string, SectionParameterValue>
     {
         public string DisplayName
         {
@@ -21,7 +21,7 @@ namespace Yee.Section.Abstractions
         }
     }
 
-    public class SectionParameter
+    public class SectionParameterValue
     {
         public Type Type { get; set; }
         public object Value { get; set; }

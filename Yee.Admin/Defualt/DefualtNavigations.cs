@@ -21,7 +21,7 @@ namespace Yee.Admin.Defualt
                 new GroupMenuItem
                 {
                     Title = "Основное",
-                    ChildItems = new List<ActionMenuItem>
+                    ChildItems = new List<IMenuItem>
                     {
                         new ActionMenuItem
                         {
@@ -63,7 +63,7 @@ namespace Yee.Admin.Defualt
                 new GroupMenuItem
                 {
                     Title = "Конструктор страниц",
-                    ChildItems = new List<ActionMenuItem>
+                    ChildItems = new List<IMenuItem>
                     {
                         new ActionMenuItem
                         {
@@ -73,7 +73,12 @@ namespace Yee.Admin.Defualt
                         new ActionMenuItem
                         {
                             Title = "Секции",
-                            Link = new ProtoLink() { Value = "/admin/users" },
+                            Link = new ProtoLink() { Value = "/admin/sections" },
+                        },
+                        new ActionMenuItem
+                        {
+                            Title = "Прототипы",
+                            Link = new ProtoLink() { Value = "/admin/protos" },
                         },
                         new ActionMenuItem
                         {

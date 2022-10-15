@@ -23,6 +23,7 @@ namespace Yee.Ant
                 })
                  .WebApp(p =>
                  {
+                     p.AddRootComponent(typeof(AntContainerComponent));
                      p.AddHead(typeof(HeadApp));
                      p.AddScript("_content/AntDesign/js/ant-design-blazor.js", true);
                  })

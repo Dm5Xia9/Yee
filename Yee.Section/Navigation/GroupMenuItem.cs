@@ -13,7 +13,7 @@ namespace Yee.Section.Navigation
         public string Title { get; set; }
 
         public bool HasChilds => ChildItems.Count() > 0;
-        public IEnumerable<IMenuItem> ChildItems { get; set; }
+        public List<IMenuItem> ChildItems { get; set; }
 
         public ProtoLink Link { get; set; }
 

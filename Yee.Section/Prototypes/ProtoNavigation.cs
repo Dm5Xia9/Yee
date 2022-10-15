@@ -8,7 +8,7 @@ using Yee.Section.Navigation;
 
 namespace Yee.Section.Prototypes
 {
-    public class ProtoNavigation : BaseYeeProto<IReadOnlyList<IMenuItem>>
+    public class ProtoNavigation : BaseYeeProto<List<IMenuItem>>
     {
 
     }

@@ -8,18 +8,25 @@ using Yee.Web.Services;
 using Yee.Runtime.Builder.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 
+var section = YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Section.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
 
+                    });
+
+var cabaretSection = YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Cabaret.Sections.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+                        section
+                    });
 
 var example = YeeAssemblyHelpers.CreateDefualtModule
             (typeof(Yee.Admin.Module).Assembly)
             .AddDeps(new List<BaseYeeModule>
             {
-                YeeAssemblyHelpers.CreateDefualtModule
-                    (typeof(Yee.Section.Module).Assembly)
-                    .AddDeps(new List<BaseYeeModule>
-                    {
-
-                    }),
+                section,
                 YeeAssemblyHelpers.CreateDefualtModule
                             (typeof(Yee.Metronic.Module).Assembly),
 
@@ -73,5 +80,6 @@ builder.Services.AddSingleton<BaseYeeModule>(adminSwagger);
 builder.Services.AddSingleton<BaseYeeModule>(example);
 builder.Services.AddSingleton<BaseYeeModule>(swagger);
 builder.Services.AddSingleton<BaseYeeModule>(core);
+builder.Services.AddSingleton<BaseYeeModule>(cabaretSection);
 
 builder.Build();

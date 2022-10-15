@@ -18,21 +18,28 @@ namespace Yee.Section
     {
         public void Build(YeeBuilder builder)
         {
-            ProtoHandlerCollection buffer = null;
+            SectionState buffer = null;
 
             builder
                 .AspConfigureServices(p =>
                 {
-                    p.AddSingleton<ProtoHandlerCollection>();
+                    p.AddSingleton<SectionState>();
                 })
                 .YeeSections(p =>
                 {
-                    p.Add(typeof(ProtoString), typeof(StringProtoHandler));
+                    p.ProtoHandlers.Add(typeof(ProtoString), typeof(StringProtoHandler));
+                    p.ProtoHandlers.Add(typeof(ProtoBool), typeof(BoolProtoHandler));
+                    p.ProtoHandlers.Add(typeof(ProtoLink), typeof(LinkProtoHandler));
+                    p.ProtoHandlers.Add(typeof(ProtoNumber), typeof(NumberProtoHandler));
+                    p.ProtoHandlers.Add(typeof(ProtoCssClass), typeof(CssProtoHandler));
+                    p.ProtoHandlers.Add(typeof(ProtoNavigation), typeof(NavigationProtoHandler));
+                    p.ProtoHandlers.Add(typeof(ProtoImg), typeof(ImgProtoHandler));
+
                 })
                 .AspPostBuild(p =>
                 {
                     var modules = p.GetRequiredService<YeeModuleManager>();
-                    buffer = p.GetRequiredService<ProtoHandlerCollection>();
+                    buffer = p.GetRequiredService<SectionState>();
                     modules.HandlersFromId(Extensions.YeeBuilderExtensions.KeyYeeSections, buffer);
                 });
         }
