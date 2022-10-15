@@ -19,6 +19,18 @@ var example = YeeAssemblyHelpers.CreateDefualtModule
                         YeeAssemblyHelpers.CreateDefualtModule
                             (typeof(Yee.Metronic.Module).Assembly)
                     }),
+                YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.EntityFrameworkCore.Identity.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+                        YeeAssemblyHelpers.CreateDefualtModule
+                            (typeof(Yee.EntityFrameworkCore.Npgsql.Module).Assembly)
+                            .AddDeps(new List<BaseYeeModule>
+                            {
+                                YeeAssemblyHelpers.CreateDefualtModule
+                                    (typeof(Yee.EntityFrameworkCore.Module).Assembly)
+                            })
+                    }),
             });
 
 var swagger = YeeAssemblyHelpers.CreateDefualtModule

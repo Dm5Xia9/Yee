@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Yee.Admin\Yee.Admin.csproj" />
     <ProjectReference Include="..\Yee.ComponentEngine\Yee.ComponentEngine.csproj" />
   </ItemGroup>
 

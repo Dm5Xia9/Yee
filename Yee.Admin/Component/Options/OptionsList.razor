@@ -1,0 +1,13 @@
+﻿@using Yee.Abstractions;
+
+
+@inject IRootOptions options
+
+@foreach(var item in options.GetAll())
+            {
+                <SettingsItem>
+                    <a href="/admin/options/@item.OptionsKey" class="d-flex align-items-center text-dark text-hover-primary font-size-h5 font-weight-bold">
+                        @item
+                    </a>
+                </SettingsItem>
+            } 

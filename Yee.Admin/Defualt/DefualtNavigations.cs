@@ -16,7 +16,7 @@ namespace Yee.Admin.Defualt
                 new ActionMenuItem
                 {
                     Title = "Доска",
-                    Link = new ProtoLink() { Value = "/" },
+                    Link = new ProtoLink() { Value = "/admin" },
                 },
                 new GroupMenuItem
                 {
@@ -25,8 +25,13 @@ namespace Yee.Admin.Defualt
                     {
                         new ActionMenuItem
                         {
+                            Title = "Настройки",
+                            Link = new ProtoLink() { Value = "/admin/options" },
+                        },
+                        new ActionMenuItem
+                        {
                             Title = "Модули",
-                            Link = new ProtoLink() { Value = "/test" },
+                            Link = new ProtoLink() { Value = "/admin/modules" },
                         },
                         new ActionMenuItem
                         {
@@ -36,11 +41,21 @@ namespace Yee.Admin.Defualt
                         new ActionMenuItem
                         {
                             Title = "Роли",
-                            Link = new ProtoLink() { Value = "/admin/rules" },
+                            Link = new ProtoLink() { Value = "/admin/roles" },
                         },
                         new ActionMenuItem
                         {
                             Title = "Области",
+                            Link = new ProtoLink() { Value = "/admin/pages" },
+                        },
+                        new ActionMenuItem
+                        {
+                            Title = "Страницы",
+                            Link = new ProtoLink() { Value = "/admin/pages" },
+                        },
+                        new ActionMenuItem
+                        {
+                            Title = "Формы",
                             Link = new ProtoLink() { Value = "/admin/pages" },
                         },
                     }

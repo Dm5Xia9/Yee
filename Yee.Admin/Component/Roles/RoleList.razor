@@ -1,0 +1,36 @@
+﻿@inject Yee.EntityFrameworkCore.DbContextFactory contextFactory
+
+@if (StateValue != null)
+{
+    <DbStateScreen State="StateValue">
+        @if (Roles != null)
+        {
+            @foreach (var role in Roles)
+            {
+                <div>
+                    @role.Name
+                </div>
+            }
+        }
+    </DbStateScreen>
+}
+@code {
+    public DbContextStateValue StateValue { get; set; }
+    public List<Ability.Core.Models.AbilityRole> Roles { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            StateValue = contextFactory.Create(typeof(Yee.EntityFrameworkCore.Identity.AbilityIdentityDbContext));
+            StateHasChanged();
+
+            if (StateValue.IsWorked)
+            {
+                Roles = ((EntityFrameworkCore.Identity.AbilityIdentityDbContext)StateValue.Context)
+                    .Roles.ToList();
+                StateHasChanged();
+            }
+
+        }
+    }
+}

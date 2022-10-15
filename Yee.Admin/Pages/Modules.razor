@@ -1,0 +1,47 @@
+﻿@page "/admin/modules"
+
+@using Yee.Services;
+
+
+@inject YeeModuleManager moduleManager
+
+
+<AdminPage>
+    <Header>
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <!--begin::Page Heading-->
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Модули</h5>
+                <!--end::Page Title-->
+            </div>
+            <!--end::Page Heading-->
+        </div>
+    </Header>
+    <Body>
+        <div style="padding: 1rem">
+            @foreach (var module in moduleManager.ToAlignmentTrees())
+            {
+
+                <div>
+                    @module.AssemblyName
+                    <div>
+                        Модуль использует: 
+                    </div>
+                    <div style="padding-left: 1rem;">
+                        @foreach (var builder in module.Builder)
+                        {
+                            <div>
+                                @builder.Key
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </Body>
+</AdminPage>
+
+@code{
+
+}

@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Yee.EntityFrameworkCore.Identity\Yee.EntityFrameworkCore.Identity.csproj" />
     <ProjectReference Include="..\Yee.Metronic\Yee.Metronic.csproj" />
     <ProjectReference Include="..\Yee.Section\Yee.Section.csproj" />
     <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />

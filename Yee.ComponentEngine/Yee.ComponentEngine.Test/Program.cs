@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Yee.Admin.Defualt;
-using Yee.Admin.Services;
 using Yee.ComponentEngine.Services;
 using Yee.ComponentEngine.Test.Data;
 
@@ -10,10 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<AdminCompose>(new AdminCompose
-{
-    Navigations = DefualtNavigations.Value.ToList()
-});
+
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddScoped<IComponentEngineService, ComponentEngineService>(); 
 builder.Services.AddAntDesign();
