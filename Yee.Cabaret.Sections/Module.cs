@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Yee.Abstractions;
+using Yee.Cabaret.Sections.Handlers;
+using Yee.Cabaret.Sections.Prototypes;
 using Yee.Section.Extensions;
 
 namespace Yee.Cabaret.Sections
@@ -19,6 +21,8 @@ namespace Yee.Cabaret.Sections
                     p.AddSection<CabOffersSection>();
                     p.AddSection<CabOneNavigation>();
                     p.AddSection<CabSwiperSection>();
+                    p.ProtoHandlers.Add(typeof(ProtoOffers), typeof(ProtoOffersHandler));
+
                 });
 
         }

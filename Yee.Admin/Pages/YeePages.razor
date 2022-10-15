@@ -1,0 +1,47 @@
+﻿@page "/admin/pages"
+
+@using Yee.Page.Services
+
+@inject PageCollection pageCollection
+
+<AdminPage>
+    <Header>
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <!--begin::Page Heading-->
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Страницы</h5>
+                <!--end::Page Title-->
+            </div>
+            <!--end::Page Heading-->
+        </div>
+    </Header>
+    <Body>
+        <div style="padding: 1rem;">
+            @foreach (var yeePageGroup in pageCollection.GroupBy(p => p.Type.Assembly))
+            {
+                <div>
+                    <div>
+                        <h4>@yeePageGroup.Key.GetName().Name</h4>
+                    </div>
+
+                    <div>
+                        @foreach (var yeePage in yeePageGroup)
+                        {
+                            <div>
+                                <div>
+                                    @yeePage.Type.Name
+                                </div>
+                                <div>
+                                    @yeePage.RouteAttribute.Template
+                                </div>
+                            </div>
+                        }
+                    </div>
+         
+                </div>
+            }
+            <Yee.Admin.Component.Users.UserList></Yee.Admin.Component.Users.UserList>
+        </div>
+    </Body>
+</AdminPage>

@@ -1,16 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using System;
 using Yee.Abstractions;
-using Yee.EntityFrameworkCore.Identity;
 using Yee.Extensions;
+using Yee.Page;
 
 namespace Yee.EntityFrameworkCore.Migrator
 {
-    public class AppDbContextFactory : IDesignTimeDbContextFactory<AbilityIdentityDbContext>
+    public class AppDbContextFactory : IDesignTimeDbContextFactory<PageDbContext>
     {
-        public AbilityIdentityDbContext CreateDbContext(string[] args)
+        public PageDbContext CreateDbContext(string[] args)
         {
             var services = new ServiceCollection();
             services.AddSingleton<IRootOptions, RootManager>();
@@ -26,7 +25,7 @@ namespace Yee.EntityFrameworkCore.Migrator
 
             YeeBuilderHandler.Go(yeeBuilder, YeeBuilderTags.AspConfigureServices, services);
 
-            module = new Yee.EntityFrameworkCore.Identity.Module();
+            module = new Yee.Page.Module();
             yeeBuilder = new YeeBuilder();
             module.Build(yeeBuilder);
 
@@ -34,7 +33,7 @@ namespace Yee.EntityFrameworkCore.Migrator
 
             var provider = services.BuildServiceProvider(true);
             var scope = provider.CreateScope();
-            return scope.ServiceProvider.GetRequiredService<AbilityIdentityDbContext>();
+            return scope.ServiceProvider.GetRequiredService<PageDbContext>();
         }
     }
 }

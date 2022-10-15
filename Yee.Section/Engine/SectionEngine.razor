@@ -1,0 +1,72 @@
+﻿@using Yee.Section.Services
+@using System.Reflection;
+@using Microsoft.AspNetCore.Components.Forms 
+@inject SectionState state
+
+<div>
+    <div>
+        <DynamicComponent Type="SectionType" Parameters="CreateParameters()">
+
+        </DynamicComponent>
+    </div>
+    <div>
+        <EditForm Model="DefualtProtos">
+            @foreach (var proto in Protos)
+            {
+                <div>
+                    <Yee.Section.Handlers.ProtoHandlerFactory InputValue="DefualtProtos[proto]" ProtoType="proto.PropertyType"></Yee.Section.Handlers.ProtoHandlerFactory>
+                </div>
+            }
+
+            <div style="height: 3rem;">
+                <div style=" padding: 1rem; float: right; padding-right: 10rem;">
+                    <AntDesign.Button OnClick="Save" Class="btn btn-success">Сохранить</AntDesign.Button>
+                </div>
+            </div>
+        </EditForm>
+
+
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public Type SectionType { get; set; }
+
+
+    public IEnumerable<PropertyInfo> Protos { get; set; }
+
+    public Dictionary<PropertyInfo, object> DefualtProtos { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Protos = SectionType.GetProperties()
+            .Where(p => p.GetCustomAttribute<ParameterAttribute>() != null);
+        DefualtProtos = new Dictionary<PropertyInfo, object>();
+        foreach (var proto in Protos)
+        {
+            DefualtProtos.Add(proto, Yee.Section.Extensions.ProtoHelper.CreateObjectProto(type: proto.PropertyType));
+        }
+
+
+    }
+
+    public Dictionary<string, object> CreateParameters()
+    {
+        var dic = new Dictionary<string, object>();
+
+        foreach(var item in DefualtProtos)
+        {
+            dic.Add(item.Key.Name, item.Value);
+        }
+        return dic;
+    }
+
+    public void Save()
+    {
+
+    }
+}

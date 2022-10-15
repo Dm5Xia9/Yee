@@ -22,6 +22,13 @@ var cabaretSection = YeeAssemblyHelpers.CreateDefualtModule
                         section
                     });
 
+var entityFramework = YeeAssemblyHelpers.CreateDefualtModule
+                            (typeof(Yee.EntityFrameworkCore.Npgsql.Module).Assembly)
+                            .AddDeps(new List<BaseYeeModule>
+                            {
+                                YeeAssemblyHelpers.CreateDefualtModule
+                                    (typeof(Yee.EntityFrameworkCore.Module).Assembly)
+                            });
 var example = YeeAssemblyHelpers.CreateDefualtModule
             (typeof(Yee.Admin.Module).Assembly)
             .AddDeps(new List<BaseYeeModule>
@@ -42,13 +49,13 @@ var example = YeeAssemblyHelpers.CreateDefualtModule
                     (typeof(Yee.EntityFrameworkCore.Identity.Module).Assembly)
                     .AddDeps(new List<BaseYeeModule>
                     {
-                        YeeAssemblyHelpers.CreateDefualtModule
-                            (typeof(Yee.EntityFrameworkCore.Npgsql.Module).Assembly)
-                            .AddDeps(new List<BaseYeeModule>
-                            {
-                                YeeAssemblyHelpers.CreateDefualtModule
-                                    (typeof(Yee.EntityFrameworkCore.Module).Assembly)
-                            })
+                        entityFramework
+                    }),
+                 YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Page.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+                        entityFramework
                     }),
             });
 

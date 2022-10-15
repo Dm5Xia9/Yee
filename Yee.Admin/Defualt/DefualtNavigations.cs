@@ -67,8 +67,13 @@ namespace Yee.Admin.Defualt
                     {
                         new ActionMenuItem
                         {
+                            Title = "Создать страницу",
+                            Link = new ProtoLink() { Value = "/admin/pages/create" },
+                        },
+                        new ActionMenuItem
+                        {
                             Title = "Страницы",
-                            Link = new ProtoLink() { Value = "/admin/modules" },
+                            Link = new ProtoLink() { Value = "/admin/pages" },
                         },
                         new ActionMenuItem
                         {

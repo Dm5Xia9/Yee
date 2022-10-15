@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -16,17 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Yee.Ant\Yee.Ant.csproj" />
-    <ProjectReference Include="..\Yee.EntityFrameworkCore.Identity\Yee.EntityFrameworkCore.Identity.csproj" />
-    <ProjectReference Include="..\Yee.Metronic\Yee.Metronic.csproj" />
-    <ProjectReference Include="..\Yee.Page\Yee.Page.csproj" />
-    <ProjectReference Include="..\Yee.Section\Yee.Section.csproj" />
+    <ProjectReference Include="..\Yee.EntityFrameworkCore.Npgsql\Yee.EntityFrameworkCore.Npgsql.csproj" />
     <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />
     <ProjectReference Include="..\Yee\Yee.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="AdminNavigation\" />
   </ItemGroup>
 
 </Project>

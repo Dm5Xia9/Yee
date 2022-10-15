@@ -7,12 +7,49 @@
 
 
 <div>
-    <div>Название</div>
-    <ProtoHandlerFactory T="ProtoString" InputValue="Model.SmallHeading"></ProtoHandlerFactory>
+    <ProtoHandlerFactory InputValue="Model.SmallHeading" ProtoType="typeof(ProtoString)"></ProtoHandlerFactory>
+
+    <div style=" padding-top: 1rem;">
+        <div>
+            <h5>Основной заголовок</h5>
+        </div>
+        <ProtoHandlerFactory InputValue="Model.MainHeading.PrimaryContent" ProtoType="typeof(ProtoString)"></ProtoHandlerFactory>
+        <ProtoHandlerFactory InputValue="Model.MainHeading.Content" ProtoType="typeof(ProtoString)"></ProtoHandlerFactory>
+
+    </div>
+    <div style=" padding-top: 1rem;">
+        <div style="display:flex">
+            <h5>Карточки</h5>
+            <AntDesign.Button OnClick="AddCard" Style="margin-left: 1.1rem;">Добавить</AntDesign.Button>
+        </div>
+
+        @foreach (var card in Model.OfferCards)
+        {            
+            <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; ">
+                <ProtoHandlerFactory InputValue="card.Title" ProtoType="typeof(ProtoString)"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="card.Description" ProtoType="typeof(ProtoString)"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="card.PriceDisplay" ProtoType="typeof(ProtoString)"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="card.Price" ProtoType="typeof(ProtoNumber)"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="card.CurrencyDisplay" ProtoType="typeof(ProtoString)"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="card.Img" ProtoType="typeof(ProtoImg)"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="card.Popular" ProtoType="typeof(ProtoBool)"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="card.LogoImg" ProtoType="typeof(ProtoImg)"></ProtoHandlerFactory>
+
+            </div>
+
+        }
+
+    </div>
 </div>
 
 @code {
 
      protected override CabOffers NewModel => 
-            ProtoHelper.CreateDefualt<CabOffers>(); 
+            ProtoHelper.CreateDefualt<CabOffers>();
+
+    public void AddCard()
+        {
+        Model.OfferCards.Add(ProtoHelper.CreateDefualt<CabOfferCard>());
+        StateHasChanged();
+        }
 }

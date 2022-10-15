@@ -15,14 +15,15 @@ namespace Ability.Core.Data
 {
     public abstract class AbilityDbContext : DbContext, IYeeDbContext
     {
+        private readonly string _schema;
         public AbilityDbContext(string schema, IDbContextOptionsProvider provider) : base(provider.GetOptions(schema))
         {
-
+            _schema = schema;
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.HasDefaultSchema(this.GetType().Name);
+            builder.HasDefaultSchema(_schema);
             base.OnModelCreating(builder);
             builder.ProcessAbilityAnnotationAttributes(this);
         }

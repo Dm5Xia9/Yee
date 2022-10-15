@@ -1,0 +1,66 @@
+﻿@page "/admin/pages/create"
+@inject SectionState state
+
+@using Yee.Section.Extensions
+
+
+<AdminPage>
+    <Header>
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <!--begin::Page Heading-->
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Создание страницы</h5>
+                <!--end::Page Title-->
+            </div>
+            <!--end::Page Heading-->
+        </div>
+    </Header>
+    <Body>
+        <div style="padding: 1rem;">
+            <div>
+                <div>
+                    <h5>
+                        Секции
+                    </h5>
+                </div>
+                @foreach (var section in Sections)
+                {
+                    <Yee.Section.Engine.SectionEngine SectionType="section">
+
+                    </Yee.Section.Engine.SectionEngine>
+                }
+                <div style="display: flex">
+                    <AntDesign.Button OnClick="AddNewSection">+</AntDesign.Button>
+                    <div style="padding-left: 1rem">
+                        <Yee.Admin.Component.Section.SelectSection OnSelect="SelectSection">
+
+                        </Yee.Admin.Component.Section.SelectSection>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </Body>
+</AdminPage>
+
+
+@code {
+
+    public Type CurrentSection { get; set; }
+
+    public List<Type> Sections { get; set; }
+            = new List<Type>();
+    public void SelectSection(Type type)
+    {
+        CurrentSection = type;
+        StateHasChanged();
+    }
+
+    public void AddNewSection()
+    {
+        Sections.Add(CurrentSection);
+        StateHasChanged();
+    }
+
+}
