@@ -21,9 +21,9 @@ namespace Yee.Services
             _optionsDirectory = options.Value.OptionsDirectory;
         }
 
-        public T? Get<T>(string key)
+        public T? Get<T>(string key) where T : class
         {
-            return GetDetail<T>(key)!.Value;
+            return GetDetail<T>(key)?.Value;
         }
 
         public IEnumerable<RootOption<JObject>> GetAll()
@@ -41,7 +41,7 @@ namespace Yee.Services
             return options.ToList();
         }
 
-        public RootOption<T> GetDetail<T>(string key)
+        public RootOption<T> GetDetail<T>(string key) where T : class
         {
             var filePath = Path.Combine(_optionsDirectory, $"{key}.json");
             if (!File.Exists(filePath))
