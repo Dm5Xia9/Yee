@@ -2,6 +2,7 @@
 @using Yee.ComponentEngine.Test.Shared
 <Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="new[] { typeof(Yee.ComponentEngine.Pages.Constructor).Assembly }">
     <Found Context="routeData">
+        
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(AdminLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>

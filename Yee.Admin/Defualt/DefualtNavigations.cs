@@ -13,16 +13,20 @@ namespace Yee.Admin.Defualt
         public readonly static IEnumerable<IMenuItem>
             Value = new List<IMenuItem>()
             {
+                new ActionMenuItem
+                {
+                    Title = "Доска",
+                    Link = new ProtoLink() { Value = "/" },
+                },
                 new GroupMenuItem
                 {
                     Title = "Основное",
-                    Link = new ProtoLink() { Value = "/admin/modules" },
                     ChildItems = new List<ActionMenuItem>
                     {
                         new ActionMenuItem
                         {
                             Title = "Модули",
-                            Link = new ProtoLink() { Value = "/test2" },
+                            Link = new ProtoLink() { Value = "/test" },
                         },
                         new ActionMenuItem
                         {
@@ -44,7 +48,6 @@ namespace Yee.Admin.Defualt
                 new GroupMenuItem
                 {
                     Title = "Конструктор страниц",
-                    Link = new ProtoLink() { Value = "/admin/modules" },
                     ChildItems = new List<ActionMenuItem>
                     {
                         new ActionMenuItem

@@ -46,7 +46,7 @@ namespace Yee.Web.Services
         {
             return _appBuilders.SelectMany(p => p.StaticFiles
                 .Where(z => z.StaticFileType == StaticFileType.Sctipt)
-                .Select(z => $"_content/{p.Assembly.GetName().Name}/{z.Uri}")).ToList();
+                .Select(z => $"_content/{p.Assembly.GetName().Name}{z.Uri}")).ToList();
         }
 
         public List<Type> GetRoutingComponents()

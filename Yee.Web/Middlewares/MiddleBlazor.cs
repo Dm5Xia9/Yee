@@ -22,6 +22,7 @@ namespace Yee.Web.Middlewares
         {
             app.MapBlazorHub();
             app.MapFallbackToPage(_page);
+
         }
     }
 }
