@@ -1,14 +1,42 @@
 ﻿@using AntDesign
 @using Yee.Services;
+@using Yee.Admin.Helpers 
 @using Yee.Abstractions
 <div>
     <Search @bind-Value="@searchKey" Placeholder="Search.." />
     <Tree ShowIcon
+          TItem="BaseYeeModule"
           SearchValue="@searchKey"
           MatchedClass="site-tree-search-value"
+          @bind-SelectedNode="SelectNode"
           DataSource="Modules"
           TitleExpression="x => x.DataItem.AssemblyName.Name"
-          ChildrenExpression="x => x.DataItem.Deps"></Tree>
+          ChildrenExpression="x => x.DataItem.Deps">
+
+        <TitleTemplate>
+            <div class="aboba">
+                @context.DataItem.AssemblyName.Name
+                <span>(
+                    @(context.DataItem.Deps?.Count() ?? 0)
+
+                    )
+                </span>
+            </div>
+
+            <div>
+                @if (context.DataItem.Builder != null)
+                {
+                    @foreach (var builder in context.DataItem.Builder)
+                    {
+                        <Tag PresetColor="ColorHelper.GetColorFromName(builder.Key)" Style="line-height: 1rem; font-size: 0.7rem; padding: 0.1rem 0.4rem;">
+                            @builder.Key
+                        </Tag>
+                    }
+                }
+
+            </div>
+        </TitleTemplate>
+    </Tree>
 </div>
 
 <style>
@@ -21,8 +49,26 @@
 
     [Parameter]
     public IEnumerable<BaseYeeModule> Modules { get; set; }
+
+    [Parameter]
+    public EventCallback<BaseYeeModule> OnSelect { get; set; }
     string searchKey;
 
+
+    private TreeNode<BaseYeeModule> _selectNode = null;
+    public TreeNode<BaseYeeModule> SelectNode
+    {
+        get
+        {
+            return _selectNode;
+        }
+        set
+        {
+            _selectNode = value;
+
+            OnSelect.InvokeAsync(_selectNode?.DataItem);
+        }
+    }
     //    List<Data> datas = new List<Data>()
     //{
     //        new("0-0","0-0")

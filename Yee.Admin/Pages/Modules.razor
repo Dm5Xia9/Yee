@@ -1,6 +1,8 @@
 ﻿@page "/admin/modules"
 
 @using Yee.Services;
+@using Yee.Abstractions
+
 
 
 @inject YeeModuleManager moduleManager
@@ -21,29 +23,48 @@
     <Body>
         <div style="padding: 1rem">
 
-            <Yee.Admin.Component.Modules.ModulesTree Modules="moduleManager.Modules"></Yee.Admin.Component.Modules.ModulesTree>
-            @foreach (var module in moduleManager.ToAlignmentTrees())
-            {
+            <Yee.Admin.Component.Modules.ModulesTree Modules="moduleManager.Modules" 
+                                                     OnSelect="Select">
 
-                <div>
-                    @module.AssemblyName
+            </Yee.Admin.Component.Modules.ModulesTree>
+
+            @if (SelectNode != null)
+                {
                     <div>
-                        Модуль использует: 
+                        <h4>
+                            @SelectNode.AssemblyName.Name
+                        </h4>
+                        
                     </div>
-                    <div style="padding-left: 1rem;">
-                        @foreach (var builder in module.Builder)
-                        {
-                            <div>
-                                @builder.Key
-                            </div>
-                        }
+                }
+            @*@foreach (var module in moduleManager.ToAlignmentTrees())
+                {
+
+                    <div>
+                        @module.AssemblyName
+                        <div>
+                            Модуль использует:
+                        </div>
+                        <div style="padding-left: 1rem;">
+                            @foreach (var builder in module.Builder)
+                            {
+                                <div>
+                                    @builder.Key
+                                </div>
+                            }
+                        </div>
                     </div>
-                </div>
-            }
+                }*@
         </div>
     </Body>
 </AdminPage>
 
 @code{
+    public BaseYeeModule SelectNode { get; set; }
 
+    public void Select(BaseYeeModule node)
+    {
+        SelectNode = node;
+        StateHasChanged();
+    }
 }
