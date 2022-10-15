@@ -1,0 +1,24 @@
+﻿@inject NavigationManager _navManager
+
+
+
+<li class="menu-item" aria-haspopup="true">
+    <NavLink href="@Item.Link.Value" class="menu-link">
+        <i class="menu-bullet menu-bullet-dot">
+            <span></span>
+        </i>
+        <span class="menu-text">@Item.Title</span>
+    </NavLink>
+</li>
+@code{
+    [Parameter] public ActionMenuItem Item { get; set; }
+
+    protected override void OnInitialized()
+    {
+    }
+
+    public void NavigationTo()
+    {
+        _navManager.NavigateTo(Item.Link.Value);
+    }
+}

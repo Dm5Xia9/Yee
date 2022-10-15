@@ -15,6 +15,8 @@ namespace Yee.Web.Services
     {
         private readonly YeeModuleManager _yeeModuleManager;
         private readonly List<WebAppBuilder> _appBuilders;
+        
+
         public YeeViewManager(YeeModuleManager yeeModuleManager)
         {
             _yeeModuleManager = yeeModuleManager;
@@ -26,6 +28,11 @@ namespace Yee.Web.Services
                 if(YeeBuilderHandler.Go(module.Builder, YeeBuilderExtensions.TagWebApp, buffer))
                     _appBuilders.Add(buffer);
             }
+        }
+
+        public string CreateBaseUri(Assembly assembly)
+        {
+            return $"_content/{assembly.GetName().Name}";
         }
 
         public List<string> GetAllStyles() 
@@ -45,6 +52,18 @@ namespace Yee.Web.Services
         public List<Type> GetRoutingComponents()
         {
             return _appBuilders.SelectMany(p => p.Routers)
+                .ToList();
+        }
+
+        public List<Type> GetHeaders()
+        {
+            return _appBuilders.SelectMany(p => p.HeadComponents)
+                .ToList();
+        }
+
+        public List<Type> GetFooters()
+        {
+            return _appBuilders.SelectMany(p => p.FooterComponents)
                 .ToList();
         }
 

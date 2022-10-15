@@ -1,0 +1,34 @@
+﻿<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+    <a href="javascript:;" class="menu-link menu-toggle">
+        <span class="menu-text">@Item.Title</span>
+        <i class="menu-arrow"></i>
+    </a>
+    <div class="menu-submenu">
+        <i class="menu-arrow"></i>
+        <ul class="menu-subnav">
+            <li class="menu-item menu-item-parent" aria-haspopup="true">
+                <span class="menu-link">
+                    <span class="menu-text">@Item.Title</span>
+                </span>
+            </li>
+            @foreach (var item in Item.ChildItems)
+            {
+                if (item is GroupMenuItem group)
+                {
+                    <AdminNavGroup Item="group"></AdminNavGroup>
+                }
+                else if(item is ActionMenuItem action)
+                {
+                    <AdminNavItem Item="action"></AdminNavItem>
+                }
+
+            }
+        </ul>
+    </div>
+</li>
+
+@code{
+
+    [Parameter] public GroupMenuItem Item { get; set; }
+
+}

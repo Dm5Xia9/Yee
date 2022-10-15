@@ -9,36 +9,15 @@ using Yee.Runtime.Builder.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 
 var example = YeeAssemblyHelpers.CreateDefualtModule
-            (typeof(Yee.ExampleModule.Module).Assembly)
+            (typeof(Yee.Admin.Module).Assembly)
             .AddDeps(new List<BaseYeeModule>
             {
                 YeeAssemblyHelpers.CreateDefualtModule
-                    (typeof(Yee.EntityFrameworkCore.Identity.Module).Assembly)
+                    (typeof(Yee.Section.Module).Assembly)
                     .AddDeps(new List<BaseYeeModule>
                     {
                         YeeAssemblyHelpers.CreateDefualtModule
-                            (typeof(Yee.EntityFrameworkCore.Npgsql.Module).Assembly)
-                            .AddDeps(new List<BaseYeeModule>
-                            {
-                                 YeeAssemblyHelpers.CreateDefualtModule
-                                     (typeof(Yee.EntityFrameworkCore.Module).Assembly)
-
-                            })
-                    }),
-                 YeeAssemblyHelpers.CreateDefualtModule
-                    (typeof(Yee.Forms.Module).Assembly)
-                    .AddDeps(new List<BaseYeeModule>
-                    {
-                        YeeAssemblyHelpers.CreateDefualtModule
-                            (typeof(Yee.MVC.Module).Assembly)
-                    }),
-
-                  YeeAssemblyHelpers.CreateDefualtModule
-                    (typeof(Yee.Cabaret.CoreFrontLibraries.Module).Assembly)
-                    .AddDeps(new List<BaseYeeModule>
-                    {
-                        YeeAssemblyHelpers.CreateDefualtModule
-                            (typeof(Yee.Section.Module).Assembly)
+                            (typeof(Yee.Metronic.Module).Assembly)
                     }),
             });
 

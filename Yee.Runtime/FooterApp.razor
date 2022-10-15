@@ -1,0 +1,8 @@
+﻿@using Yee.Web.Services
+@inject YeeViewManager manager
+
+
+@foreach (var component in manager.GetFooters())
+{
+    <DynamicComponent Type="component"></DynamicComponent>
+}

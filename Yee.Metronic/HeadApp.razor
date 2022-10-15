@@ -1,0 +1,14 @@
+﻿@using Yee.Metronic.Services
+@inject MetronicRouteAssemblies metronicData
+
+@foreach (var assembly in metronicData)
+{
+    <Router AppAssembly="@assembly">
+        <Found Context="routeData">
+            <Yee.Metronic.Components.MetronicStyles></Yee.Metronic.Components.MetronicStyles>
+        </Found>
+        <NotFound>
+            @*<Yee.Metronic.Components.MetronicStyles></Yee.Metronic.Components.MetronicStyles>*@
+        </NotFound>
+    </Router>
+}

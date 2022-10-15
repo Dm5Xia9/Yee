@@ -15,12 +15,15 @@ namespace Yee.Web.Models
             StaticFiles = new List<WebStaticFile>();
             Routers = new List<Type>();
             RootComponents = new List<Type>();
+            HeadComponents = new List<Type>();
+            FooterComponents = new List<Type>();
         }
 
         public List<WebStaticFile> StaticFiles { get; set; }
         public List<Type> Routers { get; set; }
         public List<Type> RootComponents { get; set; }
-
+        public List<Type> HeadComponents { get; set; }
+        public List<Type> FooterComponents { get; set; }
         public WebAppBuilder AddScript(string uri)
         {
             StaticFiles.Add(new WebStaticFile
@@ -32,16 +35,16 @@ namespace Yee.Web.Models
             return this;
         }
 
-        public WebAppBuilder AddStyle(string uri)
-        {
-            StaticFiles.Add(new WebStaticFile
-            {
-                StaticFileType = StaticFileType.Style,
-                Uri = uri,
-            });
+        //public WebAppBuilder AddStyle(string uri)
+        //{
+        //    StaticFiles.Add(new WebStaticFile
+        //    {
+        //        StaticFileType = StaticFileType.Style,
+        //        Uri = uri,
+        //    });
 
-            return this;
-        }
+        //    return this;
+        //}
 
         public WebAppBuilder AddRouter(Type type)
         {
@@ -49,6 +52,21 @@ namespace Yee.Web.Models
 
             return this;
         }
+
+        public WebAppBuilder AddHead(Type type)
+        {
+            HeadComponents.Add(type);
+
+            return this;
+        }
+
+        public WebAppBuilder AddFooter(Type type)
+        {
+            FooterComponents.Add(type);
+
+            return this;
+        }
+
 
         public WebAppBuilder AddRootComponent(Type type)
         {

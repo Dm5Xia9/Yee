@@ -10,7 +10,7 @@ namespace Yee.Section.Navigation
     {
         string Title { get; }
         ProtoLink Link { get; }
-
+        string Icon { get; }
         bool IsActive(string currentUri);
     }
 

@@ -17,6 +17,8 @@ namespace Yee.Section.Navigation
 
         public ProtoLink Link { get; set; }
 
+        public string Icon { get; set; }
+
         public bool IsActive(string currentUri)
         {
             var uri = new Uri(currentUri);

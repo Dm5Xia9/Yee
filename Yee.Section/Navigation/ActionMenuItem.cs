@@ -13,6 +13,7 @@ namespace Yee.Section.Navigation
 
         public ProtoLink Link { get; set; }
 
+        public string Icon { get; set; }
         public ActionMenuItem()
         {
         }

@@ -11,29 +11,47 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    @*<base href="~/" />*@
-    @foreach (var style in manager.GetAllStyles())
-    {
-        @Html.Raw(Yee.Web.Extensions.HtmlHelper.CreateStyle(style).ToString());
-    }
+    <base href="~/" />
 
+    <component type="typeof(HeadApp)" render-mode="Static" />
+
+    <component type="typeof(HeadOutlet)" render-mode="Static" />
     @foreach (var assembly in manager.GetAssemblies())
     {
         @Html.Raw(Yee.Web.Extensions.HtmlHelper
             .CreateStyle($"/_content/Yee.ExampleModule/{assembly.GetName().Name}.bundle.scp.css"));
     }
-    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 </head>
-<body class="cab-homepage-v1" id="bodyTop">
-    @*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*@
+<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize aside-minimize-hoverable page-loading">
     @RenderBody()
 
-    <script src="_framework/blazor.server.js"></script>
+
+
+    <component type="typeof(FooterApp)" render-mode="Static" />
+
+    <script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1400 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#3699FF", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#E4E6EF", "dark": "#181C32" }, "light": { "white": "#ffffff", "primary": "#E1F0FF", "secondary": "#EBEDF3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#3F4254", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#EBEDF3", "gray-300": "#E4E6EF", "gray-400": "#D1D3E0", "gray-500": "#B5B5C3", "gray-600": "#7E8299", "gray-700": "#5E6278", "gray-800": "#3F4254", "gray-900": "#181C32" } }, "font-family": "Poppins" };</script>
 
     @{
         var scripts = manager.GetAllScripts();
     }
     @Html.Raw(Yee.Web.Extensions.HtmlHelper.CreateHtmlFromScripts(scripts))
+
+    <script src="_framework/blazor.server.js" defer></script>
+
+    @*<script>
+
+
+            document.onload = (event) => {
+                dynamicallyLoadScript("_framework/blazor.server.js");
+            };
+
+            function dynamicallyLoadScript(url) {
+                var script = document.createElement("script");  // create a script DOM node
+                script.src = url;  // set its src to the provided URL
+
+                document.head.appendChild(script);  // add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
+            }
+        </script>*@
 </body>
 </html>
 
