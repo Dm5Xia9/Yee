@@ -21,8 +21,15 @@
         @Html.Raw(Yee.Web.Extensions.HtmlHelper
             .CreateStyle($"/_content/Yee.ExampleModule/{assembly.GetName().Name}.bundle.scp.css"));
     }
+    <script>
+        function setAttributesAndClassToBody(id, className) {
+            var element = document.getElementsByTagName('body')[0];
+            element.id = id;
+            element.className = className;
+        }
+    </script>
 </head>
-<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize aside-minimize-hoverable page-loading">
+<body>
     @RenderBody()
 
 

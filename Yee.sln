@@ -69,13 +69,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.ComponentEngine", "Yee.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cabaret", "Cabaret", "{E7544511-F976-4B8B-83BA-94B5AEF8D473}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.Cabaret", "Yee.Cabaret\Yee.Cabaret.csproj", "{DB9F736D-56A3-4B1E-A625-F99B49CD9E23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Cabaret", "Yee.Cabaret\Yee.Cabaret.csproj", "{DB9F736D-56A3-4B1E-A625-F99B49CD9E23}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Admin", "Admin", "{A7CAAC5E-C63C-4C42-864F-32465E014473}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.Admin", "Yee.Admin\Yee.Admin.csproj", "{11AADC6F-61EB-4B36-A996-9165B24A89ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Admin", "Yee.Admin\Yee.Admin.csproj", "{11AADC6F-61EB-4B36-A996-9165B24A89ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.Metronic", "Yee.Metronic\Yee.Metronic.csproj", "{782D5D05-25DC-47A5-8C46-EA1C3091BDBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Metronic", "Yee.Metronic\Yee.Metronic.csproj", "{782D5D05-25DC-47A5-8C46-EA1C3091BDBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
