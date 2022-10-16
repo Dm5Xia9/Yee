@@ -19,7 +19,7 @@ namespace Yee.Section.Navigation
 
         public string Icon { get; set; }
 
-        public bool IsActive(string currentUri)
+        public bool IsActive(string currentUri, bool isShortUri = false)
         {
             var uri = new Uri(currentUri);
             return uri.LocalPath == Link.Value;

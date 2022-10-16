@@ -68,17 +68,17 @@ namespace Yee.Admin.Defualt
                         new ActionMenuItem
                         {
                             Title = "Страницы",
-                            Link = new ProtoLink() { Value = "/admin/modules" },
+                            Link = new ProtoLink() { Value = "/admin/modules1" },
                         },
                         new ActionMenuItem
                         {
                             Title = "Секции",
-                            Link = new ProtoLink() { Value = "/admin/users" },
+                            Link = new ProtoLink() { Value = "/admin/users1" },
                         },
                         new ActionMenuItem
                         {
                             Title = "Данные",
-                            Link = new ProtoLink() { Value = "/admin/rules" },
+                            Link = new ProtoLink() { Value = "/admin/rules1" },
                         }
                     }
                 }

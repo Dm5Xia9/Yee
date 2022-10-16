@@ -2,20 +2,40 @@
 
 
 
-<li class="menu-item" aria-haspopup="true">
+<li class="menu-item @(IsActive ? "menu-item-active" : "")" aria-haspopup="true">
     <NavLink href="@Item.Link.Value" class="menu-link">
         <span class="menu-text">@Item.Title</span>
     </NavLink>
 </li>
-@code{
+@code {
+    [Parameter] public ProtoLink Link { get; set; }
     [Parameter] public ActionMenuItem Item { get; set; }
+    private bool IsActive { get; set; }
 
     protected override void OnInitialized()
     {
+        IsActive = IsItemActive();
+    }
+
+    public bool IsItemActive()
+    {
+        var currentLink = "/" + _navManager.ToBaseRelativePath(_navManager.Uri);
+        return currentLink == Link?.Value;
     }
 
     public void NavigationTo()
     {
         _navManager.NavigateTo(Item.Link.Value);
+    }
+
+    private void HandleLocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        var currentLink = "/" + _navManager.ToBaseRelativePath(e.Location);
+        var isActive = currentLink == Link?.Value;
+        if (isActive != IsActive)
+        {
+            IsActive = isActive;
+            StateHasChanged();
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace Yee.Section.Navigation
         string Title { get; }
         ProtoLink Link { get; }
         string Icon { get; }
-        bool IsActive(string currentUri);
+        bool IsActive(string currentUri, bool isShortUri = false);
     }
 
     public interface IActionMenuItem : IMenuItem
