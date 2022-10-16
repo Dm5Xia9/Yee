@@ -2,6 +2,7 @@
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using Yee.Page.Models;
 
 #nullable disable
 
@@ -22,6 +23,11 @@ namespace Yee.Page.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     DisplayName = table.Column<string>(type: "text", nullable: false),
+                    RouterLink = table.Column<YeeCSharpLink>(type: "jsonb", nullable: false),
+                    BodyId = table.Column<string>(type: "text", nullable: false),
+                    BodyClass = table.Column<string>(type: "text", nullable: false),
+                    StyleLink = table.Column<YeeCSharpLink>(type: "jsonb", nullable: false),
+                    HeaderLink = table.Column<YeeCSharpLink>(type: "jsonb", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -37,6 +43,7 @@ namespace Yee.Page.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    SectionLink = table.Column<YeeCSharpLink>(type: "jsonb", nullable: false),
                     Value = table.Column<JsonDocument>(type: "jsonb", nullable: false),
                     YeePageId = table.Column<long>(type: "bigint", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),

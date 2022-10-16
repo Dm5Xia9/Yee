@@ -5,13 +5,13 @@
 
 @foreach (var item in MenuItems.Value)
 {
-    if (item is Yee.Section.Navigation.GroupMenuItem groupNavItem)
+    if (item.IsGroup)
     {
         <li class="has-dropdown @(Class.ToString())">
             <a @onclick="() => ToNav(item.Link)" href="#" class="@Active(item)">@item.Title</a>
             <div class="dropdown-wrapper">
                 <ul>
-                    @foreach (var child in groupNavItem.ChildItems)
+                    @foreach (var child in item.ChildItems)
                     {
                         <li>
                             <a @onclick="() => ToNav(child.Link)" href="#" class="@Active(child)">@child.Title</a>
@@ -22,7 +22,7 @@
             </div>
         </li>
     }
-    if (item is Yee.Section.Navigation.ActionMenuItem navItem)
+    if (item.IsGroup == false)
     {
         <li>
             <a @onclick="() => ToNav(item.Link)" href="#" class="@Active(item)">@item.Title</a>
@@ -38,7 +38,7 @@
     [Parameter]
     public ProtoCssClass Class { get; set; }
 
-    public string Active(IMenuItem menuItem)
+    public string Active(NavMenuItem menuItem)
     {
         if (menuItem.IsActive(NavigationManager.Uri))
         {

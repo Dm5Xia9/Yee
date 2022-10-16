@@ -1,53 +1,214 @@
-﻿@page "/admin/pageEngine"
+﻿@page "/admin/pageEngine/{pageId?}"
+@inject Yee.EntityFrameworkCore.DbContextFactory contextFactory
+@inject NavigationManager navigation
+@using Yee.Page.Models
+@using Microsoft.EntityFrameworkCore;
 
+@if (StateValue != null)
+{
+    <DbStateScreen State="StateValue">
+        @if (Page != null)
+        {
+            @if (HeaderType != null)
+            {
+                <DynamicComponent Type="HeaderType">
 
-<div>
-    <div style="padding: 0rem 6rem;">
-        <h5>
-            Секции
-        </h5>
-    </div>
-    @foreach (var section in Sections)
-    {
-        <div>
-            @{ 
-                var type = section;
+                </DynamicComponent>
             }
-            <div style="padding: 0rem 6rem;">
-                <AntDesign.Button OnClick="() => RemoveSection(type)">-</AntDesign.Button>
+
+            <BodySetter Id="@Page.BodyId" ClassName="@Page.BodyClass" @ref="BodySetterRef">
+
+            </BodySetter>
+            <div>
+                <div style=" padding: 0rem 6rem;">
+                    <div>
+                        <Yee.Admin.PageEngine.Components.HeaderSelect OnSelect="OnSelect" DefualtValue="HeaderType">
+
+                        </Yee.Admin.PageEngine.Components.HeaderSelect>
+                        <AntDesign.Button OnClick="Save">
+                            Сохранить
+                        </AntDesign.Button>
+                        <div>
+                            <div>
+                                body
+                            </div>
+                            <AntDesign.Input TValue="string" OnChange="ChangeId" DefaultValue="Page.BodyId" Placeholder="Id"></AntDesign.Input>
+                            <AntDesign.Input TValue="string" OnChange="ChangeClass" DefaultValue="Page.BodyClass" Placeholder="Class"></AntDesign.Input>
+
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <h5>
+                                Шапка
+                            </h5>
+                        </div>
+
+                        <Yee.Admin.PageEngine.Components.SelectSection OnSelect="SelectSectionHeader">
+
+                        </Yee.Admin.PageEngine.Components.SelectSection>
+
+                    </div>
+                </div>
+                <div>
+                    @if (Page.HeaderSectionLink != null)
+                    {
+                        var type = Page.HeaderSectionLink.ToType();
+                        var sectionValue = Page.HeaderValues;
+
+                        if (type != null)
+                        {
+                            <Yee.Section.Engine.SectionEngine SectionType="type" OnInputEvent="p => ChangeHeaderSection(type, p)" 
+                                                              DefualtDataProtos="sectionValue
+                                                                                 .ToDictionary(p => p.Property, p => Newtonsoft.Json.Linq.JObject.Parse(p.Value))">
+
+                            </Yee.Section.Engine.SectionEngine>
+                        }
+                    }
+                    <div>
+                        <div>
+                            <div style="padding: 0rem 6rem;">
+                                <h5>
+                                    Секции
+                                </h5>
+                            </div>
+                            @foreach (var section in Sections)
+                            {
+                                <div>
+                                    @{
+                                        var type = section;
+                                        var sectionValue = SectionValues.FirstOrDefault(p => p.SectionLink.TypeName == type.Name);
+                                    }
+                                    <div style="padding: 0rem 6rem;">
+                                        <AntDesign.Button OnClick="() => RemoveSection(type)">-</AntDesign.Button>
+                                    </div>
+
+                                    <Yee.Section.Engine.SectionEngine SectionType="section" OnInputEvent="p => ChangeSection(type, p)" DefualtDataProtos="sectionValue?.Values?
+                                                                                                                                                          .ToDictionary(p => p.Property, p => Newtonsoft.Json.Linq.JObject.Parse(p.Value))">
+
+                                    </Yee.Section.Engine.SectionEngine>
+                                </div>
+                            }
+
+                            <div style="display: flex; padding: 0rem 6rem;">
+                                <AntDesign.Button OnClick="AddNewSection">+</AntDesign.Button>
+                                <div style="padding-left: 1rem">
+                                    <Yee.Admin.PageEngine.Components.SelectSection OnSelect="SelectSection">
+
+                                    </Yee.Admin.PageEngine.Components.SelectSection>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+        }
+    </DbStateScreen>
+}
 
-            <Yee.Section.Engine.SectionEngine SectionType="section">
-
-            </Yee.Section.Engine.SectionEngine>
-        </div>
-    }
-
-    <div style="display: flex; padding: 0rem 6rem;">
-        <AntDesign.Button OnClick="AddNewSection">+</AntDesign.Button>
-        <div style="padding-left: 1rem">
-            <Yee.Admin.PageEngine.Components.SelectSection OnSelect="SelectSection">
-
-            </Yee.Admin.PageEngine.Components.SelectSection>
-        </div>
-    </div>
-</div>
 
 @code {
+
+    public DbContextStateValue StateValue { get; set; }
+    [Parameter]
+    public string? PageId { get; set; }
+
+    public YeePage Page { get; set; }
+
+    public Yee.Page.PageDbContext DbContext { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            StateValue = contextFactory.Create(typeof(Yee.Page.PageDbContext));
+            StateHasChanged();
+
+            if (StateValue.IsWorked)
+            {
+                DbContext = ((Yee.Page.PageDbContext)StateValue.Context);
+
+                if (string.IsNullOrEmpty(PageId) == false)
+                {
+                    var pageLong = long.Parse(PageId);
+                    Page = DbContext.YeePages
+                        .Include(p => p.YeeSectionValues)
+                        .FirstOrDefault(p => p.Id == pageLong);
+                }
+
+                if (PageId == null || Page == null)
+                {
+                    Page = new YeePage
+                    {
+                        DisplayName = "Новая страница",
+                        RouterLink = new YeeCSharpLink
+                        {
+
+                        },
+                        StyleLink = new YeeCSharpLink
+                        {
+
+                        },
+                        YeeSectionValues = new List<YeeSectionValue>
+                        {
+
+                        }
+                    };
+                    DbContext.YeePages.Add(Page);
+                    DbContext.SaveChanges();
+                    navigation.NavigateTo($"/admin/pageEngine/{Page.Id}");
+                }
+                else
+                {
+                    HeaderType = Page.StyleLink.ToType();
+
+                    SectionValues = Page.YeeSectionValues;
+                    Sections = Page.YeeSectionValues
+                        .Select(p => p.SectionLink.ToType())
+                        .Where(p => p != null)
+                        .ToList();
+                }
+                StateHasChanged();
+            }
+
+        }
+    }
 
     public Type CurrentSection { get; set; }
 
     public List<Type> Sections { get; set; }
             = new List<Type>();
+
+    public List<YeeSectionValue> SectionValues { get; set; }
+
+    public Dictionary<Type, Dictionary<string, object>> SectionValue { get; set; }
+
     public void SelectSection(Type type)
     {
         CurrentSection = type;
         StateHasChanged();
     }
 
+    public void ChangeSection(Type section, Dictionary<System.Reflection.PropertyInfo, object> data)
+    {
+        Page.YeeSectionValues
+            .First(p => p.SectionLink.TypeName == section.Name)
+            .Values = data.Select(p => new YeeSectionProperyValue
+            {
+                Property = p.Key.Name,
+                Value = Newtonsoft.Json.JsonConvert.SerializeObject(p.Value)
+            }).ToList();
+    }
+
     public void AddNewSection()
     {
         Sections.Add(CurrentSection);
+        Page.YeeSectionValues.Add(new YeeSectionValue
+        {
+            SectionLink = YeeCSharpLink.FromType(CurrentSection),
+            Values = new List<YeeSectionProperyValue>()
+        });
+
         StateHasChanged();
     }
 
@@ -58,6 +219,53 @@
         StateHasChanged();
 
 
+    }
+
+    public Type HeaderType { get; set; }
+
+
+    public BodySetter BodySetterRef { get; set; }
+
+    public void ChangeId(string id)
+    {
+        Page.BodyId = id;
+        BodySetterRef.Refrash(Page.BodyId, Page.BodyClass);
+        StateHasChanged();
+    }
+
+    public void ChangeClass(string slass)
+    {
+        Page.BodyClass = slass;
+        BodySetterRef.Refrash(Page.BodyId, Page.BodyClass);
+        StateHasChanged();
+    }
+    public void OnSelect(Type type)
+    {
+        HeaderType = type;
+    }
+
+    public void SelectSectionHeader(Type type)
+    {
+        Page.HeaderSectionLink = YeeCSharpLink.FromType(type);
+        Page.HeaderValues = new List<YeeSectionProperyValue>();
+        StateHasChanged();
+    }
+
+
+    public void ChangeHeaderSection(Type section, Dictionary<System.Reflection.PropertyInfo, object> data)
+    {
+        Page.HeaderValues = data.Select(p => new YeeSectionProperyValue
+        {
+            Property = p.Key.Name,
+            Value = Newtonsoft.Json.JsonConvert.SerializeObject(p.Value)
+        }).ToList();
+    }
+
+    public void Save()
+    {
+        Page.StyleLink = YeeCSharpLink.FromType(HeaderType);
+        DbContext.YeePages.Update(Page);
+        DbContext.SaveChanges();
     }
 
 }

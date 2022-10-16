@@ -22,5 +22,7 @@ namespace Yee.Page
 
         public DbSet<YeeSectionValue> YeeSectionValues { get; set; }
 
+
+
     }
 }

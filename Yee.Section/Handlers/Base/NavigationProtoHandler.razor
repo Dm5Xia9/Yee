@@ -1,10 +1,10 @@
-﻿@inherits ProtoHandler<ProtoNavigation, List<IMenuItem>>
+﻿@inherits ProtoHandler<ProtoNavigation, List<NavMenuItem>>
 @using AntDesign
 
 <div style=" width: 33rem; display: flex; align-items: center;">
     <label style="padding-right: 2rem;">@(Proto.DisplayName ?? "Навигация")</label>
     <Tree ShowIcon
-          TItem="IMenuItem"
+          TItem="NavMenuItem"
           MatchedClass="site-tree-search-value"
           DataSource="Model"
           TitleExpression="x => x.DataItem.Title"
@@ -26,11 +26,11 @@
                 </div>
 
                 <div style="padding-left: 1rem">
-                    @if (context.DataItem is ActionMenuItem action)
+                    @if (context.DataItem.IsGroup == false)
                     {
                         <Button OnClick="() => ToGroup(context)">в группу</Button>
                     }
-                    else if (context.DataItem is GroupMenuItem group)
+                    else if (context.DataItem.IsGroup == true)
                     {
                         <Button OnClick="() => ToAction(context)">в элемент</Button>
 
@@ -47,9 +47,9 @@
 </style>
 @code {
 
-    protected override List<IMenuItem> NewModel => new List<IMenuItem>();
+    protected override List<NavMenuItem> NewModel => new List<NavMenuItem>();
 
-    protected IMenuItem GetParentFromItem(IMenuItem menuItem, GroupMenuItem root)
+    protected NavMenuItem GetParentFromItem(NavMenuItem menuItem, NavMenuItem root)
     {
         @foreach (var item in root.ChildItems)
         {
@@ -58,9 +58,9 @@
                 return root;
             }
 
-            if (item is GroupMenuItem group)
+            if (item.IsGroup)
             {
-                var result = GetParentFromItem(menuItem, group);
+                var result = GetParentFromItem(menuItem, item);
 
                 if (result != null)
                     return result;
@@ -70,7 +70,7 @@
         return null;
     }
 
-    protected List<IMenuItem> GetParentItemsFromItem(IMenuItem menuItem)
+    protected List<NavMenuItem> GetParentItemsFromItem(NavMenuItem menuItem)
     {
         @foreach (var item in Model)
         {
@@ -79,12 +79,12 @@
                 return Model;
             }
 
-            if (item is GroupMenuItem group)
+            if (item.IsGroup)
             {
-                var result = GetParentFromItem(menuItem, group);
+                var result = GetParentFromItem(menuItem, item);
 
                 if (result != null)
-                    return (result as GroupMenuItem).ChildItems;
+                    return result.ChildItems;
             }
         }
 
@@ -97,7 +97,7 @@
 
         if (Model.Any() == false)
         {
-            Model.Add(new ActionMenuItem
+            Model.Add(new NavMenuItem
             {
                 Title = "название",
                 Link = new ProtoLink { Value = "Ссылка" },
@@ -106,10 +106,10 @@
         }
     }
 
-    public void AddElement(TreeNode<IMenuItem> treeNode)
+    public void AddElement(TreeNode<NavMenuItem> treeNode)
     {
         GetParentItemsFromItem(treeNode.DataItem)
-            .Add(new ActionMenuItem
+            .Add(new NavMenuItem
             {
                 Title = treeNode.DataItem.Title,
                 Link = treeNode.DataItem.Link,
@@ -121,19 +121,18 @@
 
     }
 
-    public IEnumerable<IMenuItem> GetChilds(TreeNode<IMenuItem> treeNode)
+    public IEnumerable<NavMenuItem> GetChilds(TreeNode<NavMenuItem> treeNode)
     {
-        var group = (treeNode.DataItem as GroupMenuItem);
-        if (group == null)
-            return new List<IMenuItem>();
+        if(treeNode.DataItem.IsGroup == false)
+            return new List<NavMenuItem>();
 
-        if (group.ChildItems == null || group.ChildItems.Any() == false)
+        if (treeNode.DataItem.ChildItems == null || treeNode.DataItem.ChildItems.Any() == false)
         {
-            group.ChildItems = new List<IMenuItem>();
+            treeNode.DataItem.ChildItems = new List<NavMenuItem>();
 
-            return new List<IMenuItem>
+            return new List<NavMenuItem>
                 {
-                        new ActionMenuItem
+                        new NavMenuItem
                         {
                             Title = treeNode.DataItem.Title,
                             Link = treeNode.DataItem.Link,
@@ -142,16 +141,16 @@
                     };
         }
 
-        return group.ChildItems;
+        return treeNode.DataItem.ChildItems;
     }
 
-    public void ToAction(TreeNode<IMenuItem> treeNode)
+    public void ToAction(TreeNode<NavMenuItem> treeNode)
     {
         var list = GetParentItemsFromItem(treeNode.DataItem);
 
         var index = list.IndexOf(treeNode.DataItem);
 
-        list[index] = new ActionMenuItem
+        list[index] = new NavMenuItem
         {
             Title = treeNode.DataItem.Title,
             Link = treeNode.DataItem.Link,
@@ -162,20 +161,20 @@
     }
 
 
-    public void ToGroup(TreeNode<IMenuItem> treeNode)
+    public void ToGroup(TreeNode<NavMenuItem> treeNode)
     {
         var list = GetParentItemsFromItem(treeNode.DataItem);
 
         var index = list.IndexOf(treeNode.DataItem);
 
-        list[index] = new GroupMenuItem
+        list[index] = new NavMenuItem
         {
             Title = treeNode.DataItem.Title,
             Link = treeNode.DataItem.Link,
             Icon = treeNode.DataItem.Icon,
-            ChildItems = new List<IMenuItem>()
+            ChildItems = new List<NavMenuItem>()
             {
-                new ActionMenuItem
+                new NavMenuItem
                 {
                         Title = treeNode.DataItem.Title,
                         Link = treeNode.DataItem.Link,
@@ -187,14 +186,14 @@
         StateHasChanged();
     }
 
-    public void ChangeTitleNode(TreeNode<IMenuItem> node, string value)
+    public void ChangeTitleNode(TreeNode<NavMenuItem> node, string value)
     {
         node.DataItem.Title = value;
         Input();
         StateHasChanged();
     }
 
-    public void ChangeLinkNode(TreeNode<IMenuItem> node, string value)
+    public void ChangeLinkNode(TreeNode<NavMenuItem> node, string value)
     {
         node.DataItem.Link = new ProtoLink { Value = value };
         Input();

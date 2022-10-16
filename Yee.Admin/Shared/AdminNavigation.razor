@@ -5,13 +5,13 @@
 
     @foreach (var item in adminCompose.Navigations)
     {
-        if (item is GroupMenuItem group)
+        if (item.IsGroup)
         {
-            <AdminNavGroup Item="group"></AdminNavGroup>
+            <AdminNavGroup Item="item"></AdminNavGroup>
         }
-        else if (item is ActionMenuItem action)
+        else if (item.IsGroup == false)
         {
-            <AdminNavItem Item="action"></AdminNavItem>
+            <AdminNavItem Item="item"></AdminNavItem>
         }
 
     }

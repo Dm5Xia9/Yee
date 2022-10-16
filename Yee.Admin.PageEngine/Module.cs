@@ -20,7 +20,7 @@ namespace Yee.Admin.PageEngine
                 .UseAntDesign()
                 .YeeAdminCompose(p =>
                 {
-                    p.Navigations.Add(new ActionMenuItem
+                    p.Navigations.Add(new NavMenuItem
                     {
                         Title = "Создать страницу",
                         Link = new Section.Prototypes.ProtoLink { Value = "/admin/pageEngine" }

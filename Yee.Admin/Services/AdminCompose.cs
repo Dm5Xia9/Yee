@@ -11,10 +11,10 @@ namespace Yee.Admin.Services
     {
         public AdminCompose()
         {
-            Navigations = new List<IMenuItem>();
+            Navigations = new List<NavMenuItem>();
         }
 
-        public List<IMenuItem> Navigations { get; init; }
+        public List<NavMenuItem> Navigations { get; init; }
 
 
     }

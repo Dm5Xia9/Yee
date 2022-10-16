@@ -10,82 +10,82 @@ namespace Yee.Admin.Defualt
 {
     public static class DefualtNavigations
     {
-        public readonly static IEnumerable<IMenuItem>
-            Value = new List<IMenuItem>()
+        public readonly static IEnumerable<NavMenuItem>
+            Value = new List<NavMenuItem>()
             {
-                new ActionMenuItem
+                new NavMenuItem
                 {
                     Title = "Доска",
                     Link = new ProtoLink() { Value = "/admin" },
                 },
-                new GroupMenuItem
+                new NavMenuItem
                 {
                     Title = "Основное",
-                    ChildItems = new List<IMenuItem>
+                    ChildItems = new List<NavMenuItem>
                     {
-                        new ActionMenuItem
+                        new NavMenuItem
                         {
                             Title = "Настройки",
                             Link = new ProtoLink() { Value = "/admin/options" },
                         },
-                        new ActionMenuItem
+                        new NavMenuItem
                         {
                             Title = "Модули",
                             Link = new ProtoLink() { Value = "/admin/modules" },
                         },
-                        new ActionMenuItem
+                        new NavMenuItem
                         {
                             Title = "Пользователи",
                             Link = new ProtoLink() { Value = "/admin/users" },
                         },
-                        new ActionMenuItem
+                        new NavMenuItem
                         {
                             Title = "Роли",
                             Link = new ProtoLink() { Value = "/admin/roles" },
                         },
-                        new ActionMenuItem
+                        new NavMenuItem
                         {
                             Title = "Области",
                             Link = new ProtoLink() { Value = "/admin/pages" },
                         },
-                        new ActionMenuItem
+                        new NavMenuItem
                         {
                             Title = "Страницы",
                             Link = new ProtoLink() { Value = "/admin/pages" },
                         },
-                        new ActionMenuItem
+                        new NavMenuItem
                         {
                             Title = "Формы",
                             Link = new ProtoLink() { Value = "/admin/pages" },
                         },
                     }
                 },
-                new GroupMenuItem
+                new NavMenuItem
                 {
                     Title = "Конструктор страниц",
-                    ChildItems = new List<IMenuItem>
+                    ChildItems = new List<NavMenuItem>
                     {
-                        new ActionMenuItem
+                        new NavMenuItem
                         {
                             Title = "Создать страницу",
                             Link = new ProtoLink() { Value = "/admin/pages/create" },
                         },
-                        new ActionMenuItem
+                        new NavMenuItem
                         {
                             Title = "Страницы",
                             Link = new ProtoLink() { Value = "/admin/pages" },
                         },
-                        new ActionMenuItem
+                        new NavMenuItem
                         {
                             Title = "Секции",
                             Link = new ProtoLink() { Value = "/admin/sections" },
                         },
-                        new ActionMenuItem
+                        new NavMenuItem
                         {
                             Title = "Прототипы",
                             Link = new ProtoLink() { Value = "/admin/protos" },
                         },
-                        new ActionMenuItem
+                        new NavMenuItem
                         {
                             Title = "Данные",
                             Link = new ProtoLink() { Value = "/admin/rules" },

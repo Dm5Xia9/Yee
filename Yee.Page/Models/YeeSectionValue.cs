@@ -1,5 +1,6 @@
 ﻿using Ability.Core.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,12 +14,19 @@ namespace Yee.Page.Models
     public class YeeSectionValue : BaseRecord
     {
         [Column(TypeName = "jsonb")]
-        public PageDbContext SectionLink { get; set; }
+        public YeeCSharpLink SectionLink { get; set; }
 
         [Column(TypeName = "jsonb")]
-        public JsonDocument Value { get; set; }
+        public List<YeeSectionProperyValue> Values { get; set; }
+
 
         public YeePage YeePage { get; set; }
         public long YeePageId { get; set; }
+    }
+
+    public class YeeSectionProperyValue
+    {
+        public string Property { get; set; }
+        public string Value { get; set; }
     }
 }

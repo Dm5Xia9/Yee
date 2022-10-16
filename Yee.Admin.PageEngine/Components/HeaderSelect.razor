@@ -4,6 +4,7 @@
 
 <Select TItem="Type"
         TItemValue="Type"
+        DefaultValue="DefualtValue"
         DataSource="@manager.GetPossibleHeaders()"
         @bind-Value="@_selectedValue"
         LabelName="@nameof(Type.Name)"
@@ -21,6 +22,10 @@
     List<Type> _items;
     Type _selectedValue;
     Type _selectedItem;
+
+    [Parameter]
+    public Type DefualtValue { get; set; }
+
     [Parameter]
     public EventCallback<Type> OnSelect { get; set; }
 

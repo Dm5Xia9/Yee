@@ -49,13 +49,21 @@
         IsShow = !IsShow;
         StateHasChanged();
     }
+
     public IEnumerable<PropertyInfo> Protos { get; set; }
+
+    [Parameter]
+    public Dictionary<string, Newtonsoft.Json.Linq.JObject> DefualtDataProtos { get; set; }
+
+    [Parameter]
+    public EventCallback<Dictionary<PropertyInfo, object>> OnInputEvent { get; set; }
 
     public Dictionary<PropertyInfo, object> DefualtProtos { get; set; }
 
     public void OnInput(PropertyInfo propertyInfo, object obj)
     {
         DefualtProtos[propertyInfo] = obj;
+        OnInputEvent.InvokeAsync(DefualtProtos);
     }
 
     protected override void OnInitialized()
@@ -64,11 +72,32 @@
 
         Protos = SectionType.GetProperties()
             .Where(p => p.GetCustomAttribute<ParameterAttribute>() != null);
+
         DefualtProtos = new Dictionary<PropertyInfo, object>();
-        foreach (var proto in Protos)
+        if (DefualtDataProtos == null)
         {
-            DefualtProtos.Add(proto, Yee.Section.Extensions.ProtoHelper.CreateObjectProto(type: proto.PropertyType));
+            foreach (var proto in Protos)
+            {
+                DefualtProtos.Add(proto, Yee.Section.Extensions.ProtoHelper.CreateObjectProto(type: proto.PropertyType));
+            }
         }
+        else
+        {
+            foreach (var proto in Protos)
+            {
+                var value = DefualtDataProtos.GetValueOrDefault(proto.Name);
+                if(value == default)
+                {
+                    DefualtProtos.Add(proto, Yee.Section.Extensions.ProtoHelper.CreateObjectProto(type: proto.PropertyType));
+                }
+                else
+                {
+                    DefualtProtos.Add(proto, value.ToObject(proto.PropertyType));
+                }
+            }
+        }
+
+
 
 
     }
