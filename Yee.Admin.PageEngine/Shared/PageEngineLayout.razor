@@ -1,0 +1,95 @@
+﻿@inherits LayoutComponentBase
+@using Microsoft.JSInterop;
+@using Yee.Web.Services
+@inject YeeViewManager manager
+
+@if (HeaderType != null)
+{
+    <DynamicComponent Type="HeaderType">
+
+    </DynamicComponent>
+}
+
+<BodySetter Id="@Id" ClassName="@Class" @ref="BodySetterRef">
+
+</BodySetter>
+<div>
+    <div style=" padding: 0rem 6rem;">
+        <div>
+            <Yee.Admin.PageEngine.Components.HeaderSelect OnSelect="OnSelect">
+
+            </Yee.Admin.PageEngine.Components.HeaderSelect>
+
+            <div>
+                <div>
+                    body
+                </div>
+                <AntDesign.Input TValue="string" OnChange="ChangeId" Placeholder="Id"></AntDesign.Input>
+                <AntDesign.Input TValue="string" OnChange="ChangeClass" Placeholder="Class"></AntDesign.Input>
+
+            </div>
+        </div>
+        <div>
+            <div>
+                <h5>
+                    Шапка
+                </h5>
+            </div>
+
+            <Yee.Admin.PageEngine.Components.SelectSection OnSelect="SelectSection">
+
+            </Yee.Admin.PageEngine.Components.SelectSection>
+
+        </div>
+    </div>
+    <div>
+        @if (HeaderSection != null)
+        {
+            <Yee.Section.Engine.SectionEngine SectionType="HeaderSection">
+
+            </Yee.Section.Engine.SectionEngine>
+        }
+        <div>
+            @Body
+        </div>
+
+    </div>
+</div>
+
+@code {
+
+    public Type HeaderSection { get; set; }
+    public Type HeaderType { get; set; }
+
+    public string Id { get; set; }
+
+    public string Class { get; set; }
+
+    public BodySetter BodySetterRef { get; set; }
+
+    public void ChangeId(string id)
+    {
+        Id = id;
+        BodySetterRef.Refrash(Id, Class);
+        StateHasChanged();
+    }
+
+    public void ChangeClass(string slass)
+    {
+        Class = slass;
+        BodySetterRef.Refrash(Id, Class);
+        StateHasChanged();
+    }
+    public void OnSelect(Type type)
+    {
+        HeaderType = type;
+    }
+
+    public void SelectSection(Type type)
+    {
+        HeaderSection = type;
+        StateHasChanged();
+    }
+
+
+}

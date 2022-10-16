@@ -3,7 +3,7 @@
 
 
 <li class="menu-item" aria-haspopup="true">
-    <NavLink href="@Item.Link.Value" class="menu-link">
+    <NavLink href="@Item.Link.Value" @onclick="NavigationTo" class="menu-link">
         <span class="menu-text">@Item.Title</span>
     </NavLink>
 </li>

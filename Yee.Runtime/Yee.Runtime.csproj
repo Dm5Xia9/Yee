@@ -7,8 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Yee.Admin.PageEngine\Yee.Admin.PageEngine.csproj" />
     <ProjectReference Include="..\Yee.Admin.Swagger\Yee.Admin.Swagger.csproj" />
     <ProjectReference Include="..\Yee.Admin\Yee.Admin.csproj" />
+    <ProjectReference Include="..\Yee.Cabaret.CoreFrontLibraries\Yee.Cabaret.CoreFrontLibraries.csproj" />
     <ProjectReference Include="..\Yee.Cabaret.Sections\Yee.Cabaret.Sections.csproj" />
     <ProjectReference Include="..\Yee.CoreLayout\Yee.CoreLayout.csproj" />
     <ProjectReference Include="..\Yee.Nuget\Yee.Nuget.csproj" />

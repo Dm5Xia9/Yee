@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="AdminNavigation\" />
+    <Folder Include="Component\Section\" />
   </ItemGroup>
 
 </Project>

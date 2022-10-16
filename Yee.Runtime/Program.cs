@@ -59,6 +59,20 @@ var example = YeeAssemblyHelpers.CreateDefualtModule
                     }),
             });
 
+var pageEngine = YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Admin.PageEngine.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+                        example
+                    });
+
+var cabaretWWWroot = YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Cabaret.CoreFrontLibraries.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+                    });
+
+
 var adminSwagger = YeeAssemblyHelpers.CreateDefualtModule
             (typeof(Yee.Admin.Swagger.Module).Assembly)
             .AddDeps(new List<BaseYeeModule>
@@ -88,5 +102,7 @@ builder.Services.AddSingleton<BaseYeeModule>(example);
 builder.Services.AddSingleton<BaseYeeModule>(swagger);
 builder.Services.AddSingleton<BaseYeeModule>(core);
 builder.Services.AddSingleton<BaseYeeModule>(cabaretSection);
+builder.Services.AddSingleton<BaseYeeModule>(pageEngine);
+builder.Services.AddSingleton<BaseYeeModule>(cabaretWWWroot);
 
 builder.Build();

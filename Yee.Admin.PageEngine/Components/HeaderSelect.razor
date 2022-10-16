@@ -1,0 +1,32 @@
+﻿@using AntDesign
+@using Yee.Web.Services
+@inject YeeViewManager manager
+
+<Select TItem="Type"
+        TItemValue="Type"
+        DataSource="@manager.GetPossibleHeaders()"
+        @bind-Value="@_selectedValue"
+        LabelName="@nameof(Type.Name)"
+        DefaultActiveFirstOption
+        Style="width: 200px;"
+        OnSelectedItemChanged="OnSelectedItemChangedHandler">
+    <ItemTemplate>
+        <span>@((context as Type).Name)</span>
+    </ItemTemplate>
+</Select>
+
+@code
+{
+
+    List<Type> _items;
+    Type _selectedValue;
+    Type _selectedItem;
+    [Parameter]
+    public EventCallback<Type> OnSelect { get; set; }
+
+    private void OnSelectedItemChangedHandler(Type value)
+    {
+        OnSelect.InvokeAsync(value);
+    }
+
+}

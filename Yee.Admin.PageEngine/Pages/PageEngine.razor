@@ -1,0 +1,63 @@
+﻿@page "/admin/pageEngine"
+
+
+<div>
+    <div style="padding: 0rem 6rem;">
+        <h5>
+            Секции
+        </h5>
+    </div>
+    @foreach (var section in Sections)
+    {
+        <div>
+            @{ 
+                var type = section;
+            }
+            <div style="padding: 0rem 6rem;">
+                <AntDesign.Button OnClick="() => RemoveSection(type)">-</AntDesign.Button>
+            </div>
+
+            <Yee.Section.Engine.SectionEngine SectionType="section">
+
+            </Yee.Section.Engine.SectionEngine>
+        </div>
+    }
+
+    <div style="display: flex; padding: 0rem 6rem;">
+        <AntDesign.Button OnClick="AddNewSection">+</AntDesign.Button>
+        <div style="padding-left: 1rem">
+            <Yee.Admin.PageEngine.Components.SelectSection OnSelect="SelectSection">
+
+            </Yee.Admin.PageEngine.Components.SelectSection>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    public Type CurrentSection { get; set; }
+
+    public List<Type> Sections { get; set; }
+            = new List<Type>();
+    public void SelectSection(Type type)
+    {
+        CurrentSection = type;
+        StateHasChanged();
+    }
+
+    public void AddNewSection()
+    {
+        Sections.Add(CurrentSection);
+        StateHasChanged();
+    }
+
+    public void RemoveSection(Type type)
+    {
+        Sections.Remove(type);
+
+        StateHasChanged();
+
+
+    }
+
+}

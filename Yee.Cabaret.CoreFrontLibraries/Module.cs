@@ -19,8 +19,9 @@ namespace Yee.Cabaret.CoreFrontLibraries
                 {
                     //p.AddStyle("css/cab_app.css");
                     //p.AddStyle("css/cab_main.css");
-                    p.AddScript("js/cab_app.js");
-                    p.AddScript("js/cab_main.js");
+                    p.AddScript("/js/cab_app.js");
+                    p.AddScript("/js/cab_main.js");
+                    p.PossibleHeadComponent.Add(typeof(CabaretHeadApp));
                 });
         }
     }

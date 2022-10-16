@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Yee.Abstractions;
 using Yee.Extensions;
+using Yee.Metronic.Components;
 using Yee.Metronic.Services;
 using Yee.Services;
 using Yee.Web.Extensions;
@@ -27,7 +28,7 @@ namespace Yee.Metronic
                     p.AddScript("/themes/metronic/dist/assets/js/pages/features/miscellaneous/blockui.js");
                     p.AddScript("/themes/metronic/dist/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js");
                     p.AddScript("/themes/metronic/dist/assets/js/pages/widgets.js");
-
+                    p.PossibleHeadComponent.Add(typeof(MetronicStyles));
                 })
                 .AspConfigureServices(p =>
                 {

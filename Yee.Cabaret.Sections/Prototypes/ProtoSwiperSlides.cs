@@ -16,8 +16,8 @@ namespace Yee.Cabaret.Sections.Prototypes
 
     public class SwiperSlides
     {
-        public string NextButtonContent { get; set; }
-        public string PrevButtonContent { get; set; }
+        public ProtoString NextButtonContent { get; set; }
+        public ProtoString PrevButtonContent { get; set; }
         public List<SwiperSlide> Slides { get; set; }
     }
 
@@ -25,9 +25,9 @@ namespace Yee.Cabaret.Sections.Prototypes
     {
         public ProtoImg Img { get; set; }
 
-        public string CabSubHeading { get; set; }
-        public string CabBigHeading { get; set; }
+        public ProtoString CabSubHeading { get; set; }
+        public ProtoString CabBigHeading { get; set; }
 
-        public string ButtonContent { get; set; }
+        public ProtoString ButtonContent { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Yee.Abstractions;
+using Yee.Ant.Components;
 using Yee.Ant.Services;
 using Yee.Extensions;
 using Yee.Services;
@@ -26,6 +27,8 @@ namespace Yee.Ant
                      p.AddRootComponent(typeof(AntContainerComponent));
                      p.AddHead(typeof(HeadApp));
                      p.AddScript("_content/AntDesign/js/ant-design-blazor.js", true);
+                     p.PossibleHeadComponent.Add(typeof(AntBlazorStyles));
+
                  })
                 .AspConfigureServices(p =>
                 {

@@ -61,6 +61,12 @@ namespace Yee.Web.Services
                 .ToList();
         }
 
+        public List<Type> GetPossibleHeaders()
+        {
+            return _appBuilders.SelectMany(p => p.PossibleHeadComponent)
+                .ToList();
+        }
+
         public List<Type> GetFooters()
         {
             return _appBuilders.SelectMany(p => p.FooterComponents)

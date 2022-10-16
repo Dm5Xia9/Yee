@@ -77,15 +77,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Admin", "Yee.Admin\Yee.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Metronic", "Yee.Metronic\Yee.Metronic.csproj", "{782D5D05-25DC-47A5-8C46-EA1C3091BDBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.CoreLayout", "Yee.CoreLayout\Yee.CoreLayout.csproj", "{84959B73-C446-4478-9FFC-54EF3976EBF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.CoreLayout", "Yee.CoreLayout\Yee.CoreLayout.csproj", "{84959B73-C446-4478-9FFC-54EF3976EBF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.Ant", "Yee.Ant\Yee.Ant.csproj", "{54FAEC3D-CD44-4C25-AFF1-CB6114BC57CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Ant", "Yee.Ant\Yee.Ant.csproj", "{54FAEC3D-CD44-4C25-AFF1-CB6114BC57CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.Admin.Swagger", "Yee.Admin.Swagger\Yee.Admin.Swagger.csproj", "{6001E3A7-F8E6-4245-927C-1E015CD40356}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Admin.Swagger", "Yee.Admin.Swagger\Yee.Admin.Swagger.csproj", "{6001E3A7-F8E6-4245-927C-1E015CD40356}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Page", "Page", "{BEB35759-2A7A-460B-AD91-547D406EA142}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.Page", "Yee.Page\Yee.Page.csproj", "{8D08AA9C-F00A-45E3-8FCF-29F884401CB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Page", "Yee.Page\Yee.Page.csproj", "{8D08AA9C-F00A-45E3-8FCF-29F884401CB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.Admin.PageEngine", "Yee.Admin.PageEngine\Yee.Admin.PageEngine.csproj", "{14EF77ED-79A6-4B7F-A84F-DC53CAEF66A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -213,6 +215,10 @@ Global
 		{8D08AA9C-F00A-45E3-8FCF-29F884401CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D08AA9C-F00A-45E3-8FCF-29F884401CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D08AA9C-F00A-45E3-8FCF-29F884401CB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14EF77ED-79A6-4B7F-A84F-DC53CAEF66A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14EF77ED-79A6-4B7F-A84F-DC53CAEF66A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14EF77ED-79A6-4B7F-A84F-DC53CAEF66A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14EF77ED-79A6-4B7F-A84F-DC53CAEF66A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -244,6 +250,7 @@ Global
 		{54FAEC3D-CD44-4C25-AFF1-CB6114BC57CB} = {4FFC7A4D-CE12-46E4-93AA-9FFEDE6DBD89}
 		{6001E3A7-F8E6-4245-927C-1E015CD40356} = {BF4D3D26-AB6A-4FC6-9500-CCF820B18ACD}
 		{8D08AA9C-F00A-45E3-8FCF-29F884401CB6} = {BEB35759-2A7A-460B-AD91-547D406EA142}
+		{14EF77ED-79A6-4B7F-A84F-DC53CAEF66A9} = {A7CAAC5E-C63C-4C42-864F-32465E014473}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17570007-AC6E-4027-992F-55101D4A5C90}

@@ -116,6 +116,7 @@
                 Icon = treeNode.DataItem.Icon
             });
 
+        Input();
         StateHasChanged();
 
     }
@@ -156,7 +157,7 @@
             Link = treeNode.DataItem.Link,
             Icon = treeNode.DataItem.Icon
         };
-
+        Input();
         StateHasChanged();
     }
 
@@ -182,19 +183,21 @@
                 }
             }
         };
-
+        Input();
         StateHasChanged();
     }
 
     public void ChangeTitleNode(TreeNode<IMenuItem> node, string value)
     {
         node.DataItem.Title = value;
+        Input();
         StateHasChanged();
     }
 
     public void ChangeLinkNode(TreeNode<IMenuItem> node, string value)
     {
         node.DataItem.Link = new ProtoLink { Value = value };
+        Input();
         StateHasChanged();
     }
 }
