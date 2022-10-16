@@ -1,6 +1,8 @@
-﻿@inject Yee.EntityFrameworkCore.DbContextFactory contextFactory
+﻿@using AntDesign
+@using Ability.Core.Models
+@inject Yee.EntityFrameworkCore.DbContextFactory contextFactory
 
-@if (StateValue != null)
+@*@if (StateValue != null)
 {
     <DbStateScreen State="StateValue">
         @if (Users != null)
@@ -13,10 +15,47 @@
             }
         }
     </DbStateScreen>
-}
+}*@
+<div>
+    <AddUser UserInitialized="@RefreshList" StateValue="@StateValue"></AddUser>
+</div>
+<div style="padding: 20px;">
+    <Table TItem="AbilityUser"
+           DataSource="@Users"
+            Total="_total"
+            @bind-PageIndex="_pageIndex"
+            @bind-PageSize="_pageSize">
+        <Column @bind-Field="@context.Id" Sortable/>
+        <Column @bind-Field="@context.UserName" Title="User Name" Sortable/>
+        <Column @bind-Field="@context.Email"/>
+        @*<ActionColumn>
+            <Space>
+                <SpaceItem><Button OnClick="() => Edit(context.Id)">Edit</Button></SpaceItem>
+            </Space>
+        </ActionColumn>
+        <ActionColumn>
+            <Space>
+                <SpaceItem><Button OnClick="() => ViewProfile(context.Id)">View Profile</Button></SpaceItem>
+            </Space>
+        </ActionColumn>
+        <ActionColumn>
+            <Space>
+                <SpaceItem><Switch OnChange="@(value => HandleActiveChanged(context, value))" @bind-Value="@(context.Active)"/></SpaceItem>
+            </Space>
+        </ActionColumn>*@
+    </Table>
+
+    <p>PageIndex: @_pageIndex | PageSize: @_pageSize</p>
+</div>
+
 @code {
     public DbContextStateValue StateValue { get; set; }
-    public List<Ability.Core.Models.AbilityUser> Users { get; set; }
+    public List<AbilityUser> Users { get; set; }
+
+    private int _pageIndex = 1;
+    private int _pageSize = 10;
+    private int _total = 0;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -26,11 +65,15 @@
 
             if (StateValue.IsWorked)
             {
-                Users = ((EntityFrameworkCore.Identity.AbilityIdentityDbContext)StateValue.Context)
-                    .Users.ToList();
-                StateHasChanged();
+                RefreshList();
             }
-
         }
+    }
+
+    public void RefreshList()
+    {
+        Users = ((EntityFrameworkCore.Identity.AbilityIdentityDbContext)StateValue.Context)
+            .Users.ToList();
+        StateHasChanged();
     }
 }

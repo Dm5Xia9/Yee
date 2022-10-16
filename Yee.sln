@@ -77,11 +77,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Admin", "Yee.Admin\Yee.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Metronic", "Yee.Metronic\Yee.Metronic.csproj", "{782D5D05-25DC-47A5-8C46-EA1C3091BDBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.CoreLayout", "Yee.CoreLayout\Yee.CoreLayout.csproj", "{84959B73-C446-4478-9FFC-54EF3976EBF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.CoreLayout", "Yee.CoreLayout\Yee.CoreLayout.csproj", "{84959B73-C446-4478-9FFC-54EF3976EBF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.Ant", "Yee.Ant\Yee.Ant.csproj", "{54FAEC3D-CD44-4C25-AFF1-CB6114BC57CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Ant", "Yee.Ant\Yee.Ant.csproj", "{54FAEC3D-CD44-4C25-AFF1-CB6114BC57CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.Admin.Swagger", "Yee.Admin.Swagger\Yee.Admin.Swagger.csproj", "{6001E3A7-F8E6-4245-927C-1E015CD40356}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Admin.Swagger", "Yee.Admin.Swagger\Yee.Admin.Swagger.csproj", "{6001E3A7-F8E6-4245-927C-1E015CD40356}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

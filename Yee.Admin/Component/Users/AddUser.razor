@@ -1,0 +1,99 @@
+﻿@using AntDesign
+@using Ability.Core.Models
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Identity
+@using Yee.Admin.ViewModels.Users
+@inject Yee.EntityFrameworkCore.DbContextFactory contextFactory
+@inject IUserService userService
+
+<Button Type="primary" OnClick="@(async () => await ShowModal())" Style="display: inline-block; margin-left: auto; margin: 20px;">
+    Добавить пользователя
+</Button>
+@{
+    RenderFragment footer = @<Template></Template>;
+}
+<Modal Visible="@_visible"
+       OnCancel="@HandleCancel"
+       Footer="@footer">
+    <h3 class="text-center">Добавить пользователя</h3>
+    <div>
+        <Form Model="@userForm"
+              OnFinish="OnFinish"
+              OnFinishFailed="OnFinishFailed"
+              LabelColSpan="8">
+            <FormItem Label="Логин">
+                <Input DebounceMilliseconds="1000" Placeholder="Логин" Size="@InputSize.Large" @bind-Value="@userForm.Username">
+                <Prefix>
+                    <Icon Type="user" />
+                </Prefix>
+                </Input>
+            </FormItem>
+            <FormItem Label="Email">
+                <Input DebounceMilliseconds="1000" Placeholder="Пароль" Size="@InputSize.Large" @bind-Value="@userForm.Email">
+                <Prefix>
+                    <Icon Type="user" />
+                </Prefix>
+                </Input>
+            </FormItem>
+            <FormItem Label="Пароль">
+                <InputPassword DebounceMilliseconds="1000" Placeholder="Пароль" Size="@InputSize.Large" @bind-Value="@userForm.Password">
+                <Prefix>
+                    <Icon Type="user" />
+                </Prefix>
+                </InputPassword>
+            </FormItem>
+            <FormItem Label="Повторите пароль">
+                <InputPassword DebounceMilliseconds="1000" Placeholder="Повторите пароль" Size="@InputSize.Large" @bind-Value="@userForm.ConfirmPassword">
+                <Prefix>
+                    <Icon Type="user" />
+                </Prefix>
+                </InputPassword>
+            </FormItem>
+            <FormItem WrapperColOffset="1">
+                <Button Type="@ButtonType.Primary" HtmlType="submit" Disabled="@_createButtonDisabled">
+                    Создать
+                </Button>
+            </FormItem>
+        </Form>
+    </div>
+</Modal>
+
+@code {
+    [Parameter] public DbContextStateValue StateValue { get; set; }
+    [Parameter] public EventCallback UserInitialized { get; set; }
+    UserForm userForm = new UserForm();
+    bool _visible = false;
+    bool _createButtonDisabled = false;
+
+    private async Task ShowModal()
+    {
+        _visible = true;
+    }
+    private void HandleCancel(MouseEventArgs e)
+    {
+        _visible = false;
+    }
+
+    private async Task OnFinish(EditContext editContext)
+    {
+        _createButtonDisabled = true;
+        StateHasChanged();
+        await CreateUserAsync();
+        _createButtonDisabled = false;
+        StateHasChanged();
+    }
+
+    private void OnFinishFailed(EditContext editContext)
+    {
+        Console.WriteLine($"Не ок");
+    }
+
+    private async Task CreateUserAsync()
+    {
+        //await ((EntityFrameworkCore.Identity.AbilityIdentityDbContext)StateValue.Context).Users.AddAsync(userForm);
+        await userService.CreateUser(userForm);
+        userForm = new UserForm();
+        await UserInitialized.InvokeAsync();
+        _visible = false;
+    }
+}
