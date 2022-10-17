@@ -58,6 +58,11 @@ namespace Yee.Admin.Defualt
                             Title = "Формы",
                             Link = new ProtoLink() { Value = "/admin/pages" },
                         },
+                        new NavMenuItem
+                        {
+                            Title = "Файлы",
+                            Link = new ProtoLink() { Value = "/admin/files" },
+                        },
                     }
                 },
                 new NavMenuItem

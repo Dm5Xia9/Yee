@@ -7,6 +7,18 @@
     {
         <DynamicComponent Type="component"></DynamicComponent>
     }
+    @{
+        var layouts = manager.GetLayouts();
+
+
+    }
+    @if (layouts.Any())
+    {
+        <Yee.Web.Components.DynamicRouter AppAssembly="@typeof(App).Assembly" Layouts="layouts">
+
+        </Yee.Web.Components.DynamicRouter>
+        
+    }
 
 </CascadingAuthenticationState>
 

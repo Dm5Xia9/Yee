@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Yee.Admin.Models\Yee.Admin.Models.csproj" />
     <ProjectReference Include="..\Yee.Admin.PageEngine\Yee.Admin.PageEngine.csproj" />
     <ProjectReference Include="..\Yee.Admin.Swagger\Yee.Admin.Swagger.csproj" />
     <ProjectReference Include="..\Yee.Admin\Yee.Admin.csproj" />

@@ -20,9 +20,10 @@ namespace Yee.Page
 
         public DbSet<YeePage> YeePages { get; set; }
 
-        public DbSet<YeeSectionValue> YeeSectionValues { get; set; }
+        public DbSet<YeeComponentValues> YeeComponentValues { get; set; }
 
-
+        public DbSet<YeeProperty> YeeProperties { get; set; }
+        public DbSet<YeePropertyValue> YeePropertyValues { get; set; }
 
     }
 }

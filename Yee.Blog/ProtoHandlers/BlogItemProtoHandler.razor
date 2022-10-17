@@ -1,0 +1,19 @@
+﻿@inherits ProtoHandler<Yee.Blog.Prototypes.ProtoBlogItem, BlogItem>
+
+<div style=" width: 33rem; display: flex; align-items: center;">
+    <label style="padding-right: 2rem;">Заголовок</label>
+    <AntDesign.Input TValue="string" @bind-Value="Model.Title"></AntDesign.Input>
+    <label style="padding-right: 2rem;">Содержимое</label>
+    <AntDesign.Input TValue="string" @bind-Value="Model.Cover"></AntDesign.Input>
+
+    <label style="padding-right: 2rem;">Id категории</label>
+    <AntDesign.Input TValue="long?" @bind-Value="Model.BlogCategoryId"></AntDesign.Input>
+
+    <label style="padding-right: 2rem;">Тут должны были быть теги</label>
+
+</div>
+
+@code {
+
+    protected override BlogItem NewModel => new BlogItem();
+}

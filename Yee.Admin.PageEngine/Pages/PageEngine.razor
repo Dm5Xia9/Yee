@@ -1,5 +1,6 @@
 ﻿@page "/admin/pageEngine/{pageId?}"
-@inject Yee.EntityFrameworkCore.DbContextFactory contextFactory
+@layout Yee.Admin.PageEngine.Shared.PageEngineLayout
+@inject Yee.Page.Repositories.PageRepository pageRepository
 @inject NavigationManager navigation
 @using Yee.Page.Models
 @using Microsoft.EntityFrameworkCore;
@@ -9,11 +10,17 @@
     <DbStateScreen State="StateValue">
         @if (Page != null)
         {
-            @if (HeaderType != null)
+            @if (Page.StyleLink != null)
             {
-                <DynamicComponent Type="HeaderType">
+                var type = Page.StyleLink.ToType();
 
-                </DynamicComponent>
+                if (type != null)
+                {
+                    <DynamicComponent Type="Page.StyleLink.Type">
+
+                    </DynamicComponent>
+                }
+
             }
 
             <BodySetter Id="@Page.BodyId" ClassName="@Page.BodyClass" @ref="BodySetterRef">
@@ -22,7 +29,7 @@
             <div>
                 <div style=" padding: 0rem 6rem;">
                     <div>
-                        <Yee.Admin.PageEngine.Components.HeaderSelect OnSelect="OnSelect" DefualtValue="HeaderType">
+                        <Yee.Admin.PageEngine.Components.HeaderSelect OnSelect="OnSelect" DefualtValue="Page.StyleLink?.Type">
 
                         </Yee.Admin.PageEngine.Components.HeaderSelect>
                         <AntDesign.Button OnClick="Save">
@@ -51,16 +58,20 @@
                     </div>
                 </div>
                 <div>
-                    @if (Page.HeaderSectionLink != null)
+
+                    @{
+                        var header = Page.YeeComponents.FirstOrDefault(p => p.IsHeader);
+                    }
+                    @if (header != null)
                     {
-                        var type = Page.HeaderSectionLink.ToType();
-                        var sectionValue = Page.HeaderValues;
+                        var type = header.ComponentRef.ToType();
+                        var sectionValue = header.Properties;
 
                         if (type != null)
                         {
-                            <Yee.Section.Engine.SectionEngine SectionType="type" OnInputEvent="p => ChangeHeaderSection(type, p)" 
+                            <Yee.Section.Engine.SectionEngine SectionType="type" OnInputEvent="p => ChangeSection(type, p)"
                                                               DefualtDataProtos="sectionValue
-                                                                                 .ToDictionary(p => p.Property, p => Newtonsoft.Json.Linq.JObject.Parse(p.Value))">
+                                                                                 .ToDictionary(p => p.Property, p => Newtonsoft.Json.Linq.JObject.Parse(p.YeePropertyValue.Value))">
 
                             </Yee.Section.Engine.SectionEngine>
                         }
@@ -72,22 +83,19 @@
                                     Секции
                                 </h5>
                             </div>
-                            @foreach (var section in Sections)
+                            @foreach (var section in Page.YeeComponents.Where(p => p.IsHeader == false))
                             {
-                                <div>
-                                    @{
-                                        var type = section;
-                                        var sectionValue = SectionValues.FirstOrDefault(p => p.SectionLink.TypeName == type.Name);
-                                    }
-                                    <div style="padding: 0rem 6rem;">
-                                        <AntDesign.Button OnClick="() => RemoveSection(type)">-</AntDesign.Button>
-                                    </div>
+                                var type = section.ComponentRef.Type;
+                                if (type == null)
+                                    continue;
 
-                                    <Yee.Section.Engine.SectionEngine SectionType="section" OnInputEvent="p => ChangeSection(type, p)" DefualtDataProtos="sectionValue?.Values?
-                                                                                                                                                          .ToDictionary(p => p.Property, p => Newtonsoft.Json.Linq.JObject.Parse(p.Value))">
+                                <Yee.Admin.PageEngine.Components.SectionComponent SectionType="type"
+                                                                                  Values="section"
+                                                                                  OnRemove="RemoveSection"
+                                                                                  OnChange="p => ChangeSection(p.SectionType, p.Values)"
+                                                                                  OnChangeValues="p => Save()">
 
-                                    </Yee.Section.Engine.SectionEngine>
-                                </div>
+                                </Yee.Admin.PageEngine.Components.SectionComponent>
                             }
 
                             <div style="display: flex; padding: 0rem 6rem;">
@@ -111,62 +119,35 @@
 @code {
 
     public DbContextStateValue StateValue { get; set; }
+
     [Parameter]
     public string? PageId { get; set; }
 
     public YeePage Page { get; set; }
+    public BodySetter BodySetterRef { get; set; }
 
-    public Yee.Page.PageDbContext DbContext { get; set; }
+    public Type CurrentSection { get; set; }
+
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            StateValue = contextFactory.Create(typeof(Yee.Page.PageDbContext));
+            StateValue = pageRepository.GetState();
             StateHasChanged();
 
             if (StateValue.IsWorked)
             {
-                DbContext = ((Yee.Page.PageDbContext)StateValue.Context);
-
                 if (string.IsNullOrEmpty(PageId) == false)
                 {
                     var pageLong = long.Parse(PageId);
-                    Page = DbContext.YeePages
-                        .Include(p => p.YeeSectionValues)
-                        .FirstOrDefault(p => p.Id == pageLong);
+                    Page = pageRepository.GetPage(pageLong);
                 }
 
                 if (PageId == null || Page == null)
                 {
-                    Page = new YeePage
-                    {
-                        DisplayName = "Новая страница",
-                        RouterLink = new YeeCSharpLink
-                        {
-
-                        },
-                        StyleLink = new YeeCSharpLink
-                        {
-
-                        },
-                        YeeSectionValues = new List<YeeSectionValue>
-                        {
-
-                        }
-                    };
-                    DbContext.YeePages.Add(Page);
-                    DbContext.SaveChanges();
+                    Page = pageRepository.CreatePage();
                     navigation.NavigateTo($"/admin/pageEngine/{Page.Id}");
-                }
-                else
-                {
-                    HeaderType = Page.StyleLink.ToType();
-
-                    SectionValues = Page.YeeSectionValues;
-                    Sections = Page.YeeSectionValues
-                        .Select(p => p.SectionLink.ToType())
-                        .Where(p => p != null)
-                        .ToList();
                 }
                 StateHasChanged();
             }
@@ -174,14 +155,7 @@
         }
     }
 
-    public Type CurrentSection { get; set; }
 
-    public List<Type> Sections { get; set; }
-            = new List<Type>();
-
-    public List<YeeSectionValue> SectionValues { get; set; }
-
-    public Dictionary<Type, Dictionary<string, object>> SectionValue { get; set; }
 
     public void SelectSection(Type type)
     {
@@ -191,22 +165,24 @@
 
     public void ChangeSection(Type section, Dictionary<System.Reflection.PropertyInfo, object> data)
     {
-        Page.YeeSectionValues
-            .First(p => p.SectionLink.TypeName == section.Name)
-            .Values = data.Select(p => new YeeSectionProperyValue
+        Page.YeeComponents
+            .First(p => p.ComponentRef.TypeName == section.Name)
+            .Properties = data.Select(p => new YeeProperty
             {
                 Property = p.Key.Name,
-                Value = Newtonsoft.Json.JsonConvert.SerializeObject(p.Value)
+                YeePropertyValue = new YeePropertyValue 
+                { 
+                    Value = Newtonsoft.Json.JsonConvert.SerializeObject(p.Value)
+                }
             }).ToList();
     }
 
     public void AddNewSection()
     {
-        Sections.Add(CurrentSection);
-        Page.YeeSectionValues.Add(new YeeSectionValue
+        Page.YeeComponents.Add(new YeeComponentValues
         {
-            SectionLink = YeeCSharpLink.FromType(CurrentSection),
-            Values = new List<YeeSectionProperyValue>()
+            ComponentRef = YeeCSharpLink.FromType(CurrentSection),
+            Properties = new List<YeeProperty>()
         });
 
         StateHasChanged();
@@ -214,17 +190,18 @@
 
     public void RemoveSection(Type type)
     {
-        Sections.Remove(type);
+        var sectionValue = Page.YeeComponents
+            .First(p => p.ComponentRef.TypeName == type.Name);
 
+        Page.YeeComponents.Remove(sectionValue);
+        //SectionValues.Remove(sectionValue);
+        //Page.YeeSectionValues.Remove(sectionValue);
+        //Save();
+        //navigation.NavigateTo($"/admin/pageEngine/{Page.Id}");
         StateHasChanged();
 
 
     }
-
-    public Type HeaderType { get; set; }
-
-
-    public BodySetter BodySetterRef { get; set; }
 
     public void ChangeId(string id)
     {
@@ -241,31 +218,39 @@
     }
     public void OnSelect(Type type)
     {
-        HeaderType = type;
+        Page.StyleLink = YeeCSharpLink.FromType(type);
     }
 
     public void SelectSectionHeader(Type type)
     {
-        Page.HeaderSectionLink = YeeCSharpLink.FromType(type);
-        Page.HeaderValues = new List<YeeSectionProperyValue>();
-        StateHasChanged();
-    }
-
-
-    public void ChangeHeaderSection(Type section, Dictionary<System.Reflection.PropertyInfo, object> data)
-    {
-        Page.HeaderValues = data.Select(p => new YeeSectionProperyValue
+        var component = Page.YeeComponents.FirstOrDefault(p => p.ComponentRef.TypeName == type.Name);
+        if(component != null)
         {
-            Property = p.Key.Name,
-            Value = Newtonsoft.Json.JsonConvert.SerializeObject(p.Value)
-        }).ToList();
+            var index = Page.YeeComponents.IndexOf(component);
+            Page.YeeComponents[index] = new YeeComponentValues
+            {
+                ComponentRef = YeeCSharpLink.FromType(type),
+                Properties = new List<YeeProperty>(),
+                IsHeader = true
+            };
+        }
+        else
+        {
+            Page.YeeComponents.Add(new YeeComponentValues
+            {
+                ComponentRef = YeeCSharpLink.FromType(type),
+                Properties = new List<YeeProperty>(),
+                IsHeader = true
+            });
+        }
+        StateHasChanged();
+
     }
+
 
     public void Save()
     {
-        Page.StyleLink = YeeCSharpLink.FromType(HeaderType);
-        DbContext.YeePages.Update(Page);
-        DbContext.SaveChanges();
+        pageRepository.PageUpdate(Page);
     }
 
 }

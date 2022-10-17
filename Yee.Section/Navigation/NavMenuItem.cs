@@ -17,7 +17,7 @@ namespace Yee.Section.Navigation
 
         public bool IsGroup => ChildItems != null;
 
-        public bool HasChilds => ChildItems.Count() > 0;
+        public bool HasChilds => ChildItems?.Count() > 0;
         public List<NavMenuItem> ChildItems { get; set; }
 
 

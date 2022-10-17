@@ -1,4 +1,6 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@inject AdminCompose adminCompose
+
+<Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="adminCompose.AssembliesForAdminLayout">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="typeof(Yee.Admin.Shared.AdminLayout)" />
     </Found>

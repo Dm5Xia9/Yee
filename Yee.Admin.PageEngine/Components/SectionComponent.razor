@@ -1,0 +1,92 @@
+﻿@using System.Reflection
+@inject AntDesign.IMessageService message
+<div>
+    <div style="padding: 0rem 6rem;">
+        <AntDesign.Button OnClick="() => OnRemove.InvokeAsync(SectionType)">-</AntDesign.Button>
+    </div>
+
+    <Yee.Section.Engine.SectionEngine SectionType="SectionType"
+                                      OnInputEvent="p => OnChange.InvokeAsync(new SectionState { SectionType = SectionType, Values = p })"
+                                      DefualtDataProtos="Values?.ToDictionary()">
+        <PropertyHeader>
+
+            @{
+                var property = Values.Properties
+                    .FirstOrDefault(p => p.Property == context.Name);
+            }
+
+            @if (property != null)
+            {
+                @if (property.YeePropertyValue.IsModelData == true)
+                {
+                    <div style=" border-top: #20b100 0.4rem solid;width: 100%; height: 1px">
+                    </div>
+                }
+                <div style="display: flex;">
+                    <div>
+                        <PropertiesModelDataSelect>
+
+                        </PropertiesModelDataSelect>
+                    </div>
+
+                    <AntDesign.Button>Привязать</AntDesign.Button>
+                    @if (property.YeePropertyValue.IsModelData == false)
+                    {
+                        <AntDesign.Button OnClick="() => ToModel(property)">Вынести в модель</AntDesign.Button>
+
+                    }
+
+                    <div style=" width: 24rem;">
+                        <AntDesign.Input TValue="string" Placeholder="Название" DefaultValue="property.YeePropertyValue.DisplayName" OnChange="p => ChangePropertyName(property, p)"></AntDesign.Input>
+                    </div>
+                </div>
+            }
+
+
+        </PropertyHeader>
+
+    </Yee.Section.Engine.SectionEngine>
+</div>
+
+@code{
+
+
+
+    [Parameter] public Type SectionType { get; set; }
+
+    [Parameter] public Yee.Page.Models.YeeComponentValues Values { get; set; }
+
+    [Parameter] public EventCallback<Type> OnRemove { get; set; }
+
+    [Parameter] public EventCallback<SectionState> OnChange { get; set; }
+
+    [Parameter] public EventCallback<Yee.Page.Models.YeeComponentValues> OnChangeValues { get; set; }
+
+    public class SectionState
+    {
+        public string DisplayName { get; set; }
+        public Type SectionType { get; set; }
+        public Dictionary<PropertyInfo, object> Values { get; set; }
+    }
+
+    public void ToModel(Yee.Page.Models.YeeProperty propertyInfo)
+    {
+        if (string.IsNullOrEmpty(propertyInfo.YeePropertyValue.DisplayName))
+        {
+            message.Warning("Обязательно укажите название");
+            return;
+        }
+
+        propertyInfo.YeePropertyValue.IsModelData = true;
+
+        OnChangeValues.InvokeAsync(Values);
+        StateHasChanged();
+    }
+
+
+    public void ChangePropertyName(Yee.Page.Models.YeeProperty propertyInfo, string value)
+    {
+        propertyInfo.YeePropertyValue.DisplayName = value;
+    }
+
+}

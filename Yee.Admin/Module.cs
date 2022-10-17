@@ -9,6 +9,7 @@ using Yee.Abstractions;
 using Yee.Admin.Defualt;
 using Yee.Admin.Extensions;
 using Yee.Admin.Services;
+using Yee.Admin.Shared;
 using Yee.Ant.Extensions;
 using Yee.Extensions;
 using Yee.Metronic.Extensions;
@@ -35,7 +36,8 @@ namespace Yee.Admin
                 .UseAntDesign()
                 .WebApp(p =>
                 {
-                    p.AddRouter(typeof(App));
+                    //p.AddRouter(typeof(App));
+                    p.AddLayout(typeof(AdminLayout));
                 })
                 .AspPostBuild(p =>
                 {

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Yee.Abstractions;
 using Yee.Extensions;
+using Yee.Page.Repositories;
 using Yee.Page.Services;
 
 namespace Yee.Page
@@ -19,6 +20,7 @@ namespace Yee.Page
                 {
                     p.AddScoped<PageDbContext>();
                     p.AddSingleton<PageCollection>();
+                    p.AddScoped<PageRepository>();
                 });
         }
     }

@@ -14,18 +14,26 @@ namespace Yee.Cabaret.Sections.Prototypes
 
     }
 
+    public class ProtoOfferCards : BaseYeeProto<List<CabOfferCard>>
+    {
+
+    }
+
+
     public class CabOffers
     {
         [DisplayName("Название")]
         public ProtoString SmallHeading { get; set; }
 
         public CabOffersMainHeading MainHeading { get; set; }
-
-        public List<CabOfferCard> OfferCards { get; set; }
     }
+
 
     public class CabOfferCard
     {
+        [DisplayName("Главное предложение")]
+        public ProtoBool Primary { get; set; }
+
         [DisplayName("Название")]
         public ProtoString Title { get; set; }
 

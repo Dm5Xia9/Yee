@@ -1,4 +1,5 @@
 ﻿using Yee.Abstractions;
+using Yee.CoreLayout.Shared;
 using Yee.Extensions;
 using Yee.Web.Extensions;
 
@@ -15,7 +16,8 @@ namespace Yee.CoreLayout
                 })
                 .WebApp(p =>
                 {
-                    p.AddRouter(typeof(App));
+                    //p.AddRouter(typeof(App));
+                    p.AddLayout(typeof(MainLayout));
                 });
 
 

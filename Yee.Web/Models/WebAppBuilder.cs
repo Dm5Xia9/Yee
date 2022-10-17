@@ -18,6 +18,7 @@ namespace Yee.Web.Models
             HeadComponents = new List<Type>();
             FooterComponents = new List<Type>();
             PossibleHeadComponent = new List<Type>();
+            Layouts = new List<Type>();
         }
 
         public List<WebStaticFile> StaticFiles { get; set; }
@@ -27,6 +28,8 @@ namespace Yee.Web.Models
         public List<Type> FooterComponents { get; set; }
 
         public List<Type> PossibleHeadComponent { get; set; }
+
+        public List<Type> Layouts { get; set; }
         public WebAppBuilder AddScript(string uri, bool asStandart = false)
         {
             StaticFiles.Add(new WebStaticFile
@@ -35,6 +38,13 @@ namespace Yee.Web.Models
                 Uri = uri,
                 AsStandard = asStandart,
             });
+
+            return this;
+        }
+
+        public WebAppBuilder AddLayout(Type type)
+        {
+            Layouts.Add(type);
 
             return this;
         }

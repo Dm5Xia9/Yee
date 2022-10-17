@@ -34,6 +34,12 @@ var example = YeeAssemblyHelpers.CreateDefualtModule
             .AddDeps(new List<BaseYeeModule>
             {
                 section,
+
+
+                YeeAssemblyHelpers.CreateDefualtModule
+                            (typeof(Yee.FileStorage.Module).Assembly),
+
+
                 YeeAssemblyHelpers.CreateDefualtModule
                             (typeof(Yee.Metronic.Module).Assembly),
 
@@ -58,6 +64,13 @@ var example = YeeAssemblyHelpers.CreateDefualtModule
                         entityFramework
                     }),
             });
+
+var models = YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Admin.Models.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+                        example
+                    });
 
 var pageEngine = YeeAssemblyHelpers.CreateDefualtModule
                     (typeof(Yee.Admin.PageEngine.Module).Assembly)
@@ -89,6 +102,7 @@ var core = YeeAssemblyHelpers.CreateDefualtModule
     (typeof(Yee.CoreLayout.Module).Assembly);
 
 
+
 var builder = new YeeApplicationBuilder(args);
 
 builder.Services.AddSingleton<NupkgStorage>();
@@ -104,5 +118,6 @@ builder.Services.AddSingleton<BaseYeeModule>(core);
 builder.Services.AddSingleton<BaseYeeModule>(cabaretSection);
 builder.Services.AddSingleton<BaseYeeModule>(pageEngine);
 builder.Services.AddSingleton<BaseYeeModule>(cabaretWWWroot);
+builder.Services.AddSingleton<BaseYeeModule>(models);
 
 builder.Build();
