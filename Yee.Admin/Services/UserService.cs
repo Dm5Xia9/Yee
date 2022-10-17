@@ -12,17 +12,17 @@ namespace Yee.Admin.Services
 {
     public class UserService : IUserService
     {
-        //AbilityUserManager<AbilityUser> _userManager;
+        AbilityUserManager<AbilityUser> _userManager;
 
-        //public UserService(AbilityUserManager<AbilityUser> userManager)
-        //{
-        //    _userManager = userManager;
-        //}
+        public UserService(AbilityUserManager<AbilityUser> userManager)
+        {
+            _userManager = userManager;
+        }
 
         public async Task CreateUser(UserForm userForm)
         {
-            //var user = GetUserFromForm(userForm);
-            //await _userManager.CreateAsync(user, userForm.Password);
+            var user = GetUserFromForm(userForm);
+            var result = await _userManager.CreateAsync(user, userForm.Password);
         }
 
         private AbilityUser GetUserFromForm(UserForm user)

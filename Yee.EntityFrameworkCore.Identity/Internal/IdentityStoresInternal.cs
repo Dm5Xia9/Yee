@@ -13,12 +13,13 @@ using Microsoft.AspNetCore.Http;
 using Ability.Core.Models;
 using IDKEY = System.Int64;
 using Ability.Core.Data;
+using Yee.EntityFrameworkCore.Identity;
 
 namespace Ability.Core.Internal
 {
     internal class AbilityUserStore<TContext, TUser, TRole>
         : UserStore<TUser, TRole, TContext, IDKEY, AbilityUserClaim, AbilityUserRole, AbilityUserLogin, AbilityUserToken, AbilityRoleClaim>
-        where TContext : AbilityDbContext
+        where TContext : AbilityIdentityDbContext
         where TUser : AbilityUser
         where TRole : AbilityRole
     {
@@ -75,7 +76,7 @@ namespace Ability.Core.Internal
 
     internal class AbilityRoleStore<TContext, TUser, TRole>
         : RoleStore<TRole, TContext, IDKEY, AbilityUserRole, AbilityRoleClaim>
-        where TContext : AbilityDbContext
+        where TContext : AbilityIdentityDbContext
         where TUser : AbilityUser
         where TRole : AbilityRole
     {
