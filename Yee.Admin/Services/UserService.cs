@@ -19,10 +19,10 @@ namespace Yee.Admin.Services
             _userManager = userManager;
         }
 
-        public async Task CreateUser(UserForm userForm)
+        public async Task<IdentityResult> CreateUser(UserForm userForm)
         {
             var user = GetUserFromForm(userForm);
-            var result = await _userManager.CreateAsync(user, userForm.Password);
+            return await _userManager.CreateAsync(user, userForm.Password);
         }
 
         private AbilityUser GetUserFromForm(UserForm user)
