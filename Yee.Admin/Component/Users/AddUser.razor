@@ -56,6 +56,7 @@
             </FormItem>
         </Form>
     </div>
+    <div style="color: red;"></div>
 </Modal>
 
 @code {
@@ -87,10 +88,14 @@
         Console.WriteLine($"Не ок");
     }
 
+    private string ErrorMsg { get; set; }
+
     private async Task CreateUserAsync()
     {
         //await ((EntityFrameworkCore.Identity.AbilityIdentityDbContext)StateValue.Context).Users.AddAsync(userForm);
-        await userService.CreateUser(userForm);
+        var result = await userService.CreateUser(userForm);
+        if (!result.Succeeded)
+            ErrorMsg = string.Join("\n", result.Errors.Select(e => e.Description));
         userForm = new UserForm();
         await UserInitialized.InvokeAsync();
         _visible = false;

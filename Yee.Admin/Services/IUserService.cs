@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,6 @@ namespace Yee.Admin.Services
 {
     public interface IUserService
     {
-        public Task CreateUser(UserForm userForm);
+        public Task<IdentityResult> CreateUser(UserForm userForm);
     }
 }
