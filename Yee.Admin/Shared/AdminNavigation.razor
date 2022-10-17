@@ -24,7 +24,8 @@
         }
         else if (item.IsGroup == false)
         {
-            <AdminNavItem Item="item"></AdminNavItem>
+
+            <AdminNavItem Item="item" Link="@item.Link"></AdminNavItem>
         }
 
     }

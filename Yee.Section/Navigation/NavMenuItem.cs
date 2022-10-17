@@ -20,6 +20,13 @@ namespace Yee.Section.Navigation
         public bool HasChilds => ChildItems?.Count() > 0;
         public List<NavMenuItem> ChildItems { get; set; }
 
+        public bool IsActive(string currentUri, bool isShortUri = false)
+        {
+            if (isShortUri)
+                return currentUri == Link.Value;
+            var uri = new Uri(currentUri);
+            return uri.LocalPath == Link.Value;
+        }
 
         public bool IsActive(string currentUri)
         {

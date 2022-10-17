@@ -97,16 +97,6 @@ namespace Ability.Core.Data
             //    .AddDefaultUI()
             //    .AddDefaultTokenProviders();
 
-            var config = services.AddIdentity<TUser, TRole>(setupAction)
-                .AddDefaultTokenProviders()
-                .AddUserStore<Internal.AbilityUserStore<TContext, TUser, TRole>>()
-                .AddRoleStore<Internal.AbilityRoleStore<TContext, TUser, TRole>>()
-                .AddUserManager<TUserManager>()
-                .AddSignInManager<AbilitySignInManager<TUser>>()
-                .AddRoleManager<AbilityRoleManager<TUser, TRole>>();
-
-            config
-                .AddDefaultTokenProviders();
         }
 
         //public static IdentityBuilder AddAbilityIdentityCore<TUser>(IServiceCollection services, Action<IdentityOptions> setupAction) where TUser : class

@@ -93,7 +93,7 @@ namespace Yee.Admin.Defualt
                         new NavMenuItem
                         {
                             Title = "Данные",
-                            Link = new ProtoLink() { Value = "/admin/rules" },
+                            Link = new ProtoLink() { Value = "/admin/rules1" },
                         }
                     }
                 }

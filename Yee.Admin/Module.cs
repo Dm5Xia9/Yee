@@ -27,6 +27,8 @@ namespace Yee.Admin
                 .AspConfigureServices(p =>
                 {
                     p.AddSingleton<AdminCompose>();
+                    p.AddScoped<IUserService, UserService>();
+                    p.AddScoped<IRoleService, RoleService>();
                 })
                 .YeeAdminCompose(p =>
                 {

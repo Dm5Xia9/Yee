@@ -1,0 +1,78 @@
+﻿@using AntDesign
+@using Ability.Core.Models
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Identity
+@using Yee.Admin.ViewModels.Users
+@using Yee.Admin.ViewModels.Roles
+@inject Yee.EntityFrameworkCore.DbContextFactory contextFactory
+@inject IRoleService roleService
+
+<Button Type="primary" OnClick="@(async () => await ShowModal())" Style="display: inline-block; margin-left: auto; margin: 20px;">
+    Добавить роль
+</Button>
+@{
+    RenderFragment footer = @<Template></Template>;
+}
+<Modal Visible="@_visible"
+       OnCancel="@HandleCancel"
+       Footer="@footer">
+    <h3 class="text-center">Добавить роль</h3>
+    <div>
+        <Form Model="@roleForm"
+              OnFinish="OnFinish"
+              OnFinishFailed="OnFinishFailed"
+              LabelColSpan="4">
+            <FormItem Label="Логин">
+                <Input DebounceMilliseconds="1000" Placeholder="Логин" Size="@InputSize.Large" @bind-Value="@roleForm.Name">
+                <Prefix>
+                    <Icon Type="user" />
+                </Prefix>
+                </Input>
+            </FormItem>
+            <FormItem WrapperColOffset="1">
+                <Button Type="@ButtonType.Primary" HtmlType="submit" Disabled="@_createButtonDisabled">
+                    Создать
+                </Button>
+            </FormItem>
+        </Form>
+    </div>
+</Modal>
+
+@code {
+    [Parameter] public EventCallback UserInitialized { get; set; }
+    RoleForm roleForm = new RoleForm();
+    bool _visible = false;
+    bool _createButtonDisabled = false;
+
+    private async Task ShowModal()
+    {
+        _visible = true;
+    }
+    private void HandleCancel(MouseEventArgs e)
+    {
+        _visible = false;
+    }
+
+    private async Task OnFinish(EditContext editContext)
+    {
+        _createButtonDisabled = true;
+        StateHasChanged();
+        await CreateRoleAsync();
+        _createButtonDisabled = false;
+        StateHasChanged();
+    }
+
+    private void OnFinishFailed(EditContext editContext)
+    {
+        Console.WriteLine($"Не ок");
+    }
+
+    private async Task CreateRoleAsync()
+    {
+        //await ((EntityFrameworkCore.Identity.AbilityIdentityDbContext)StateValue.Context).Users.AddAsync(userForm);
+        await roleService.CreateRole(roleForm);
+        roleForm = new RoleForm();
+        await UserInitialized.InvokeAsync();
+        _visible = false;
+    }
+}
