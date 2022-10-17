@@ -1,6 +1,8 @@
-﻿@inject Yee.EntityFrameworkCore.DbContextFactory contextFactory
+﻿@using Ability.Core.Models
+@using AntDesign
+@inject Yee.EntityFrameworkCore.DbContextFactory contextFactory
 
-@if (StateValue != null)
+@*@if (StateValue != null)
 {
     <DbStateScreen State="StateValue">
         @if (Roles != null)
@@ -13,10 +15,45 @@
             }
         }
     </DbStateScreen>
-}
+}*@
+
+<div>
+    <AddRole UserInitialized="@RefreshList"></AddRole>
+</div>
+<div style="padding: 20px;">
+    <Table TItem="AbilityRole"
+           DataSource="@Roles"
+            Total="_total"
+            @bind-PageIndex="_pageIndex"
+            @bind-PageSize="_pageSize">
+        <Column @bind-Field="@context.Name" Title="User Name" Sortable/>
+        @*<ActionColumn>
+            <Space>
+                <SpaceItem><Button OnClick="() => Edit(context.Id)">Edit</Button></SpaceItem>
+            </Space>
+        </ActionColumn>
+        <ActionColumn>
+            <Space>
+                <SpaceItem><Button OnClick="() => ViewProfile(context.Id)">View Profile</Button></SpaceItem>
+            </Space>
+        </ActionColumn>
+        <ActionColumn>
+            <Space>
+                <SpaceItem><Switch OnChange="@(value => HandleActiveChanged(context, value))" @bind-Value="@(context.Active)"/></SpaceItem>
+            </Space>
+        </ActionColumn>*@
+    </Table>
+
+    <p>PageIndex: @_pageIndex | PageSize: @_pageSize</p>
+</div>
 @code {
     public DbContextStateValue StateValue { get; set; }
-    public List<Ability.Core.Models.AbilityRole> Roles { get; set; }
+    public List<AbilityRole> Roles { get; set; }
+
+    private int _pageIndex = 1;
+    private int _pageSize = 10;
+    private int _total = 0;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -26,11 +63,16 @@
 
             if (StateValue.IsWorked)
             {
-                Roles = ((EntityFrameworkCore.Identity.AbilityIdentityDbContext)StateValue.Context)
-                    .Roles.ToList();
-                StateHasChanged();
+                RefreshList();
             }
 
         }
+    }
+
+    private void RefreshList()
+    {
+        Roles = ((EntityFrameworkCore.Identity.AbilityIdentityDbContext)StateValue.Context)
+            .Roles.ToList();
+        StateHasChanged();
     }
 }

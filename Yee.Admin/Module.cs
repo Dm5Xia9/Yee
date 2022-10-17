@@ -27,6 +27,7 @@ namespace Yee.Admin
                 {
                     p.AddSingleton<AdminCompose>();
                     p.AddScoped<IUserService, UserService>();
+                    p.AddScoped<IRoleService, RoleService>();
                 })
                 .YeeAdminCompose(p =>
                 {
