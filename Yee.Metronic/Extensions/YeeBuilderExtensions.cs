@@ -9,7 +9,7 @@ namespace Yee.Metronic.Extensions
 {
     public static class YeeBuilderExtensions
     {
-        public const string KeyUseMetconic = "UseMetconic";
+        public const string KeyUseMetconic = "UseMetronic";
         public static YeeBuilder UseMetronic(this YeeBuilder builder)
         {
             builder.Add(KeyUseMetconic, p => { });

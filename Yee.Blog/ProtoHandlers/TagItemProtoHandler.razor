@@ -1,0 +1,13 @@
+﻿@inherits ProtoHandler<Yee.Blog.Prototypes.ProtoTagItem, BlogTag>
+
+<div style=" width: 33rem; display: flex; align-items: center;">
+    <label style="padding-right: 2rem;">Название тега</label>
+    <AntDesign.Input TValue="string" @bind-Value="Model.TagName"></AntDesign.Input>
+
+
+</div>
+
+@code {
+
+    protected override BlogTag NewModel => new BlogTag();
+}

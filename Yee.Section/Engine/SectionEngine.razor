@@ -1,0 +1,127 @@
+﻿@using Yee.Section.Services
+@using System.Reflection;
+@using Microsoft.AspNetCore.Components.Forms
+@inject SectionState state
+@using Microsoft.AspNetCore.Components.Web
+
+<div>
+    <div>
+        <DynamicComponent Type="SectionType" Parameters="CreateParameters()">
+
+        </DynamicComponent>
+    </div>
+    <div @onclick="Show" style=" width: 100%; height: 0.6rem; background: #d1d1d1; cursor: pointer;">
+
+    </div>
+    @if (IsShow)
+    {
+        <div style="padding: 0rem 6rem; ">
+            <EditForm Model="DefualtProtos">
+                @foreach (var proto in Protos)
+                {
+                    var prop = proto;
+                    <div style=" border-left: #f1f1f1 1rem solid; border-radius: 11px;">
+                        @if (PropertyHeader != null)
+                        {
+                            @PropertyHeader(prop)
+                        }
+                        <Yee.Section.Handlers.ProtoHandlerFactory InputValue="DefualtProtos[proto]" ProtoType="proto.PropertyType" OnInput="p => OnInput(prop, p)"></Yee.Section.Handlers.ProtoHandlerFactory>
+                    </div>
+                }
+
+                @*<div style="height: 3rem;">
+                    <div style=" padding: 1rem; float: right; padding-right: 10rem;">
+                        <AntDesign.Button OnClick="Save" Class="btn btn-success">Сохранить</AntDesign.Button>
+                    </div>
+                </div>*@
+            </EditForm>
+
+
+        </div>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment<PropertyInfo> PropertyHeader { get; set; }
+
+    [Parameter]
+    public Type SectionType { get; set; }
+
+    public bool IsShow = false;
+
+    public void Show()
+    {
+        IsShow = !IsShow;
+        StateHasChanged();
+    }
+
+    public IEnumerable<PropertyInfo> Protos { get; set; }
+
+    [Parameter]
+    public Dictionary<string, Newtonsoft.Json.Linq.JObject> DefualtDataProtos { get; set; }
+
+    [Parameter]
+    public EventCallback<Dictionary<PropertyInfo, object>> OnInputEvent { get; set; }
+
+    public Dictionary<PropertyInfo, object> DefualtProtos { get; set; }
+
+    public void OnInput(PropertyInfo propertyInfo, object obj)
+    {
+        DefualtProtos[propertyInfo] = obj;
+        OnInputEvent.InvokeAsync(DefualtProtos);
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Protos = SectionType.GetProperties()
+            .Where(p => p.GetCustomAttribute<ParameterAttribute>() != null);
+
+        DefualtProtos = new Dictionary<PropertyInfo, object>();
+        if (DefualtDataProtos == null)
+        {
+            foreach (var proto in Protos)
+            {
+                DefualtProtos.Add(proto, Yee.Section.Extensions.ProtoHelper.CreateObjectProto(type: proto.PropertyType));
+            }
+        }
+        else
+        {
+            foreach (var proto in Protos)
+            {
+                var value = DefualtDataProtos.GetValueOrDefault(proto.Name);
+                if(value == default)
+                {
+                    DefualtProtos.Add(proto, Yee.Section.Extensions.ProtoHelper.CreateObjectProto(type: proto.PropertyType));
+                }
+                else
+                {
+                    DefualtProtos.Add(proto, value.ToObject(proto.PropertyType));
+                }
+            }
+        }
+
+
+
+
+    }
+
+    public Dictionary<string, object> CreateParameters()
+    {
+        var dic = new Dictionary<string, object>();
+
+        foreach (var item in DefualtProtos)
+        {
+            dic.Add(item.Key.Name, item.Value);
+        }
+        return dic;
+    }
+
+    public void Save()
+    {
+
+    }
+}

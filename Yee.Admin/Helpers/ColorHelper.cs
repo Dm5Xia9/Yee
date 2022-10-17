@@ -1,5 +1,6 @@
 ﻿using AntDesign;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,8 @@ namespace Yee.Admin.Helpers
 {
     public static class ColorHelper
     {
-        private static Dictionary<string, PresetColor> _namesFromColors = new Dictionary<string, PresetColor>();
+        private static ConcurrentDictionary<string, PresetColor> _namesFromColors = 
+            new ConcurrentDictionary<string, PresetColor>();
 
 
         public static PresetColor GetColorFromName(string name)
@@ -26,7 +28,17 @@ namespace Yee.Admin.Helpers
             Random random = new Random();
             PresetColor randomcolor = (PresetColor)vals.GetValue(random.Next(values.Count()));
 
-            _namesFromColors.Add(name, randomcolor);
+
+            var res = _namesFromColors.TryAdd(name, randomcolor);
+            if(res == false)
+            {
+                if (_namesFromColors.ContainsKey(name))
+                {
+                    return _namesFromColors[name];
+                }
+
+                res = _namesFromColors.TryAdd(name, randomcolor);
+            }
             return randomcolor;
         }
     }

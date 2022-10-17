@@ -10,6 +10,13 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
-            await JS.InvokeVoidAsync("setAttributesAndClassToBody", Id, ClassName);
+            await Refrash(Id, ClassName);
+    }
+
+    public async Task Refrash(string id, string clas)
+    {
+        Id = id;
+        ClassName = clas;
+        await JS.InvokeVoidAsync("setAttributesAndClassToBody", Id, ClassName);
     }
 }

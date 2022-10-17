@@ -1,18 +1,29 @@
 ﻿@using Yee.Section.Handlers
-@using Yee.Cabaret.Sections.Prototypes 
+@using Yee.Cabaret.Sections.Prototypes
 @using Yee.Section.Prototypes;
 @using Yee.Section.Extensions
 @inherits ProtoHandler<ProtoOffers, CabOffers>
 
 
 
-<div>
-    <div>Название</div>
-    <ProtoHandlerFactory T="ProtoString" InputValue="Model.SmallHeading"></ProtoHandlerFactory>
+<div style="display: flex; flex-wrap: wrap; flex-direction: column; align-items: center;">
+    <ProtoHandlerFactory InputValue="Model.SmallHeading" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+
+    <div style=" padding-top: 1rem;">
+        <div>
+            <h5>Основной заголовок</h5>
+        </div>
+        <ProtoHandlerFactory InputValue="Model.MainHeading.PrimaryContent" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+        <ProtoHandlerFactory InputValue="Model.MainHeading.Content" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+
+    </div>
+  
 </div>
 
 @code {
 
-     protected override CabOffers NewModel => 
-            ProtoHelper.CreateDefualt<CabOffers>(); 
+    protected override CabOffers NewModel => ProtoHelper.CreateDefualt<CabOffers>();
+
+
+    
 }

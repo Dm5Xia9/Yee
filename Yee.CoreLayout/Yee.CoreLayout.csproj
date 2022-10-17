@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Yee\Yee.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\" />
+  </ItemGroup>
+
 </Project>

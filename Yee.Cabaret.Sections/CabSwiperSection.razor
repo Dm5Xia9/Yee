@@ -15,7 +15,7 @@
                         <img src="@slide.Img.Value" alt="Hero Slide Image">
                         <div class="cab-hero-slide-caption">
                             <div class="cab-sub-heading-box">
-                                @foreach (var word in slide.CabSubHeading.Split(" "))
+                                @foreach (var word in slide.CabSubHeading.Value.Split(" "))
                                 {
                                     <h6>@word</h6>
                                     <span class="sep"></span>
@@ -36,14 +36,14 @@
         </div>
         <!-- Add Arrows -->
         <div class="swiper-button-next">
-            @foreach (var ch in SwiperSlides.Value.NextButtonContent)
+            @foreach (var ch in SwiperSlides.Value.NextButtonContent.Value ?? "")
             {
                 <span>@ch</span>
 
             }
         </div>
         <div class="swiper-button-prev">
-            @foreach (var ch in SwiperSlides.Value.PrevButtonContent)
+            @foreach (var ch in SwiperSlides.Value.PrevButtonContent.Value ?? "")
             {
                 <span>@ch</span>
 

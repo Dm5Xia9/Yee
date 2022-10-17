@@ -55,9 +55,21 @@ namespace Yee.Web.Services
                 .ToList();
         }
 
+        public List<Type> GetLayouts()
+        {
+            return _appBuilders.SelectMany(p => p.Layouts)
+                .ToList();
+        }
+
         public List<Type> GetHeaders()
         {
             return _appBuilders.SelectMany(p => p.HeadComponents)
+                .ToList();
+        }
+
+        public List<Type> GetPossibleHeaders()
+        {
+            return _appBuilders.SelectMany(p => p.PossibleHeadComponent)
                 .ToList();
         }
 

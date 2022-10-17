@@ -17,7 +17,7 @@
         <div class="cab-offers-content-box">
             <div class="row">
 
-                @foreach (var offer in Offers.Value.OfferCards)
+                @foreach (var offer in Cards.Value.Where(p => p.Primary.Value == true))
                 {
 
 
@@ -78,4 +78,8 @@
     [System.ComponentModel.DisplayName("Предложения")]
     public ProtoOffers Offers { get; set; }
 
+
+    [Parameter]
+    [System.ComponentModel.DisplayName("Карточки")]
+    public ProtoOfferCards Cards { get; set; }
 }

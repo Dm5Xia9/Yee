@@ -59,7 +59,7 @@
     [System.ComponentModel.DisplayName("Правое меню меню")]
     public ProtoNavigation RightMenuItems { get; set; }
 
-    public string Active(IMenuItem menuItem)
+    public string Active(NavMenuItem menuItem)
     {
         if (menuItem.IsActive(NavigationManager.Uri))
         {

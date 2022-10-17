@@ -17,7 +17,7 @@ namespace Yee.Admin.Swagger
             builder
                 .YeeAdminCompose(p =>
                 {
-                    p.Navigations.Add(new ActionMenuItem
+                    p.Navigations.Add(new NavMenuItem
                     {
                         Title = "Swagger",
                         Link = new Section.Prototypes.ProtoLink { Value = "/swagger"}

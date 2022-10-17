@@ -1,11 +1,12 @@
-﻿using Yee.Abstractions;
+﻿using Newtonsoft.Json.Linq;
+using Yee.Abstractions;
 using Yee.EntityFrameworkCore.Npgsql;
 
 namespace Yee.EntityFrameworkCore.Migrator
 {
     public class RootManager : IRootOptions
     {
-        public T? Get<T>(string key)
+        public T? Get<T>(string key) where T : class
         {
             return (T)Get(typeof(T), key);
 
@@ -23,6 +24,16 @@ namespace Yee.EntityFrameworkCore.Migrator
             }
             throw new NotImplementedException();
 
+        }
+
+        public IEnumerable<RootOption<JObject>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public RootOption<T> GetDetail<T>(string key) where T : class
+        {
+            throw new NotImplementedException();
         }
 
         public void Set<T>(string key, T value)

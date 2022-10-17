@@ -1,0 +1,12 @@
+﻿@inherits ProtoHandler<Yee.Blog.Prototypes.ProtoBlogCategory, BlogCategory>
+
+<div style=" width: 33rem; display: flex; align-items: center;">
+    <label style="padding-right: 2rem;">Название категории</label>
+    <AntDesign.Input TValue="string" @bind-Value="Model.Name"></AntDesign.Input>
+
+</div>
+
+@code {
+
+    protected override BlogCategory NewModel => new BlogCategory();
+}

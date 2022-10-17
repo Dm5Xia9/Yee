@@ -16,6 +16,7 @@ using Yee.Services;
 using Yee.Web.Middlewares;
 using Yee.Web;
 using Yee.Web.Extensions;
+using Yee.Web.Services;
 
 namespace Yee.Runtime.Builder
 {
@@ -48,6 +49,7 @@ namespace Yee.Runtime.Builder
             }
 
             var yeModuleManager = new YeeModuleManager(modules);
+            WebBuilder.Services.AddScoped<LayoutState>();
             WebBuilder.Services.AddRange(Services);
             WebBuilder.Services.AddSingleton(yeModuleManager);
             WebBuilder.Services.AddRazorPages();

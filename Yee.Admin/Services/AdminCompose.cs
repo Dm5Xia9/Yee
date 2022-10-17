@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Yee.Section.Navigation;
@@ -11,11 +13,13 @@ namespace Yee.Admin.Services
     {
         public AdminCompose()
         {
-            Navigations = new List<IMenuItem>();
+            Navigations = new List<NavMenuItem>();
+            AssembliesForAdminLayout = new List<Assembly>();
         }
 
-        public List<IMenuItem> Navigations { get; init; }
+        public List<NavMenuItem> Navigations { get; init; }
 
-
+        public List<Assembly> AssembliesForAdminLayout { get; init; }
     }
+
 }

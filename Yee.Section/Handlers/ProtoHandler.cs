@@ -16,10 +16,10 @@ namespace Yee.Section.Handlers
         
 
         [Parameter]
-        public EventCallback<T> OnInput { get; set; }
+        public EventCallback<object> OnInput { get; set; }
 
         [Parameter]
-        public T? InputValue { get; set; }
+        public object? InputValue { get; set; }
 
         private V _model;
         protected V Model
@@ -48,7 +48,7 @@ namespace Yee.Section.Handlers
             }
             else
             {
-                Proto = InputValue;
+                Proto = (T)InputValue;
                 _model = Proto.Value;
             }
         }

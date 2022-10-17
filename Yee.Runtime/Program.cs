@@ -8,18 +8,38 @@ using Yee.Web.Services;
 using Yee.Runtime.Builder.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 
-
-
-var example = YeeAssemblyHelpers.CreateDefualtModule
-            (typeof(Yee.Admin.Module).Assembly)
-            .AddDeps(new List<BaseYeeModule>
-            {
-                YeeAssemblyHelpers.CreateDefualtModule
+var section = YeeAssemblyHelpers.CreateDefualtModule
                     (typeof(Yee.Section.Module).Assembly)
                     .AddDeps(new List<BaseYeeModule>
                     {
 
-                    }),
+                    });
+
+var cabaretSection = YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Cabaret.Sections.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+                        section
+                    });
+
+var entityFramework = YeeAssemblyHelpers.CreateDefualtModule
+                            (typeof(Yee.EntityFrameworkCore.Npgsql.Module).Assembly)
+                            .AddDeps(new List<BaseYeeModule>
+                            {
+                                YeeAssemblyHelpers.CreateDefualtModule
+                                    (typeof(Yee.EntityFrameworkCore.Module).Assembly)
+                            });
+var example = YeeAssemblyHelpers.CreateDefualtModule
+            (typeof(Yee.Admin.Module).Assembly)
+            .AddDeps(new List<BaseYeeModule>
+            {
+                section,
+
+
+                YeeAssemblyHelpers.CreateDefualtModule
+                            (typeof(Yee.FileStorage.Module).Assembly),
+
+
                 YeeAssemblyHelpers.CreateDefualtModule
                             (typeof(Yee.Metronic.Module).Assembly),
 
@@ -35,15 +55,36 @@ var example = YeeAssemblyHelpers.CreateDefualtModule
                     (typeof(Yee.EntityFrameworkCore.Identity.Module).Assembly)
                     .AddDeps(new List<BaseYeeModule>
                     {
-                        YeeAssemblyHelpers.CreateDefualtModule
-                            (typeof(Yee.EntityFrameworkCore.Npgsql.Module).Assembly)
-                            .AddDeps(new List<BaseYeeModule>
-                            {
-                                YeeAssemblyHelpers.CreateDefualtModule
-                                    (typeof(Yee.EntityFrameworkCore.Module).Assembly)
-                            })
+                        entityFramework
+                    }),
+                 YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Page.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+                        entityFramework
                     }),
             });
+
+var models = YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Admin.Models.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+                        example
+                    });
+
+var pageEngine = YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Admin.PageEngine.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+                        example
+                    });
+
+var cabaretWWWroot = YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Cabaret.CoreFrontLibraries.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+                    });
+
 
 var adminSwagger = YeeAssemblyHelpers.CreateDefualtModule
             (typeof(Yee.Admin.Swagger.Module).Assembly)
@@ -61,6 +102,7 @@ var core = YeeAssemblyHelpers.CreateDefualtModule
     (typeof(Yee.CoreLayout.Module).Assembly);
 
 
+
 var builder = new YeeApplicationBuilder(args);
 
 builder.Services.AddSingleton<NupkgStorage>();
@@ -73,5 +115,9 @@ builder.Services.AddSingleton<BaseYeeModule>(adminSwagger);
 builder.Services.AddSingleton<BaseYeeModule>(example);
 builder.Services.AddSingleton<BaseYeeModule>(swagger);
 builder.Services.AddSingleton<BaseYeeModule>(core);
+builder.Services.AddSingleton<BaseYeeModule>(cabaretSection);
+builder.Services.AddSingleton<BaseYeeModule>(pageEngine);
+builder.Services.AddSingleton<BaseYeeModule>(cabaretWWWroot);
+builder.Services.AddSingleton<BaseYeeModule>(models);
 
 builder.Build();

@@ -1,0 +1,58 @@
+﻿@page "/admin/protos"
+
+@inject SectionState state
+
+@using Yee.Section.Extensions
+@using Microsoft.AspNetCore.Components.Forms
+
+<AdminPage>
+    <Header>
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <!--begin::Page Heading-->
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Прототипы</h5>
+                <!--end::Page Title-->
+            </div>
+            <!--end::Page Heading-->
+        </div>
+    </Header>
+    <Body>
+        <div style="padding: 1rem;">
+            <div>
+                @foreach (var sectionGroup in state.ProtoHandlers.GroupBy(p => p.Value.Assembly))
+                {
+                    <div>
+                        <div>
+                            <h4>@sectionGroup.Key.GetName().Name</h4>
+                        </div>
+
+                        @foreach (var sectionItem in sectionGroup)
+                        {
+                            <div style=" padding-left: 2rem; border-left: #c6c6c6 1px solid; border-radius: 10px;">
+                                <div>
+                                    <div style=" font-weight: 500; font-size: 1.2rem; padding-bottom: 1rem;">
+                                        @sectionItem.Key.Name
+                                    </div>
+                                </div>
+                                <div>
+                                    <Yee.Admin.Component.Modules.DefualtProtoForm ProtoType="sectionItem.Key">
+
+                                    </Yee.Admin.Component.Modules.DefualtProtoForm>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+
+
+                }
+            </div>
+        </div>
+    </Body>
+</AdminPage>
+
+
+@code{
+
+}

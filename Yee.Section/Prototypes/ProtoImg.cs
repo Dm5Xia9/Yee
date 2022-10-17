@@ -9,5 +9,6 @@ namespace Yee.Section.Prototypes
 {
     public class ProtoImg : BaseYeeProto<string>
     {
+
     }
 }

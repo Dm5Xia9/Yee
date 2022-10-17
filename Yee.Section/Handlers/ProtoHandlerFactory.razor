@@ -1,6 +1,5 @@
-﻿@typeparam T
-@using Yee.Section.Services
-@inject ProtoHandlerCollection collection
+﻿@using Yee.Section.Services
+@inject SectionState state
 
 @if (Type != null)
 {
@@ -8,7 +7,7 @@
 }
 else
 {
-    <div>Прототип @(typeof(T).Name) не имеет реализации</div>
+    <div>Прототип @(ProtoType.Name) не имеет реализации</div>
 }
 
 @code {
@@ -16,14 +15,17 @@ else
     public Type Type { get; set; }
 
     [Parameter]
-    public EventCallback<T> OnInput { get; set; }
+    public Type ProtoType { get; set; }
 
     [Parameter]
-    public T InputValue { get; set; }
+    public EventCallback<object> OnInput { get; set; }
+
+    [Parameter]
+    public object InputValue { get; set; }
 
     protected override void OnInitialized()
     {
-        Type = collection.FirstOrDefault(p => p.Key == typeof(T)).Value;
+        Type = state.ProtoHandlers.FirstOrDefault(p => p.Key == ProtoType).Value;
         base.OnInitialized();
     }
 

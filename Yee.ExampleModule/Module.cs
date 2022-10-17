@@ -29,7 +29,7 @@ namespace Yee.ExampleModule
                 })
                 .YeeSections(p =>
                 {
-                    p.Add(typeof(ProtoOffers), typeof(ProtoOffersHandler));
+                    p.ProtoHandlers.Add(typeof(ProtoOffers), typeof(ProtoOffersHandler));
                 })
                 .WebApp(p =>
                 {

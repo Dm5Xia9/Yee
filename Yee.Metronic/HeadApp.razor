@@ -1,5 +1,6 @@
 ﻿@using Yee.Metronic.Services
 @inject MetronicRouteAssemblies metronicData
+@*<Yee.Metronic.Components.MetronicStyles></Yee.Metronic.Components.MetronicStyles>*@
 
 @foreach (var assembly in metronicData)
 {
@@ -8,7 +9,6 @@
             <Yee.Metronic.Components.MetronicStyles></Yee.Metronic.Components.MetronicStyles>
         </Found>
         <NotFound>
-            @*<Yee.Metronic.Components.MetronicStyles></Yee.Metronic.Components.MetronicStyles>*@
         </NotFound>
     </Router>
 }

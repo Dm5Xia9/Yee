@@ -13,11 +13,11 @@ namespace Yee.Section.Extensions
         public const string KeyYeeSections = "YeeSections";
 
         public static YeeBuilder YeeSections(this YeeBuilder builder,
-            Action<ProtoHandlerCollection> action)
+            Action<SectionState> action)
         {
             builder.Add(KeyYeeSections, p =>
             {
-                action((ProtoHandlerCollection)p);
+                action((SectionState)p);
             });
 
             return builder;

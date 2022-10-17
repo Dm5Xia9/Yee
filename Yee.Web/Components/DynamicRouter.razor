@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.JSInterop
+@inject Yee.Web.Services.LayoutState state
+@inject NavigationManager manager
+<Router AppAssembly="@AppAssembly" AdditionalAssemblies="Layouts.Select(p => p.Assembly)">
+    <Found Context="routeData">
+
+        @{
+            var layoutType =
+                (Attribute.GetCustomAttribute(routeData.PageType, typeof(LayoutAttribute))
+                as LayoutAttribute)?.LayoutType;
+
+            if (layoutType == null)
+            {
+                layoutType = Layouts.First(p => p.Assembly == routeData.PageType.Assembly);
+            }
+
+        }
+
+        @if (state.OriginalLayout == null)
+        {
+            state.OriginalLayout = layoutType;
+        }
+
+        @if (state.OriginalLayout == layoutType)
+        {
+
+            <RouteView RouteData="routeData" DefaultLayout="layoutType">
+
+            </RouteView>
+        }
+        else
+        {
+            manager.NavigateTo(manager.Uri, true);
+        }
+
+
+    </Found>
+    <NotFound>
+    </NotFound>
+</Router>
+
+@code{
+
+
+    [Parameter] public System.Reflection.Assembly AppAssembly { get; set; }
+
+
+    [Parameter] public IEnumerable<Type> Layouts { get; set; }
+}

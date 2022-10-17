@@ -1,0 +1,22 @@
+﻿@page "/admin/proto/{Id}"
+@layout Yee.Admin.Shared.AdminLayout
+
+<div>
+    @LongId
+</div>
+@code{
+    [Parameter] public string Id { get; set; }
+
+    public long? LongId => GetLongId();
+    private long? GetLongId()
+    {
+        if(long.TryParse(Id, out long result))
+        {
+            return result;
+        }
+        return null;
+    }
+
+
+
+}
