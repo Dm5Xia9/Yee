@@ -1,4 +1,6 @@
 ﻿using Ability.Core.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Yee.Page.Models
 {
@@ -12,6 +14,8 @@ namespace Yee.Page.Models
 
     public class YeePropertyValue : BaseRecord
     {
+        [Column(TypeName = "jsonb")]
+        public YeeCSharpLink PropertyType { get; set; } 
         public string DisplayName { get; set; }
         public bool IsModelData { get; set; }
         public string Value { get; set; }

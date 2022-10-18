@@ -20,12 +20,23 @@ namespace Yee.Cabaret.Sections.Prototypes
     }
 
 
+
     public class CabOffers
     {
         [DisplayName("Название")]
         public ProtoString SmallHeading { get; set; }
 
         public CabOffersMainHeading MainHeading { get; set; }
+
+
+        [DisplayName("Цена текст")]
+        public ProtoString PriceDisplay { get; set; }
+
+        [DisplayName("Валюта")]
+        public ProtoString CurrencyDisplay { get; set; }
+
+        [DisplayName("Логотип")]
+        public ProtoImg LogoImg { get; set; }
     }
 
 
@@ -41,27 +52,15 @@ namespace Yee.Cabaret.Sections.Prototypes
         public ProtoString Description { get; set; }
 
 
-        [DisplayName("Цена текст")]
-        public ProtoString PriceDisplay { get; set; }
-
         [DisplayName("Цена")]
         public ProtoNumber Price { get; set; }
 
-        [DisplayName("Валюта")]
-        public ProtoString CurrencyDisplay { get; set; }
 
         [DisplayName("Изображение")]
         public ProtoImg Img { get; set; }
 
         [DisplayName("Популярный?")]
         public ProtoBool Popular { get; set; }
-
-        [DisplayName("Логотип")]
-        public ProtoImg LogoImg { get; set; }
-        public string GetDisplayPrice()
-        {
-            return $"{PriceDisplay}: {CurrencyDisplay}{Price}";
-        }
     }
 
     public class CabOffersMainHeading

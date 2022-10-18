@@ -26,15 +26,15 @@
                         <div class="col-md-4 col-sm-6">
                             <div class="cab-card popular">
                                 <div class="cab-top-img">
-                                    <img src="@offer.LogoImg" alt="Popular Image Logo">
+                                    <img src="@Offers.Value.LogoImg" alt="Popular Image Logo">
                                 </div>
                                 <div class="cab-card-inner-content">
                                     <h6>@offer.Title</h6>
                                     <p>
                                         @offer.Description
                                     </p>
-                                    <p class="price-tag">@offer.GetDisplayPrice()</p>
-                                </div>
+                                    <p class="price-tag">@GetDisplayPrice(offer.Price.Value)</p>
+                                </div> 
                                 <div class="h-sep">
 
                                 </div>
@@ -54,7 +54,7 @@
                                     <p>
                                         @offer.Description
                                     </p>
-                                    <p class="price-tag">@offer.GetDisplayPrice()</p>
+                                    <p class="price-tag">@GetDisplayPrice(offer.Price.Value)</p>
                                 </div>
                                 <div class="h-sep">
 
@@ -82,4 +82,9 @@
     [Parameter]
     [System.ComponentModel.DisplayName("Карточки")]
     public ProtoOfferCards Cards { get; set; }
+
+    public string GetDisplayPrice(decimal price)
+    {
+        return $"{Offers.Value.PriceDisplay}: {Offers.Value.CurrencyDisplay}{price}";
+    }
 }
