@@ -34,6 +34,7 @@ namespace Yee.Section
                     p.ProtoHandlers.Add(typeof(ProtoCssClass), typeof(CssProtoHandler));
                     p.ProtoHandlers.Add(typeof(ProtoNavigation), typeof(NavigationProtoHandler));
                     p.ProtoHandlers.Add(typeof(ProtoImg), typeof(ImgProtoHandler));
+                    p.ProtoHandlers.Add(typeof(ProtoTextArea), typeof(TextAreaProtoHandler));
 
                 })
                 .AspPostBuild(p =>
