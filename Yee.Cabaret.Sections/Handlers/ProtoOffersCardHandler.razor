@@ -14,7 +14,8 @@
     <div style=" display: flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap; }">
         @foreach (var card in Model)
         {
-            <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; ">
+            <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
+                <ProtoHandlerFactory InputValue="card.Primary" ProtoType="typeof(ProtoBool)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="card.Title" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="card.Description" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="card.PriceDisplay" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>

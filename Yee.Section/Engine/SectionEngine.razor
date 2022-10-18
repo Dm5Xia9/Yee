@@ -10,17 +10,17 @@
 
         </DynamicComponent>
     </div>
-    <div @onclick="Show" style=" width: 100%; height: 0.6rem; background: #d1d1d1; cursor: pointer;">
+    <div @onclick="Show" style="width: 100%; height: 0.6rem; background: #d1d1d1; cursor: pointer;" class="section-divider">
 
     </div>
     @if (IsShow)
     {
-        <div style="padding: 0rem 6rem; ">
+        <div style="padding: 20px; background-color: lavender; border-radius: 0.42rem; margin: 20px;">
             <EditForm Model="DefualtProtos">
                 @foreach (var proto in Protos)
                 {
                     var prop = proto;
-                    <div style=" border-left: #f1f1f1 1rem solid; border-radius: 11px;">
+                    <div style=" border-left: #f1f1f1 1rem solid; border-radius: 11px; margin: 10px 0;">
                         @if (PropertyHeader != null)
                         {
                             @PropertyHeader(prop)
