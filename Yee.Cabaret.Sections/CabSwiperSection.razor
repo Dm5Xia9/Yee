@@ -15,8 +15,8 @@
                         <img src="@slide.Img.Value" alt="Hero Slide Image">
                         <div class="cab-hero-slide-caption">
                             <div class="cab-sub-heading-box">
-                                @foreach (var word in slide.CabSubHeading.Value.Split(" "))
-                                {
+                                @foreach (var word in GetSubheaderWords(slide))
+                                                                {
                                     <h6>@word</h6>
                                     <span class="sep"></span>
                                 }
@@ -59,5 +59,10 @@
     public ProtoSwiperSlides SwiperSlides { get; set; }
 
 
-
+    private string[] GetSubheaderWords(SwiperSlide slide)
+    {
+        if (slide?.CabSubHeading?.Value == null)
+            return new string[0];
+        return slide.CabSubHeading.Value.Split(" ");
+    }
 }

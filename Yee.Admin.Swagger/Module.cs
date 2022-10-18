@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Yee.Abstractions;
 using Yee.Admin.Extensions;
-using Yee.Admin.Shared;
 using Yee.Section.Navigation;
 
 namespace Yee.Admin.Swagger

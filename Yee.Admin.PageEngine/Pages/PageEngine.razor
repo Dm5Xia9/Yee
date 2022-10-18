@@ -27,20 +27,25 @@
 
             </BodySetter>
             <div>
-                <div style=" padding: 0rem 6rem;">
+                <div style="padding: 20px; width: 500px; background-color: lavender; border-radius: 0.42rem; margin: 20px;">
                     <div>
-                        <Yee.Admin.PageEngine.Components.HeaderSelect OnSelect="OnSelect" DefualtValue="Page.StyleLink?.Type">
-
-                        </Yee.Admin.PageEngine.Components.HeaderSelect>
-                        <AntDesign.Button OnClick="Save">
-                            Сохранить
-                        </AntDesign.Button>
                         <div>
-                            <div>
+                            <div style="margin-bottom: 10px;">
+                                Layout
+                            </div>
+                            <Yee.Admin.PageEngine.Components.HeaderSelect OnSelect="OnSelect" DefualtValue="Page.StyleLink?.Type">
+
+                            </Yee.Admin.PageEngine.Components.HeaderSelect>
+                            <AntDesign.Button OnClick="Save">
+                                Сохранить
+                            </AntDesign.Button>
+                        </div>
+                        <div>
+                            <div style="margin-top: 10px;">
                                 body
                             </div>
-                            <AntDesign.Input TValue="string" OnChange="ChangeId" DefaultValue="Page.BodyId" Placeholder="Id"></AntDesign.Input>
-                            <AntDesign.Input TValue="string" OnChange="ChangeClass" DefaultValue="Page.BodyClass" Placeholder="Class"></AntDesign.Input>
+                            <AntDesign.Input TValue="string" OnChange="ChangeId" DefaultValue="Page.BodyId" Placeholder="Id" Style="margin-top: 10px;"></AntDesign.Input>
+                            <AntDesign.Input TValue="string" OnChange="ChangeClass" DefaultValue="Page.BodyClass" Placeholder="Class" Style="margin-top: 10px;"></AntDesign.Input>
 
                         </div>
                     </div>

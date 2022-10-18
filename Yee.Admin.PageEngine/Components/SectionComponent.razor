@@ -22,22 +22,22 @@
                     <div style=" border-top: #20b100 0.4rem solid;width: 100%; height: 1px">
                     </div>
                 }
-                <div style="display: flex;">
-                    <div>
+                <div style="display: flex; margin: 10px;">
+                    <div style="margin: 10px;">
                         <PropertiesModelDataSelect>
 
                         </PropertiesModelDataSelect>
                     </div>
 
-                    <AntDesign.Button>Привязать</AntDesign.Button>
+                    <AntDesign.Button Style="margin: 10px;">Привязать</AntDesign.Button>
                     @if (property.YeePropertyValue.IsModelData == false)
                     {
-                        <AntDesign.Button OnClick="() => ToModel(property)">Вынести в модель</AntDesign.Button>
+                        <AntDesign.Button OnClick="() => ToModel(property)" Style="margin: 10px;">Вынести в модель</AntDesign.Button>
 
                     }
 
                     <div style=" width: 24rem;">
-                        <AntDesign.Input TValue="string" Placeholder="Название" DefaultValue="property.YeePropertyValue.DisplayName" OnChange="p => ChangePropertyName(property, p)"></AntDesign.Input>
+                        <AntDesign.Input TValue="string" Style="margin: 10px;" Placeholder="Название" DefaultValue="property.YeePropertyValue.DisplayName" OnChange="p => ChangePropertyName(property, p)"></AntDesign.Input>
                     </div>
                 </div>
             }

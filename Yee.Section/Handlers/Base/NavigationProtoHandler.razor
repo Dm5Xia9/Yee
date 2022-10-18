@@ -44,6 +44,10 @@
     .site-tree-search-value {
         color: #f50;
     }
+
+    .ant-tree {
+        background-color: lavender;
+    }
 </style>
 @code {
 
@@ -51,7 +55,7 @@
 
     protected NavMenuItem GetParentFromItem(NavMenuItem menuItem, NavMenuItem root)
     {
-        @foreach (var item in root.ChildItems)
+    @foreach (var item in root.ChildItems)
         {
             if (item == menuItem)
             {
@@ -72,7 +76,7 @@
 
     protected List<NavMenuItem> GetParentItemsFromItem(NavMenuItem menuItem)
     {
-        @foreach (var item in Model)
+    @foreach (var item in Model)
         {
             if (item == menuItem)
             {
