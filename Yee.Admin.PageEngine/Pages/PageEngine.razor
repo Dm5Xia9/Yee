@@ -118,63 +118,92 @@
 
 @code {
 
-    public DbContextStateValue StateValue { get; set; }
+        public DbContextStateValue StateValue { get; set; }
 
-    [Parameter]
-    public string? PageId { get; set; }
+        [Parameter]
+        public string? PageId { get; set; }
 
-    public YeePage Page { get; set; }
-    public BodySetter BodySetterRef { get; set; }
+        public YeePage Page { get; set; }
+        public BodySetter BodySetterRef { get; set; }
 
-    public Type CurrentSection { get; set; }
+        public Type CurrentSection { get; set; }
 
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            StateValue = pageRepository.GetState();
-            StateHasChanged();
-
-            if (StateValue.IsWorked)
+            if (firstRender)
             {
-                if (string.IsNullOrEmpty(PageId) == false)
+                StateValue = pageRepository.GetState();
+                StateHasChanged();
+
+                if (StateValue.IsWorked)
                 {
-                    var pageLong = long.Parse(PageId);
-                    Page = pageRepository.GetPage(pageLong);
+                    if (string.IsNullOrEmpty(PageId) == false)
+                    {
+                        var pageLong = long.Parse(PageId);
+                        Page = pageRepository.GetPage(pageLong);
+                    }
+
+                    if (PageId == null || Page == null)
+                    {
+                        Page = pageRepository.CreatePage();
+                        navigation.NavigateTo($"/admin/pageEngine/{Page.Id}");
+                    }
+                    StateHasChanged();
                 }
 
-                if (PageId == null || Page == null)
-                {
-                    Page = pageRepository.CreatePage();
-                    navigation.NavigateTo($"/admin/pageEngine/{Page.Id}");
-                }
-                StateHasChanged();
             }
+        }
+
+
+
+        public void SelectSection(Type type)
+        {
+            CurrentSection = type;
+            StateHasChanged();
+        }
+
+        public void ChangeSection(Type section, Dictionary<System.Reflection.PropertyInfo, object> data)
+        {
+            var component = Page.YeeComponents
+                .First(p => p.ComponentRef.TypeName == section.Name);
+
+            foreach (var property in data)
+            {
+                var lastPropery = component.Properties
+                    .FirstOrDefault(p => p.Property == property.Key.Name);
+
+                if (lastPropery != null)
+                {
+                    if (lastPropery.YeePropertyValue != null)
+                    {
+                        lastPropery.YeePropertyValue.Value = Newtonsoft
+                            .Json.JsonConvert.SerializeObject(property.Value);
+                    }
+                    else
+                    {
+                        lastPropery.YeePropertyValue = new YeePropertyValue
+                        {
+                            Value = Newtonsoft.Json.JsonConvert.SerializeObject(property.Value)
+                        };
+                    }
+                }
+                else
+                {
+                    component.Properties.Add(new YeeProperty
+                    {
+                        Property = property.Key.Name,
+                        YeePropertyValue = new YeePropertyValue
+                        {
+                            IsModelData = lastPropery?.YeePropertyValue?.IsModelData ?? false,
+                            PropertyType = YeeCSharpLink.FromType(property.Key.PropertyType),
+                            Value = Newtonsoft.Json.JsonConvert.SerializeObject(property.Value)
+                        }
+                    });
+                }
+            
 
         }
-    }
-
-
-
-    public void SelectSection(Type type)
-    {
-        CurrentSection = type;
-        StateHasChanged();
-    }
-
-    public void ChangeSection(Type section, Dictionary<System.Reflection.PropertyInfo, object> data)
-    {
-        Page.YeeComponents
-            .First(p => p.ComponentRef.TypeName == section.Name)
-            .Properties = data.Select(p => new YeeProperty
-            {
-                Property = p.Key.Name,
-                YeePropertyValue = new YeePropertyValue 
-                { 
-                    Value = Newtonsoft.Json.JsonConvert.SerializeObject(p.Value)
-                }
-            }).ToList();
     }
 
     public void AddNewSection()
@@ -224,7 +253,7 @@
     public void SelectSectionHeader(Type type)
     {
         var component = Page.YeeComponents.FirstOrDefault(p => p.ComponentRef.TypeName == type.Name);
-        if(component != null)
+        if (component != null)
         {
             var index = Page.YeeComponents.IndexOf(component);
             Page.YeeComponents[index] = new YeeComponentValues

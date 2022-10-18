@@ -12,6 +12,7 @@ using Yee.Admin.Extensions;
 using Yee.Admin.Models;
 using Yee.Admin.Models.Navigations;
 using Yee.Admin.Models.Pages;
+using Yee.Admin.Models.Shared;
 using Yee.Admin.Services;
 using Yee.Ant.Extensions;
 using Yee.Extensions;
@@ -32,6 +33,10 @@ namespace Yee.Admin.Models
                 .AspConfigureServices(p =>
                 {
                     p.AddScoped<INavPatch, PageNavPatch>();
+                })
+                .WebApp(p =>
+                {
+                    p.AddLayout(typeof(DefualtLayout));
                 })
                 .YeeAdminCompose(p =>
                 {

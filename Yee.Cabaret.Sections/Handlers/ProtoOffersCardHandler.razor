@@ -15,14 +15,12 @@
         @foreach (var card in Model)
         {
             <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; ">
+                <ProtoHandlerFactory InputValue="card.Primary" ProtoType="typeof(ProtoBool)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="card.Title" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="card.Description" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
-                <ProtoHandlerFactory InputValue="card.PriceDisplay" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="card.Price" ProtoType="typeof(ProtoNumber)" OnInput="Input"></ProtoHandlerFactory>
-                <ProtoHandlerFactory InputValue="card.CurrencyDisplay" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="card.Img" ProtoType="typeof(ProtoImg)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="card.Popular" ProtoType="typeof(ProtoBool)" OnInput="Input"></ProtoHandlerFactory>
-                <ProtoHandlerFactory InputValue="card.LogoImg" ProtoType="typeof(ProtoImg)" OnInput="Input"></ProtoHandlerFactory>
 
             </div>
 

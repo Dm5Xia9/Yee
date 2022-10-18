@@ -99,7 +99,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cabaret.Models", "Cabaret.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Blog", "Yee.Blog\Yee.Blog.csproj", "{06E8246E-CC8A-4282-B00F-DF51F12FD79F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.Admin.Models", "Yee.Admin.Models\Yee.Admin.Models.csproj", "{B48D0433-F1A8-40CB-BD54-743BEB2BAD0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Admin.Models", "Yee.Admin.Models\Yee.Admin.Models.csproj", "{B48D0433-F1A8-40CB-BD54-743BEB2BAD0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
