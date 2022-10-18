@@ -1,0 +1,40 @@
+﻿@inherits YeeSection
+@using Yee.Section.Navigation
+@inject NavigationManager _navManager
+@using Yee.Section.Prototypes
+@using Yee.Cabaret.Sections.Prototypes
+
+<section class="cab-about-section">
+    <div class="cab-about-bg-shape">
+        <img src="@About.Value.Background.Value" alt="About Image Bg">
+    </div>
+    <div class="container">
+        <div class="cab-about-section-inner">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="left-side-content">
+                        <div class="small-tagline">
+                            @About.Value.SmallHeader
+                        </div>
+                        <h1>
+                            @About.Value.LargeHeader
+                        </h1>
+                        <p>
+                            @About.Value.Content
+                        </p>
+                        <div class="cab-cta-btn-about-box">
+                            <a href="#" class="cab-btn cab-btn-primary px-extra-padding">@About.Value.ButtonContent</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+
+    [Parameter]
+    [System.ComponentModel.DisplayName("Текстовый блок")]
+    public ProtoAbout About { get; set; }
+}

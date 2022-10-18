@@ -6,14 +6,15 @@
         DataSource="@state.Sections"
         @bind-Value="@_selectedValue"
         LabelName="@nameof(Type.Name)"
-        DefaultActiveFirstOption
+        Placeholder="Выберите секцию"
+
         Style="width: 200px;"
         OnSelectedItemChanged="OnSelectedItemChangedHandler">
     <ItemTemplate>
         <span>@((context as Type).Name)</span>
     </ItemTemplate>
 </Select>
-
+@*DefaultActiveFirstOption*@
 @code
 {
 
