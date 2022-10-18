@@ -1,0 +1,48 @@
+﻿@using Yee.Section.Handlers
+@using Yee.Cabaret.Sections.Prototypes
+@using Yee.Section.Prototypes;
+@using Yee.Section.Extensions
+@inherits ProtoHandler<ProtoSwiperSlides, SwiperSlides>
+
+
+
+<div style=" padding-top: 1rem;">
+    <div style="display: flex; justify-content: center; align-items: center; flex-flow: column;">
+        <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
+            <ProtoHandlerFactory InputValue="Model.NextButtonContent" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+            <ProtoHandlerFactory InputValue="Model.PrevButtonContent" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+        </div>
+        <div style="margin-top: 10px;">
+            <h5>Слайды</h5>
+            <AntDesign.Button OnClick="AddSlide" Style="margin-left: 1.1rem;">Добавить</AntDesign.Button>
+        </div>
+    </div>
+    <div style=" display: flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap; }">
+        @foreach (var card in Model.Slides)
+        {
+            <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
+                <ProtoHandlerFactory InputValue="card.CabBigHeading" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="card.CabSubHeading" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="card.ButtonContent" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="card.Img" ProtoType="typeof(ProtoImg)" OnInput="Input"></ProtoHandlerFactory>
+
+            </div>
+
+        }
+    </div>
+
+</div>
+@code {
+
+    protected override SwiperSlides NewModel =>
+       ProtoHelper.CreateDefualt<SwiperSlides>();
+
+    public void AddSlide
+    ()
+    {
+        Model.Slides.Add(ProtoHelper.CreateDefualt<SwiperSlide>());
+        Input();
+        StateHasChanged();
+    }
+
+}

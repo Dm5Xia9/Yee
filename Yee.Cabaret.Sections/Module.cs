@@ -23,6 +23,7 @@ namespace Yee.Cabaret.Sections
                     p.AddSection<CabSwiperSection>();
                     p.ProtoHandlers.Add(typeof(ProtoOffers), typeof(ProtoOffersHandler));
                     p.ProtoHandlers.Add(typeof(ProtoOfferCards), typeof(ProtoOffersCardHandler));
+                    p.ProtoHandlers.Add(typeof(ProtoSwiperSlides), typeof(ProtoSwiperSlidesHandler));
 
                 });
 
