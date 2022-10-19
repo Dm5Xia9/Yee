@@ -1,8 +1,10 @@
 ﻿@using System.Reflection
 @inject AntDesign.IMessageService message
-<div>
+<div style="border: 2px solid red; margin: 5px;">
     <div style="padding: 0rem 6rem;">
         <AntDesign.Button OnClick="() => OnRemove.InvokeAsync(SectionType)">-</AntDesign.Button>
+        <AntDesign.Button Icon="@AntDesign.IconType.Outline.ArrowUp" OnClick="() => OnMoveUp.InvokeAsync(SectionType)">-</AntDesign.Button>
+        <AntDesign.Button Icon="@AntDesign.IconType.Outline.ArrowDown" OnClick="() => OnMoveDown.InvokeAsync(SectionType)">-</AntDesign.Button>
     </div>
 
     <Yee.Section.Engine.SectionEngine SectionType="SectionType"
@@ -57,6 +59,8 @@
     [Parameter] public Yee.Page.Models.YeeComponentValues Values { get; set; }
 
     [Parameter] public EventCallback<Type> OnRemove { get; set; }
+    [Parameter] public EventCallback<Type> OnMoveUp { get; set; }
+    [Parameter] public EventCallback<Type> OnMoveDown { get; set; }
 
     [Parameter] public EventCallback<SectionState> OnChange { get; set; }
 

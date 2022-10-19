@@ -1,0 +1,77 @@
+﻿@using AntDesign
+@using Ability.Core.Models
+@using Yee.Page.Models
+@using Yee.Page
+@inject NavigationManager navManager
+@inject PageDbContext pageContext
+@inject Yee.EntityFrameworkCore.DbContextFactory contextFactory
+
+@*@if (StateValue != null)
+{
+    <DbStateScreen State="StateValue">
+        @if (Users != null)
+        {
+            @foreach (var user in Users)
+            {
+                <div>
+                    @user.UserName
+                </div>
+            }
+        }
+    </DbStateScreen>
+}*@
+
+<div style="padding: 20px;">
+    <Table TItem="YeePage"
+           DataSource="@Pages"
+            Total="_total"
+            @bind-PageIndex="_pageIndex"
+            @bind-PageSize="_pageSize">
+        <Column @bind-Field="@context.Id" Sortable/>
+        <Column TData="string" Title="Ссылка" Sortable>
+            <a href="@(navManager.ToAbsoluteUri($"/admin/pageEngine/{context.Id}"))">Ссылка</a>
+        </Column>
+        <Column @bind-Field="@context.CreatedAt" Format="dd.MM.yyyy hh:mm"/>
+        @*<ActionColumn>
+            <Space>
+                <SpaceItem><Button OnClick="() => Edit(context.Id)">Edit</Button></SpaceItem>
+            </Space>
+        </ActionColumn>
+        <ActionColumn>
+            <Space>
+                <SpaceItem><Button OnClick="() => ViewProfile(context.Id)">View Profile</Button></SpaceItem>
+            </Space>
+        </ActionColumn>
+        <ActionColumn>
+            <Space>
+                <SpaceItem><Switch OnChange="@(value => HandleActiveChanged(context, value))" @bind-Value="@(context.Active)"/></SpaceItem>
+            </Space>
+        </ActionColumn>*@
+    </Table>
+
+    <p>PageIndex: @_pageIndex | PageSize: @_pageSize</p>
+</div>
+
+@code {
+    public DbContextStateValue StateValue { get; set; }
+    public List<YeePage> Pages { get; set; }
+
+    private int _pageIndex = 1;
+    private int _pageSize = 10;
+    private int _total = 0;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            //StateValue = contextFactory.Create(typeof(Yee.EntityFrameworkCore.Identity.AbilityIdentityDbContext));
+            
+
+            //if (StateValue.IsWorked)
+            //{
+                await Task.Run(() => Pages = pageContext.YeePages.ToList());
+            //}
+           StateHasChanged();
+        }
+    }
+}

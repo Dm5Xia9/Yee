@@ -22,10 +22,12 @@ namespace Yee.Cabaret.Sections
                     p.AddSection<CabOneNavigation>();
                     p.AddSection<CabSwiperSection>();
                     p.AddSection<CabAboutSection>();
+                    p.AddSection<CabMenuSection>();
                     p.ProtoHandlers.Add(typeof(ProtoOffers), typeof(ProtoOffersHandler));
                     p.ProtoHandlers.Add(typeof(ProtoOfferCards), typeof(ProtoOffersCardHandler));
                     p.ProtoHandlers.Add(typeof(ProtoSwiperSlides), typeof(ProtoSwiperSlidesHandler));
                     p.ProtoHandlers.Add(typeof(ProtoAbout), typeof(ProtoAboutHandler));
+                    p.ProtoHandlers.Add(typeof(ProtoMenu), typeof(ProtoMenuHandler));
                 });
 
         }

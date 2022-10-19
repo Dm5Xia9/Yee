@@ -26,7 +26,15 @@
             <BodySetter Id="@Page.BodyId" ClassName="@Page.BodyClass" @ref="BodySetterRef">
 
             </BodySetter>
-            <div>
+            <div style="position:absolute; top: 0px; left: 0px; height: 50px; right: 0px; overflow:hidden;  background-color: lavender;">
+                <AntDesign.Button OnClick="Save" Style="height: 32px; margin: 9px;">
+                    Сохранить
+                </AntDesign.Button>
+                <AntDesign.Button OnClick="ToAdminPanel" Style="height: 32px; margin: 9px; margin-left: 0px;">
+                    Перейти в административную панель
+                </AntDesign.Button>
+            </div>
+            <div style="position:absolute; top: 50px; bottom: 0px; left:0px; right:0px; overflow:auto;">
                 <div style="padding: 20px; width: 500px; background-color: lavender; border-radius: 0.42rem; margin: 20px;">
                     <div>
                         <div>
@@ -36,9 +44,7 @@
                             <Yee.Admin.PageEngine.Components.HeaderSelect OnSelect="OnSelect" DefualtValue="Page.StyleLink?.Type">
 
                             </Yee.Admin.PageEngine.Components.HeaderSelect>
-                            <AntDesign.Button OnClick="Save">
-                                Сохранить
-                            </AntDesign.Button>
+                            
                         </div>
                         <div>
                             <div style="margin-top: 10px;">
@@ -97,6 +103,8 @@
                                 <Yee.Admin.PageEngine.Components.SectionComponent SectionType="type"
                                                                                   Values="section"
                                                                                   OnRemove="RemoveSection"
+                                                                                  OnMoveDown="MoveSectionDown"
+                                                                                  OnMoveUp="MoveSectionUp"
                                                                                   OnChange="p => ChangeSection(p.SectionType, p.Values)"
                                                                                   OnChangeValues="p => Save()">
 
@@ -123,79 +131,79 @@
 
 @code {
 
-        public DbContextStateValue StateValue { get; set; }
+    public DbContextStateValue StateValue { get; set; }
 
-        [Parameter]
-        public string? PageId { get; set; }
+    [Parameter]
+    public string? PageId { get; set; }
 
-        public YeePage Page { get; set; }
-        public BodySetter BodySetterRef { get; set; }
+    public YeePage Page { get; set; }
+    public BodySetter BodySetterRef { get; set; }
 
-        public Type CurrentSection { get; set; }
+    public Type CurrentSection { get; set; }
 
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
         {
-            if (firstRender)
+            StateValue = pageRepository.GetState();
+            StateHasChanged();
+
+            if (StateValue.IsWorked)
             {
-                StateValue = pageRepository.GetState();
-                StateHasChanged();
-
-                if (StateValue.IsWorked)
+                if (string.IsNullOrEmpty(PageId) == false)
                 {
-                    if (string.IsNullOrEmpty(PageId) == false)
-                    {
-                        var pageLong = long.Parse(PageId);
-                        Page = pageRepository.GetPage(pageLong);
-                    }
-
-                    if (PageId == null || Page == null)
-                    {
-                        Page = pageRepository.CreatePage();
-                        navigation.NavigateTo($"/admin/pageEngine/{Page.Id}");
-                    }
-                    StateHasChanged();
+                    var pageLong = long.Parse(PageId);
+                    Page = pageRepository.GetPage(pageLong);
                 }
 
-            }
-        }
-
-
-
-        public void SelectSection(Type type)
-        {
-            CurrentSection = type;
-            StateHasChanged();
-        }
-
-        public void ChangeSection(Type section, Dictionary<System.Reflection.PropertyInfo, object> data)
-        {
-            var component = Page.YeeComponents
-                .First(p => p.ComponentRef.TypeName == section.Name);
-
-            foreach (var property in data)
-            {
-                var lastPropery = component.Properties
-                    .FirstOrDefault(p => p.Property == property.Key.Name);
-
-                if (lastPropery != null)
+                if (PageId == null || Page == null)
                 {
-                    if (lastPropery.YeePropertyValue != null)
-                    {
-                        lastPropery.YeePropertyValue.Value = Newtonsoft
-                            .Json.JsonConvert.SerializeObject(property.Value);
-                    }
-                    else
-                    {
-                        lastPropery.YeePropertyValue = new YeePropertyValue
-                        {
-                            Value = Newtonsoft.Json.JsonConvert.SerializeObject(property.Value)
-                        };
-                    }
+                    Page = pageRepository.CreatePage();
+                    navigation.NavigateTo($"/admin/pageEngine/{Page.Id}");
+                }
+                StateHasChanged();
+            }
+
+        }
+    }
+
+
+
+    public void SelectSection(Type type)
+    {
+        CurrentSection = type;
+        StateHasChanged();
+    }
+
+    public void ChangeSection(Type section, Dictionary<System.Reflection.PropertyInfo, object> data)
+    {
+        var component = Page.YeeComponents
+            .First(p => p.ComponentRef.TypeName == section.Name);
+
+        foreach (var property in data)
+        {
+            var lastPropery = component.Properties
+                .FirstOrDefault(p => p.Property == property.Key.Name);
+
+            if (lastPropery != null)
+            {
+                if (lastPropery.YeePropertyValue != null)
+                {
+                    lastPropery.YeePropertyValue.Value = Newtonsoft
+                        .Json.JsonConvert.SerializeObject(property.Value);
                 }
                 else
                 {
-                    component.Properties.Add(new YeeProperty
+                    lastPropery.YeePropertyValue = new YeePropertyValue
+                        {
+                            Value = Newtonsoft.Json.JsonConvert.SerializeObject(property.Value)
+                        };
+                }
+            }
+            else
+            {
+                component.Properties.Add(new YeeProperty
                     {
                         Property = property.Key.Name,
                         YeePropertyValue = new YeePropertyValue
@@ -205,8 +213,8 @@
                             Value = Newtonsoft.Json.JsonConvert.SerializeObject(property.Value)
                         }
                     });
-                }
-            
+            }
+
 
         }
     }
@@ -233,7 +241,15 @@
         //Save();
         //navigation.NavigateTo($"/admin/pageEngine/{Page.Id}");
         StateHasChanged();
+    }
 
+    public void MoveSectionUp(Type type)
+    {
+
+    }
+
+    public void MoveSectionDown(Type type)
+    {
 
     }
 
@@ -281,10 +297,13 @@
 
     }
 
-
     public void Save()
     {
         pageRepository.PageUpdate(Page);
     }
 
+    public void ToAdminPanel()
+    {
+        navigation.NavigateTo("/admin");
+    }
 }
