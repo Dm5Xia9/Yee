@@ -1,0 +1,30 @@
+﻿@inherits YeeSection
+@using Yee.Section.Navigation
+@inject NavigationManager _navManager
+@using Yee.Section.Prototypes
+@using Yee.Cabaret.Sections.Prototypes
+
+<section class="cab-cta-section" style="@($"background: url(/cta-bg.jpg) no-repeat center fixed; background-size: cover;")">
+    @*{Cta.Value.Img}*@
+    <div class="container">
+        <div class="cab-cta-content">
+            <div class="row">
+                <div class="col-sm-5">
+                    <h1>@Cta.Value.Header</h1>
+                    <div class="cab-video-check-btn-box">
+                        <h6>@Cta.Value.TextBeforeVideo</h6>
+                        <span class="open-video-btn">
+                            <i class="flaticon-play"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    [System.ComponentModel.DisplayName("Cta")]
+    public ProtoCta Cta { get; set; }
+}
