@@ -186,7 +186,7 @@ else
                                 continue;
 
                             <Yee.Section.Engine.SectionEngine SectionType="type" @ref="RefSectionEngine"
-                                                              OnInputEvent="p => OnChange.InvokeAsync(new SectionState { SectionType = type, Values = p })"
+                                                              OnInputEvent="p => OnChange.InvokeAsync(new SectionState { SectionType = type, Values = p, Id = component.ExId })"
                                                               DefualtDataProtos="component?.ToDictionary()">
                                 <PropertyHeader>
 
@@ -303,7 +303,7 @@ else
         };
         AllComponents.Add(component);
         Component.Childs.Add(component);
-        FlexOptions.Values.Add(new FlexValue
+        Component.FlexOptions.Values.Add(new FlexValue
         {
             ComponentId = component.ExId,
             ColId = id

@@ -12,7 +12,7 @@
     @if (IsLoad)
     {
         <Yee.Section.Engine.SectionEngine SectionType="SectionType" @ref="RefSectionEngine"
-                                          OnInputEvent="p => OnChange.InvokeAsync(new SectionState { SectionType = SectionType, Values = p })"
+                                          OnInputEvent="p => OnChange.InvokeAsync(new SectionState { SectionType = SectionType, Values = p, Id = Values.ExId })"
                                           DefualtDataProtos="Values?.ToDictionary()">
             <PropertyHeader>
 
@@ -97,6 +97,7 @@
     public class SectionState
     {
         public string DisplayName { get; set; }
+        public Guid Id { get; set; }
         public Type SectionType { get; set; }
         public Dictionary<PropertyInfo, object> Values { get; set; }
     }

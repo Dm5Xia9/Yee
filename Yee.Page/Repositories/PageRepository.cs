@@ -38,6 +38,8 @@ namespace Yee.Page.Repositories
                     .Include(p => p.YeeComponents)
                     .ThenInclude(p => p.Properties)
                     .ThenInclude(p => p.YeePropertyValue)
+                    .Include(p => p.YeeComponents)
+                    .ThenInclude(p => p.Childs).ThenInclude(p => p.Properties).ThenInclude(p => p.YeePropertyValue)
                     .FirstOrDefault(p => p.Id == id);
         }
 
