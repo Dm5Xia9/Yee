@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Yee.Page;
@@ -12,9 +13,10 @@ using Yee.Page.Models;
 namespace Yee.Page.Migrations
 {
     [DbContext(typeof(PageDbContext))]
-    partial class PageDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221022160514_flex_component")]
+    partial class flex_component
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,9 +39,6 @@ namespace Yee.Page.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("ExId")
-                        .HasColumnType("uuid");
 
                     b.Property<FlexOptions>("FlexOptions")
                         .HasColumnType("jsonb");

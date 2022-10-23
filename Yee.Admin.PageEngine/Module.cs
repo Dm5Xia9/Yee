@@ -10,7 +10,7 @@ using Yee.Admin.Extensions;
 using Yee.Admin.PageEngine.Shared;
 using Yee.Ant.Extensions;
 using Yee.Extensions;
-using Yee.Section.Navigation;
+using Yee.Section.Base;
 using Yee.Web.Extensions;
 
 namespace Yee.Admin.PageEngine
@@ -26,7 +26,7 @@ namespace Yee.Admin.PageEngine
                     p.Navigations.Add(new NavMenuItem
                     {
                         Title = "Создать страницу",
-                        Link = new Section.Prototypes.ProtoLink { Value = "/admin/pageEngine" }
+                        Link = "/admin/pageEngine"
                     });
                     //p.AssembliesForAdminLayout.Add(typeof(App).Assembly);
                 })

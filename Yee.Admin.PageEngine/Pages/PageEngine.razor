@@ -26,48 +26,42 @@
             <BodySetter Id="@Page.BodyId" ClassName="@Page.BodyClass" @ref="BodySetterRef">
 
             </BodySetter>
-            <div style="position:absolute; top: 0px; left: 0px; height: 50px; right: 0px; overflow:hidden;  background-color: lavender;">
-                <AntDesign.Button OnClick="Save" Style="height: 32px; margin: 9px;">
-                    Сохранить
-                </AntDesign.Button>
-                <AntDesign.Button OnClick="ToAdminPanel" Style="height: 32px; margin: 9px; margin-left: 0px;">
-                    Перейти в административную панель
-                </AntDesign.Button>
-            </div>
-            <div style="position:absolute; top: 50px; bottom: 0px; left:0px; right:0px; overflow:auto;">
-                <div style="padding: 20px; width: 500px; background-color: lavender; border-radius: 0.42rem; margin: 20px;">
-                    <div>
-                        <div>
-                            <div style="margin-bottom: 10px;">
-                                Layout
-                            </div>
-                            <Yee.Admin.PageEngine.Components.HeaderSelect OnSelect="OnSelect" DefualtValue="Page.StyleLink?.Type">
+            <div style="position: absolute; top: 0px; left: 0px; height: 50px; right: 0px; overflow: hidden; background-color: #333333; display: flex; justify-content: space-between; ">
 
-                            </Yee.Admin.PageEngine.Components.HeaderSelect>
-                            
-                        </div>
-                        <div>
-                            <div style="margin-top: 10px;">
-                                body
-                            </div>
-                            <AntDesign.Input TValue="string" OnChange="ChangeId" DefaultValue="Page.BodyId" Placeholder="Id" Style="margin-top: 10px;"></AntDesign.Input>
-                            <AntDesign.Input TValue="string" OnChange="ChangeClass" DefaultValue="Page.BodyClass" Placeholder="Class" Style="margin-top: 10px;"></AntDesign.Input>
+                <div style="display: flex; align-items: center;">
+                    <div style="display: flex; align-items: center;">
+                        <div style="padding: 1rem; color: white; ">Стили</div>
+                        <Yee.Admin.PageEngine.Components.HeaderSelect OnSelect="OnSelect" DefualtValue="Page.StyleLink?.Type">
 
-                        </div>
+                        </Yee.Admin.PageEngine.Components.HeaderSelect>
                     </div>
-                    <div>
-                        <div>
-                            <h5>
-                                Шапка
-                            </h5>
-                        </div>
+
+                    <div style="display: flex; align-items: center;">
+                        <div style="padding: 1rem; color: white; ">Шапка</div>
 
                         <Yee.Admin.PageEngine.Components.SelectSection OnSelect="SelectSectionHeader">
 
                         </Yee.Admin.PageEngine.Components.SelectSection>
+                    </div>
+
+                    <div style="display: flex; align-items: center;">
+                        <div style="padding: 1rem; color: white; ">Body</div>
+
+                        <AntDesign.Input TValue="string" OnChange="ChangeId" DefaultValue="Page.BodyId" Placeholder="Id"></AntDesign.Input>
+                        <AntDesign.Input TValue="string" OnChange="ChangeClass" DefaultValue="Page.BodyClass" Placeholder="Class"></AntDesign.Input>
 
                     </div>
                 </div>
+                <div style="display: flex">
+                    <AntDesign.Button OnClick="ToAdminPanel" Style="height: 32px; margin: 9px; margin-left: 0px;">
+                        Перейти в административную панель
+                    </AntDesign.Button>
+                    <AntDesign.Button OnClick="Save" Style="height: 32px; margin: 9px;">
+                        Сохранить
+                    </AntDesign.Button>
+                </div>
+            </div>
+            <div style="position: absolute; top: 50px; bottom: 0px; left: 0px; right: 0px; overflow: auto; background: #666666;">
                 <div>
 
                     @{
@@ -89,29 +83,50 @@
                     }
                     <div>
                         <div>
-                            <div style="padding: 0rem 6rem;">
-                                <h5>
-                                    Секции
-                                </h5>
-                            </div>
-                            @foreach (var section in Page.YeeComponents.Where(p => p.IsHeader == false))
+                            @if (IsShow)
                             {
-                                var type = section.ComponentRef.Type;
-                                if (type == null)
-                                    continue;
+                                @foreach (var section in Page.YeeComponents
+                                   .Where(p => p.IsHeader == false).OrderBy(p => p.Order))
+                                {
+                                    var type = section.ComponentRef.Type;
+                                    if (type == null)
+                                        continue;
 
-                                <Yee.Admin.PageEngine.Components.SectionComponent SectionType="type"
-                                                                                  Values="section"
-                                                                                  OnRemove="RemoveSection"
-                                                                                  OnMoveDown="MoveSectionDown"
-                                                                                  OnMoveUp="MoveSectionUp"
-                                                                                  OnChange="p => ChangeSection(p.SectionType, p.Values)"
-                                                                                  OnChangeValues="p => Save()">
+                                    if (section.IsFlexable == false)
+                                    {
+                                        <Yee.Admin.PageEngine.Components.SectionComponent Id="section.ExId" SectionType="type"
+                                                                                          @ref="RefSectionComponent"
+                                                                                          Values="section"
+                                                                                          OnRemove="RemoveSection"
+                                                                                          OnMoveDown="MoveSectionDown"
+                                                                                          OnMoveUp="MoveSectionUp"
+                                                                                          OnChange="p => ChangeSection(p.SectionType, p.Values)"
+                                                                                          OnToLayout="ToLayout"
+                                                                                          OnChangeValues="p => Save()">
 
-                                </Yee.Admin.PageEngine.Components.SectionComponent>
+                                        </Yee.Admin.PageEngine.Components.SectionComponent>
+                                    }
+                                    else
+                                    {
+                                        <Yee.Admin.PageEngine.Components.GridComponent Id="section.ExId" SectionType="type"
+                                                                                          @ref="RefSectionComponent"
+                                                                                          Values="section"
+                                                                                          OnRemove="RemoveSection"
+                                                                                          OnMoveDown="MoveSectionDown"
+                                                                                          OnMoveUp="MoveSectionUp"
+                                                                                          OnChange="p => ChangeSection(p.SectionType, p.Values)"
+                                                                                          FlexOptions="section.FlexOptions ?? new FlexOptions(section.ExId)"
+                                                                                          Component="section"
+                                                                                          OnToLayout="ToLayout"
+                                                                                          OnChangeValues="p => Save()">
+                                        </Yee.Admin.PageEngine.Components.GridComponent>
+                                    }
+
+                                }
+
                             }
 
-                            <div style="display: flex; padding: 0rem 6rem;">
+                            <div style="display: flex; padding: 0rem 6rem; padding-bottom: 10rem;">
                                 <AntDesign.Button OnClick="AddNewSection">+</AntDesign.Button>
                                 <div style="padding-left: 1rem">
                                     <Yee.Admin.PageEngine.Components.SelectSection OnSelect="SelectSection">
@@ -132,6 +147,30 @@
 @code {
 
     public DbContextStateValue StateValue { get; set; }
+
+    private List<Yee.Admin.PageEngine.Components.SectionComponent> _refsSections = new List<Components.SectionComponent>();
+
+    public Yee.Admin.PageEngine.Components.SectionComponent RefSectionComponent
+    {
+        get
+        {
+            return null;
+        }
+        set
+        {
+            _refsSections.Add(value);
+        }
+    }
+
+    public bool IsShow { get; set; }
+        = true;
+    public void SectionsRefrash()
+    {
+        _refsSections.ForEach(p => p.Unload());
+        StateHasChanged();
+        _refsSections.ForEach(p => p.Load());
+
+    }
 
     [Parameter]
     public string? PageId { get; set; }
@@ -196,23 +235,23 @@
                 else
                 {
                     lastPropery.YeePropertyValue = new YeePropertyValue
-                        {
-                            Value = Newtonsoft.Json.JsonConvert.SerializeObject(property.Value)
-                        };
+                    {
+                        Value = Newtonsoft.Json.JsonConvert.SerializeObject(property.Value)
+                    };
                 }
             }
             else
             {
                 component.Properties.Add(new YeeProperty
+                {
+                    Property = property.Key.Name,
+                    YeePropertyValue = new YeePropertyValue
                     {
-                        Property = property.Key.Name,
-                        YeePropertyValue = new YeePropertyValue
-                        {
-                            IsModelData = lastPropery?.YeePropertyValue?.IsModelData ?? false,
-                            PropertyType = YeeCSharpLink.FromType(property.Key.PropertyType),
-                            Value = Newtonsoft.Json.JsonConvert.SerializeObject(property.Value)
-                        }
-                    });
+                        IsModelData = lastPropery?.YeePropertyValue?.IsModelData ?? false,
+                        PropertyType = YeeCSharpLink.FromType(property.Key.PropertyType),
+                        Value = Newtonsoft.Json.JsonConvert.SerializeObject(property.Value)
+                    }
+                });
             }
 
 
@@ -221,36 +260,73 @@
 
     public void AddNewSection()
     {
+        var maxOrder = Page.YeeComponents.Any() ? Page.YeeComponents.Max(p => p.Order) : 0;
         Page.YeeComponents.Add(new YeeComponentValues
         {
             ComponentRef = YeeCSharpLink.FromType(CurrentSection),
-            Properties = new List<YeeProperty>()
+            Properties = new List<YeeProperty>(),
+            Order = maxOrder + 1
         });
 
         StateHasChanged();
     }
 
-    public void RemoveSection(Type type)
+    public void RemoveSection(Guid id)
     {
+
         var sectionValue = Page.YeeComponents
-            .First(p => p.ComponentRef.TypeName == type.Name);
+            .First(p => p.ExId == id);
 
         Page.YeeComponents.Remove(sectionValue);
-        //SectionValues.Remove(sectionValue);
-        //Page.YeeSectionValues.Remove(sectionValue);
-        //Save();
-        //navigation.NavigateTo($"/admin/pageEngine/{Page.Id}");
-        StateHasChanged();
+
+        SectionsRefrash();
     }
 
-    public void MoveSectionUp(Type type)
+    public void MoveSectionUp(Guid id)
     {
+        var sectionValue = Page.YeeComponents
+            .First(p => p.ExId == id);
 
+        if (sectionValue.Order == 0)
+            return;
+
+        Page.YeeComponents
+            .First(p => p.Order == sectionValue.Order - 1 && p.IsHeader == false)
+            .Order = sectionValue.Order;
+
+        sectionValue.Order = sectionValue.Order - 1;
+        //StateHasChanged();
+        SectionsRefrash();
     }
 
-    public void MoveSectionDown(Type type)
+    public void MoveSectionDown(Guid id)
     {
+        var maxOrder = Page.YeeComponents.Max(p => p.Order);
 
+        var sectionValue = Page.YeeComponents
+        .First(p => p.ExId == id);
+
+        if (sectionValue.Order == maxOrder)
+            return;
+
+        Page.YeeComponents
+            .First(p => p.Order == sectionValue.Order + 1 && p.IsHeader == false)
+            .Order = sectionValue.Order;
+
+        sectionValue.Order = sectionValue.Order + 1;
+        //StateHasChanged();
+        SectionsRefrash();
+    }
+
+
+    public void ToLayout(Guid id)
+    {
+        var sectionValue = Page.YeeComponents
+            .First(p => p.ExId == id);
+
+        sectionValue.IsFlexable = !sectionValue.IsFlexable;
+
+        SectionsRefrash();
     }
 
     public void ChangeId(string id)

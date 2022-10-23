@@ -19,37 +19,37 @@ namespace Yee.Blog
             builder
                 .YeeAdminCompose(p =>
                 {
-                    p.Navigations.Add(new Section.Navigation.NavMenuItem
-                    {
-                        Title = "Блог",
-                        ChildItems = new List<Section.Navigation.NavMenuItem>
-                        {
-                            new Section.Navigation.NavMenuItem
-                            {
-                                Title = "Записи",
-                                Link = new Section.Prototypes.ProtoLink
-                                {
-                                    Value = "/admin/blog-items"
-                                }
-                            },
-                            new Section.Navigation.NavMenuItem
-                            {
-                                Title = "Категории",
-                                Link = new Section.Prototypes.ProtoLink
-                                {
-                                    Value = "/admin/blog-categories"
-                                }
-                            },
-                            new Section.Navigation.NavMenuItem
-                            {
-                                Title = "Теги",
-                                Link = new Section.Prototypes.ProtoLink
-                                {
-                                    Value = "/admin/blog-tags"
-                                }
-                            }
-                        }
-                    });
+                    //p.Navigations.Add(new Section.Navigation.NavMenuItem
+                    //{
+                    //    Title = "Блог",
+                    //    ChildItems = new List<Section.Navigation.NavMenuItem>
+                    //    {
+                    //        new Section.Navigation.NavMenuItem
+                    //        {
+                    //            Title = "Записи",
+                    //            Link = new Section.Prototypes.ProtoLink
+                    //            {
+                    //                Value = "/admin/blog-items"
+                    //            }
+                    //        },
+                    //        new Section.Navigation.NavMenuItem
+                    //        {
+                    //            Title = "Категории",
+                    //            Link = new Section.Prototypes.ProtoLink
+                    //            {
+                    //                Value = "/admin/blog-categories"
+                    //            }
+                    //        },
+                    //        new Section.Navigation.NavMenuItem
+                    //        {
+                    //            Title = "Теги",
+                    //            Link = new Section.Prototypes.ProtoLink
+                    //            {
+                    //                Value = "/admin/blog-tags"
+                    //            }
+                    //        }
+                    //    }
+                    //});
                 })
                 .YeeSections(p =>
                 {

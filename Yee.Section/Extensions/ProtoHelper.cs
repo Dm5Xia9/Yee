@@ -25,9 +25,17 @@ namespace Yee.Section.Extensions
             if (type == null)
                 type = propertyInfo.PropertyType;
 
-            if (type.IsPrimitive || type == typeof(String))
+            if (type.IsPrimitive)
+            {
+                return Activator.CreateInstance(type);
+            }
+            if (type == typeof(String))
                 return null;
 
+            if(type.FullName!.StartsWith("System.Collections.Generic.List`1"))
+            {
+                return Activator.CreateInstance(type);
+            }
             if (type.GetInterfaces().Any(p => p == typeof(IYeeProto)))
             {
                 var obj = (IYeeProto)Activator.CreateInstance(type);
@@ -62,6 +70,7 @@ namespace Yee.Section.Extensions
                     foreach (var property in type.GetProperties())
                     {
                         var propertyObj = CreateObjectProto(property);
+
 
                         property.SetValue(obj, propertyObj);
                     }

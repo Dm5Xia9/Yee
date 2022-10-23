@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 using Yee.Abstractions;
 using Yee.Extensions;
 using Yee.Section.Extensions;
-using Yee.Section.Handlers.Base;
-using Yee.Section.Prototypes;
 using Yee.Section.Services;
 using Yee.Services;
 
@@ -24,18 +22,6 @@ namespace Yee.Section
                 .AspConfigureServices(p =>
                 {
                     p.AddSingleton<SectionState>();
-                })
-                .YeeSections(p =>
-                {
-                    p.ProtoHandlers.Add(typeof(ProtoString), typeof(StringProtoHandler));
-                    p.ProtoHandlers.Add(typeof(ProtoBool), typeof(BoolProtoHandler));
-                    p.ProtoHandlers.Add(typeof(ProtoLink), typeof(LinkProtoHandler));
-                    p.ProtoHandlers.Add(typeof(ProtoNumber), typeof(NumberProtoHandler));
-                    p.ProtoHandlers.Add(typeof(ProtoCssClass), typeof(CssProtoHandler));
-                    p.ProtoHandlers.Add(typeof(ProtoNavigation), typeof(NavigationProtoHandler));
-                    p.ProtoHandlers.Add(typeof(ProtoImg), typeof(ImgProtoHandler));
-                    p.ProtoHandlers.Add(typeof(ProtoTextArea), typeof(TextAreaProtoHandler));
-
                 })
                 .AspPostBuild(p =>
                 {

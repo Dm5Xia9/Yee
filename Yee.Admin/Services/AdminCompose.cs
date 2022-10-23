@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Yee.Section.Navigation;
+using Yee.Section.Base;
 
 namespace Yee.Admin.Services
 {

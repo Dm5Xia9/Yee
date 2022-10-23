@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Yee.Abstractions;
 using Yee.Admin.Extensions;
-using Yee.Section.Navigation;
+using Yee.Section.Base;
 
 namespace Yee.Admin.Swagger
 {
@@ -19,7 +19,7 @@ namespace Yee.Admin.Swagger
                     p.Navigations.Add(new NavMenuItem
                     {
                         Title = "Swagger",
-                        Link = new Section.Prototypes.ProtoLink { Value = "/swagger"}
+                        Link = "/swagger"
                     });
                 });
         }

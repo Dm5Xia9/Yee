@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Yee.Section.Prototypes;
 
 namespace Yee.Section.Abstractions
 {
@@ -13,9 +12,9 @@ namespace Yee.Section.Abstractions
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        public void ToNav(ProtoLink link)
+        public void ToNav(string link)
         {
-            NavigationManager.NavigateTo(link.Value);
+            NavigationManager.NavigateTo(link);
         }
 
         protected override void OnInitialized()

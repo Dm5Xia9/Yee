@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Yee.Section.Abstractions;
 
-namespace Yee.Section.Prototypes
+namespace Yee.Section.Base
 {
     public class ProtoTextArea : BaseYeeProto<string>
     {

@@ -8,7 +8,7 @@ using Yee.Admin.Abstractions;
 using Yee.EntityFrameworkCore;
 using Yee.Page;
 using Yee.Page.Repositories;
-using Yee.Section.Navigation;
+using Yee.Section.Base;
 
 namespace Yee.Admin.Models.Navigations
 {
@@ -41,7 +41,7 @@ namespace Yee.Admin.Models.Navigations
                     group.ChildItems.Add(new NavMenuItem
                     {
                         Title = $"{component.DisplayName ?? component.Id.ToString()}",
-                        Link = new Section.Prototypes.ProtoLink { Value = $"/admin/proto/{component.Id}" }
+                        Link = $"/admin/proto/{component.Id}"
                     });
                 }
 

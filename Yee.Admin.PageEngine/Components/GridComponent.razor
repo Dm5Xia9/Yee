@@ -1,0 +1,390 @@
+﻿@using Yee.Page.Models
+@using AntDesign
+@inherits SectionComponent
+
+@*<div style=" position: absolute; z-index: 10000; width: 100%; display: flex; justify-content: flex-end; padding: 2rem;">
+    <div style="box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%); opacity: 0.5; ">
+        @foreach (var row in FlexOptions.FlexRows)
+        {
+            var styles = "";
+
+            if (row.Gutter != default)
+            {
+                styles = $"margin-left: -{row.Gutter / 2}px; margin-right: -{row.Gutter / 2}px;";
+            }
+            <div class="ant-row" style="@(styles) row-gap: 0px;">
+                @foreach (var col in row.Cols)
+                {
+                    <div class="ant-col ant-col-@(col.Span)">
+                        <Button Style=" width: 100%;">
+                           @col.Span
+                        </Button>
+                    </div>
+                }
+
+
+            </div>
+
+
+        }
+    </div>
+    
+</div>
+@foreach (var row in FlexOptions.FlexRows)
+{
+    var styles = "";
+
+    if(row.Gutter != default)
+    {
+        styles = $"margin-left: -{row.Gutter / 2}px; margin-right: -{row.Gutter / 2}px;";
+    }
+    <div class="ant-row" style="@(styles) row-gap: 0px;">
+
+        @foreach (var col in row.Cols)
+        {
+            <div class="ant-col ant-col-@(col.Span)">
+
+                @if (col.ComponentId != null && AllComponents.Any(p => p.Id == col.ComponentId.Value))
+                {
+                    var component = AllComponents.First(p => p.Id == col.ComponentId);
+
+                    var type = component.ComponentRef.Type;
+                    if (type == null)
+                        continue;
+
+                    <Yee.Admin.PageEngine.Components.SectionComponent Id="component.ExId" SectionType="type"
+                                                                      Values="component"
+                                                                      OnRemove="p => OnRemove.InvokeAsync(p)"
+                                                                      OnMoveDown="p => OnMoveDown.InvokeAsync(p)"
+                                                                      OnMoveUp="p => OnMoveUp.InvokeAsync(p)"
+                                                                      OnChange="p => OnChange.InvokeAsync(p)"
+                                                                      OnChangeValues="p => OnChangeValues.InvokeAsync(p)">
+
+                    </Yee.Admin.PageEngine.Components.SectionComponent>
+                }
+else
+                    {
+                    <div>
+                        Такой секции нет
+                    </div>
+                    }
+            </div>
+        }
+
+    </div>
+
+   
+}*@
+
+
+<div style="margin: 5px;">
+
+
+    @*<div style="padding: 1rem; position: absolute; opacity: 0.4; z-index: 1000; ">
+        <AntDesign.Button OnClick="() => OnRemove.InvokeAsync(Id)">-</AntDesign.Button>
+        <AntDesign.Button Icon="@AntDesign.IconType.Outline.ArrowUp" OnClick="() => MoveUp()"></AntDesign.Button>
+        <AntDesign.Button Icon="@AntDesign.IconType.Outline.ArrowDown" OnClick="() => OnMoveDown.InvokeAsync(Id)"></AntDesign.Button>
+        <AntDesign.Button Icon="@AntDesign.IconType.Outline.Diff" OnClick="() => OnToLayout.InvokeAsync(Id)"></AntDesign.Button>
+
+    </div>*@
+    <div style=" position: absolute; z-index: 10000; width: 100%; display: flex; justify-content: space-between; padding: 2rem;">
+        <div>
+            <AntDesign.Button OnClick="() => OnRemove.InvokeAsync(Id)">-</AntDesign.Button>
+            <AntDesign.Button Icon="@AntDesign.IconType.Outline.ArrowUp" OnClick="() => MoveUp()"></AntDesign.Button>
+            <AntDesign.Button Icon="@AntDesign.IconType.Outline.ArrowDown" OnClick="() => OnMoveDown.InvokeAsync(Id)"></AntDesign.Button>
+            <AntDesign.Button Icon="@AntDesign.IconType.Outline.Diff" OnClick="() => OnToLayout.InvokeAsync(Id)"></AntDesign.Button>
+
+        </div>
+        <div style="display: flex;">
+            <div style="width: 15rem;">
+                <Select Mode="defualt"
+                        DataSource="@_options"
+                        Placeholder="Please"
+                        @bind-Value="SelectedFlexOptions"
+                        TItemValue="List<FlexRow>"
+                        TItem="List<FlexRow>"
+                        EnableSearch>
+                    <ItemTemplate>
+                        <div style="width: 10rem; ">
+                            @foreach (var row in context)
+                            {
+                                var styles = "";
+
+                                if (row.Gutter != default)
+                                {
+                                    styles = $"margin-left: -{row.Gutter / 2}px; margin-right: -{row.Gutter / 2}px;";
+                                }
+                                <div class="ant-row" style="@(styles) row-gap: 0px;">
+                                    @foreach (var col in row.Cols)
+                                    {
+                                        <div class="ant-col ant-col-@(col.Span)">
+                                            <Button Style=" width: 100%;">
+                                                @col.Span
+                                            </Button>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </ItemTemplate>
+                </Select>
+            </div>
+            <div>
+                <div style="box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%); opacity: 0.5; ">
+                    @foreach (var row in FlexOptions.FlexRows)
+                    {
+                        var styles = "";
+
+                        if (row.Gutter != default)
+                        {
+                            styles = $"margin-left: -{row.Gutter / 2}px; margin-right: -{row.Gutter / 2}px;";
+                        }
+                        <div class="ant-row" style="@(styles) row-gap: 0px;">
+                            @foreach (var col in row.Cols)
+                            {
+                                <div class="ant-col ant-col-@(col.Span)">
+                                    <Button Style=" width: 100%;">
+                                        @col.Span
+                                    </Button>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+       
+       
+
+    </div>
+    @if (IsLoad)
+    {
+        @foreach (var row in FlexOptions.FlexRows)
+        {
+            var styles = "";
+
+            if (row.Gutter != default)
+            {
+                styles = $"margin-left: -{row.Gutter / 2}px; margin-right: -{row.Gutter / 2}px;";
+            }
+            <div class="ant-row" style="@(styles) row-gap: 0px;">
+
+                @foreach (var col in row.Cols)
+                {
+
+                    <div class="ant-col ant-col-@(col.Span)">
+
+                        @{ 
+                            var componentId = FlexOptions.Values.FirstOrDefault(p => p.ColId == col.Guid)?.ComponentId;
+                        }
+                        @if (componentId != null && AllComponents.Any(p => p.ExId == componentId))
+                        {
+                            var component = AllComponents.First(p => p.ExId == componentId);
+
+                            var type = component.ComponentRef.Type;
+                            if (type == null)
+                                continue;
+
+                            <Yee.Section.Engine.SectionEngine SectionType="type" @ref="RefSectionEngine"
+                                                              OnInputEvent="p => OnChange.InvokeAsync(new SectionState { SectionType = type, Values = p })"
+                                                              DefualtDataProtos="component?.ToDictionary()">
+                                <PropertyHeader>
+
+                                    @{
+                                        var property = component.Properties
+                                            .FirstOrDefault(p => p.Property == context.Name);
+                                    }
+
+                                    @if (property != null)
+                                    {
+                                        @if (property.YeePropertyValue.IsModelData == true)
+                                        {
+                                            <div style=" border-top: #20b100 0.4rem solid;width: 100%; height: 1px">
+                                            </div>
+                                        }
+                                        <div style="display: flex; margin: 10px;">
+                                            <div style="margin: 10px;">
+                                                <PropertiesModelDataSelect>
+
+                                                </PropertiesModelDataSelect>
+                                            </div>
+
+                                            <AntDesign.Button Style="margin: 10px;">Привязать</AntDesign.Button>
+                                            @if (property.YeePropertyValue.IsModelData == false)
+                                            {
+                                                <AntDesign.Button OnClick="() => ToModel(property)" Style="margin: 10px;">Вынести в модель</AntDesign.Button>
+
+                                            }
+
+                                            <div style=" width: 24rem;">
+                                                <AntDesign.Input TValue="string" Style="margin: 10px;" Placeholder="Название" DefaultValue="property.YeePropertyValue.DisplayName" OnChange="p => ChangePropertyName(property, p)"></AntDesign.Input>
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                </PropertyHeader>
+
+                            </Yee.Section.Engine.SectionEngine>
+
+                        }
+                        else
+                        {
+                            <div>
+                                @{ 
+                                    var id = col.Guid;
+                                }
+                                <div style="display: flex; padding: 0rem 6rem; padding-bottom: 10rem; padding-top: 10rem;">
+                                    <AntDesign.Button OnClick="() => AddChildSection(id)">+</AntDesign.Button>
+                                    <div style="padding-left: 1rem">
+                                        <Yee.Admin.PageEngine.Components.SelectSection OnSelect="SelectSection">
+
+                                        </Yee.Admin.PageEngine.Components.SelectSection>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+
+            </div>
+
+
+        }
+
+
+    }
+
+</div>
+
+
+@code {
+
+    public Type CurrentSection { get; set; }
+
+    public List<YeeComponentValues> AllComponents { get; set; }
+    [Parameter]
+    public YeeComponentValues Component { get; set; }
+
+    [Parameter]
+    public FlexOptions FlexOptions { get; set; }
+
+    private List<FlexRow> _selectFlexOptions;
+    private List<FlexRow> SelectedFlexOptions
+    {
+        get
+        {
+            return _selectFlexOptions;
+        }
+        set
+        {
+            _selectFlexOptions = value;
+            if (value != null)
+            {
+                FlexOptions.FlexRows = value;
+                Component.FlexOptions = FlexOptions;
+            }
+        }
+    }
+
+    public void SelectSection(Type type)
+    {
+        CurrentSection = type;
+        StateHasChanged();
+    }
+
+    public void AddChildSection(Guid id)
+    {
+        var component = new YeeComponentValues
+        {
+            ComponentRef = YeeCSharpLink.FromType(CurrentSection),
+            Properties = new List<YeeProperty>(),
+            Order = -1
+        };
+        AllComponents.Add(component);
+        Component.Childs.Add(component);
+        FlexOptions.Values.Add(new FlexValue
+        {
+            ComponentId = component.ExId,
+            ColId = id
+        });
+        StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        AllComponents = new List<YeeComponentValues>
+        {
+            Component
+        };
+        AllComponents.AddRange(Component.Childs ?? new List<YeeComponentValues>());
+
+    }
+
+    public string ValuesToTemplateText()
+    {
+        var builder = new System.Text.StringBuilder();
+
+        foreach(var row in FlexOptions.FlexRows)
+        {
+            var builderRow = new System.Text.StringBuilder();
+            foreach(var col in row.Cols)
+            {
+                builderRow.Append($"{col.Span};");
+            }
+            builder.AppendLine(builderRow.ToString());
+        }
+
+        return builder.ToString();
+    }
+
+    public string TemplateText { get; set; }
+
+
+    public void ChangeFlexOptions(ChangeEventArgs args)
+    {
+        var flex = (args.Value as FlexOptions);
+        FlexOptions = flex;
+        StateHasChanged();
+    }
+
+    public List<List<FlexRow>> _options => new List<List<FlexRow>>
+    {
+        new List<FlexRow>
+        {
+           new FlexRow
+                {
+                    Gutter = 0,
+                    Cols = new List<FlexCol>
+                    {
+                        new FlexCol
+                        {
+                            Guid = FlexOptions.MainColId,
+                            Span = 24
+                        }
+                    }
+                },
+        },
+        new List<FlexRow>
+        {
+            new FlexRow
+                {
+                    Gutter = 0,
+                    Cols = new List<FlexCol>
+                    {
+                        new FlexCol
+                        {
+                            Guid = FlexOptions.MainColId,
+                            Span = 12
+                        },
+                        new FlexCol
+                        {
+                            Guid = Guid.NewGuid(),
+                            Span = 12
+                        }
+                    }
+                },
+        },
+    };
+}

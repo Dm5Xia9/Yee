@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Yee.Section.Navigation;
-using Yee.Section.Prototypes;
+using Yee.Section.Base;
 
 namespace Yee.Admin.Defualt
 {
@@ -16,7 +15,7 @@ namespace Yee.Admin.Defualt
                 new NavMenuItem
                 {
                     Title = "Доска",
-                    Link = new ProtoLink() { Value = "/admin" },
+                    Link = "/admin",
                 },
                 new NavMenuItem
                 {
@@ -26,42 +25,42 @@ namespace Yee.Admin.Defualt
                         new NavMenuItem
                         {
                             Title = "Настройки",
-                            Link = new ProtoLink() { Value = "/admin/options" },
+                            Link = "/admin/options",
                         },
                         new NavMenuItem
                         {
                             Title = "Модули",
-                            Link = new ProtoLink() { Value = "/admin/modules" },
+                            Link = "/admin/modules",
                         },
                         new NavMenuItem
                         {
                             Title = "Пользователи",
-                            Link = new ProtoLink() { Value = "/admin/users" },
+                            Link = "/admin/users",
                         },
                         new NavMenuItem
                         {
                             Title = "Роли",
-                            Link = new ProtoLink() { Value = "/admin/roles" },
+                            Link = "/admin/roles",
                         },
                         new NavMenuItem
                         {
                             Title = "Области",
-                            Link = new ProtoLink() { Value = "/admin/pages" },
+                            Link = "/admin/pages",
                         },
                         new NavMenuItem
                         {
                             Title = "Страницы",
-                            Link = new ProtoLink() { Value = "/admin/pages" },
+                            Link = "/admin/pages",
                         },
                         new NavMenuItem
                         {
                             Title = "Формы",
-                            Link = new ProtoLink() { Value = "/admin/pages" },
+                            Link = "/admin/pages",
                         },
                         new NavMenuItem
                         {
                             Title = "Файлы",
-                            Link = new ProtoLink() { Value = "/admin/files" },
+                            Link = "/admin/files",
                         },
                     }
                 },
@@ -73,27 +72,27 @@ namespace Yee.Admin.Defualt
                         new NavMenuItem
                         {
                             Title = "Создать страницу",
-                            Link = new ProtoLink() { Value = "/admin/pages/create" },
+                            Link = "/admin/pages/create",
                         },
                         new NavMenuItem
                         {
                             Title = "Страницы",
-                            Link = new ProtoLink() { Value = "/admin/pages" },
+                            Link = "/admin/pages",
                         },
                         new NavMenuItem
                         {
                             Title = "Секции",
-                            Link = new ProtoLink() { Value = "/admin/sections" },
+                            Link = "/admin/sections",
                         },
                         new NavMenuItem
                         {
                             Title = "Прототипы",
-                            Link = new ProtoLink() { Value = "/admin/protos" },
+                            Link = "/admin/protos",
                         },
                         new NavMenuItem
                         {
                             Title = "Данные",
-                            Link = new ProtoLink() { Value = "/admin/rules1" },
+                            Link = "/admin/rules1",
                         }
                     }
                 }

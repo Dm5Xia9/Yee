@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Yee.Section.Abstractions;
-using Yee.Section.Prototypes;
+using Yee.Section.Base;
 
 namespace Yee.Cabaret.Sections.Prototypes
 {

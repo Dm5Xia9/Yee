@@ -33,6 +33,13 @@ var section = YeeAssemblyHelpers.CreateDefualtModule
 
                     });
 
+var sectionBase = YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Section.Base.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+                        section
+                    });
+
 var cabaretSection = YeeAssemblyHelpers.CreateDefualtModule
                     (typeof(Yee.Cabaret.Sections.Module).Assembly)
                     .AddDeps(new List<BaseYeeModule>
@@ -137,5 +144,6 @@ builder.Services.AddSingleton<BaseYeeModule>(cabaretSection);
 builder.Services.AddSingleton<BaseYeeModule>(pageEngine);
 builder.Services.AddSingleton<BaseYeeModule>(cabaretWWWroot);
 builder.Services.AddSingleton<BaseYeeModule>(models);
+builder.Services.AddSingleton<BaseYeeModule>(sectionBase);
 
 builder.Build();

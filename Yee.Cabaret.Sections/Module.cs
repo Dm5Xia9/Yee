@@ -25,13 +25,14 @@ namespace Yee.Cabaret.Sections
                     p.AddSection<CabMenuSection>();
                     p.AddSection<CabCtaSection>();
                     p.AddSection<CabTestimonialsSection>();
-                    p.ProtoHandlers.Add(typeof(ProtoOffers), typeof(ProtoOffersHandler));
-                    p.ProtoHandlers.Add(typeof(ProtoOfferCards), typeof(ProtoOffersCardHandler));
-                    p.ProtoHandlers.Add(typeof(ProtoSwiperSlides), typeof(ProtoSwiperSlidesHandler));
-                    p.ProtoHandlers.Add(typeof(ProtoAbout), typeof(ProtoAboutHandler));
-                    p.ProtoHandlers.Add(typeof(ProtoMenu), typeof(ProtoMenuHandler));
-                    p.ProtoHandlers.Add(typeof(ProtoCta), typeof(ProtoCtaHandler));
-                    p.ProtoHandlers.Add(typeof(ProtoTestimonial), typeof(ProtoTestimonialHandler));
+
+                    p.AddPrototype<ProtoOffers, ProtoOffersHandler>();
+                    p.AddPrototype<ProtoOfferCards, ProtoOffersCardHandler>();
+                    p.AddPrototype<ProtoSwiperSlides, ProtoSwiperSlidesHandler>();
+                    p.AddPrototype<ProtoAbout, ProtoAboutHandler>();
+                    p.AddPrototype<ProtoMenu, ProtoMenuHandler>();
+                    p.AddPrototype<ProtoCta, ProtoCtaHandler>();
+                    p.AddPrototype<ProtoTestimonial, ProtoTestimonialHandler>();
                 });
 
         }

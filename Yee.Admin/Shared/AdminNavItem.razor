@@ -12,12 +12,12 @@
     [Parameter] public NavMenuItem Item { get; set; }
 =======*@
 <li class="menu-item @(IsActive ? "menu-item-active" : "")" aria-haspopup="true">
-    <NavLink href="@Item.Link.Value" class="menu-link">
+    <NavLink href="@Item.Link" class="menu-link">
         <span class="menu-text">@Item.Title</span>
     </NavLink>
 </li>
 @code {
-    [Parameter] public ProtoLink Link { get; set; }
+    [Parameter] public string Link { get; set; }
     [Parameter] public NavMenuItem Item { get; set; }
     private bool IsActive { get; set; }
 
@@ -29,18 +29,18 @@
     public bool IsItemActive()
     {
         var currentLink = "/" + _navManager.ToBaseRelativePath(_navManager.Uri);
-        return currentLink == Link?.Value;
+        return currentLink == Link;
     }
 
     public void NavigationTo()
     {
-        _navManager.NavigateTo(Item.Link.Value);
+        _navManager.NavigateTo(Item.Link);
     }
 
     private void HandleLocationChanged(object sender, LocationChangedEventArgs e)
     {
         var currentLink = "/" + _navManager.ToBaseRelativePath(e.Location);
-        var isActive = currentLink == Link?.Value;
+        var isActive = currentLink == Link;
         if (isActive != IsActive)
         {
             IsActive = isActive;

@@ -21,7 +21,7 @@
                            OnChange="p => ChangeTitleNode(context, p)" />
                 </div>
                 <div style=" width: 20rem; padding-left: 1rem">
-                    <Input Placeholder="Ссылка" TValue="string" Value="@context.DataItem.Link.Value"
+                    <Input Placeholder="Ссылка" TValue="string" Value="@context.DataItem.Link"
                            OnChange="p => ChangeLinkNode(context, p)" />
                 </div>
 
@@ -46,7 +46,7 @@
     }
 
     .ant-tree {
-        background-color: lavender;
+        background-color: transparent;
     }
 </style>
 @code {
@@ -104,7 +104,7 @@
             Model.Add(new NavMenuItem
             {
                 Title = "название",
-                Link = new ProtoLink { Value = "Ссылка" },
+                Link = "Ссылка",
                 Icon = ""
             });
         }
@@ -199,7 +199,7 @@
 
     public void ChangeLinkNode(TreeNode<NavMenuItem> node, string value)
     {
-        node.DataItem.Link = new ProtoLink { Value = value };
+        node.DataItem.Link = value;
         Input();
         StateHasChanged();
     }

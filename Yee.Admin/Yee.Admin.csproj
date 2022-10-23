@@ -21,6 +21,7 @@
     <ProjectReference Include="..\Yee.FileStorage\Yee.FileStorage.csproj" />
     <ProjectReference Include="..\Yee.Metronic\Yee.Metronic.csproj" />
     <ProjectReference Include="..\Yee.Page\Yee.Page.csproj" />
+    <ProjectReference Include="..\Yee.Section.Base\Yee.Section.Base.csproj" />
     <ProjectReference Include="..\Yee.Section\Yee.Section.csproj" />
     <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />
     <ProjectReference Include="..\Yee\Yee.csproj" />

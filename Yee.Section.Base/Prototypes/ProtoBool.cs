@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Yee.Section.Abstractions;
-using Yee.Section.Navigation;
 
-namespace Yee.Section.Prototypes
+namespace Yee.Section.Base
 {
-    public class ProtoNavigation : BaseYeeProto<List<NavMenuItem>>
+    public class ProtoBool : BaseYeeProto<bool>
     {
-
     }
-
-    
 }
