@@ -31,6 +31,7 @@ namespace Yee.Runtime.Builder
             Services.Configure<RootOptions>(WebBuilder.Configuration);
             Services.AddSingleton<IRootOptions, FileSystemRootOptions>();
             Services.AddSingleton<YeeModuleManager>();
+            Services.AddSingleton<FileStorageCollection>();
         }
 
         public WebApplicationBuilder WebBuilder { get; init; }

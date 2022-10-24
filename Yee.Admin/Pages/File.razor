@@ -1,0 +1,97 @@
+﻿@page "/admin/file/{Storage}/"
+@using Yee.FileStorage.Services
+@using Yee.Abstractions
+@inject NavigationManager navigationManager
+@using Yee.Services
+@inject FileStorageCollection fileStorage
+<AdminPage>
+    <Header>
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <!--begin::Page Heading-->
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Файл @file.LocalPath</h5>
+                <!--end::Page Title-->
+            </div>
+            <!--end::Page Heading-->
+        </div>
+    </Header>
+    <Body>
+        <div style="padding: 1rem; display: flex; justify-content: center;">
+            @if (file.LocalPath.EndsWith(".jpg") || file.LocalPath.EndsWith(".png"))
+            {
+                <img src="@file.LocalPath" style="width: 80%;"/>
+            }
+            else
+            {
+                <textarea @oninput="HandleOnChange" style=" width: 100%; height: 10rem; border: #bebebe 0.1rem solid; border-radius: 4px;">@Content</textarea>
+
+                @foreach(var error in CurrentErrors)
+                    {
+                        <div>
+                            @error
+                        </div>
+                    }
+            }
+        </div>
+    </Body>
+</AdminPage>
+
+
+@code{
+    public YeeFileInfo file { get; set; }
+
+    [Parameter]
+    public string Storage { get; set; }
+
+    public IFileStorage FileStorage { get; set; }
+
+    public List<string> CurrentErrors = new List<string>();
+
+    public string Content { get; set; }
+    protected override void OnInitialized()
+    {
+        FileStorage = fileStorage.First(p => p.Name == Storage);
+        var uri = new Uri(navigationManager.Uri);
+
+        var qs = System.Web.HttpUtility.ParseQueryString(uri.Query);
+
+        var localPath = qs.Get("u");
+
+        file = FileStorage.GetFromLocalPath(localPath);
+
+        using var ms = file.OpenStream();
+
+        Content = System.Text.Encoding.UTF8.GetString(ms.ToArray());
+    }
+
+
+
+    private async Task HandleOnChange(ChangeEventArgs args)
+    {
+        try
+        {
+
+            var bytes = System.Text.Encoding.UTF8.GetBytes(args.Value.ToString());
+
+            FileStorage.SetFile(file, bytes);
+
+            if (CurrentErrors.Any())
+            {
+                CurrentErrors.Clear();
+                StateHasChanged();
+            }
+        }
+        catch (Exception ex)
+        {
+            if (CurrentErrors.Any())
+            {
+                CurrentErrors.Clear();
+            }
+
+            CurrentErrors.Add(ex.Message);
+            StateHasChanged();
+        }
+
+    }
+}

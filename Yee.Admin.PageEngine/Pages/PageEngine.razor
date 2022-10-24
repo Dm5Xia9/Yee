@@ -198,8 +198,7 @@
 
                 if (PageId == null || Page == null)
                 {
-                    Page = pageRepository.CreatePage();
-                    navigation.NavigateTo($"/admin/pageEngine/{Page.Id}");
+                    navigation.NavigateTo("/admin");
                 }
                 StateHasChanged();
             }

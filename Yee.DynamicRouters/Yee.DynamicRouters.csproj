@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yee.EntityFrameworkCore.Npgsql\Yee.EntityFrameworkCore.Npgsql.csproj" />
+    <ProjectReference Include="..\Yee.EntityFrameworkCore\Yee.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Yee.MVC\Yee.MVC.csproj" />
+    <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />
+    <ProjectReference Include="..\Yee\Yee.csproj" />
+  </ItemGroup>
+
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
+	</ItemGroup>
+
+</Project>

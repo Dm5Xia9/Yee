@@ -58,7 +58,7 @@ namespace Yee.Page.Repositories
                     .ToList();
         }
 
-        public YeePage CreatePage()
+        public YeePage CreatePage(string name)
         {
             if (_state.IsWorked == false)
                 return null;
@@ -68,7 +68,7 @@ namespace Yee.Page.Repositories
 
             var page = new YeePage
             {
-                DisplayName = "Новая страница",
+                DisplayName = name,
                 RouterLink = new YeeCSharpLink
                 {
 

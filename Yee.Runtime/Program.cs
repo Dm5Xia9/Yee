@@ -128,6 +128,15 @@ var core = YeeAssemblyHelpers.CreateDefualtModule
 
 
 
+var dRouter = YeeAssemblyHelpers.CreateDefualtModule
+    (typeof(Yee.DynamicRouters.Module).Assembly)
+    .AddDeps(new List<BaseYeeModule>
+    {
+        entityFramework
+    });
+
+
+
 var builder = new YeeApplicationBuilder(args);
 
 builder.Services.AddSingleton<NupkgStorage>();
@@ -145,5 +154,6 @@ builder.Services.AddSingleton<BaseYeeModule>(pageEngine);
 builder.Services.AddSingleton<BaseYeeModule>(cabaretWWWroot);
 builder.Services.AddSingleton<BaseYeeModule>(models);
 builder.Services.AddSingleton<BaseYeeModule>(sectionBase);
+builder.Services.AddSingleton<BaseYeeModule>(dRouter);
 
 builder.Build();

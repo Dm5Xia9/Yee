@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Yee.Abstractions;
 using Yee.Extensions;
 using Yee.FileStorage.Services;
+using Yee.Services;
 
 namespace Yee.FileStorage
 {
@@ -24,12 +25,14 @@ namespace Yee.FileStorage
                 .AspPostBuild(p =>
                 {
                     var webHost = p.GetRequiredService<IWebHostEnvironment>();
-
+                    var collection = p.GetRequiredService<FileStorageCollection>();
                     var storage = p.GetRequiredService<FileStorageService>();
 
                     webHost.WebRootFileProvider =
                         new CompositeFileProvider(webHost.WebRootFileProvider,
-                        new PhysicalFileProvider(storage.GetRootPath()));
+                        new PhysicalFileProvider(storage.PhysicalPath));
+
+                    collection.Add(storage);
                 });
         }
     }

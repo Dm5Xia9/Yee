@@ -44,8 +44,8 @@ namespace Yee.Admin.Defualt
                         },
                         new NavMenuItem
                         {
-                            Title = "Области",
-                            Link = "/admin/pages",
+                            Title = "Машрутизация",
+                            Link = "/admin/routers",
                         },
                         new NavMenuItem
                         {
