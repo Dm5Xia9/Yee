@@ -104,6 +104,7 @@ namespace Yee.Page.Models
     {
         public Guid Guid { get; set; }
         public int Span { get; set; }
+        public static readonly int MaxSpanSum = 24;
 
         //public long? ComponentId { get; set; }
     }

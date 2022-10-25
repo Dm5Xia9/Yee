@@ -1,0 +1,108 @@
+﻿@using AntDesign
+@using Yee.Page.Models
+@using Microsoft.AspNetCore.Components.Forms
+
+<Button Type="primary" OnClick="@(async () => await ShowModal())" 
+    Style="display: inline-block; min-width: 156px; margin-right: 16px; margin-bottom: 10px!important;">
+    Генерация грида
+</Button>
+
+@{
+    RenderFragment footer = @<Template></Template>;
+}
+<Modal Visible="@_visible"
+       OnCancel="@HandleCancel"
+       Footer="@footer" Width="1020">
+    <h3 class="text-center">Генерация грида</h3>
+    <div>
+        <Form Model="@Form"
+              OnFinish="OnFinish"
+              OnFinishFailed="OnFinishFailed"
+              LabelColSpan="8"
+              WrapperColSpan="18">
+            @foreach(var row in Form.Rows)
+            {
+                @foreach(var col in row?.Cols)
+                {
+                    <Input DebounceMilliseconds="1000" Placeholder="Span" Size="@InputSize.Large" @bind-Value="@col.Span">
+                    </Input>
+                }
+                <FormItem WrapperColOffset="1" WrapperColSpan="16">
+                    <Button Type="@ButtonType.Primary" OnClick="@(() => AddCol(row))">
+                        Добавить колонку
+                    </Button>
+                </FormItem>
+            }
+            <FormItem WrapperColOffset="1" WrapperColSpan="16">
+                <Button Type="@ButtonType.Primary" OnClick="AddRow">
+                    Добавить строку
+                </Button>
+            </FormItem>
+            <FormItem WrapperColOffset="1" WrapperColSpan="16">
+                <Button Type="@ButtonType.Primary" HtmlType="submit">
+                    Создать
+                </Button>
+            </FormItem>
+        </Form>
+    </div>
+    <div style="color: red;">
+        @ErrorMsg
+    </div>
+</Modal>
+
+
+@code {
+    bool _visible = false;
+    public GridForm Form { get; set; } = new GridForm();
+    private string ErrorMsg { get; set; }
+    [Parameter] public EventCallback<List<FlexRow>> ReturnGrid { get; set; }
+
+    private async Task ShowModal()
+    {
+        _visible = true;
+    }
+
+    private void HandleCancel(MouseEventArgs e)
+    {
+        _visible = false;
+    }
+
+    private async Task OnFinish(EditContext editContext)
+    {
+        ErrorMsg = null;
+        foreach(var row in Form.Rows)
+        {
+            if (row.Cols.Sum(c => c.Span) > FlexCol.MaxSpanSum)
+            {
+                ErrorMsg = "Сумма Span в строке не должна превышать 24!";
+                return;
+            }
+        }
+        _visible = false;
+        StateHasChanged();
+        await ReturnGrid.InvokeAsync(Form.Rows);
+    }
+
+    private void OnFinishFailed(EditContext editContext)
+    {
+
+    }
+
+    public void AddRow()
+    {
+        Form?.Rows?.Add(new FlexRow { Cols = new() });
+        StateHasChanged();
+    }
+
+    public void AddCol(FlexRow row)
+    {
+        row?.Cols?.Add(new FlexCol { Span = 1, Guid = Guid.NewGuid() });
+        StateHasChanged();
+    }
+
+    public class GridForm
+    {
+        public List<FlexRow> Rows { get; set; } = new();
+    }
+}
+
