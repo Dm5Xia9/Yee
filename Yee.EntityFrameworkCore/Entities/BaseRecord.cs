@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using IDKEY = System.Int64;
+using IDKEY = System.Guid;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ability.Core.Models

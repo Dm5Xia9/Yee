@@ -26,7 +26,7 @@ namespace Yee.Page.Repositories
 
         public DbContextStateValue GetState()
             => _state;
-        public YeePage GetPage(long id)
+        public YeePage GetPage(Guid id)
         {
             if (_state.IsWorked == false)
                 return null;

@@ -11,7 +11,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Ability.Core.Models;
-using IDKEY = System.Int64;
+using IDKEY = System.Guid;
 using Ability.Core.Data;
 using Yee.EntityFrameworkCore.Identity;
 

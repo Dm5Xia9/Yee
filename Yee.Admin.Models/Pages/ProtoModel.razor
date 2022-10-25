@@ -49,10 +49,10 @@
 @code{
     [Parameter] public string Id { get; set; }
 
-    public long? LongId => GetLongId();
-    private long? GetLongId()
+    public Guid? GuidId => GetGuidId();
+    private Guid? GetGuidId()
     {
-        if (long.TryParse(Id, out long result))
+        if (Guid.TryParse(Id, out Guid result))
         {
             return result;
         }
@@ -89,7 +89,7 @@
         {
             LastId = Id;
 
-            YeePropertyValue = pageContext.YeePropertyValues.FirstOrDefault(p => p.Id == LongId);
+            YeePropertyValue = pageContext.YeePropertyValues.FirstOrDefault(p => p.Id == GuidId);
             if (YeePropertyValue == null)
                 return;
 

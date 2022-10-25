@@ -12,7 +12,7 @@ using Yee.DynamicRouters.Data;
 namespace Yee.DynamicRouters.Migrations
 {
     [DbContext(typeof(DynamicRouterDbContext))]
-    [Migration("20221024185144_init")]
+    [Migration("20221025071504_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,9 @@ namespace Yee.DynamicRouters.Migrations
 
             modelBuilder.Entity("Yee.DynamicRouters.Models.YeeRoute", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");

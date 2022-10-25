@@ -26,20 +26,15 @@ namespace Yee.Page.Migrations
 
             modelBuilder.Entity("Yee.Page.Models.YeeComponentValues", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<YeeCSharpLink>("ComponentRef")
                         .HasColumnType("jsonb");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("ExId")
-                        .HasColumnType("uuid");
 
                     b.Property<FlexOptions>("FlexOptions")
                         .HasColumnType("jsonb");
@@ -53,8 +48,8 @@ namespace Yee.Page.Migrations
                     b.Property<int>("Order")
                         .HasColumnType("integer");
 
-                    b.Property<long?>("ParentId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ParentId")
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -71,11 +66,9 @@ namespace Yee.Page.Migrations
 
             modelBuilder.Entity("Yee.Page.Models.YeePage", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("BodyClass")
                         .HasColumnType("text");
@@ -108,11 +101,9 @@ namespace Yee.Page.Migrations
 
             modelBuilder.Entity("Yee.Page.Models.YeeProperty", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -123,11 +114,11 @@ namespace Yee.Page.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<long?>("YeeComponentValuesId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("YeeComponentValuesId")
+                        .HasColumnType("uuid");
 
-                    b.Property<long?>("YeePropertyValueId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("YeePropertyValueId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -143,11 +134,9 @@ namespace Yee.Page.Migrations
 
             modelBuilder.Entity("Yee.Page.Models.YeePropertyValue", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -177,11 +166,11 @@ namespace Yee.Page.Migrations
 
             modelBuilder.Entity("YeeComponentValuesYeePage", b =>
                 {
-                    b.Property<long>("PagesId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("PagesId")
+                        .HasColumnType("uuid");
 
-                    b.Property<long>("YeeComponentsId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("YeeComponentsId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("PagesId", "YeeComponentsId");
 

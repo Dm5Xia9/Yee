@@ -16,11 +16,9 @@ namespace Yee.Page.Models
 
         public YeeComponentValues()
         {
-            ExId = Guid.NewGuid();
+            Id = Guid.NewGuid();
             Childs = new List<YeeComponentValues>();
         }
-
-        public Guid ExId { get; set; }
 
         [Column(TypeName = "jsonb")]
         public YeeCSharpLink ComponentRef { get; set; }
@@ -31,7 +29,7 @@ namespace Yee.Page.Models
 
         public bool IsHeader { get; set; }
 
-        public long? ParentId { get; set; }
+        public Guid? ParentId { get; set; }
 
         public bool IsFlexable { get; set; }
 

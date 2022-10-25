@@ -177,16 +177,16 @@ else
                         @{ 
                             var componentId = FlexOptions.Values.FirstOrDefault(p => p.ColId == col.Guid)?.ComponentId;
                         }
-                        @if (componentId != null && AllComponents.Any(p => p.ExId == componentId))
+                        @if (componentId != null && AllComponents.Any(p => p.Id == componentId))
                         {
-                            var component = AllComponents.First(p => p.ExId == componentId);
+                            var component = AllComponents.First(p => p.Id == componentId);
 
                             var type = component.ComponentRef.Type;
                             if (type == null)
                                 continue;
 
                             <Yee.Section.Engine.SectionEngine SectionType="type" @ref="RefSectionEngine"
-                                                              OnInputEvent="p => OnChange.InvokeAsync(new SectionState { SectionType = type, Values = p, Id = component.ExId })"
+                                                              OnInputEvent="p => OnChange.InvokeAsync(new SectionState { SectionType = type, Values = p, Id = component.Id })"
                                                               DefualtDataProtos="component?.ToDictionary()">
                                 <PropertyHeader>
 
@@ -305,7 +305,7 @@ else
         Component.Childs.Add(component);
         Component.FlexOptions.Values.Add(new FlexValue
         {
-            ComponentId = component.ExId,
+            ComponentId = component.Id,
             ColId = id
         });
         StateHasChanged();

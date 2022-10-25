@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Yee.EntityFrameworkCore.Abstractions;
 using Yee.EntityFrameworkCore.Manager;
-using IDKEY = System.Int64;
+using IDKEY = System.Guid;
 
 
 namespace Yee.EntityFrameworkCore.Identity

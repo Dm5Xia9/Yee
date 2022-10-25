@@ -12,8 +12,8 @@ using Yee.EntityFrameworkCore.Identity;
 namespace Yee.EntityFrameworkCore.Identity.Migrations
 {
     [DbContext(typeof(AbilityIdentityDbContext))]
-    [Migration("20221012100038_identity_init")]
-    partial class identity_init
+    [Migration("20221025071259_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,11 +27,9 @@ namespace Yee.EntityFrameworkCore.Identity.Migrations
 
             modelBuilder.Entity("Ability.Core.Models.AbilityRole", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -68,8 +66,8 @@ namespace Yee.EntityFrameworkCore.Identity.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("text");
 
-                    b.Property<long>("RoleId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -80,11 +78,9 @@ namespace Yee.EntityFrameworkCore.Identity.Migrations
 
             modelBuilder.Entity("Ability.Core.Models.AbilityUser", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
@@ -159,8 +155,8 @@ namespace Yee.EntityFrameworkCore.Identity.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("text");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -180,8 +176,8 @@ namespace Yee.EntityFrameworkCore.Identity.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("text");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -192,11 +188,11 @@ namespace Yee.EntityFrameworkCore.Identity.Migrations
 
             modelBuilder.Entity("Ability.Core.Models.AbilityUserRole", b =>
                 {
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
-                    b.Property<long>("RoleId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -207,8 +203,8 @@ namespace Yee.EntityFrameworkCore.Identity.Migrations
 
             modelBuilder.Entity("Ability.Core.Models.AbilityUserToken", b =>
                 {
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("text");

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Design;
 using System;
 using Yee.Abstractions;
 using Yee.DynamicRouters.Data;
+using Yee.EntityFrameworkCore.Identity;
 using Yee.Extensions;
 using Yee.Page;
 
@@ -19,6 +20,7 @@ namespace Yee.EntityFrameworkCore.Migrator
             LoadModule<Yee.EntityFrameworkCore.Npgsql.Module>(services);
             LoadModule<Yee.DynamicRouters.Module>(services);
             //LoadModule<Yee.Page.Module>(services);
+            //LoadModule<Yee.EntityFrameworkCore.Identity.Module>(services);
 
             var provider = services.BuildServiceProvider(true);
             var scope = provider.CreateScope();
