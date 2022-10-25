@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Routing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,19 @@ namespace Yee.MVC.Extensions
             builder.Add(KeyAspEndpoints, p =>
             {
                 action((YeeEndpoints)p);
+            });
+
+            return builder;
+        }
+
+        public const string KeyBlazorEndpoint = "BlazorEndpoint";
+
+        public static YeeBuilder BlazorEndpoint(this YeeBuilder builder,
+            Action<IEndpointRouteBuilder> action)
+        {
+            builder.Add(KeyBlazorEndpoint, p =>
+            {
+                action((IEndpointRouteBuilder)p);
             });
 
             return builder;

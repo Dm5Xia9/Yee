@@ -6,8 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Yee.Abstractions;
 using Yee.DynamicRouters.Data;
+using Yee.DynamicRouters.Middles;
 using Yee.DynamicRouters.Shared;
 using Yee.Extensions;
+using Yee.MVC.Endpoints;
+using Yee.MVC.Extensions;
 using Yee.Web.Extensions;
 
 namespace Yee.DynamicRouters
@@ -21,14 +24,17 @@ namespace Yee.DynamicRouters
                 {
                     p.AddScoped<DynamicRouterDbContext>();
                     p.AddScoped<RouteState>();
-
+                    //p.AddSingleton<BlazorEndpointOptions>(new BlazorEndpointOptions { Page = "/" });
+                })
+                .WebApp(p =>
+                {
+                    p.AddLayout(typeof(DynamicLayout));
                 })
                 .AspConfigure(p =>
                 {
-                    
-                }).WebApp(p =>
-                {
-                    p.AddLayout(typeof(DynamicLayout));
+                    //var blazor = p.Get("MiddleBlazor");
+
+                    //p.AddAfter(p.Find(blazor)!, new MiddleDynamicComponent());
                 });
         }
     }

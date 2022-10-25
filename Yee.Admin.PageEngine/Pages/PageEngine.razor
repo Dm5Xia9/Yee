@@ -74,7 +74,7 @@
 
                         if (type != null)
                         {
-                            <Yee.Section.Engine.SectionEngine SectionType="type" OnInputEvent="p => ChangeSection(header.Id, p)"
+                            <Yee.Section.Engine.SectionEngine SectionType="type" OnInputEvent="p => ChangeSection(header.ExId, p)"
                                                               DefualtDataProtos="sectionValue
                                                                                  .ToDictionary(p => p.Property, p => Newtonsoft.Json.Linq.JObject.Parse(p.YeePropertyValue.Value))">
 
@@ -94,7 +94,7 @@
 
                                     if (section.IsFlexable == false)
                                     {
-                                        <Yee.Admin.PageEngine.Components.SectionComponent Id="section.Id" SectionType="type"
+                                        <Yee.Admin.PageEngine.Components.SectionComponent Id="section.ExId" SectionType="type"
                                                                                           @ref="RefSectionComponent"
                                                                                           Values="section"
                                                                                           OnRemove="RemoveSection"
@@ -108,14 +108,14 @@
                                     }
                                     else
                                     {
-                                        <Yee.Admin.PageEngine.Components.GridComponent Id="section.Id" SectionType="type"
+                                        <Yee.Admin.PageEngine.Components.GridComponent Id="section.ExId" SectionType="type"
                                                                                           @ref="RefSectionComponent"
                                                                                           Values="section"
                                                                                           OnRemove="RemoveSection"
                                                                                           OnMoveDown="MoveSectionDown"
                                                                                           OnMoveUp="MoveSectionUp"
                                                                                           OnChange="p => ChangeSection(p.Id, p.Values)"
-                                                                                          FlexOptions="section.FlexOptions ?? new FlexOptions(section.Id)"
+                                                                                          FlexOptions="section.FlexOptions ?? new FlexOptions(section.ExId)"
                                                                                           Component="section"
                                                                                           OnToLayout="ToLayout"
                                                                                           OnChangeValues="p => Save()">
@@ -216,13 +216,13 @@
 
     public void ChangeSection(Guid Id, Dictionary<System.Reflection.PropertyInfo, object> data)
     {
-        var component = Page.YeeComponents.FirstOrDefault(p => p.Id == Id);
+        var component = Page.YeeComponents.FirstOrDefault(p => p.ExId == Id);
 
         if(component == null)
         {
             component = Page
                 .YeeComponents.SelectMany(p => p.Childs)
-                .First(p => p.Id == Id);
+                .First(p => p.ExId == Id);
         }
 
         foreach (var property in data)
@@ -280,7 +280,7 @@
     {
 
         var sectionValue = Page.YeeComponents
-            .First(p => p.Id == id);
+            .First(p => p.ExId == id);
 
         Page.YeeComponents.Remove(sectionValue);
 
@@ -290,7 +290,7 @@
     public void MoveSectionUp(Guid id)
     {
         var sectionValue = Page.YeeComponents
-            .First(p => p.Id == id);
+            .First(p => p.ExId == id);
 
         if (sectionValue.Order == 0)
             return;
@@ -309,7 +309,7 @@
         var maxOrder = Page.YeeComponents.Max(p => p.Order);
 
         var sectionValue = Page.YeeComponents
-        .First(p => p.Id == id);
+        .First(p => p.ExId == id);
 
         if (sectionValue.Order == maxOrder)
             return;
@@ -327,7 +327,7 @@
     public void ToLayout(Guid id)
     {
         var sectionValue = Page.YeeComponents
-            .First(p => p.Id == id);
+            .First(p => p.ExId == id);
 
         sectionValue.IsFlexable = !sectionValue.IsFlexable;
 

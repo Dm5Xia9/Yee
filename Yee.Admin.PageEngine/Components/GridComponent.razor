@@ -186,7 +186,7 @@ else
                                 continue;
 
                             <Yee.Section.Engine.SectionEngine SectionType="type" @ref="RefSectionEngine"
-                                                              OnInputEvent="p => OnChange.InvokeAsync(new SectionState { SectionType = type, Values = p, Id = component.Id })"
+                                                              OnInputEvent="p => OnChange.InvokeAsync(new SectionState { SectionType = type, Values = p, Id = component.ExId })"
                                                               DefualtDataProtos="component?.ToDictionary()">
                                 <PropertyHeader>
 

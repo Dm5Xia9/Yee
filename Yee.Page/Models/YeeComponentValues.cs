@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -16,9 +17,12 @@ namespace Yee.Page.Models
 
         public YeeComponentValues()
         {
-            Id = Guid.NewGuid();
+            ExId = Guid.NewGuid();
             Childs = new List<YeeComponentValues>();
         }
+
+        [NotMapped]
+        public Guid ExId { get; set; }
 
         [Column(TypeName = "jsonb")]
         public YeeCSharpLink ComponentRef { get; set; }
