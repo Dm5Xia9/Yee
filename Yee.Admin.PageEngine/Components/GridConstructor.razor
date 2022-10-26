@@ -10,46 +10,60 @@
 @{
     RenderFragment footer = @<Template></Template>;
 }
-<Modal Visible="@_visible"
-       OnCancel="@HandleCancel"
-       Footer="@footer" Width="1020">
-    <h3 class="text-center">Генерация грида</h3>
-    <div>
-        <Form Model="@Form"
-              OnFinish="OnFinish"
-              OnFinishFailed="OnFinishFailed"
-              LabelColSpan="8"
-              WrapperColSpan="18">
-            @foreach(var row in Form.Rows)
-            {
-                @foreach(var col in row?.Cols)
+<div class="modal-hide-footer">
+    <Modal Visible="@_visible"
+           OnCancel="@HandleCancel"
+           BodyStyle="background-color: #333333;"
+           Footer="@footer" Width="1020">
+        <h3 class="text-center">Генерация грида</h3>
+        <div>
+            <Form Model="@Form"
+                  OnFinish="OnFinish"
+                  OnFinishFailed="OnFinishFailed"
+                  LabelColSpan="8"
+                  WrapperColSpan="18">
+                @foreach(var row in Form.Rows)
                 {
-                    <Input DebounceMilliseconds="1000" Placeholder="Span" Size="@InputSize.Large" @bind-Value="@col.Span">
-                    </Input>
+                    <div style="border: 1px solid black; border-radius: 0.42rem; margin: 10px; padding: 10px;">
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                            @foreach(var col in row?.Cols)
+                            {
+                                <div style="max-width: 150px;">
+                                    <Input DebounceMilliseconds="1000" Placeholder="Span" Size="@InputSize.Large" @bind-Value="@col.Span">
+                                    </Input>
+                                </div>
+                            }
+                        </div>
+                        <FormItem WrapperColOffset="1" WrapperColSpan="16" Style="margin-top: 10px; margin-bottom: 10px;">
+                            <Button Type="@ButtonType.Primary" OnClick="@(() => AddCol(row))">
+                                Добавить колонку
+                            </Button>
+                        </FormItem>
+                    </div>
                 }
                 <FormItem WrapperColOffset="1" WrapperColSpan="16">
-                    <Button Type="@ButtonType.Primary" OnClick="@(() => AddCol(row))">
-                        Добавить колонку
+                    <Button Type="@ButtonType.Primary" OnClick="AddRow">
+                        Добавить строку
                     </Button>
                 </FormItem>
-            }
-            <FormItem WrapperColOffset="1" WrapperColSpan="16">
-                <Button Type="@ButtonType.Primary" OnClick="AddRow">
-                    Добавить строку
-                </Button>
-            </FormItem>
-            <FormItem WrapperColOffset="1" WrapperColSpan="16">
-                <Button Type="@ButtonType.Primary" HtmlType="submit">
-                    Создать
-                </Button>
-            </FormItem>
-        </Form>
-    </div>
-    <div style="color: red;">
-        @ErrorMsg
-    </div>
-</Modal>
+                <FormItem WrapperColOffset="1" WrapperColSpan="16">
+                    <Button Type="@ButtonType.Primary" HtmlType="submit">
+                        Создать
+                    </Button>
+                </FormItem>
+            </Form>
+        </div>
+        <div style="color: red;">
+            @ErrorMsg
+        </div>
+    </Modal>
+</div>
 
+<style>
+    .ant-modal-footer {
+        display: none;
+    }
+</style>
 
 @code {
     bool _visible = false;

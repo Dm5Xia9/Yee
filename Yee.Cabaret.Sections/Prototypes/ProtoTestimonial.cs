@@ -8,7 +8,7 @@ using Yee.Section.Base;
 
 namespace Yee.Cabaret.Sections.Prototypes
 {
-    public class ProtoTestimonial : BaseYeeProto<Testimonial>
+    public class ProtoTestimonial : BaseYeeProto<TestimonialsPanel>
     {
     }
 
