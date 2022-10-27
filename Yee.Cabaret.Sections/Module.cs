@@ -25,6 +25,7 @@ namespace Yee.Cabaret.Sections
                     p.AddSection<CabMenuSection>();
                     p.AddSection<CabCtaSection>();
                     p.AddSection<CabTestimonialsSection>();
+                    p.AddSection<CabNewsSection>();
 
                     p.AddPrototype<ProtoOffers, ProtoOffersHandler>();
                     p.AddPrototype<ProtoOfferCards, ProtoOffersCardHandler>();
@@ -33,6 +34,7 @@ namespace Yee.Cabaret.Sections
                     p.AddPrototype<ProtoMenu, ProtoMenuHandler>();
                     p.AddPrototype<ProtoCta, ProtoCtaHandler>();
                     p.AddPrototype<ProtoTestimonial, ProtoTestimonialHandler>();
+                    p.AddPrototype<ProtoNews, ProtoNewsHandler>();
                 });
 
         }

@@ -56,7 +56,9 @@
             </FormItem>
         </Form>
     </div>
-    <div style="color: red;"></div>
+    <div style="color: red;">
+        @ErrorMsg
+    </div>
 </Modal>
 
 @code {
@@ -93,11 +95,15 @@
     private async Task CreateUserAsync()
     {
         //await ((EntityFrameworkCore.Identity.AbilityIdentityDbContext)StateValue.Context).Users.AddAsync(userForm);
+        ErrorMsg = null;
         var result = await userService.CreateUser(userForm);
         if (!result.Succeeded)
             ErrorMsg = string.Join("\n", result.Errors.Select(e => e.Description));
-        userForm = new UserForm();
-        await UserInitialized.InvokeAsync();
-        _visible = false;
+        else
+        {
+            userForm = new UserForm();
+            await UserInitialized.InvokeAsync();
+            _visible = false;
+        }
     }
 }

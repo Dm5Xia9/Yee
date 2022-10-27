@@ -87,7 +87,7 @@ else
         <AntDesign.Button Icon="@AntDesign.IconType.Outline.Diff" OnClick="() => OnToLayout.InvokeAsync(Id)"></AntDesign.Button>
 
     </div>*@
-    <div style=" position: absolute; z-index: 10000; width: 100%; display: flex; justify-content: space-between; padding: 2rem;">
+    <div style=" position: absolute; z-index: 999; width: 100%; display: flex; justify-content: space-between; padding: 2rem;">
         <div>
             <AntDesign.Button OnClick="() => OnRemove.InvokeAsync(Id)">-</AntDesign.Button>
             <AntDesign.Button Icon="@AntDesign.IconType.Outline.ArrowUp" OnClick="() => MoveUp()"></AntDesign.Button>
@@ -128,6 +128,7 @@ else
                         </div>
                     </ItemTemplate>
                 </Select>
+                <GridConstructor ReturnGrid="SetGrid"></GridConstructor>
             </div>
             <div>
                 <div style="box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%); opacity: 0.5; ">
@@ -387,4 +388,10 @@ else
                 },
         },
     };
+
+    public void SetGrid(List<FlexRow> grid)
+    {
+        SelectedFlexOptions = grid;
+        StateHasChanged();
+    }
 }

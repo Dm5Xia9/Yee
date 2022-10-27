@@ -1,0 +1,44 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@using Yee.Cabaret.Sections.Prototypes
+
+<section class="cab-news-events-section v1">
+    <div class="container">
+        <div class="cab-heading-box">
+            <div class="cab-small-heading">
+                <h6>@News.Value.SubHeader</h6>
+            </div>
+            <div class="cab-main-heading">
+                <h1>@News.Value.Header</h1>
+            </div>
+        </div>
+        <div class="cab-news-events-content">
+            <div style="display: flex; flex-wrap: wrap;">
+                @foreach(var newItem in News.Value.NewsItems)
+                {
+                    <div class="col-sm-4">
+                        <div class="cab-news-event-box">
+                            <a href="#">
+                                <div class="news-event-img-box">
+                                    <img src="@newItem" alt="News &amp; Event Image">
+                                </div>
+                                <div class="news-event-title-box">
+                                    <h6>@newItem.Description</h6>
+                                    <p class="date">
+                                        <i class="flaticon-calendar"></i>@newItem.Date
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    [System.ComponentModel.DisplayName("News")]
+    public ProtoNews News { get; set; }
+}
