@@ -1,0 +1,14 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@using Yee.Cabaret.Sections.Prototypes
+
+<section>
+    @((MarkupString)Html.Value.Html.ToString())
+</section>
+
+@code {
+
+    [Parameter]
+    [System.ComponentModel.DisplayName("Html")]
+    public ProtoHtml Html { get; set; }
+}
