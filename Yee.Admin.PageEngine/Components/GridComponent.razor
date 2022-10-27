@@ -87,7 +87,7 @@ else
         <AntDesign.Button Icon="@AntDesign.IconType.Outline.Diff" OnClick="() => OnToLayout.InvokeAsync(Id)"></AntDesign.Button>
 
     </div>*@
-    <div style=" position: absolute; z-index: 10000; width: 100%; display: flex; justify-content: space-between; padding: 2rem;">
+    <div style=" position: absolute; z-index: 999; width: 100%; display: flex; justify-content: space-between; padding: 2rem;">
         <div>
             <AntDesign.Button OnClick="() => OnRemove.InvokeAsync(Id)">-</AntDesign.Button>
             <AntDesign.Button Icon="@AntDesign.IconType.Outline.ArrowUp" OnClick="() => MoveUp()"></AntDesign.Button>

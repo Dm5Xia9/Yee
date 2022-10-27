@@ -23,6 +23,7 @@ namespace Yee.Section.Base
                 p.AddPrototype<ProtoNavigation, NavigationProtoHandler>();
                 p.AddPrototype<ProtoImg, ImgProtoHandler>();
                 p.AddPrototype<ProtoTextArea, TextAreaProtoHandler>();
+                p.AddPrototype<ProtoDate, DatePickerProtoHandler>();
 
             });
         }

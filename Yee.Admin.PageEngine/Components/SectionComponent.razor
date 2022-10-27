@@ -1,7 +1,7 @@
 ﻿@using System.Reflection
 @inject AntDesign.IMessageService message
 <div style="margin: 5px;">
-    <div style="padding: 1rem; position: absolute; opacity: 0.4; z-index: 1000; ">
+    <div style="padding: 1rem; position: absolute; opacity: 0.4; z-index: 999; ">
         <AntDesign.Button OnClick="() => OnRemove.InvokeAsync(Id)">-</AntDesign.Button>
         <AntDesign.Button Icon="@AntDesign.IconType.Outline.ArrowUp" OnClick="() => MoveUp()"></AntDesign.Button>
         <AntDesign.Button Icon="@AntDesign.IconType.Outline.ArrowDown" OnClick="() => OnMoveDown.InvokeAsync(Id)"></AntDesign.Button>
