@@ -35,7 +35,10 @@ namespace Yee.MVC
 
                     p.AddControllers();
                     p.AddSingleton<YeeEndpoints>();
-                    p.AddSingleton<BlazorEndpointOptions>();
+                    p.AddSingleton<BlazorEndpointOptions>(new BlazorEndpointOptions
+                    {
+                        Pattern = "/admin"
+                    });
                 })
                 .AspPostBuild(p =>
                 {

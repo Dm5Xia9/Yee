@@ -126,12 +126,17 @@ var swagger = YeeAssemblyHelpers.CreateDefualtModule
 var core = YeeAssemblyHelpers.CreateDefualtModule
     (typeof(Yee.CoreLayout.Module).Assembly);
 
-
+var mvc = YeeAssemblyHelpers.CreateDefualtModule
+    (typeof(Yee.MVC.Module).Assembly)
+    .AddDeps(new List<BaseYeeModule>
+    {
+    });
 
 var dRouter = YeeAssemblyHelpers.CreateDefualtModule
     (typeof(Yee.DynamicRouters.Module).Assembly)
     .AddDeps(new List<BaseYeeModule>
     {
+        mvc,
         entityFramework
     });
 

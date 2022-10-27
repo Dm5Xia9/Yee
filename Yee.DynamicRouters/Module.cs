@@ -32,9 +32,9 @@ namespace Yee.DynamicRouters
                 })
                 .AspConfigure(p =>
                 {
-                    //var blazor = p.Get("MiddleBlazor");
+                    var blazor = p.Get("MiddleBlazor");
 
-                    //p.AddAfter(p.Find(blazor)!, new MiddleDynamicComponent());
+                    p.AddFirst(new MiddleDynamicComponent());
                 });
         }
     }
