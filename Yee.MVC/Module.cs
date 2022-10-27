@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,14 +35,16 @@ namespace Yee.MVC
 
                     p.AddControllers();
                     p.AddSingleton<YeeEndpoints>();
+                    p.AddSingleton<BlazorEndpointOptions>();
                 })
                 .AspPostBuild(p =>
                 {
                     var modules = p.GetRequiredService<YeeModuleManager>();
+                    var options = p.GetRequiredService<IEnumerable<BlazorEndpointOptions>>();
+
                     buffer = p.GetRequiredService<YeeEndpoints>();
                     modules.HandlersFromId(Extensions.YeeBuilderExtensions.KeyAspEndpoints, buffer);
-
-                    buffer.AddLast(new BlazorEndpoint());
+                    buffer.AddLast(new BlazorEndpoint(options));
                 })
                 .AspConfigure(p =>
                 {

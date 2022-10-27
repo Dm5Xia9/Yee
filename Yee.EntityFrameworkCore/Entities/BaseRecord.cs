@@ -11,7 +11,7 @@ namespace Ability.Core.Models
     {
         [Key, Unique]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public IDKEY Id { get; set; }
+        public virtual IDKEY Id { get; set; }
 
         [Required]
         [Display(Name = "Дата создания")]
