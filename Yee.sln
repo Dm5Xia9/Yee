@@ -97,7 +97,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Blog", "Yee.Blog\Yee.Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Admin.Models", "Yee.Admin.Models\Yee.Admin.Models.csproj", "{B48D0433-F1A8-40CB-BD54-743BEB2BAD0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.DynamicRouters", "Yee.DynamicRouters\Yee.DynamicRouters.csproj", "{4DD08A32-AA66-45FF-98A1-736090870234}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.DynamicRouters", "Yee.DynamicRouters\Yee.DynamicRouters.csproj", "{4DD08A32-AA66-45FF-98A1-736090870234}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

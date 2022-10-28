@@ -7,6 +7,7 @@ using Yee.Runtime.YeeProviders;
 using Yee.Web.Services;
 using Yee.Runtime.Builder.Helpers;
 using Microsoft.Extensions.DependencyInjection;
+using Yee.Web;
 
 //TOdyu
 //страница со всеми страницами
@@ -123,22 +124,22 @@ var swagger = YeeAssemblyHelpers.CreateDefualtModule
 
 
 
-var core = YeeAssemblyHelpers.CreateDefualtModule
-    (typeof(Yee.CoreLayout.Module).Assembly);
+//var core = YeeAssemblyHelpers.CreateDefualtModule
+//    (typeof(Yee.CoreLayout.Module).Assembly);
 
-var mvc = YeeAssemblyHelpers.CreateDefualtModule
-    (typeof(Yee.MVC.Module).Assembly)
-    .AddDeps(new List<BaseYeeModule>
-    {
-    });
+//var mvc = YeeAssemblyHelpers.CreateDefualtModule
+//    (typeof(Yee.MVC.Module).Assembly)
+//    .AddDeps(new List<BaseYeeModule>
+//    {
+//    });
 
-var dRouter = YeeAssemblyHelpers.CreateDefualtModule
-    (typeof(Yee.DynamicRouters.Module).Assembly)
-    .AddDeps(new List<BaseYeeModule>
-    {
-        mvc,
-        entityFramework
-    });
+//var dRouter = YeeAssemblyHelpers.CreateDefualtModule
+//    (typeof(Yee.DynamicRouters.Module).Assembly)
+//    .AddDeps(new List<BaseYeeModule>
+//    {
+//        mvc,
+//        entityFramework
+//    });
 
 
 var builder = new YeeApplicationBuilder(args);
@@ -146,18 +147,19 @@ var builder = new YeeApplicationBuilder(args);
 builder.Services.AddSingleton<NupkgStorage>();
 builder.Services.AddSingleton<NupkgOptions>();
 builder.Services.AddSingleton<YeeModuleStorage>();
+builder.Services.AddScoped<NotFoundBuilder>();
 builder.Services
     .AddSingleton<IYeeProvider<BaseYeeModule>, NupkgYeeProvider>();
 builder.Services.AddSingleton<YeeViewManager>();
 builder.Services.AddSingleton<BaseYeeModule>(adminSwagger);
 builder.Services.AddSingleton<BaseYeeModule>(example);
 builder.Services.AddSingleton<BaseYeeModule>(swagger);
-builder.Services.AddSingleton<BaseYeeModule>(core);
+//builder.Services.AddSingleton<BaseYeeModule>(core);
 builder.Services.AddSingleton<BaseYeeModule>(cabaretSection);
 builder.Services.AddSingleton<BaseYeeModule>(pageEngine);
 builder.Services.AddSingleton<BaseYeeModule>(cabaretWWWroot);
 builder.Services.AddSingleton<BaseYeeModule>(models);
 builder.Services.AddSingleton<BaseYeeModule>(sectionBase);
-builder.Services.AddSingleton<BaseYeeModule>(dRouter);
+//builder.Services.AddSingleton<BaseYeeModule>(dRouter);
 
 builder.Build();

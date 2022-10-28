@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Yee.Web.Middlewares;
+using static Yee.MVC.Module;
 
 namespace Yee.MVC.Middlewares
 {
@@ -21,9 +22,18 @@ namespace Yee.MVC.Middlewares
 
         public void Next(WebApplication app)
         {
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapRazorPages();
+            //    endpoints.MapDynamicPageRoute<MyTransformer>("{**id}");
+            //});
+
             app.UseEndpoints(endpoints =>
             {
-                foreach(var endpoint in _yeeEndpoints)
+                endpoints.MapRazorPages();
+                endpoints.MapDynamicPageRoute<MyTransformer>("{**id}");
+                foreach (var endpoint in _yeeEndpoints)
                 {
                     endpoint.Next(endpoints);
                 }

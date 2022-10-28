@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -13,8 +13,6 @@
     <ProjectReference Include="..\Yee.Admin\Yee.Admin.csproj" />
     <ProjectReference Include="..\Yee.Cabaret.CoreFrontLibraries\Yee.Cabaret.CoreFrontLibraries.csproj" />
     <ProjectReference Include="..\Yee.Cabaret.Sections\Yee.Cabaret.Sections.csproj" />
-    <ProjectReference Include="..\Yee.CoreLayout\Yee.CoreLayout.csproj" />
-    <ProjectReference Include="..\Yee.DynamicRouters\Yee.DynamicRouters.csproj" />
     <ProjectReference Include="..\Yee.Nuget\Yee.Nuget.csproj" />
     <ProjectReference Include="..\Yee.Runtime.Builder\Yee.Runtime.Builder.csproj" />
     <ProjectReference Include="..\Yee.Swagger\Yee.Swagger.csproj" />

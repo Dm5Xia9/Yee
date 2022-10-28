@@ -1,0 +1,21 @@
+﻿@inject NavigationManager _navManager
+@using Microsoft.AspNetCore.Components.Web 
+<a @onclick="Nav" class="@(Class)" style="cursor:pointer">
+    @Child
+</a>
+@code {
+
+    [Parameter]
+    public string Href { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public RenderFragment Child { get; set; }
+
+    public void Nav()
+    {
+        _navManager.NavigateTo(Href);
+    }
+}

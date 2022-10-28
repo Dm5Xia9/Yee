@@ -20,7 +20,11 @@ namespace Yee.Web.Models
             FooterComponents = new List<Type>();
             PossibleHeadComponent = new List<Type>();
             Layouts = new List<Type>();
+            NotFoundBuilder = new NotFoundBuilder();
         }
+
+
+        public NotFoundBuilder NotFoundBuilder { get; set; }
 
         public List<WebStaticFile> StaticFiles { get; set; }
         public List<Type> Routers { get; set; }

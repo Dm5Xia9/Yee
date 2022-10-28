@@ -40,7 +40,7 @@ namespace Yee.MVC.Endpoints
             builder.MapBlazorHub();
             foreach(var option in _options)
             {
-                builder.MapFallbackToPage(option.Pattern, option.Page);
+                builder.MapFallbackToPage(option.Page);
             }
         }
     }

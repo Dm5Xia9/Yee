@@ -10,6 +10,7 @@
     <ProjectReference Include="..\Yee.EntityFrameworkCore.Npgsql\Yee.EntityFrameworkCore.Npgsql.csproj" />
     <ProjectReference Include="..\Yee.EntityFrameworkCore\Yee.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Yee.MVC\Yee.MVC.csproj" />
+    <ProjectReference Include="..\Yee.Page\Yee.Page.csproj" />
     <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />
     <ProjectReference Include="..\Yee\Yee.csproj" />
   </ItemGroup>

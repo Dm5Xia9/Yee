@@ -5,8 +5,10 @@
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 @using Microsoft.JSInterop
+@using Yee.Web.Services
 @inject Yee.Web.Services.LayoutState state
 @inject NavigationManager manager
+@inject YeeViewManager yeeManager
 <Router AppAssembly="@AppAssembly" AdditionalAssemblies="Layouts.Select(p => p.Assembly)">
     <Found Context="routeData">
 
@@ -42,6 +44,36 @@
 
     </Found>
     <NotFound>
+
+        @{
+            var layoutType = typeof(NotFoundLayout);
+        }
+
+        @if (state.OriginalLayout == null)
+        {
+            state.OriginalLayout = layoutType;
+        }
+
+        @if (state.OriginalLayout == layoutType)
+        {
+
+            var item = yeeManager.GetCurrentNotFoundComponent(manager);
+
+            @if (item != null)
+            {
+                <DynamicComponent Type="item"></DynamicComponent>
+            }
+            else
+            {
+                <div>NotFound</div>
+            }
+        }
+        else
+        {
+            manager.NavigateTo(manager.Uri, true);
+        }
+
+
     </NotFound>
 </Router>
 
@@ -52,4 +84,9 @@
 
 
     [Parameter] public IEnumerable<Type> Layouts { get; set; }
+
+    public class NotFoundLayout
+        {
+
+        }
 }

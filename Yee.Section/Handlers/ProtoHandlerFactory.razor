@@ -10,7 +10,7 @@ else
 {
     if (Handlers.Count > 1)
     {
-        <div style=" width: 11rem; opacity: 0.4; padding-bottom: 1rem;">
+        <div style=" opacity: 0.7; padding-bottom: 2rem; text-align: center;">
             <Select Mode="defualt"
                     DataSource="@Handlers"
                     Placeholder="Please"
@@ -24,7 +24,7 @@ else
                     </div>
                 </ItemTemplate>
                 <LabelTemplate>
-                    <div style=" line-height: 1.5rem; height: 100%; text-align: center;">
+                    <div style=" line-height: 1.5rem; height: 100%; text-align: center; padding: 0.8rem 0rem;">
                         @GetDisplayTestFromType(context)
 
                     </div>

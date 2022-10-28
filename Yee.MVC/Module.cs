@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
@@ -35,10 +38,8 @@ namespace Yee.MVC
 
                     p.AddControllers();
                     p.AddSingleton<YeeEndpoints>();
-                    p.AddSingleton<BlazorEndpointOptions>(new BlazorEndpointOptions
-                    {
-                        Pattern = "/admin"
-                    });
+                    p.AddSingleton<BlazorEndpointOptions>();
+                    p.AddScoped<MyTransformer>();
                 })
                 .AspPostBuild(p =>
                 {
@@ -60,6 +61,40 @@ namespace Yee.MVC
 
                     p.AddLast(new EndpointMiddleComponent(buffer));
                 });
+        }
+
+        public class MyTransformer : DynamicRouteValueTransformer
+        {
+            public MyTransformer()
+            {
+
+            }
+
+            public override async ValueTask<RouteValueDictionary> TransformAsync(HttpContext
+                   httpContext, RouteValueDictionary values)
+            {
+                return new RouteValueDictionary()
+{
+                    //we need to use a / to prefix the page name here
+                    { "page", "/admin" },
+                    { "id", "123" }
+                };
+                //return await Task.Run(() =>
+                //{
+                //    var rng = new Random();
+                //    if (rng.NextDouble() < 0.5)
+                //    {
+                //        values["page"] = "/admin";
+                //    }
+                //    else
+                //    {
+                //        values["page"] = "/admin";
+                //    }
+
+
+                //    return values;
+                //});
+            }
         }
     }
 }
