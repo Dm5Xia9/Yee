@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Options;
 using System;
@@ -24,10 +25,22 @@ namespace Yee.MVC.Endpoints
 
         public void Next(IEndpointRouteBuilder builder)
         {
+            //var build = builder.MapFallback(context => 
+            //Task.CompletedTask);
+            //build.Add(b =>
+            //{
+
+            //    b.RequestDelegate = async p =>
+            //    {
+            //        p.Response.StatusCode = 403;
+            //        await p.Response.WriteAsync("Динамическая страница");
+            //    };
+            //});
+
             builder.MapBlazorHub();
             foreach(var option in _options)
             {
-                builder.MapFallbackToPage(option.Pattern, option.Page);
+                builder.MapFallbackToPage(option.Page);
             }
         }
     }

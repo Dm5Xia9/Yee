@@ -29,5 +29,6 @@ namespace Yee.Cabaret.Sections.Prototypes
         public ProtoString CabBigHeading { get; set; }
 
         public ProtoString ButtonContent { get; set; }
+        public ProtoLink ButtonLink { get; set; }
     }
 }

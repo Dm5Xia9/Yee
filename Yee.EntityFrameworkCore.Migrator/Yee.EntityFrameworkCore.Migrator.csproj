@@ -12,7 +12,6 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Yee.DynamicRouters\Yee.DynamicRouters.csproj" />
 	  <ProjectReference Include="..\Yee.EntityFrameworkCore.Identity\Yee.EntityFrameworkCore.Identity.csproj" />
 	  <ProjectReference Include="..\Yee.Page\Yee.Page.csproj" />
 	</ItemGroup>

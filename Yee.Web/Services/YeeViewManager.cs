@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -28,6 +29,20 @@ namespace Yee.Web.Services
                 if(YeeBuilderHandler.Go(module.Builder, YeeBuilderExtensions.TagWebApp, buffer))
                     _appBuilders.Add(buffer);
             }
+        }
+
+
+        internal Type GetCurrentNotFoundComponent(NavigationManager navigationManager)
+        {
+            foreach (var item in _appBuilders)
+            {
+                var type = item.NotFoundBuilder.BuildCurrentComponent(navigationManager);
+
+                if (type != null)
+                    return type;
+            }
+
+            return null;
         }
 
         public string CreateBaseUri(Assembly assembly)

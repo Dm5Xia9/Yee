@@ -1,0 +1,192 @@
+﻿@using AntDesign
+@using Ability.Core.Models
+@using Yee.Page.Models
+@using Yee.Page
+@using Microsoft.AspNetCore.Components.Forms
+@using AntDesign 
+@inject NavigationManager navManager
+@inject PageDbContext pageContext
+@inject Yee.EntityFrameworkCore.DbContextFactory contextFactory
+@using Microsoft.EntityFrameworkCore
+
+<div>
+    <Button Type="primary" OnClick="@(async () => await ShowCreate())" Style="display: inline-block; margin-left: auto; margin: 20px;">
+        Добавить путь
+    </Button>
+</div>
+<div style="padding: 20px;">
+    <Table TItem="YeeRoute"
+           DataSource="@Routes"
+           Total="_total"
+           @bind-PageIndex="_pageIndex"
+           @bind-PageSize="_pageSize">
+        @*<Column @bind-Field="@context.Page.DisplayName" Sortable />*@
+        <Column TData="string" Title="Путь" Sortable>
+            <a href="@context.LocalPath">@context.LocalPath</a>
+        </Column>
+        <Column TData="string" Title="Путь" Sortable>
+            @if (context.Page == null)
+            {
+                <div>Без привязки</div>
+            }
+            else
+            {
+                <a href="@(navManager.ToAbsoluteUri($"/admin/pageEngine/{context.Page.Id}"))">@(context.Page.DisplayName ?? $"/admin/pageEngine/{context.Page.Id}")</a>
+            }
+        </Column>
+        <Column @bind-Field="@context.CreatedAt" Format="dd.MM.yyyy hh:mm" />
+        <ActionColumn>
+            <Button OnClick="@(async () => await ShowModal(context))">
+                Редактировать
+            </Button>
+
+
+
+        </ActionColumn>
+    </Table>
+
+    <p>PageIndex: @_pageIndex | PageSize: @_pageSize</p>
+</div>
+
+@{
+    RenderFragment footer = @<Template>
+    </Template>;
+}
+<Modal Visible="@_visible"
+       OnCancel="@HandleCancel"
+       Footer="@footer">
+    <h3 class="text-center">Добавить пользователя</h3>
+    <div>
+        <Form Model="@CurrentRoute"
+              OnFinish="OnFinish"
+              OnFinishFailed="OnFinishFailed"
+              LabelColSpan="8">
+            <FormItem Label="Путь">
+                <Input DebounceMilliseconds="1000" Placeholder="Логин" Size="@InputSize.Large" @bind-Value="@CurrentRoute.LocalPath">
+            </FormItem>
+            
+            <FormItem>
+                <Select Mode="defualt"
+                        DataSource="@Pages"
+                        Placeholder="Выберите страницу"
+                        DefaultValue="CurrentRoute.Page"
+                        @bind-Value="CurrentPage"
+                        TItemValue="YeePage"
+                        TItem="YeePage"
+                        EnableSearch>
+                    <ItemTemplate Context="ctx">
+                        <div>
+                            @ctx.DisplayName
+                        </div>
+                    </ItemTemplate>
+                    <LabelTemplate Context="ctx">
+                        <div>
+                            @ctx.DisplayName
+                        </div>
+                    </LabelTemplate>
+                </Select>
+            </FormItem>
+            <FormItem WrapperColOffset="1">
+                <Button Type="@ButtonType.Primary" HtmlType="submit" Disabled="@_createButtonDisabled">
+                    Создать
+                </Button>
+            </FormItem>
+        </Form>
+    </div>
+</Modal>
+
+@code {
+    public DbContextStateValue StateValue { get; set; }
+    public List<YeeRoute> Routes { get; set; }
+    public List<YeePage> Pages { get; set; }
+    private int _pageIndex = 1;
+    private int _pageSize = 20;
+    private int _total = 0;
+    bool _visible = false;
+    bool _createButtonDisabled = false;
+    private bool _update = false;
+    public YeePage _currentPage = null;
+    public YeePage CurrentPage
+    {
+        get
+        {
+            return _currentPage;
+        }
+        set
+        {
+            _currentPage = value;
+            OnSelect(value);
+        }
+    }
+    private YeeRoute CurrentRoute { get; set; }
+    private void HandleCancel(MouseEventArgs e)
+    {
+        _visible = false;
+    }
+
+    private async Task ShowCreate()
+    {
+        _update = false;
+        CurrentRoute = new YeeRoute();
+        _visible = true;
+    }
+
+    private async Task ShowModal(YeeRoute currentRoute)
+    {
+        CurrentRoute = currentRoute;
+        _visible = true;
+        _update = true;
+    }
+
+
+    private void OnSelect(YeePage page)
+    {
+        CurrentRoute.PageId = page.Id;
+    }
+
+    private void OnFinishFailed(EditContext editContext)
+    {
+        Console.WriteLine($"Не ок");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Refrash();
+        }
+    }
+
+    private async Task OnFinish(EditContext editContext)
+    {
+        _createButtonDisabled = true;
+        StateHasChanged();
+        await CreateUserAsync();
+        _createButtonDisabled = false;
+        StateHasChanged();
+    }
+
+    private async Task CreateUserAsync()
+    {
+        if (_update)
+        {
+            pageContext.Update(CurrentRoute);
+        }
+        else
+        {
+            pageContext.Add(CurrentRoute);
+            Routes.Add(CurrentRoute);
+        }
+        pageContext.SaveChanges();
+
+        _visible = false;
+    }
+
+    public async Task Refrash()
+    {
+        Routes = await pageContext.YeeRoutes.Include(p => p.Page).OrderByDescending(p => p.CreatedAt).ToListAsync();
+        Pages = await pageContext.YeePages.OrderByDescending(p => p.CreatedAt).ToListAsync();
+        StateHasChanged();
+
+    }
+}

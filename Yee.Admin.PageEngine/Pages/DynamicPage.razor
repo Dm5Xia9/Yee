@@ -1,0 +1,111 @@
+﻿@inject RouteState state
+@inject NavigationManager manager
+@using Microsoft.JSInterop;
+@using Yee.Web.Services
+@using Yee.Page.Models;
+@using System.Reflection
+@using Yee.Admin.PageEngine.Services
+@using Yee.Page.Services;
+<BodySetter Id="@Route.Page.BodyId" ClassName="@Route.Page.BodyClass"></BodySetter>
+
+@if (Route.Page.StyleLink != null)
+{
+    var type = Route.Page.StyleLink.ToType();
+
+    if (type != null)
+    {
+        <DynamicComponent Type="Route.Page.StyleLink.Type">
+
+        </DynamicComponent>
+    }
+
+}
+<div style=" position: fixed; background: #339933b8; z-index: 1000; width: 100%; height: 4rem; display: flex; justify-content: space-between; align-items: center;">
+    
+    @{ 
+        var href = $"/admin/pageEngine/{Route.Page.Id}";
+    }
+    <NavLink href="@href" style=" padding: 10px; font-weight: 700; color: white; font-style: italic;">
+        @Route.Page.DisplayName
+    </NavLink>
+    <NavLink href="/admin" style=" padding: 10px; font-weight: 700; color: white; font-style: italic;">
+        Перейти в админку
+    </NavLink>
+</div>
+<div style="margin-top: 4rem; ">
+    @{
+        var header = Route.Page.YeeComponents.FirstOrDefault(p => p.IsHeader);
+    }
+    @if (header != null)
+    {
+        var type = header.ComponentRef.ToType();
+        var sectionValue = header.Properties;
+
+        if (type != null)
+        {
+            <DynamicComponent Type="type" Parameters="CreateParameters(type, sectionValue
+                                                                                 .ToDictionary(p => p.Property, p => Newtonsoft.Json.Linq.JObject.Parse(p.YeePropertyValue.Value)))">
+
+            </DynamicComponent>
+        }
+    }
+
+
+    @foreach (var section in Route.Page.YeeComponents.Where(p => p.IsHeader == false).OrderBy(p => p.Order))
+    {
+        var type = section.ComponentRef.Type;
+        if (type == null)
+            continue;
+
+        <DynamicComponent Type="type" Parameters="CreateParameters(type, section.Properties
+                                                                                 .ToDictionary(p => p.Property, p => Newtonsoft.Json.Linq.JObject.Parse(p.YeePropertyValue.Value)))">
+
+        </DynamicComponent>
+    }
+
+
+</div>
+@code{
+
+    public YeeRoute? Route { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        Route = state.GetCurrent(manager);
+
+        return Task.CompletedTask;
+    }
+
+    public Dictionary<string, object> CreateParameters(Type type, Dictionary<string, Newtonsoft.Json.Linq.JObject> values)
+    {
+
+        var protos = type.GetProperties()
+               .Where(p => p.GetCustomAttribute<ParameterAttribute>() != null);
+
+        var defualtProtos = new Dictionary<PropertyInfo, object>();
+
+        foreach (var proto in protos)
+        {
+            var value = values.GetValueOrDefault(proto.Name);
+            if (value == default)
+            {
+                defualtProtos.Add(proto, Yee.Section.Extensions.ProtoHelper.CreateObjectProto(type: proto.PropertyType));
+            }
+            else
+            {
+                defualtProtos.Add(proto, value.ToObject(proto.PropertyType));
+            }
+        }
+
+
+
+        var dic = new Dictionary<string, object>();
+
+        foreach (var item in defualtProtos)
+        {
+            dic.Add(item.Key.Name, item.Value);
+        }
+        return dic;
+    }
+
+}

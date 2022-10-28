@@ -64,9 +64,6 @@
     {
         if (firstRender)
         {
-            await pageContext.YeePages.OrderByDescending(p => p.CreatedAt).ToListAsync();
-
-
             await Refrash();
         }
     }

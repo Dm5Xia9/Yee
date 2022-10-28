@@ -53,8 +53,11 @@
                     </div>
                 </div>
                 <div style="display: flex">
-                    <AntDesign.Button OnClick="ToAdminPanel" Style="height: 32px; margin: 9px; margin-left: 0px;">
-                        Перейти в административную панель
+
+                    <AntDesign.Button Style="height: 32px; margin: 9px; margin-left: 0px;">
+                        <NavLink href="/admin" style="color: black;">
+                            Перейти в админку
+                        </NavLink>
                     </AntDesign.Button>
                     <AntDesign.Button OnClick="Save" Style="height: 32px; margin: 9px;">
                         Сохранить

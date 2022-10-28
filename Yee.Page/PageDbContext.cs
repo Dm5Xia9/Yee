@@ -25,5 +25,6 @@ namespace Yee.Page
         public DbSet<YeeProperty> YeeProperties { get; set; }
         public DbSet<YeePropertyValue> YeePropertyValues { get; set; }
 
+        public DbSet<YeeRoute> YeeRoutes { get; set; }
     }
 }

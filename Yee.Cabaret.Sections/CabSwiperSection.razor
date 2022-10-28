@@ -25,7 +25,11 @@
                                 </h1>
                             </div>
                             <div class="cab-hero-cta-btn-box text-center">
-                                <a href="#" class="cab-btn cab-btn-primary">@slide.ButtonContent</a>
+                                <Yee.Web.Components.BlazLink Class="cab-btn cab-btn-primary" Href="@slide.ButtonLink.Value">
+                                    <Child>
+                                        @slide.ButtonContent
+                                    </Child>
+                                </Yee.Web.Components.BlazLink>
                             </div>
                         </div>
                     </div>

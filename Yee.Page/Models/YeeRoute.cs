@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Yee.DynamicRouters.Models
+namespace Yee.Page.Models
 {
     public class YeeRoute : BaseRecord
     {
@@ -13,6 +13,7 @@ namespace Yee.DynamicRouters.Models
 
         public string StaticContent { get; set; }
 
-
+        public Guid? PageId { get; set; }
+        public YeePage Page { get; set; }
     }
 }

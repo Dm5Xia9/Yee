@@ -8,6 +8,7 @@ using Yee.Abstractions;
 using Yee.Extensions;
 using Yee.Page.Repositories;
 using Yee.Page.Services;
+using Yee.Web.Extensions;
 
 namespace Yee.Page
 {

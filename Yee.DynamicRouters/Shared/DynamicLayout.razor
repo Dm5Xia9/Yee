@@ -1,18 +1,11 @@
-﻿@inherits LayoutComponentBase
-@inject RouteState state
+﻿@inject RouteState state
 @using Microsoft.JSInterop;
 @using Yee.Web.Services
 @using Yee.DynamicRouters.Models;
 
-@if (Route != null)
-{
-    @Body
-}
-else
-            {
-                <div>404</div>
-            }
-
+<div>
+    @Route.LocalPath
+</div>
 @code{
 
     public YeeRoute? Route { get; set; }
