@@ -42,14 +42,14 @@
                                                 <div class="section-par-display">
                                                     @(par.DisplayName ?? par.Name)
                                                 </div>
-                                                <div style="border: red 1px solid">
-
-                                                </div>
+           
                                             </div>
                   
 
                                             <div class="section-par-type">
-                                                @(par.ParamType.Name)
+                                                <Yee.Admin.Component.Modules.DefualtProtoForm ProtoType="par.ParamType">
+
+                                                </Yee.Admin.Component.Modules.DefualtProtoForm>
                                             </div>
                                         </div>
                            

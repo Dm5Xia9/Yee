@@ -1,7 +1,16 @@
 ﻿@page "/admin" 
+@inject NavigationManager manager
 @layout Yee.Admin.Shared.AdminLayout
 
 <div>Index</div>
-@code {
+@code { 
 
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            manager.NavigateTo("/admin/pages");
+        }
+    }
 }

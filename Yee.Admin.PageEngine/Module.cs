@@ -31,15 +31,6 @@ namespace Yee.Admin.PageEngine
                     p.AddScoped<RouteState>();
                 })
                 .UseAntDesign()
-                .YeeAdminCompose(p =>
-                {
-                    p.Navigations.Add(new NavMenuItem
-                    {
-                        Title = "Создать страницу",
-                        Link = "/admin/pageEngine"
-                    });
-                    //p.AssembliesForAdminLayout.Add(typeof(App).Assembly);
-                })
                 .AspPostBuild(p =>
                 {
                     serviceScopeFactory = p.GetRequiredService<IServiceScopeFactory>();
