@@ -1,5 +1,43 @@
-﻿<h3>CabBriefAboutSection</h3>
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@using Yee.Cabaret.Sections.Prototypes
+
+<section class="cab-about-brief-section">
+    <div class="container">
+        <div class="cab-about-brief-section-inner">
+            <div class="cab-heading-box v2">
+                <div class="cab-small-heading">
+                    <h6>@Brief.Value.SubHeader</h6>
+                </div>
+                <div class="cab-main-heading">
+                    <h1>@Brief.Value.Header</h1>
+                </div>
+            </div>
+            <div class="cab-about-brief-content">
+                <div class="brief-description">
+                    <p>
+                        @Brief.Value.Text
+                    </p>
+                </div>
+                <div class="about-brief-img-gallery">
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                        @foreach(var item in Brief.Value.BriefItems)
+                        {
+                            <div class="col-sm-4">
+                                <div class="about-brief-img-box">
+                                    <img src="@item.Image" alt="Brief Image">
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 @code {
-
+    [Parameter]
+    [System.ComponentModel.DisplayName("Brief")]
+    public ProtoBriefAbout Brief { get; set; }
 }

@@ -13,6 +13,8 @@
     <ProjectReference Include="..\Yee.Admin\Yee.Admin.csproj" />
     <ProjectReference Include="..\Yee.Cabaret.CoreFrontLibraries\Yee.Cabaret.CoreFrontLibraries.csproj" />
     <ProjectReference Include="..\Yee.Cabaret.Sections\Yee.Cabaret.Sections.csproj" />
+    <ProjectReference Include="..\Yee.Forms\Yee.Forms.csproj" />
+    <ProjectReference Include="..\Yee.MVC\Yee.MVC.csproj" />
     <ProjectReference Include="..\Yee.Nuget\Yee.Nuget.csproj" />
     <ProjectReference Include="..\Yee.Runtime.Builder\Yee.Runtime.Builder.csproj" />
     <ProjectReference Include="..\Yee.Swagger\Yee.Swagger.csproj" />

@@ -26,6 +26,19 @@ using Yee.Web;
 //гайд по развертыванию, DockerFile
 //расширения для vs добавляющее все необходимое для начала разработки и тестирования модулей
 
+var mvc = YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.MVC.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+
+                    });
+
+var forms = YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Forms.Module).Assembly)
+                    .AddDeps(new List<BaseYeeModule>
+                    {
+                        mvc
+                    });
 
 var section = YeeAssemblyHelpers.CreateDefualtModule
                     (typeof(Yee.Section.Module).Assembly)
@@ -160,6 +173,7 @@ builder.Services.AddSingleton<BaseYeeModule>(pageEngine);
 builder.Services.AddSingleton<BaseYeeModule>(cabaretWWWroot);
 builder.Services.AddSingleton<BaseYeeModule>(models);
 builder.Services.AddSingleton<BaseYeeModule>(sectionBase);
+builder.Services.AddSingleton<BaseYeeModule>(forms);
 //builder.Services.AddSingleton<BaseYeeModule>(dRouter);
 
 builder.Build();
