@@ -55,7 +55,7 @@
 
         @if (IsLoad == false)
         {
-            <Yee.Admin.Component.Pages.PagesList @ref="RefPagesList"></Yee.Admin.Component.Pages.PagesList>
+            <Yee.Admin.Component.Pages.PagesList @ref="RefPagesList" OnCopy="Copy"></Yee.Admin.Component.Pages.PagesList>
         }
     </Body>
 </AdminPage>
@@ -81,5 +81,23 @@
         CurrentName = null;
         RefPagesList.Refrash();
         StateHasChanged();
+    }
+
+    public void Copy(Yee.Page.Models.YeePage page)
+    {
+        if (string.IsNullOrEmpty(CurrentName))
+        {
+            message.Error("Нужно указать имя");
+            return;
+        }
+
+
+        pageRepository.CopyPage(page.Id, CurrentName);
+
+        message.Success($"Страница {CurrentName} скопирована");
+        CurrentName = null;
+        RefPagesList.Refrash();
+        StateHasChanged();
+
     }
 }
