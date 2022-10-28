@@ -7,28 +7,29 @@ using System.Text;
 using System.Threading.Tasks;
 using Yee.Abstractions;
 using Yee.Forms.Abstractions;
+using Yee.Options;
 
 namespace Yee.Forms.SharpForms
 {
     public class RootSharpFormLinksRepository : ISharpFormLinksRepository
     {
         private readonly IRootOptions _rootOptions;
-        private readonly List<RootSharpFormLink> _current;
+        private readonly ListBox<RootSharpFormLink> _current;
         private const string TagFormLinks = "TagFormLinks";
         public RootSharpFormLinksRepository(IRootOptions rootOptions)
         {
             _rootOptions = rootOptions;
-            _current = _rootOptions.Get<List<RootSharpFormLink>>(TagFormLinks);
+            _current = _rootOptions.Get<ListBox<RootSharpFormLink>>(TagFormLinks);
             if(_current == null)
             {
-                _current = new List<RootSharpFormLink>();
+                _current = new ListBox<RootSharpFormLink>();
                 _rootOptions.Set(TagFormLinks, _current);
             }
         }
 
         public void AddOrUpdate(SharpFormLink form)
         {
-            _current.Add(new RootSharpFormLink(form.Type, form.Properties)
+            _current.Value.Add(new RootSharpFormLink(form.Type, form.Properties)
             {
                 Id = form.Id
             });
@@ -38,7 +39,7 @@ namespace Yee.Forms.SharpForms
 
         public Dictionary<Type, SharpFormLink> GetAllForms()
         {
-            return _current
+            return _current.Value
                 .Where(p => p.Type != null)
                 .ToDictionary(p => p.Type, p => (SharpFormLink)p);
         }

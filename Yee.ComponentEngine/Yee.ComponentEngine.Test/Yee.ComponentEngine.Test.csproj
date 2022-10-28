@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Yee.ComponentEngine\Yee.ComponentEngine.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Shared\" />
   </ItemGroup>
 

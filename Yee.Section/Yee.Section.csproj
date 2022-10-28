@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Yee.Ant\Yee.Ant.csproj" />
-    <ProjectReference Include="..\Yee.FileStorage\Yee.FileStorage.csproj" />
     <ProjectReference Include="..\Yee\Yee.csproj" />
   </ItemGroup>
 
