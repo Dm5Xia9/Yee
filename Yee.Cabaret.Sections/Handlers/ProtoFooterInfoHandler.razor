@@ -1,0 +1,38 @@
+﻿@using Yee.Section.Handlers
+@using Yee.Cabaret.Sections.Prototypes
+@using Yee.Section.Extensions
+@inherits ProtoHandler<ProtoFooterInfo, FooterInfo>
+
+<div style=" padding-top: 1rem;">
+    <div style="display: flex; justify-content: center; align-items: center; flex-flow: column;">
+        <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
+            <ProtoHandlerFactory InputValue="Model.ButtonText" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+        </div>
+        <div style="margin-top: 10px;">
+            <h5>Элементы</h5>
+            <AntDesign.Button OnClick="AddItem" Style="margin-left: 1.1rem;">Добавить</AntDesign.Button>
+        </div>
+    </div>
+    <div style=" display: flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap; }">
+        @foreach (var card in Model.InfoItems)
+        {
+            <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
+                <ProtoHandlerFactory InputValue="card.Title" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="card.Description" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+                @*<ProtoHandlerFactory InputValue="card.icon" ProtoType="typeof(ProtoImg)" OnInput="Input"></ProtoHandlerFactory>*@
+            </div>
+        }
+    </div>
+</div>
+@code {
+
+    protected override FooterInfo NewModel =>
+       ProtoHelper.CreateDefualt<FooterInfo>();
+
+    public void AddItem()
+    {
+        Model.InfoItems.Add(ProtoHelper.CreateDefualt<FooterInfoItem>());
+        Input();
+        StateHasChanged();
+    }
+}
