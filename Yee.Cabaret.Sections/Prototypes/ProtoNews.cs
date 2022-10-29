@@ -24,5 +24,6 @@ namespace Yee.Cabaret.Sections.Prototypes
         public ProtoImg Image { get; set; }
         public ProtoString Description { get; set; }
         public ProtoDate Date { get; set; }
+        public ProtoString Place { get; set; }
     }
 }

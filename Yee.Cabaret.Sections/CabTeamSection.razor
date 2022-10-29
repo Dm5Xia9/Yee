@@ -1,0 +1,44 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@using Yee.Cabaret.Sections.Prototypes
+
+<section class="cab-chefs-section">
+    <div class="container">
+        <div style="display: flex; flex-wrap: wrap;">
+            @foreach(var employee in Team.Value.Employees)
+            {
+                <div class="col-sm-6 col-md-4">
+                    <div class="cab-chef-card">
+                        <div class="chef-img-box">
+                            <img src="@employee.Img" alt="Chef">
+                            <div class="chef-social-box">
+                                <a href="#">
+                                    <i class="ti-facebook"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="ti-twitter-alt"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="ti-linkedin"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="ti-pinterest"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="chef-details">
+                            <h5>@employee.Name</h5>
+                            <small>@employee.Post</small>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    [System.ComponentModel.DisplayName("Team")]
+    public ProtoTeam Team { get; set; }
+}
