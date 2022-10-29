@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Yee.Nuget\Yee.Nuget.csproj" />
+    <PackageReference Include="Yee.Nuget" Version="0.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Yee.Runtime.Builder\Yee.Runtime.Builder.csproj" />
   </ItemGroup>
 

@@ -60,7 +60,7 @@ namespace Yee.Runtime.Builder
             var alignmentModules = yeModuleManager.ToAlignmentTrees();
             foreach(var module in alignmentModules)
             {
-                YeeBuilderHandler.Go
+                YeeBuilderHandler.Go 
                     (module.Builder, YeeBuilderTags.AspConfigureServices, WebBuilder.Services);
 
                 YeeBuilderHandler.Go
@@ -74,6 +74,8 @@ namespace Yee.Runtime.Builder
 
             var app = WebBuilder.Build();
 
+            var ss = app.Services.GetRequiredService<IRootOptions>();
+            ss.GetAll();
             foreach (var module in alignmentModules)
             {
                 YeeBuilderHandler.Go

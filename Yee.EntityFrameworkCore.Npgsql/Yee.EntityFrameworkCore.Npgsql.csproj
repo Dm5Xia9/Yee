@@ -1,11 +1,29 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  <PackageIcon>logo.png</PackageIcon>
+	  <RepositoryUrl>https://github.com/Dm5Xia9/Yee</RepositoryUrl>
+	  <PackageTags>yee; nuget;</PackageTags>
+	  <AssemblyVersion>0.1.0</AssemblyVersion>
+	  <FileVersion>0.1.0</FileVersion>
+	  <Version>0.1.0</Version>
+	  <Authors>Yee</Authors>
+	  <Company>Yee</Company>
+	  <Product>Yee</Product>
+	  <Description>Npgsql provider for EntityFrameworkCore</Description>
   </PropertyGroup>
 
+
+	<ItemGroup>
+		<None Include="..\..\..\Downloads\logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+	
   <ItemGroup>
     <ProjectReference Include="..\Yee.EntityFrameworkCore\Yee.EntityFrameworkCore.csproj" />
   </ItemGroup>

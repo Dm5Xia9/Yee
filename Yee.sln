@@ -79,9 +79,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FileStorage", "FileStorage"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.FileStorage", "Yee.FileStorage\Yee.FileStorage.csproj", "{986BBD8E-C404-4F30-9B60-8E4F7DDB2396}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.Nuget.WebComponent", "Yee.Nuget.WebComponent\Yee.Nuget.WebComponent.csproj", "{F377B437-C398-4721-96A0-9282F48580D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Nuget.WebComponent", "Yee.Nuget.WebComponent\Yee.Nuget.WebComponent.csproj", "{F377B437-C398-4721-96A0-9282F48580D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.Starter", "Yee.Starter\Yee.Starter.csproj", "{FED150B5-E2A9-4669-90E7-8ED52943003C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Starter", "Yee.Starter\Yee.Starter.csproj", "{FED150B5-E2A9-4669-90E7-8ED52943003C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cms", "cms", "{62170A76-3686-4530-85E8-3D6AC708B48E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.CMS.All", "Yee.CMS.All\Yee.CMS.All.csproj", "{093D99F6-D2EA-4E99-9605-4CAD3FD05278}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -205,6 +209,10 @@ Global
 		{FED150B5-E2A9-4669-90E7-8ED52943003C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FED150B5-E2A9-4669-90E7-8ED52943003C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FED150B5-E2A9-4669-90E7-8ED52943003C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{093D99F6-D2EA-4E99-9605-4CAD3FD05278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{093D99F6-D2EA-4E99-9605-4CAD3FD05278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{093D99F6-D2EA-4E99-9605-4CAD3FD05278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{093D99F6-D2EA-4E99-9605-4CAD3FD05278}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -235,6 +243,7 @@ Global
 		{986BBD8E-C404-4F30-9B60-8E4F7DDB2396} = {76E59DA3-048A-49B3-8B10-27CF857ED229}
 		{F377B437-C398-4721-96A0-9282F48580D8} = {C7C36790-D90B-447D-B694-45B12F8ACB41}
 		{FED150B5-E2A9-4669-90E7-8ED52943003C} = {A9559D7D-8E96-4B3F-9B09-207108CCD10D}
+		{093D99F6-D2EA-4E99-9605-4CAD3FD05278} = {62170A76-3686-4530-85E8-3D6AC708B48E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17570007-AC6E-4027-992F-55101D4A5C90}

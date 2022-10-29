@@ -40,6 +40,7 @@ namespace Yee.Runtime.YeeProviders
             _combineNugetRepository.Load().Wait();
 
             var modules = _yeeModuleStorage.GetAllModules()
+                .Value
                 .Select(p => LoadSingleModule(p)).ToList();
 
             if (modules.Any())
@@ -50,7 +51,7 @@ namespace Yee.Runtime.YeeProviders
             var startModule = _nupkgStorage.GetAssemblyMetadataFromAssemblyName(new NugetPacket
             {
                 Id = "Yee.Starter",
-                Version = "0.1.0"
+                Version = "0.1.1"
             }, _combineNugetRepository).Result;
 
             return new List<BaseYeeModule> { LoadSingleModule(startModule) };
@@ -105,7 +106,7 @@ namespace Yee.Runtime.YeeProviders
             {
                 _webHost.WebRootFileProvider =
                     new CompositeFileProvider(_webHost.WebRootFileProvider,
-                    new PhysicalFileProvider(mgModuleMetadata.StaticWebAssetsPath));
+                    new AssemblyPhysicalFileProvider(mgModuleMetadata.StaticWebAssetsPath, mgModuleMetadata.ModuleName));
             }
 
             return _context.LoadFromAssemblyPath(mgModuleMetadata.Source);
@@ -124,7 +125,7 @@ namespace Yee.Runtime.YeeProviders
                 {
                     _webHost.WebRootFileProvider =
                         new CompositeFileProvider(_webHost.WebRootFileProvider,
-                        new PhysicalFileProvider(mgModule.StaticWebAssetsPath));
+                        new AssemblyPhysicalFileProvider(mgModule.StaticWebAssetsPath, mgModule.ModuleName));
                 }
 
                 assembly = _context.LoadFromAssemblyPath(mgModule.Source);
@@ -191,7 +192,7 @@ namespace Yee.Runtime.YeeProviders
                 {
                     _webHost.WebRootFileProvider =
                         new CompositeFileProvider(_webHost.WebRootFileProvider,
-                        new PhysicalFileProvider(mgModule.StaticWebAssetsPath));
+                        new AssemblyPhysicalFileProvider(mgModule.StaticWebAssetsPath, mgModule.ModuleName));
                 }
             }
 

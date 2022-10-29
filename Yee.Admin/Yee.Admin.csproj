@@ -4,6 +4,16 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	  <PackageIcon>logo.png</PackageIcon>
+	  <RepositoryUrl>https://github.com/Dm5Xia9/Yee</RepositoryUrl>
+	  <PackageTags>yee; nuget;</PackageTags>
+	  <AssemblyVersion>0.1.0</AssemblyVersion>
+	  <FileVersion>0.1.0</FileVersion>
+	  <Version>0.1.0</Version>
+	  <Authors>Yee</Authors>
+	  <Company>Yee</Company>
+	  <Product>Yee</Product>
+	  <Description>Base Admin Panel</Description>
   </PropertyGroup>
 
 
@@ -31,5 +41,12 @@
     <Folder Include="AdminNavigation\" />
     <Folder Include="Component\Section\" />
   </ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\Downloads\logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>
