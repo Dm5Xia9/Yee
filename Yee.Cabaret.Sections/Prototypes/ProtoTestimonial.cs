@@ -25,5 +25,6 @@ namespace Yee.Cabaret.Sections.Prototypes
         public ProtoString Author { get; set; }
         public ProtoString Text { get; set; }
         public ProtoString Caption { get; set; }
+        public ProtoImg Avatar { get; set; }
     }
 }

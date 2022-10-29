@@ -1,0 +1,32 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@using Yee.Cabaret.Sections.Prototypes
+
+<section class="cab-showcase-section v2">
+    <div class="cab-showcase-inner">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap;">
+                @foreach(var item in Showcases.Value.Items)
+                {
+                    <div class="col-sm-6 col-md-4">
+                        <div class="showcase-box">
+                            <div class="showcase-overlay">
+                                <div class="icon-box">
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <img src="@item.Img" alt="Showcase">
+                        </div>
+                    </div>
+                }                  
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    [System.ComponentModel.DisplayName("Showcases")]
+    public ProtoShowcases Showcases { get; set; }
+}

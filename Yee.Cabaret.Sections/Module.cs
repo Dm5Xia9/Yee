@@ -26,6 +26,7 @@ namespace Yee.Cabaret.Sections
                     p.AddSection<CabMainMenuSection>();
                     p.AddSection<CabCtaSection>();
                     p.AddSection<CabTestimonialsSection>();
+                    p.AddSection<CabReviewsSegments>();
                     p.AddSection<CabNewsSection>();
                     p.AddSection<CabEventsSection>();
                     p.AddSection<CabFooterInfoSection>();
@@ -33,6 +34,8 @@ namespace Yee.Cabaret.Sections
                     p.AddSection<CabHistorySection>();
                     p.AddSection<HtmlSegment>();
                     p.AddSection<CabTeamSection>();
+                    p.AddSection<CabShowcasesSection>();
+                    p.AddSection<CabFAQSection>();
 
                     p.AddPrototype<ProtoOffers, ProtoOffersHandler>();
                     p.AddPrototype<ProtoOfferCards, ProtoOffersCardHandler>();
@@ -42,6 +45,7 @@ namespace Yee.Cabaret.Sections
                     p.AddPrototype<ProtoMainMenu, ProtoMainMenuHandler>();
                     p.AddPrototype<ProtoCta, ProtoCtaHandler>();
                     p.AddPrototype<ProtoTestimonial, ProtoTestimonialHandler>();
+                    p.AddPrototype<ProtoReviews, ProtoReviewsHandler>();
                     p.AddPrototype<ProtoNews, ProtoNewsHandler>();
                     p.AddPrototype<ProtoEvents, ProtoEventsHandler>();
                     p.AddPrototype<ProtoFooterInfo, ProtoFooterInfoHandler>();
@@ -49,6 +53,8 @@ namespace Yee.Cabaret.Sections
                     p.AddPrototype<ProtoBriefAbout, ProtoBriefAboutHandler>();
                     p.AddPrototype<ProtoHistory, ProtoHistoryHandler>();
                     p.AddPrototype<ProtoTeam, ProtoTeamHandler>();
+                    p.AddPrototype<ProtoShowcases, ProtoShowcasesHandler>();
+                    p.AddPrototype<ProtoFAQ, ProtoFAQHandler>();
                 });
 
         }
