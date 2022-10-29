@@ -20,11 +20,11 @@
     <Body>
         <div style="padding: 1rem;">
             <div>
-                @*@foreach (var sectionGroup in state.ProtoHandlers.GroupBy(p => p.Value.Assembly))
+                @foreach (var sectionGroup in state.ProtoHandlers.GroupBy(p => p.Value.Proto))
                 {
                     <div>
                         <div>
-                            <h4>@sectionGroup.Key.GetName().Name</h4>
+                            <h4>@sectionGroup.Key.Name</h4>
                         </div>
 
                         @foreach (var sectionItem in sectionGroup)
@@ -46,7 +46,7 @@
                     </div>
 
 
-                }*@
+                }
             </div>
         </div>
     </Body>

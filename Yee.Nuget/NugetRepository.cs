@@ -19,8 +19,8 @@ namespace Yee.Nuget
         private readonly ILogger _logger;
         private CancellationToken _cancellationToken;
         private readonly SourceRepository _sourceRepository;
-        private readonly FindPackageByIdResource _findPackageByIdResource;
-        private readonly PackageSearchResource _packageSearchResource;
+        private FindPackageByIdResource _findPackageByIdResource;
+        private PackageSearchResource _packageSearchResource;
         private readonly string _source;
 
         public string NugetSource => _source;
@@ -32,10 +32,18 @@ namespace Yee.Nuget
             _cancellationToken = CancellationToken.None;
             _cache = new SourceCacheContext();
             _sourceRepository = Repository.Factory.GetCoreV3(source);
-            _findPackageByIdResource =
-                _sourceRepository.GetResource<FindPackageByIdResource>();
-            _packageSearchResource =
-                _sourceRepository.GetResource<PackageSearchResource>();
+            //_findPackageByIdResource =
+            //    _sourceRepository.GetResourceAsync<FindPackageByIdResource>();
+            //_packageSearchResource =
+            //    _sourceRepository.GetResourceAsync<PackageSearchResource>();
+        }
+
+        public async Task Load()
+        {
+            _findPackageByIdResource = await
+                _sourceRepository.GetResourceAsync<FindPackageByIdResource>();
+            _packageSearchResource = await
+                _sourceRepository.GetResourceAsync<PackageSearchResource>();
         }
 
         public async Task<Stream?> GetNupkg(NugetPacket nugetPacket)
@@ -67,7 +75,7 @@ namespace Yee.Nuget
                       searchTerm,
                       searchFilter,
                       skip: 0,
-                      take: 10,
+                      take: 100,
                       NullLogger.Instance,
                       CancellationToken.None);
 

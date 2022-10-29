@@ -21,8 +21,6 @@ namespace Yee.Page.Models
 
         [Column(TypeName = "jsonb")]
         public YeeCSharpLink StyleLink { get; set; }
-
-
         public List<YeeComponentValues> YeeComponents { get; set; }
             = new List<YeeComponentValues>();
     }

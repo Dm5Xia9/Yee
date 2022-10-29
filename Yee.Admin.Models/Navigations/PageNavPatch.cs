@@ -28,7 +28,7 @@ namespace Yee.Admin.Models.Navigations
 
             var group = new NavMenuItem()
             {
-                Title = "Модели данных",
+                Title = "Данные",
                 ChildItems = new List<NavMenuItem>()
             };
 
@@ -45,7 +45,10 @@ namespace Yee.Admin.Models.Navigations
                     });
                 }
 
-                navMenuItems.Add(group);
+                if (group.ChildItems.Any())
+                {
+                    navMenuItems.Add(group);
+                }
             }
             catch
             {

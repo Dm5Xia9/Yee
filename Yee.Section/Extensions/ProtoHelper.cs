@@ -25,6 +25,12 @@ namespace Yee.Section.Extensions
             if (type == null)
                 type = propertyInfo.PropertyType;
 
+
+            if(type.Name == "Nullable`1")
+            {
+                type = type.GenericTypeArguments[0];
+            }
+
             if (type.IsPrimitive)
             {
                 return Activator.CreateInstance(type);
@@ -66,6 +72,9 @@ namespace Yee.Section.Extensions
                 try
                 {
                     obj = Activator.CreateInstance(type);
+
+                    if(type == typeof(DateTime))
+                        return obj;
 
                     foreach (var property in type.GetProperties())
                     {

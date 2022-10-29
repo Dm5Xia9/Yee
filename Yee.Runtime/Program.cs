@@ -26,19 +26,19 @@ using Yee.Web;
 //гайд по развертыванию, DockerFile
 //расширения для vs добавляющее все необходимое для начала разработки и тестирования модулей
 
-var mvc = YeeAssemblyHelpers.CreateDefualtModule
-                    (typeof(Yee.MVC.Module).Assembly)
-                    .AddDeps(new List<BaseYeeModule>
-                    {
+//var mvc = YeeAssemblyHelpers.CreateDefualtModule
+//                    (typeof(Yee.MVC.Module).Assembly)
+//                    .AddDeps(new List<BaseYeeModule>
+//                    {
 
-                    });
+//                    });
 
-var forms = YeeAssemblyHelpers.CreateDefualtModule
-                    (typeof(Yee.Forms.Module).Assembly)
-                    .AddDeps(new List<BaseYeeModule>
-                    {
-                        mvc
-                    });
+//var forms = YeeAssemblyHelpers.CreateDefualtModule
+//                    (typeof(Yee.Forms.Module).Assembly)
+//                    .AddDeps(new List<BaseYeeModule>
+//                    {
+//                        mvc
+//                    });
 
 var section = YeeAssemblyHelpers.CreateDefualtModule
                     (typeof(Yee.Section.Module).Assembly)
@@ -125,15 +125,15 @@ var cabaretWWWroot = YeeAssemblyHelpers.CreateDefualtModule
                     });
 
 
-var adminSwagger = YeeAssemblyHelpers.CreateDefualtModule
-            (typeof(Yee.Admin.Swagger.Module).Assembly)
-            .AddDeps(new List<BaseYeeModule>
-            {
-                example
-            });
+//var adminSwagger = YeeAssemblyHelpers.CreateDefualtModule
+//            (typeof(Yee.Admin.Swagger.Module).Assembly)
+//            .AddDeps(new List<BaseYeeModule>
+//            {
+//                example
+//            });
 
-var swagger = YeeAssemblyHelpers.CreateDefualtModule
-    (typeof(Yee.Swagger.Module).Assembly);
+//var swagger = YeeAssemblyHelpers.CreateDefualtModule
+//    (typeof(Yee.Swagger.Module).Assembly);
 
 
 
@@ -155,6 +155,20 @@ var swagger = YeeAssemblyHelpers.CreateDefualtModule
 //    });
 
 
+
+var starter = YeeAssemblyHelpers.CreateDefualtModule
+    (typeof(Yee.Starter.Module).Assembly)
+    .AddDeps(new List<BaseYeeModule>
+    {
+        YeeAssemblyHelpers.CreateDefualtModule
+            (typeof(Yee.Nuget.WebComponent.Module).Assembly)
+            .AddDeps(new List<BaseYeeModule>
+            {
+                YeeAssemblyHelpers.CreateDefualtModule
+                    (typeof(Yee.Ant.Module).Assembly)
+            })
+    });
+
 var builder = new YeeApplicationBuilder(args);
 
 builder.Services.AddSingleton<NupkgStorage>();
@@ -164,16 +178,16 @@ builder.Services.AddScoped<NotFoundBuilder>();
 builder.Services
     .AddSingleton<IYeeProvider<BaseYeeModule>, NupkgYeeProvider>();
 builder.Services.AddSingleton<YeeViewManager>();
-builder.Services.AddSingleton<BaseYeeModule>(adminSwagger);
+//builder.Services.AddSingleton<BaseYeeModule>(starter);
 builder.Services.AddSingleton<BaseYeeModule>(example);
-builder.Services.AddSingleton<BaseYeeModule>(swagger);
+//builder.Services.AddSingleton<BaseYeeModule>(swagger);
 //builder.Services.AddSingleton<BaseYeeModule>(core);
 builder.Services.AddSingleton<BaseYeeModule>(cabaretSection);
 builder.Services.AddSingleton<BaseYeeModule>(pageEngine);
 builder.Services.AddSingleton<BaseYeeModule>(cabaretWWWroot);
 builder.Services.AddSingleton<BaseYeeModule>(models);
 builder.Services.AddSingleton<BaseYeeModule>(sectionBase);
-builder.Services.AddSingleton<BaseYeeModule>(forms);
+//builder.Services.AddSingleton<BaseYeeModule>(forms);
 //builder.Services.AddSingleton<BaseYeeModule>(dRouter);
 
 builder.Build();

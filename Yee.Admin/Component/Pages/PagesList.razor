@@ -32,6 +32,12 @@
             <a href="@(navManager.ToAbsoluteUri($"/admin/pageEngine/{context.Id}"))">@(context.DisplayName ?? $"/admin/pageEngine/{context.Id}")</a>
         </Column>
         <Column @bind-Field="@context.CreatedAt" Format="dd.MM.yyyy hh:mm"/>
+
+        <ActionColumn>
+            <Button OnClick="async () => await OnCopy.InvokeAsync(context)">
+                Скопировать
+            </Button>
+        </ActionColumn>
         @*<ActionColumn>
             <Space>
                 <SpaceItem><Button OnClick="() => Edit(context.Id)">Edit</Button></SpaceItem>
@@ -54,6 +60,11 @@
 
 @code {
     public DbContextStateValue StateValue { get; set; }
+
+    [Parameter]
+    public EventCallback<YeePage> OnCopy { get; set; }
+
+    [Parameter]
     public List<YeePage> Pages { get; set; }
 
     private int _pageIndex = 1;
@@ -64,13 +75,21 @@
     {
         if (firstRender)
         {
-            await Refrash();
+
+            await Refrash(Pages);
         }
     }
 
-    public async Task Refrash()
+    public async Task Refrash(List<YeePage> pages = null)
     {
-        Pages = await pageContext.YeePages.OrderByDescending(p => p.CreatedAt).ToListAsync();
+        if(pages == null)
+        {
+            Pages = await pageContext.YeePages.OrderByDescending(p => p.CreatedAt).ToListAsync();
+        }
+        else
+        {
+            Pages = pages;
+        }
         StateHasChanged();
 
     }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Yee.EntityFrameworkCore;
 using Yee.Page.Models;
 using static System.Collections.Specialized.BitVector32;
+using System.Xml.Linq;
 
 namespace Yee.Page.Repositories
 {
@@ -58,6 +59,37 @@ namespace Yee.Page.Repositories
                     .ToList();
         }
 
+
+        public YeePage CopyPage(Guid id, string displayName)
+        {
+            if (_state.IsWorked == false)
+                return null;
+
+            var context = ((Yee.Page.PageDbContext)_state.Context);
+
+
+            var targetPage = GetPage(id);
+            if (targetPage == null)
+                return null;
+
+            var page = new YeePage
+            {
+                DisplayName = displayName,
+                RouterLink = new YeeCSharpLink
+                {
+
+                },
+                StyleLink = targetPage.StyleLink,
+                YeeComponents = targetPage.YeeComponents,
+                BodyClass = targetPage.BodyClass,
+                BodyId = targetPage.BodyId
+            };
+            context.YeePages.Add(page);
+            context.SaveChanges();
+
+            return page;
+        }
+
         public YeePage CreatePage(string name)
         {
             if (_state.IsWorked == false)
@@ -99,5 +131,6 @@ namespace Yee.Page.Repositories
             context.YeePages.Update(yeePage);
             context.SaveChanges();
         }
+
     }
 }
