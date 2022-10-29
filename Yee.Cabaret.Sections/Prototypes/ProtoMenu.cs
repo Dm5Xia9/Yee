@@ -25,6 +25,7 @@ namespace Yee.Cabaret.Sections.Prototypes
     {
         public ProtoString TabName { get; set; }
         public ProtoString ButtonContent { get; set; }
+        public ProtoLink ButtonUrl { get; set; }
         public List<MenuItem> MenuItems { get; set; }
     }
 

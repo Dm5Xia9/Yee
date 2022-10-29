@@ -42,7 +42,7 @@ namespace Yee.Cabaret.Sections
                     p.AddPrototype<ProtoSwiperSlides, ProtoSwiperSlidesHandler>();
                     p.AddPrototype<ProtoAbout, ProtoAboutHandler>();
                     p.AddPrototype<ProtoMenu, ProtoMenuHandler>();
-                    p.AddPrototype<ProtoMainMenu, ProtoMainMenuHandler>();
+                    p.AddPrototype<ProtoMenu, ProtoMainMenuHandler>();
                     p.AddPrototype<ProtoCta, ProtoCtaHandler>();
                     p.AddPrototype<ProtoTestimonial, ProtoTestimonialHandler>();
                     p.AddPrototype<ProtoReviews, ProtoReviewsHandler>();
