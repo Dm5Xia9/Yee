@@ -26,11 +26,6 @@
     protected override TestimonialsPanel NewModel =>
            ProtoHelper.CreateDefualt<TestimonialsPanel>();
 
-    protected override void OnInitialized()
-    {
-        
-    }
-
     public void AddReview()
     {
         Model.Testimonials.Add(ProtoHelper.CreateDefualt<Testimonial>());
