@@ -6,6 +6,7 @@ using System.Runtime.Loader;
 using System.Reflection;
 using Microsoft.Extensions.FileProviders;
 using Yee.Runtime.Builder.Helpers;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Yee.Runtime.YeeProviders
 {
@@ -36,28 +37,50 @@ namespace Yee.Runtime.YeeProviders
 
         public IEnumerable<BaseYeeModule> Resolve()
         {
-            return _yeeModuleStorage.GetAllModules()
+            _combineNugetRepository.Load().Wait();
+
+            var modules = _yeeModuleStorage.GetAllModules()
                 .Select(p => LoadSingleModule(p)).ToList();
+
+            if (modules.Any())
+            {
+                return modules;
+            }
+
+            var startModule = _nupkgStorage.GetAssemblyMetadataFromAssemblyName(new NugetPacket
+            {
+                Id = "Yee.Starter",
+                Version = "0.1.0"
+            }, _combineNugetRepository).Result;
+
+            return new List<BaseYeeModule> { LoadSingleModule(startModule) };
         }
 
         private System.Reflection.Assembly? _context_Resolving(AssemblyLoadContext arg1, System.Reflection.AssemblyName arg2)
         {
             return Task.Run(async () =>
             {
-                var realVersion = await GetRealVersion(arg2);
-                var assemblyPath = _nupkgStorage
-                    .GetAssemblyMetadataFromAssemblyName(new NugetPacket
-                    {
-                        Id = arg2.Name,
-                        Version = realVersion
-                    }, _combineNugetRepository)
-                    .Result;
+                try
+                {
+                    var realVersion = await GetRealVersion(arg2);
+                    var assemblyPath = _nupkgStorage
+                        .GetAssemblyMetadataFromAssemblyName(new NugetPacket
+                        {
+                            Id = arg2.Name,
+                            Version = realVersion
+                        }, _combineNugetRepository)
+                        .Result;
 
-                if (assemblyPath == null)
+                    if (assemblyPath == null)
+                        return null;
+
+
+                    return GetAssemblyByMetadata(assemblyPath);
+                }
+                catch(Exception ex)
+                {
                     return null;
-
-
-                return GetAssemblyByMetadata(assemblyPath);
+                }
             }).Result;
         }
 
@@ -175,12 +198,22 @@ namespace Yee.Runtime.YeeProviders
             NupkgModule depNodeAssembly = new NupkgModule();
             depNodeAssembly.Assembly = assembly;
             depNodeAssembly.YeeModule = YeeAssemblyHelpers.CreateYeeModule(assembly);
-            var builder = new YeeBuilder();
-            depNodeAssembly.YeeModule.Build(builder);
 
+            List<Assembly> appDeps;
+            if (depNodeAssembly.YeeModule != null)
+            {
+                var builder = new YeeBuilder();
+                depNodeAssembly.YeeModule.Build(builder);
+                depNodeAssembly.Builder = builder;
 
-            var appDeps = YeeAssemblyHelpers.GetDepsFromModule(depNodeAssembly);
+                appDeps = YeeAssemblyHelpers.GetDepsFromModule(depNodeAssembly);
 
+            }
+            else
+            {
+                appDeps = new List<Assembly>();
+                depNodeAssembly.Builder = new YeeBuilder();
+            }
             depNodeAssembly.Deps = new List<BaseYeeModule>();
             var deps = assembly.GetReferencedAssemblies();
 

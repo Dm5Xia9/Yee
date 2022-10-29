@@ -12,6 +12,7 @@ namespace Yee.Nuget.Abstractions
     public interface INugetRepository
     {
         public string NugetSource { get; }
+        public Task Load();
         public Task<Stream?> GetNupkg(NugetPacket nugetPacket);
         public Task<IEnumerable<PackageMetadata>> Search(SearchPreferences searchPreferences, SearchFilter searchFilter, string searchTerm);
         public Task<IEnumerable<PackageDependency>> GetDependencies(NugetPacket nugetPacket);

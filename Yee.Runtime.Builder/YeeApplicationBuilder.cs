@@ -97,7 +97,6 @@ namespace Yee.Runtime.Builder
             }
 
             app.Run();
-
         }
         
     }

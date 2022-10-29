@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Yee.Nuget\Yee.Nuget.csproj" />
     <ProjectReference Include="..\Yee.Runtime.Builder\Yee.Runtime.Builder.csproj" />
-    <ProjectReference Include="..\Yee.Starter\Yee.Starter.csproj" />
   </ItemGroup>
 
 </Project>

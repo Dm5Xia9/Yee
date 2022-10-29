@@ -102,6 +102,8 @@
 
 
 
+    public NugetRepository NugetRepository => _repository;
+
     private NugetRepository _repository;
 
     private IEnumerable<PackageMetadata> _packageMetadata;
@@ -152,6 +154,7 @@
         IsSourceLoad = true;
         StateHasChanged();
 
+        
         try
         {
             _repository = new NugetRepository(Source);

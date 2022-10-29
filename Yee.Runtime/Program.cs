@@ -156,18 +156,18 @@ using Yee.Web;
 
 
 
-var starter = YeeAssemblyHelpers.CreateDefualtModule
-    (typeof(Yee.Starter.Module).Assembly)
-    .AddDeps(new List<BaseYeeModule>
-    {
-        YeeAssemblyHelpers.CreateDefualtModule
-            (typeof(Yee.Nuget.WebComponent.Module).Assembly)
-            .AddDeps(new List<BaseYeeModule>
-            {
-                YeeAssemblyHelpers.CreateDefualtModule
-                    (typeof(Yee.Ant.Module).Assembly)
-            })
-    });
+//var starter = YeeAssemblyHelpers.CreateDefualtModule
+//    (typeof(Yee.Starter.Module).Assembly)
+//    .AddDeps(new List<BaseYeeModule>
+//    {
+//        YeeAssemblyHelpers.CreateDefualtModule
+//            (typeof(Yee.Nuget.WebComponent.Module).Assembly)
+//            .AddDeps(new List<BaseYeeModule>
+//            {
+//                YeeAssemblyHelpers.CreateDefualtModule
+//                    (typeof(Yee.Ant.Module).Assembly)
+//            })
+//    });
 
 var builder = new YeeApplicationBuilder(args);
 
@@ -178,7 +178,8 @@ builder.Services.AddScoped<NotFoundBuilder>();
 builder.Services
     .AddSingleton<IYeeProvider<BaseYeeModule>, NupkgYeeProvider>();
 builder.Services.AddSingleton<YeeViewManager>();
-builder.Services.AddSingleton<BaseYeeModule>(starter);
+
+//builder.Services.AddSingleton<BaseYeeModule>(starter);
 //builder.Services.AddSingleton<BaseYeeModule>(example);
 //builder.Services.AddSingleton<BaseYeeModule>(swagger);
 ////builder.Services.AddSingleton<BaseYeeModule>(core);
