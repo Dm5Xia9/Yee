@@ -12,15 +12,18 @@ namespace Yee.Cabaret.Sections.Prototypes
     {
     }
 
+    public class ProtoBriefImages : BaseYeeProto<List<ImageItem>>
+    {
+    }
+
     public class BriefAbout
     {
         public ProtoString SubHeader { get; set; }
         public ProtoString Header { get; set; }
         public ProtoString Text { get; set; }
-        public List<BriefItem> BriefItems { get; set; }
     }
 
-    public class BriefItem
+    public class ImageItem
     {
         public ProtoImg Image { get; set; }
     }

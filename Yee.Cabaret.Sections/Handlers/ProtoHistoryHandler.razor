@@ -8,31 +8,10 @@
         <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
             <ProtoHandlerFactory InputValue="Model.Header" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
         </div>
-        <div style="margin-top: 10px;">
-            <h5>Элементы</h5>
-            <AntDesign.Button OnClick="AddNew" Style="margin-left: 1.1rem;">Добавить</AntDesign.Button>
-        </div>
-    </div>
-    <div style=" display: flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap; }">
-        @foreach (var card in Model.HistoryItems)
-        {
-            <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
-                <ProtoHandlerFactory InputValue="card.Title" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
-                <ProtoHandlerFactory InputValue="card.Year" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
-                <ProtoHandlerFactory InputValue="card.Description" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
-            </div>
-        }
     </div>
 </div>
 @code {
 
     protected override History NewModel =>
        ProtoHelper.CreateDefualt<History>();
-
-    public void AddNew()
-    {
-        Model.HistoryItems.Add(ProtoHelper.CreateDefualt<HistoryItem>());
-        Input();
-        StateHasChanged();
-    }
 }

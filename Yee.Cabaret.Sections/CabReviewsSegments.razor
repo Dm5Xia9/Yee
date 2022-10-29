@@ -5,7 +5,7 @@
 <section class="cab-testimonials-section v2 page">
     <div class="container">
         <div style="display: flex; flex-wrap: wrap;">
-            @foreach(var testimonial in Reviews.Value.Testimonials)
+            @foreach(var testimonial in Reviews.Value)
             {
                 <div class="col-sm-6">
                     <div class="testimonial-card">
@@ -33,5 +33,5 @@
 @code {
     [Parameter]
     [System.ComponentModel.DisplayName("Отзывы")]
-    public ProtoReviews Reviews { get; set; }
+    public ProtoTestimonialItems Reviews { get; set; }
 }

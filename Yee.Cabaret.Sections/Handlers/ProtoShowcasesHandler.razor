@@ -1,7 +1,7 @@
 ﻿@using Yee.Section.Handlers
 @using Yee.Cabaret.Sections.Prototypes
 @using Yee.Section.Extensions
-@inherits ProtoHandler<ProtoShowcases, Showcases>
+@inherits ProtoHandler<ProtoShowcases, List<Showcase>>
 
 <div style=" padding-top: 1rem;">
     <div style="display: flex; justify-content: center; align-items: center; flex-flow: column;">
@@ -11,7 +11,7 @@
         </div>
     </div>
     <div style=" display: flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap; }">
-        @foreach (var card in Model.Items)
+        @foreach (var card in Model)
         {
             <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
                 <ProtoHandlerFactory InputValue="card.Img" ProtoType="typeof(ProtoImg)" OnInput="Input"></ProtoHandlerFactory>
@@ -21,12 +21,12 @@
 </div>
 @code {
 
-    protected override Showcases NewModel =>
-       ProtoHelper.CreateDefualt<Showcases>();
+    protected override List<Showcase> NewModel =>
+       ProtoHelper.CreateDefualt<List<Showcase>>();
 
     public void AddNew()
     {
-        Model.Items.Add(ProtoHelper.CreateDefualt<Showcase>());
+        Model.Add(ProtoHelper.CreateDefualt<Showcase>());
         Input();
         StateHasChanged();
     }

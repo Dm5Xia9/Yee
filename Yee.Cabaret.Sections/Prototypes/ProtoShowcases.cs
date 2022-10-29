@@ -8,13 +8,8 @@ using Yee.Section.Base;
 
 namespace Yee.Cabaret.Sections.Prototypes
 {
-    public class ProtoShowcases : BaseYeeProto<Showcases>
+    public class ProtoShowcases : BaseYeeProto<List<Showcase>>
     {
-    }
-
-    public class Showcases
-    {
-        public List<Showcase> Items { get; set; }
     }
 
     public class Showcase

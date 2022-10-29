@@ -8,53 +8,10 @@
         <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
             <ProtoHandlerFactory InputValue="Model.PriceDisplay" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
         </div>
-        <div style="margin-top: 10px;">
-            <h5>Табы меню</h5>
-            <AntDesign.Button OnClick="AddMenuTab" Style="margin-left: 1.1rem;">Добавить таб</AntDesign.Button>
-        </div>
-    </div>
-    <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
-        @foreach (var tab in Model.Tabs)
-        {
-            <div>
-                <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
-                    <ProtoHandlerFactory InputValue="tab.TabName" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
-                </div>
-                <div style="margin-top: 10px;">
-                    <h5>Элементы меню</h5>
-                    <AntDesign.Button OnClick="@(() => AddMenuItem(tab))" Style="margin-left: 1.1rem;">Добавить элемент</AntDesign.Button>
-                </div>
-                <div style="display: flex; justify-content: space-evenly; flex-direction: column; flex-wrap: wrap; margin-right: 20px;">
-                    @foreach (var item in tab.MenuItems)
-                    {
-                        <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 20px; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
-                            <ProtoHandlerFactory InputValue="@item.ItemName" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
-                            <ProtoHandlerFactory InputValue="@item.Ingridients" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
-                            <ProtoHandlerFactory InputValue="@item.Price" ProtoType="typeof(ProtoNumber)" OnInput="Input"></ProtoHandlerFactory>
-                            <ProtoHandlerFactory InputValue="@item.IsNew" ProtoType="typeof(ProtoBool)" OnInput="Input"></ProtoHandlerFactory>
-                        </div>
-                    }
-                </div>
-            </div>
-        }
     </div>
 </div>
-@code {
 
+@code {
     protected override Menu NewModel =>
        ProtoHelper.CreateDefualt<Menu>();
-
-    public void AddMenuTab()
-    {
-        Model.Tabs.Add(ProtoHelper.CreateDefualt<MenuTab>());
-        Input();
-        StateHasChanged();
-    }
-
-    public void AddMenuItem(MenuTab tab)
-    {
-        tab.MenuItems.Add(ProtoHelper.CreateDefualt<MenuItem>());
-        Input();
-        StateHasChanged();
-    }
 }

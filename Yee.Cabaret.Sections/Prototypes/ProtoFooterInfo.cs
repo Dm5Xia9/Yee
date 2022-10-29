@@ -12,11 +12,14 @@ namespace Yee.Cabaret.Sections.Prototypes
     {
     }
 
+    public class ProtoFooterInfoItems : BaseYeeProto<List<FooterInfoItem>>
+    {
+    }
+
     public class FooterInfo
     {
         public ProtoString ButtonText { get; set; }
         public ProtoLink ButtonUrl { get; set; }
-        public List<FooterInfoItem> InfoItems { get; set; }
     }
 
     public class FooterInfoItem

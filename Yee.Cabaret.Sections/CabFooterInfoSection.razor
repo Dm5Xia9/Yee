@@ -6,7 +6,7 @@
     <div class="cab-footer-info-section">
         <div class="container">
             <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-                @foreach(var el in Footer.Value.InfoItems)
+                @foreach(var el in FooterItems.Value)
                 {
                     <div class="col-sm-4" style="margin-top: 20px;">
                         <div class="cab-footer-info-box">
@@ -36,4 +36,8 @@
     [Parameter]
     [System.ComponentModel.DisplayName("Footer")]
     public ProtoFooterInfo Footer { get; set; }
+    
+    [Parameter]
+    [System.ComponentModel.DisplayName("Footer Items")]
+    public ProtoFooterInfoItems FooterItems { get; set; }
 }

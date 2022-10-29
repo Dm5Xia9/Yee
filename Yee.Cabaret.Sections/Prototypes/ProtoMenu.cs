@@ -12,25 +12,23 @@ namespace Yee.Cabaret.Sections.Prototypes
     {
     }
 
+    public class ProtoMenuItems : BaseYeeProto<List<MenuItem>>
+    {
+    }
+
     public class Menu
     {
         public ProtoString CabSubHeading { get; set; }
         public ProtoString CabBigHeading { get; set; }
         public ProtoString PriceDisplay { get; set; }
-        public ProtoImg Img { get; set; }
-        public List<MenuTab> Tabs { get; set; }
-    }
-
-    public class MenuTab
-    {
-        public ProtoString TabName { get; set; }
         public ProtoString ButtonContent { get; set; }
         public ProtoLink ButtonUrl { get; set; }
-        public List<MenuItem> MenuItems { get; set; }
+        public ProtoImg Img { get; set; }
     }
 
     public class MenuItem
     {
+        public ProtoString Category { get; set; }
         public ProtoString ItemName { get; set; }
         public ProtoString Ingridients { get; set; }
         public ProtoNumber Price { get; set; }

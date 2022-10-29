@@ -10,15 +10,16 @@ namespace Yee.Cabaret.Sections.Prototypes
 {
     public class ProtoSwiperSlides : BaseYeeProto<SwiperSlides>
     {
-
     }
 
+    public class ProtoSwiperSlidesItems : BaseYeeProto<List<SwiperSlide>>
+    {
+    }
 
     public class SwiperSlides
     {
         public ProtoString NextButtonContent { get; set; }
         public ProtoString PrevButtonContent { get; set; }
-        public List<SwiperSlide> Slides { get; set; }
     }
 
     public class SwiperSlide

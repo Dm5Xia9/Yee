@@ -12,10 +12,13 @@ namespace Yee.Cabaret.Sections.Prototypes
     {
     }
 
+    public class ProtoHistoryItems : BaseYeeProto<List<HistoryItem>>
+    {
+    }
+
     public class History
     {
         public ProtoString Header { get; set; }
-        public List<HistoryItem> HistoryItems { get; set; }
     }
 
     public class HistoryItem

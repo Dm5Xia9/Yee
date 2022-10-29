@@ -14,34 +14,34 @@
     </div>
     <div class="cab-menu-content-box">
         <ul class="nav nav-pills" role="tablist">
-            @foreach(var tab in Menu.Value.Tabs.Select((v, i) => (v, i)))
+            @foreach(var tab in MenuItems.Value.GroupBy(k => k.Category.Value).Select((v, i) => (v, i)))
             {
                 <li class="@(tab.i == 0 ? "active" : "")">
                     <a href="@($"#menu{tab.i}")" aria-controls="@($"menu{tab.i}")" role="tab" data-toggle="tab" aria-expanded="true">
-                        @tab.v.TabName
+                        @tab.v.Key
                     </a>
                 </li>
             }
         </ul>
 
         <div class="tab-content">
-            @foreach(var tab in Menu.Value.Tabs.Select((v, i) => (v, i)))
+            @foreach(var tab in MenuItems.Value.GroupBy(k => k.Category.Value).Select((v, i) => (v, i)))
             {
                 <div role="tabpanel" class="@($"tab-pane fade {(tab.i == 0 ? "active" : "")} in")" id="@($"menu{tab.i}")">
                     <div class="row">
                         <div class="cab-menu-list custom-cab-menu-list" style="padding: 0px; display: flex; flex-wrap: wrap;">
-                            @foreach(var item in tab.v.MenuItems.Select((v, i) => (v,i)))
+                            @foreach(var item in tab.v.Select((v, i) => (v, i)))
                             {
                                 <div class="cab-menu-item custom-cab-menu-item clearfix" style="@("box-sizing: border-box; width: 50%; padding: 20px;" + (item.i % 2 != 0 ? "background: #fcfcfc !important;" : "background: #f8f8f8 !important"))">
                                     <div class="menu-title">
-                                            <h6>
-                                                @item.v.ItemName
-                                                @if (item.v.IsNew.Value)
-                                                {
-                                                    <span class="tag-new">New</span>
-                                                }
-                                            </h6>
-                                            <p>@item.v.Ingridients</p>
+                                        <h6>
+                                            @item.v.ItemName
+                                            @if (item.v.IsNew.Value)
+                                            {
+                                                <span class="tag-new">New</span>
+                                            }
+                                        </h6>
+                                        <p>@item.v.Ingridients</p>
                                     </div>
                                     <div class="menu-price">
                                         <span class="price-tag">
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="view-all-menu-btn">
-                        <a href="@tab.v.ButtonUrl" class="secondary-link">@tab.v.ButtonContent</a>
+                        <a href="@Menu.Value.ButtonUrl" class="secondary-link">@Menu.Value.ButtonContent</a>
                     </div>
                 </div>
             }
@@ -69,4 +69,8 @@
     [Parameter]
     [System.ComponentModel.DisplayName("Меню")]
     public ProtoMenu Menu { get; set; }
+    
+    [Parameter]
+    [System.ComponentModel.DisplayName("Элементы меню")]
+    public ProtoMenuItems MenuItems { get; set; }
 }

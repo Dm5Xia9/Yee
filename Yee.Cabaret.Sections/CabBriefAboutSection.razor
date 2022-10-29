@@ -21,7 +21,7 @@
                 </div>
                 <div class="about-brief-img-gallery">
                     <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-                        @foreach(var item in Brief.Value.BriefItems)
+                        @foreach(var item in Images.Value)
                         {
                             <div class="col-sm-4">
                                 <div class="about-brief-img-box">
@@ -40,4 +40,8 @@
     [Parameter]
     [System.ComponentModel.DisplayName("Brief")]
     public ProtoBriefAbout Brief { get; set; }
+    
+    [Parameter]
+    [System.ComponentModel.DisplayName("Brief Images")]
+    public ProtoBriefImages Images { get; set; }
 }

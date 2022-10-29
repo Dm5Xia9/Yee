@@ -12,11 +12,14 @@ namespace Yee.Cabaret.Sections.Prototypes
     {
     }
 
+    public class ProtoQuestions : BaseYeeProto<List<Question>>
+    {
+    }
+
     public class FAQ
     {
         public ProtoString Header { get; set; }
         public ProtoString Description { get; set; }
-        public List<Question> Questions { get; set; }
     }
 
     public class Question

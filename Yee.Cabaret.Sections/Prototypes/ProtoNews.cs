@@ -12,11 +12,14 @@ namespace Yee.Cabaret.Sections.Prototypes
     {
     }
 
+    public class ProtoNewsItems : BaseYeeProto<List<NewsItem>>
+    {
+    }
+
     public class News
     {
         public ProtoString SubHeader { get; set; }
         public ProtoString Header { get; set; }
-        public List<NewsItem> NewsItems { get; set; }
     }
 
     public class NewsItem

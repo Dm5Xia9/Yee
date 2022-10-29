@@ -12,12 +12,15 @@ namespace Yee.Cabaret.Sections.Prototypes
     {
     }
 
+    public class ProtoTestimonialItems : BaseYeeProto<List<Testimonial>>
+    {
+    }
+
     public class TestimonialsPanel
     {
         public ProtoString SubHeader { get; set; }
         public ProtoString Header { get; set; }
         public ProtoImg Img { get; set; }
-        public List<Testimonial> Testimonials { get; set; }
     }
 
     public class Testimonial

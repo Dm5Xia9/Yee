@@ -4,11 +4,9 @@
 @inherits ProtoHandler<ProtoTestimonialItems, List<Testimonial>>
 
 <div style=" padding-top: 1rem;">
-    <div style="display: flex; justify-content: center; align-items: center; flex-flow: column;">
-        <div style="margin-top: 10px;">
-            <h5>Отзывы</h5>
-            <AntDesign.Button OnClick="AddReview" Style="margin-left: 1.1rem;">Добавить</AntDesign.Button>
-        </div>
+    <div style="display: flex; justify-content: center; align-items: center; flex-flow: column; margin-top: 10px;">
+        <h5>Отзывы</h5>
+        @*<AntDesign.Button OnClick="AddSlide" Style="margin-left: 1.1rem;">Добавить</AntDesign.Button>*@
     </div>
     <div style=" display: flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap; }">
         @foreach (var testimonial in Model)
@@ -17,7 +15,6 @@
                 <ProtoHandlerFactory InputValue="testimonial.Caption" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="testimonial.Text" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="testimonial.Author" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
-                <ProtoHandlerFactory InputValue="testimonial.Avatar" ProtoType="typeof(ProtoImg)" OnInput="Input"></ProtoHandlerFactory>
             </div>
         }
     </div>
@@ -26,10 +23,10 @@
     protected override List<Testimonial> NewModel =>
            ProtoHelper.CreateDefualt<List<Testimonial>>();
 
-    public void AddReview()
+    public void AddSlide()
     {
-        Model.Add(ProtoHelper.CreateDefualt<Testimonial>());
-        Input();
-        StateHasChanged();
+        //Model.Slides.Add(ProtoHelper.CreateDefualt<SwiperSlide>());
+        //Input();
+        //StateHasChanged();
     }
 }

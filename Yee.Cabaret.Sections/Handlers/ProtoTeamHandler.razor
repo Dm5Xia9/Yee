@@ -1,7 +1,7 @@
 ﻿@using Yee.Section.Handlers
 @using Yee.Cabaret.Sections.Prototypes
 @using Yee.Section.Extensions
-@inherits ProtoHandler<ProtoTeam, Team>
+@inherits ProtoHandler<ProtoTeam, List<Employee>>
 
 <div style=" padding-top: 1rem;">
     <div style="display: flex; justify-content: center; align-items: center; flex-flow: column;">
@@ -11,7 +11,7 @@
         </div>
     </div>
     <div style=" display: flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap; }">
-        @foreach (var card in Model.Employees)
+        @foreach (var card in Model)
         {
             <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
                 <ProtoHandlerFactory InputValue="card.Name" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
@@ -23,12 +23,12 @@
 </div>
 @code {
 
-    protected override Team NewModel =>
-       ProtoHelper.CreateDefualt<Team>();
+    protected override List<Employee> NewModel =>
+       ProtoHelper.CreateDefualt<List<Employee>>();
 
     public void AddNew()
     {
-        Model.Employees.Add(ProtoHelper.CreateDefualt<Employee>());
+        Model.Add(ProtoHelper.CreateDefualt<Employee>());
         Input();
         StateHasChanged();
     }

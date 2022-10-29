@@ -8,13 +8,8 @@ using Yee.Section.Base;
 
 namespace Yee.Cabaret.Sections.Prototypes
 {
-    public class ProtoTeam : BaseYeeProto<Team>
+    public class ProtoTeam : BaseYeeProto<List<Employee>>
     {
-    }
-
-    public class Team
-    {
-        public List<Employee> Employees { get; set; }
     }
 
     public class Employee

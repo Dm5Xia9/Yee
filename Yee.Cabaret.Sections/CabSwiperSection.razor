@@ -6,7 +6,7 @@
 <section class="cab-hero-section v1 p-0">
     <div class="cab-hero-slider swiper-container">
         <div class="swiper-wrapper">
-            @foreach (var slide in SwiperSlides.Value.Slides)
+            @foreach (var slide in SwiperSlidesItems.Value)
             {
                 <div class="swiper-slide">
                     <div class="cab-hero-slide-inner">
@@ -55,11 +55,13 @@
 </section>
 
 @code {
-
     [Parameter]
-    [System.ComponentModel.DisplayName("Логотип")]
+    [System.ComponentModel.DisplayName("SwiperSlides")]
     public ProtoSwiperSlides SwiperSlides { get; set; }
-
+    
+    [Parameter]
+    [System.ComponentModel.DisplayName("SwiperSlidesItems")]
+    public ProtoSwiperSlidesItems SwiperSlidesItems { get; set; }
 
     private string[] GetSubheaderWords(SwiperSlide slide)
     {

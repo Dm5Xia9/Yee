@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div style="display: flex; flex-wrap: wrap;">
-                @foreach(var eventItem in Events.Value.NewsItems)
+                @foreach(var eventItem in EventsItems.Value)
                 {
                     <div class="col-md-4 col-sm-6">
                         <div class="cab-news-event-box">
@@ -43,5 +43,9 @@
 @code {
     [Parameter]
     [System.ComponentModel.DisplayName("Events")]
-    public ProtoEvents Events { get; set; }
+    public ProtoNews Events { get; set; }
+    
+    [Parameter]
+    [System.ComponentModel.DisplayName("Events items")]
+    public ProtoNewsItems EventsItems { get; set; }
 }
