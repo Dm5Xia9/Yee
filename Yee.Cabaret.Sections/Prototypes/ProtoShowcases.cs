@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace Yee.Cabaret.Sections.Prototypes
 
     public class Showcase
     {
+        [DisplayName("Изображение")]
         public ProtoImg Img { get; set; }
     }
 }
