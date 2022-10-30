@@ -1,6 +1,7 @@
 ﻿@inherits YeeSection
 @inject NavigationManager _navManager
 @using Yee.Cabaret.Sections.Prototypes
+@attribute [System.ComponentModel.DisplayName("История")]
 
 <section class="cab-about-history-section">
     <div class="container">
@@ -12,7 +13,7 @@
                 </div>
             </div>
             <div class="cab-about-history-timeline d-flex">
-                @foreach(var item in History.Value.HistoryItems)
+                @foreach(var item in HistoryItems.Value)
                 {
                     <div class="cab-about-timeline-box">
                         <div class="timeline-title">
@@ -22,7 +23,7 @@
                         <div class="timeline-line">
                         </div>
                         <div class="timeline-description">
-                            <div class="inner">
+                            <div class="inner" style="min-width: 350px;">
                                 @item.Description
                             </div>
                         </div>
@@ -37,4 +38,8 @@
     [Parameter]
     [System.ComponentModel.DisplayName("History")]
     public ProtoHistory History { get; set; }
+    
+    [Parameter]
+    [System.ComponentModel.DisplayName("History items")]
+    public ProtoHistoryItems HistoryItems { get; set; }
 }

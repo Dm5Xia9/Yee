@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,27 +13,37 @@ namespace Yee.Cabaret.Sections.Prototypes
     {
     }
 
-    public class Menu
+    public class ProtoMenuItems : BaseYeeProto<List<MenuItem>>
     {
-        public ProtoString CabSubHeading { get; set; }
-        public ProtoString CabBigHeading { get; set; }
-        public ProtoString PriceDisplay { get; set; }
-        public ProtoImg Img { get; set; }
-        public List<MenuTab> Tabs { get; set; }
     }
 
-    public class MenuTab
+    public class Menu
     {
-        public ProtoString TabName { get; set; }
+        [DisplayName("Подзаголовок")]
+        public ProtoString CabSubHeading { get; set; }
+        [DisplayName("Заголовок")]
+        public ProtoString CabBigHeading { get; set; }
+        [DisplayName("Валюта")]
+        public ProtoString PriceDisplay { get; set; }
+        [DisplayName("Текст кнопки")]
         public ProtoString ButtonContent { get; set; }
-        public List<MenuItem> MenuItems { get; set; }
+        [DisplayName("Ссылка кнопки")]
+        public ProtoLink ButtonUrl { get; set; }
+        [DisplayName("Изображение")]
+        public ProtoImg Img { get; set; }
     }
 
     public class MenuItem
     {
+        [DisplayName("Категория")]
+        public ProtoString Category { get; set; }
+        [DisplayName("Название")]
         public ProtoString ItemName { get; set; }
+        [DisplayName("Ингридиенты")]
         public ProtoString Ingridients { get; set; }
+        [DisplayName("Цена")]
         public ProtoNumber Price { get; set; }
+        [DisplayName("Новая")]
         public ProtoBool IsNew { get; set; }
     }
 }

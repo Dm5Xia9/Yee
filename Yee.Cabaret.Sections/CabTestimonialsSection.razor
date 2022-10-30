@@ -1,6 +1,7 @@
 ﻿@inherits YeeSection
 @inject NavigationManager _navManager
 @using Yee.Cabaret.Sections.Prototypes
+@attribute [System.ComponentModel.DisplayName("Отзывы")]
 
 <section class="cab-testimonials-section v1" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(assets/img/testimonials-bg1.jpg) no-repeat center fixed; background-size: cover">
     <div class="container">
@@ -91,6 +92,10 @@
 
 @code {
     [Parameter]
-    [System.ComponentModel.DisplayName("Отзывы")]
+    [System.ComponentModel.DisplayName("Панель отзывов")]
     public ProtoTestimonial Testimonial { get; set; }
+    
+    [Parameter]
+    [System.ComponentModel.DisplayName("Отзывы")]
+    public ProtoTestimonialItems TestimonialItems { get; set; }
 }

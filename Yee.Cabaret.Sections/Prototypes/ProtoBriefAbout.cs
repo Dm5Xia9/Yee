@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,16 +13,23 @@ namespace Yee.Cabaret.Sections.Prototypes
     {
     }
 
-    public class BriefAbout
+    public class ProtoBriefImages : BaseYeeProto<List<ImageItem>>
     {
-        public ProtoString SubHeader { get; set; }
-        public ProtoString Header { get; set; }
-        public ProtoString Text { get; set; }
-        public List<BriefItem> BriefItems { get; set; }
     }
 
-    public class BriefItem
+    public class BriefAbout
     {
+        [DisplayName("Подзаголовок")]
+        public ProtoString SubHeader { get; set; }
+        [DisplayName("Заголовок")]
+        public ProtoString Header { get; set; }
+        [DisplayName("Текст")]
+        public ProtoString Text { get; set; }
+    }
+
+    public class ImageItem
+    {
+        [DisplayName("Изображение")]
         public ProtoImg Image { get; set; }
     }
 }

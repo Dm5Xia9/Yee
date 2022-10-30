@@ -9,13 +9,13 @@ using Yee.Section.Base;
 
 namespace Yee.Cabaret.Sections.Prototypes
 {
-    public class ProtoHtml : BaseYeeProto<HtmlText>
+    public class ProtoShowcases : BaseYeeProto<List<Showcase>>
     {
     }
 
-    public class HtmlText
+    public class Showcase
     {
-        [DisplayName("Тело HTML")]
-        public ProtoTextArea Html { get; set; }
+        [DisplayName("Изображение")]
+        public ProtoImg Img { get; set; }
     }
 }

@@ -1,12 +1,13 @@
 ﻿@inherits YeeSection
 @inject NavigationManager _navManager
 @using Yee.Cabaret.Sections.Prototypes
+@attribute [System.ComponentModel.DisplayName("Футер")]
 
 <footer class="cab-footer v1" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(/footer-bg1.jpg) no-repeat center fixed;">       
     <div class="cab-footer-info-section">
         <div class="container">
             <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-                @foreach(var el in Footer.Value.InfoItems)
+                @foreach(var el in FooterItems.Value)
                 {
                     <div class="col-sm-4" style="margin-top: 20px;">
                         <div class="cab-footer-info-box">
@@ -26,7 +27,7 @@
                 }
             </div>
             <div class="cab-footer-book-table-btn-box">
-                <a href="#bookingTable" class="cab-btn cab-btn-primary-outline smooth-scroll">@Footer.Value.ButtonText</a>
+                <a href="@Footer.Value.ButtonUrl" class="cab-btn cab-btn-primary-outline smooth-scroll">@Footer.Value.ButtonText</a>
             </div>
         </div>
     </div>
@@ -36,4 +37,8 @@
     [Parameter]
     [System.ComponentModel.DisplayName("Footer")]
     public ProtoFooterInfo Footer { get; set; }
+    
+    [Parameter]
+    [System.ComponentModel.DisplayName("Footer Items")]
+    public ProtoFooterInfoItems FooterItems { get; set; }
 }

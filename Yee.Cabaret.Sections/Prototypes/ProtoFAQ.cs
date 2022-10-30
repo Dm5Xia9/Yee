@@ -9,27 +9,27 @@ using Yee.Section.Base;
 
 namespace Yee.Cabaret.Sections.Prototypes
 {
-    public class ProtoHistory : BaseYeeProto<History>
+    public class ProtoFAQ : BaseYeeProto<FAQ>
     {
     }
 
-    public class ProtoHistoryItems : BaseYeeProto<List<HistoryItem>>
+    public class ProtoQuestions : BaseYeeProto<List<Question>>
     {
     }
 
-    public class History
+    public class FAQ
     {
         [DisplayName("Заголовок")]
         public ProtoString Header { get; set; }
-    }
-
-    public class HistoryItem
-    {
-        [DisplayName("Год")]
-        public ProtoString Year { get; set; }
-        [DisplayName("Заголовок")]
-        public ProtoString Title { get; set; }
         [DisplayName("Описание")]
         public ProtoString Description { get; set; }
+    }
+
+    public class Question
+    {
+        [DisplayName("Текст вопроса")]
+        public ProtoString QuestionText { get; set; }
+        [DisplayName("Текст ответа")]
+        public ProtoTextArea Answer { get; set; }
     }
 }

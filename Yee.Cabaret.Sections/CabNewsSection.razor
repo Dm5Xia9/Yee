@@ -1,6 +1,7 @@
 ﻿@inherits YeeSection
 @inject NavigationManager _navManager
 @using Yee.Cabaret.Sections.Prototypes
+@attribute [System.ComponentModel.DisplayName("Новости")]
 
 <section class="cab-news-events-section v1">
     <div class="container">
@@ -14,7 +15,7 @@
         </div>
         <div class="cab-news-events-content">
             <div style="display: flex; flex-wrap: wrap;">
-                @foreach(var newItem in News.Value.NewsItems)
+                @foreach(var newItem in NewsItems.Value)
                 {
                     <div class="col-sm-4">
                         <div class="cab-news-event-box">
@@ -41,4 +42,8 @@
     [Parameter]
     [System.ComponentModel.DisplayName("News")]
     public ProtoNews News { get; set; }
+    
+    [Parameter]
+    [System.ComponentModel.DisplayName("News items")]
+    public ProtoNewsItems NewsItems { get; set; }
 }

@@ -1,4 +1,5 @@
 ﻿@using AntDesign
+@using System.ComponentModel
 @inject SectionState state
 
 <Select TItem="Type"
@@ -11,7 +12,7 @@
         Style="width: 200px;"
         OnSelectedItemChanged="OnSelectedItemChangedHandler">
     <ItemTemplate>
-        <span>@((context as Type).Name)</span>
+        <span>@(GetDisplayName(context as Type))</span>
     </ItemTemplate>
 </Select>
 @*DefaultActiveFirstOption*@
@@ -30,4 +31,12 @@
         OnSelect.InvokeAsync(value);
     }
 
+    private string GetDisplayName(Type type)
+    {
+        var attr = type.GetCustomAttributes(typeof(DisplayNameAttribute), false)?
+            .FirstOrDefault() as DisplayNameAttribute;
+        if (attr != null)
+            return attr.DisplayName;
+        return type.Name;
+    }
 }

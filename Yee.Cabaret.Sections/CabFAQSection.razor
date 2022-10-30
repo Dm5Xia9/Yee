@@ -1,0 +1,67 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@using Yee.Cabaret.Sections.Prototypes
+@attribute [System.ComponentModel.DisplayName("ЧаВО")]
+
+<section class="cab-faq-section">
+    <div class="container">
+        <div class="cab-heading-box v2">
+            <div class="cab-main-heading">
+                <h1>@FAQ.Value.Header</h1>
+            </div>
+        </div>
+        <div class="brief-description">
+            <p>
+                @FAQ.Value.Description
+            </p>
+        </div>
+        <div class="cab-faq-content">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="accordion js-accordion">
+                        @foreach(var question in Questions.Value.Select((v, i) => (v, i)).Where(q => q.i % 2 == 0))
+                        {
+                            <div class="accordion-item js-accordion-item">
+                                <div class="accordion-header js-accordion-header">
+                                    @question.v.QuestionText
+                                </div> 
+                                <div class="accordion-body js-accordion-body">
+                                    <div class="accordion-body-contents">
+                                        @question.v.Answer
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="accordion js-accordion">
+                        @foreach(var question in Questions.Value.Select((v, i) => (v, i)).Where(q => q.i % 2 != 0))
+                        {
+                            <div class="accordion-item js-accordion-item">
+                                <div class="accordion-header js-accordion-header">
+                                    @question.v.QuestionText
+                                </div> 
+                                <div class="accordion-body js-accordion-body">
+                                    <div class="accordion-body-contents">
+                                        @question.v.Answer
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    [System.ComponentModel.DisplayName("FAQ")]
+    public ProtoFAQ FAQ { get; set; }
+
+    [Parameter]
+    [System.ComponentModel.DisplayName("Questions")]
+    public ProtoQuestions Questions { get; set; }
+}

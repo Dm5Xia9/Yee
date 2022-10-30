@@ -10,37 +10,10 @@
             <ProtoHandlerFactory InputValue="Model.SubHeader" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
             <ProtoHandlerFactory InputValue="Model.Img" ProtoType="typeof(ProtoImg)" OnInput="Input"></ProtoHandlerFactory>
         </div>
-        <div style="margin-top: 10px;">
-            <h5>Отзывы</h5>
-            @*<AntDesign.Button OnClick="AddSlide" Style="margin-left: 1.1rem;">Добавить</AntDesign.Button>*@
-        </div>
-    </div>
-    <div style=" display: flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap; }">
-        @foreach (var testimonial in Model.Testimonials)
-        {
-            <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
-                <ProtoHandlerFactory InputValue="testimonial.Caption" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
-                <ProtoHandlerFactory InputValue="testimonial.Text" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
-                <ProtoHandlerFactory InputValue="testimonial.Author" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
-
-            </div>
-
-        }
     </div>
 </div>
+
 @code {
     protected override TestimonialsPanel NewModel =>
            ProtoHelper.CreateDefualt<TestimonialsPanel>();
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-    }
-
-    public void AddSlide()
-    {
-        //Model.Slides.Add(ProtoHelper.CreateDefualt<SwiperSlide>());
-        //Input();
-        //StateHasChanged();
-    }
 }

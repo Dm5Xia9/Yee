@@ -9,16 +9,16 @@ using Yee.Section.Base;
 
 namespace Yee.Cabaret.Sections.Prototypes
 {
-    public class ProtoCta : BaseYeeProto<Cta>
+    public class ProtoTeam : BaseYeeProto<List<Employee>>
     {
     }
 
-    public class Cta
+    public class Employee
     {
-        [DisplayName("Заголовок")]
-        public ProtoString Header { get; set; }
-        [DisplayName("Текст")]
-        public ProtoString TextBeforeVideo { get; set; }
+        [DisplayName("Имя")]
+        public ProtoString Name { get; set; }
+        [DisplayName("Должность")]
+        public ProtoString Post { get; set; }
         [DisplayName("Изображение")]
         public ProtoImg Img { get; set; }
     }
