@@ -25,13 +25,13 @@
                             if (item.IsGroup)
                             {
                                 <li class="has-dropdown left-menu">
-                                    <a @onclick="() => ToNav(item.Link)" href="#" class="@Active(item)">@item.Title</a>
+                                    <a @onclick="() => ToNav(item.Link)" class="@Active(item)" style="cursor: pointer;">@item.Title</a>
                                     <div class="dropdown-wrapper">
                                         <ul>
                                             @foreach (var child in item.ChildItems)
                                             {
                                                 <li>
-                                                    <a @onclick="() => ToNav(child.Link)" href="#" class="@Active(child)">@child.Title</a>
+                                                    <a @onclick="() => ToNav(child.Link)" class="@Active(child)" style="cursor: pointer;">@child.Title</a>
                                                 </li>
                                             }
 
@@ -42,7 +42,7 @@
                             if (item.IsGroup == false)
                             {
                                 <li>
-                                    <a @onclick="() => ToNav(item.Link)" href="#" class="@Active(item)">@item.Title</a>
+                                    <a @onclick="() => ToNav(item.Link)" class="@Active(item)" style="cursor: pointer;">@item.Title</a>
                                 </li>
                             }
                         }
