@@ -19,13 +19,13 @@
                 {
                     <div class="col-md-4 col-sm-6">
                         <div class="cab-news-event-box">
-                            <a href="#">
+                            <a href="@eventItem.Url">
                                 <div class="news-event-img-box">
                                     <img src="@eventItem.Image" alt="Event Image">
                                 </div>
                                 <div class="news-event-title-box">
                                     <div class="date">
-                                        @eventItem.Date
+                                        @eventItem.Date.Value?.ToString("MMM\ndd")
                                     </div>
                                     <h6>@eventItem.Description</h6>
                                     <p class="place">
