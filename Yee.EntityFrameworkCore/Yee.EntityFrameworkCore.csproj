@@ -31,8 +31,6 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\Yee\Yee.csproj" />
+		<PackageReference Include="Yee" Version="0.2.1" />
 	</ItemGroup>
 </Project>

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Yee.Nuget" Version="0.1.1" />
+    <PackageReference Include="Yee.Nuget" Version="0.2.1" />
   </ItemGroup>
 
   <ItemGroup>

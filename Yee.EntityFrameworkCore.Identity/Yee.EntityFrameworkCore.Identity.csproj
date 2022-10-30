@@ -26,10 +26,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.9" />
+		<PackageReference Include="Yee.EntityFrameworkCore.Npgsql" Version="0.2.1" />
 
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\Yee.EntityFrameworkCore.Npgsql\Yee.EntityFrameworkCore.Npgsql.csproj" />
 	</ItemGroup>
 </Project>

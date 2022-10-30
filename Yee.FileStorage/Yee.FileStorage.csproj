@@ -24,9 +24,9 @@
 		</None>
 	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />
-    <ProjectReference Include="..\Yee\Yee.csproj" />
-  </ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Yee.Web" Version="0.2.1" />
+	</ItemGroup>
 
 </Project>

@@ -10,10 +10,7 @@
 	</ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />
-    <ProjectReference Include="..\Yee\Yee.csproj" />
+    <PackageReference Include="Yee.Web" Version="0.2.1" />
   </ItemGroup>
 
 </Project>

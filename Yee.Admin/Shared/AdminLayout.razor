@@ -121,7 +121,9 @@
 
     protected override void OnInitialized()
     {
-        if (state.All(p => p.Value.IsWorked == false))
+        var uri = new Uri(navigation.Uri);
+        Console.WriteLine(uri);
+        if (state.All(p => p.Value.IsWorked == false) && uri.LocalPath.StartsWith("/admin/options") == false)
         {
             navigation.NavigateTo("/admin/options/NpgsqlOptions");
             return;

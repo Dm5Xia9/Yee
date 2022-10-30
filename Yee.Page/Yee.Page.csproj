@@ -28,12 +28,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Yee.EntityFrameworkCore.Npgsql\Yee.EntityFrameworkCore.Npgsql.csproj" />
-    <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />
-    <ProjectReference Include="..\Yee\Yee.csproj" />
+    <PackageReference Include="Yee.EntityFrameworkCore.Npgsql" Version="0.2.1" />
+    <PackageReference Include="Yee.Web" Version="0.2.1" />
   </ItemGroup>
 
 </Project>

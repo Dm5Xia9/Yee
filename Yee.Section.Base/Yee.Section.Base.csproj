@@ -29,10 +29,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Yee.Section\Yee.Section.csproj" />
+    <PackageReference Include="Yee.Section" Version="0.2.1" />
   </ItemGroup>
 
 </Project>

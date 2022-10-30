@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -30,11 +30,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />
-    <ProjectReference Include="..\Yee\Yee.csproj" />
+    <PackageReference Include="Yee.Web" Version="0.2.1" />
   </ItemGroup>
 
 </Project>

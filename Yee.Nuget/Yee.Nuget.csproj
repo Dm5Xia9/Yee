@@ -26,8 +26,6 @@
 	<ItemGroup>
 		<PackageReference Include="NuGet.DependencyResolver.Core" Version="6.3.0" />
 		<PackageReference Include="NuGet.Resolver" Version="6.3.0" />
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\Yee\Yee.csproj" />
+		<PackageReference Include="Yee" Version="0.2.1" />
 	</ItemGroup>
 </Project>

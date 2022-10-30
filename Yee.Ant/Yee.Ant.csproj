@@ -31,11 +31,7 @@
   <ItemGroup>
     <PackageReference Include="AntDesign" Version="0.12.6" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />
-    <ProjectReference Include="..\Yee\Yee.csproj" />
+    <PackageReference Include="Yee.Web" Version="0.2.1" />
   </ItemGroup>
 
 </Project>

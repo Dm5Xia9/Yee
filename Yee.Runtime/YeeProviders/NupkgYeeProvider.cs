@@ -7,6 +7,8 @@ using System.Reflection;
 using Microsoft.Extensions.FileProviders;
 using Yee.Runtime.Builder.Helpers;
 using System.Reflection.Metadata.Ecma335;
+using Microsoft.Extensions.Options;
+using Yee.Runtime.Abstractions;
 
 namespace Yee.Runtime.YeeProviders
 {
@@ -20,8 +22,9 @@ namespace Yee.Runtime.YeeProviders
         private AssemblyName CurrentAssemblyName;
         private readonly IWebHostEnvironment _webHost;
         private readonly List<NupkgModule> _cache = new List<NupkgModule>();
-
-        public NupkgYeeProvider(NupkgOptions options, NupkgStorage storage, YeeModuleStorage yeeModuleStorage, IWebHostEnvironment webHost)
+        private readonly IOptions<StarterNuGetPack> _starterPack;
+        public NupkgYeeProvider(NupkgOptions options, NupkgStorage storage, YeeModuleStorage yeeModuleStorage, 
+            IWebHostEnvironment webHost, IOptions<StarterNuGetPack> starterPack)
         {
             _yeeModuleStorage = yeeModuleStorage;
             _nupkgStorage = storage;
@@ -32,6 +35,7 @@ namespace Yee.Runtime.YeeProviders
                 new CombineNugetRepository(
                     options.Sources.Select(p => new NugetRepository(p)).ToArray());
             _webHost = webHost;
+            _starterPack = starterPack;
         }
 
 
@@ -48,11 +52,7 @@ namespace Yee.Runtime.YeeProviders
                 return modules;
             }
 
-            var startModule = _nupkgStorage.GetAssemblyMetadataFromAssemblyName(new NugetPacket
-            {
-                Id = "Yee.Starter",
-                Version = "0.1.1"
-            }, _combineNugetRepository).Result;
+            var startModule = _nupkgStorage.GetAssemblyMetadataFromAssemblyName(_starterPack.Value, _combineNugetRepository).Result;
 
             return new List<BaseYeeModule> { LoadSingleModule(startModule) };
         }

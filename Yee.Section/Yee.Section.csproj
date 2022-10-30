@@ -30,11 +30,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Routing.Abstractions" Version="2.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Yee.Ant\Yee.Ant.csproj" />
-    <ProjectReference Include="..\Yee\Yee.csproj" />
+    <PackageReference Include="Yee.Ant" Version="0.2.1" />
   </ItemGroup>
 
 </Project>

@@ -23,11 +23,8 @@
 			<PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
-	
-  <ItemGroup>
-    <ProjectReference Include="..\Yee.EntityFrameworkCore\Yee.EntityFrameworkCore.csproj" />
-  </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
+		<PackageReference Include="Yee.EntityFrameworkCore" Version="0.2.1" />
 	</ItemGroup>
 </Project>

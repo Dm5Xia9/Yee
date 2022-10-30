@@ -29,11 +29,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Yee.Ant\Yee.Ant.csproj" />
-    <ProjectReference Include="..\Yee.Nuget\Yee.Nuget.csproj" />
+    <PackageReference Include="Yee.Ant" Version="0.2.1" />
+    <PackageReference Include="Yee.Nuget" Version="0.2.1" />
   </ItemGroup>
 
 </Project>

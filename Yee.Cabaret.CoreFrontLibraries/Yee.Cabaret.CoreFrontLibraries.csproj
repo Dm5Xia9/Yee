@@ -1,10 +1,27 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	  	  <PackageIcon>logo.png</PackageIcon>
+	  <RepositoryUrl>https://github.com/Dm5Xia9/Yee</RepositoryUrl>
+	  <PackageTags>yee; nuget;</PackageTags>
+	  <AssemblyVersion>0.2.3</AssemblyVersion>
+	  <FileVersion>0.2.3</FileVersion>
+	  <Version>0.2.3</Version>
+	  <Authors>Yee</Authors>
+	  <Company>Yee</Company>
+	  <Product>Yee</Product>
+	  <Description>Yee.Cabaret.CoreFrontLibraries</Description>	  
   </PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\Downloads\logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 
   <ItemGroup>
@@ -13,11 +30,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />
-    <ProjectReference Include="..\Yee\Yee.csproj" />
+    <PackageReference Include="Yee.Web" Version="0.2.1" />
   </ItemGroup>
 
 </Project>

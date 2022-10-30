@@ -1,0 +1,7 @@
+version: '2.0'
+services:
+  yee:
+    image: xia5dm9/yee.runtime:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"

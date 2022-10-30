@@ -7,9 +7,9 @@
 	  <PackageIcon>logo.png</PackageIcon>
 	  <RepositoryUrl>https://github.com/Dm5Xia9/Yee</RepositoryUrl>
 	  <PackageTags>yee; nuget;</PackageTags>
-	  <AssemblyVersion>0.2.1</AssemblyVersion>
-	  <FileVersion>0.2.1</FileVersion>
-	  <Version>0.2.1</Version>
+	  <AssemblyVersion>0.2.3</AssemblyVersion>
+	  <FileVersion>0.2.3</FileVersion>
+	  <Version>0.2.3</Version>
 	  <Authors>Yee</Authors>
 	  <Company>Yee</Company>
 	  <Product>Yee</Product>
@@ -21,23 +21,19 @@
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Yee.Ant\Yee.Ant.csproj" />
-    <ProjectReference Include="..\Yee.EntityFrameworkCore.Identity\Yee.EntityFrameworkCore.Identity.csproj" />
-    <ProjectReference Include="..\Yee.FileStorage\Yee.FileStorage.csproj" />
-    <ProjectReference Include="..\Yee.Metronic\Yee.Metronic.csproj" />
-    <ProjectReference Include="..\Yee.Nuget.WebComponent\Yee.Nuget.WebComponent.csproj" />
-    <ProjectReference Include="..\Yee.Page\Yee.Page.csproj" />
-    <ProjectReference Include="..\Yee.Section.Base\Yee.Section.Base.csproj" />
-    <ProjectReference Include="..\Yee.Section\Yee.Section.csproj" />
-    <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />
-    <ProjectReference Include="..\Yee\Yee.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
+		<PackageReference Include="Yee.Ant" Version="0.2.1" />
+		<PackageReference Include="Yee.EntityFrameworkCore.Identity" Version="0.2.1" />
+		<PackageReference Include="Yee.FileStorage" Version="0.2.1" />
+		<PackageReference Include="Yee.Metronic" Version="0.2.1" />
+		<PackageReference Include="Yee.Nuget.WebComponent" Version="0.2.1" />
+		<PackageReference Include="Yee.Page" Version="0.2.1" />
+		<PackageReference Include="Yee.Section.Base" Version="0.2.1" />
+		<PackageReference Include="Yee.Web" Version="0.2.1" />
 
+	</ItemGroup>
   <ItemGroup>
     <Folder Include="AdminNavigation\" />
     <Folder Include="Component\Section\" />

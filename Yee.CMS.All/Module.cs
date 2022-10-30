@@ -16,6 +16,10 @@ namespace Yee.CMS.All
             var a3 = typeof(Yee.Admin.PageEngine.Module);
             var a4 = typeof(Yee.EntityFrameworkCore.Npgsql.Module);
 
+            Console.WriteLine(a1);
+            Console.WriteLine(a2);
+            Console.WriteLine(a3);
+            Console.WriteLine(a4);
         }
     }
 }
