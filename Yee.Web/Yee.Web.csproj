@@ -4,9 +4,26 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  <PackageIcon>logo.png</PackageIcon>
+	  <RepositoryUrl>https://github.com/Dm5Xia9/Yee</RepositoryUrl>
+	  <PackageTags>yee; nuget;</PackageTags>
+	  <AssemblyVersion>0.2.1</AssemblyVersion>
+	  <FileVersion>0.2.1</FileVersion>
+	  <Version>0.2.1</Version>
+	  <Authors>Yee</Authors>
+	  <Company>Yee</Company>
+	  <Product>Yee</Product>
+	  <Description>Main Web Api</Description>
   </PropertyGroup>
+
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\..\Downloads\logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>

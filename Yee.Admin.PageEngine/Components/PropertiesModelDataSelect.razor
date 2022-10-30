@@ -7,8 +7,8 @@
             TItemValue="Yee.Page.Models.YeePropertyValue"
             DataSource="@PropertyValues"
             @bind-Value="@_selectedValue"
+            DefaultValue="DefualtValue"
             LabelName="@nameof(Yee.Page.Models.YeePropertyValue.DisplayName)"
-            DefaultActiveFirstOption
             Style="width: 200px;"
             OnSelectedItemChanged="OnSelectedItemChangedHandler">
         <ItemTemplate>
@@ -24,6 +24,9 @@
 
     [Parameter]
     public EventCallback<Yee.Page.Models.YeePropertyValue> OnSelect { get; set; }
+
+    [Parameter]
+    public Yee.Page.Models.YeePropertyValue DefualtValue { get; set; }
 
     public List<Yee.Page.Models.YeePropertyValue> PropertyValues { get; set; }
 

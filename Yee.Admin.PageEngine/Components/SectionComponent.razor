@@ -30,12 +30,12 @@
                     }
                     <div style="display: flex; margin: 10px;">
                         <div style="margin: 10px;">
-                            <PropertiesModelDataSelect>
+                            <PropertiesModelDataSelect OnSelect="p => LinkedValueCurrent = p" DefualtValue="property.YeePropertyValue">
 
                             </PropertiesModelDataSelect>
                         </div>
 
-                        <AntDesign.Button Style="margin: 10px;">Привязать</AntDesign.Button>
+                        <AntDesign.Button Style="margin: 10px;" OnClick="() => Linked(property)">Привязать</AntDesign.Button>
                         @if (property.YeePropertyValue.IsModelData == false)
                         {
                             <AntDesign.Button OnClick="() => ToModel(property)" Style="margin: 10px;">Вынести в модель</AntDesign.Button>
@@ -72,6 +72,8 @@
         }
     }
 
+    public Yee.Page.Models.YeePropertyValue LinkedValueCurrent { get; set; }
+
     [Parameter] public Guid Id { get; set; }
     [Parameter] public Type SectionType { get; set; }
 
@@ -100,6 +102,18 @@
         public Guid Id { get; set; }
         public Type SectionType { get; set; }
         public Dictionary<PropertyInfo, object> Values { get; set; }
+    }
+
+    public void Linked(Yee.Page.Models.YeeProperty yeeProperty)
+    {
+        if (LinkedValueCurrent == null)
+            return;
+
+        yeeProperty.YeePropertyValue = LinkedValueCurrent;
+        yeeProperty.YeePropertyValueId = LinkedValueCurrent.Id;
+
+        OnChangeValues.InvokeAsync(Values);
+        StateHasChanged();
     }
 
     public void ToModel(Yee.Page.Models.YeeProperty propertyInfo)

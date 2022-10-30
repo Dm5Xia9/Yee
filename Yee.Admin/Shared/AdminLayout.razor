@@ -3,7 +3,8 @@
 @using Yee.Web.Services
 
 @inject YeeViewManager manager
-
+@inject DbContextState state
+@inject NavigationManager navigation
 @*<BodySetter Id="kt_body" ClassName="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize aside-minimize-hoverable page-loading"></BodySetter>*@
 <div class="d-flex flex-column flex-root">
     <!--begin::Page-->
@@ -115,3 +116,16 @@
     </span>
 </div>
 <!--end::Scrolltop-->
+
+@code{
+
+    protected override void OnInitialized()
+    {
+        if (state.All(p => p.Value.IsWorked == false))
+        {
+            navigation.NavigateTo("/admin/options/NpgsqlOptions");
+            return;
+        }
+        base.OnInitialized();
+    }
+}

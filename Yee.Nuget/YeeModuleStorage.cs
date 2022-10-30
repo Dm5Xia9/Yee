@@ -33,6 +33,11 @@ namespace Yee.Nuget
             _modules.Value.Add(mgModule);
         }
 
+        public void Clear()
+        {
+            _modules.Value.Clear();
+        }
+
         public void Save()
         {
             _rootOptions.Set("CurrentModules", _modules);
