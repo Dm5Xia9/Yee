@@ -5,6 +5,7 @@
 @using Yee.Page.Models;
 @using System.Reflection
 @using Yee.Admin.PageEngine.Services
+@inherits Yee.Web.Abstractions.UpdatedPage
 @using Yee.Page.Services;
 <BodySetter Id="@Route.Page.BodyId" ClassName="@Route.Page.BodyClass"></BodySetter>
 
@@ -74,6 +75,12 @@
         Route = state.GetCurrent(manager);
 
         return Task.CompletedTask;
+    }
+
+    public override void Update()
+    {
+        Route = state.GetCurrent(manager);
+        StateHasChanged();
     }
 
     public Dictionary<string, object> CreateParameters(Type type, Dictionary<string, Newtonsoft.Json.Linq.JObject> values)
