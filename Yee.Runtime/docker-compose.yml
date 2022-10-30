@@ -5,3 +5,5 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
+    environment:
+      -         "ASPNETCORE_ENVIRONMENT": "Development"
