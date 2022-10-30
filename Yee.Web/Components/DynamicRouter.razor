@@ -61,7 +61,12 @@
 
             @if (item != null)
             {
-                <DynamicComponent Type="item"></DynamicComponent>
+                <DynamicComponent Type="item" @ref="Ref"></DynamicComponent>
+
+                if (item.GetInterfaces().Contains(typeof(Yee.Web.Abstractions.IUpdatedPage)))
+                {
+                    (Ref?.Instance as Yee.Web.Abstractions.IUpdatedPage)?.Update();
+                }
             }
             else
             {
@@ -80,13 +85,15 @@
 @code{
 
 
+    public DynamicComponent Ref { get; set; }
+
     [Parameter] public System.Reflection.Assembly AppAssembly { get; set; }
 
 
     [Parameter] public IEnumerable<Type> Layouts { get; set; }
 
     public class NotFoundLayout
-        {
+    {
 
-        }
+    }
 }
