@@ -9,36 +9,7 @@ using Yee.Runtime.Builder.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 using Yee.Web;
 
-//TOdyu
-//страница со всеми страницами
-//добавление возможности опубликовать страницу
-//добавление возможности настроить права доступа на страницу
-//прототипы-формы
-//система контекста страница, в которой секции может получить полную информацию о других секциях на странице
-//Layout-секция. Позволяет внутри себя выбрать другие секции
-//наследуемая модель прототипов и секций, где возможно модифициаровать любую секцию,
-//прототип или обработчик без влезания непосредственно в код исходного объекта
 
-//админка как набор секций. Админка должан быть на 100% сформирована с помощью секций и прототипов (кроме редактора страницы)
-//модульность через nuget, проверка и подготовка к релизу
-//----------сделать до 27-29 числа--------------
-//подготовка документации
-//гайд по развертыванию, DockerFile
-//расширения для vs добавляющее все необходимое для начала разработки и тестирования модулей
-
-//var mvc = YeeAssemblyHelpers.CreateDefualtModule
-//                    (typeof(Yee.MVC.Module).Assembly)
-//                    .AddDeps(new List<BaseYeeModule>
-//                    {
-
-//                    });
-
-//var forms = YeeAssemblyHelpers.CreateDefualtModule
-//                    (typeof(Yee.Forms.Module).Assembly)
-//                    .AddDeps(new List<BaseYeeModule>
-//                    {
-//                        mvc
-//                    });
 
 var section = YeeAssemblyHelpers.CreateDefualtModule
                     (typeof(Yee.Section.Module).Assembly)
