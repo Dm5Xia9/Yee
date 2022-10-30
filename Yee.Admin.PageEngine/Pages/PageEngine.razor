@@ -88,8 +88,7 @@
                         <div>
                             @if (IsShow)
                             {
-                                @foreach (var section in Page.YeeComponents
-                                   .Where(p => p.IsHeader == false).OrderBy(p => p.Order))
+                                @foreach (var section in GetSegments())
                                 {
                                     var type = section.ComponentRef.Type;
                                     if (type == null)
@@ -389,5 +388,12 @@
     public void ToAdminPanel()
     {
         navigation.NavigateTo("/admin");
+    }
+
+    private List<YeeComponentValues> GetSegments()
+    {
+        var result = Page.YeeComponents.Where(p => p.IsHeader == false).OrderBy(p => p.Order).ToList();
+        Console.WriteLine($"{result.Count}");
+        return result;
     }
 }
