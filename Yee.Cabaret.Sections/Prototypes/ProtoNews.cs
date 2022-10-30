@@ -35,5 +35,7 @@ namespace Yee.Cabaret.Sections.Prototypes
         public ProtoDate Date { get; set; }
         [DisplayName("Место проведения")]
         public ProtoString Place { get; set; }
+        [DisplayName("Ссылка на событие")]
+        public ProtoLink Url { get; set; }
     }
 }
