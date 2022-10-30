@@ -1,0 +1,43 @@
+﻿@inherits ProtoHandler<ProtoImg, string>
+@using Yee.Services
+@inject FileStorageCollection fileStorage
+@using AntDesign
+<div style=" width: 33rem; display: flex; align-items: center;">
+    <label style="padding-right: 2rem;">@(Proto.DisplayName ?? "Изображения")</label>
+
+    <Select Mode="defualt"
+            DataSource="@fileStorage.SelectMany(p => p.GetAllFiles()).Where(p => p.LocalPath.EndsWith(".jpg") || p.LocalPath.EndsWith(".png")).Select(p => p.LocalPath)"
+            Placeholder="Please"
+            @bind-Value="Model"
+            TItemValue="string"
+            TItem="string"
+            EnableSearch>
+        <ItemTemplate>
+            <div style="display:flex">
+                <img src="@context " style=" width: 20rem;" />
+                <div>
+                    <a href="@context"></a>
+                </div>
+            </div>
+        </ItemTemplate>
+        @*<SelectOptions>
+                @foreach (var item in fileStorage.GetAllPublicFiles().Where(p => p.EndsWith(".jpg") || p.EndsWith(".png")))
+                {
+                    <SelectOption TItemValue="string" TItem="string" Value=@item Label=@item>
+                    </SelectOption>
+                }
+            </SelectOptions>*@
+    </Select>
+</div>
+
+@code {
+
+    protected override string NewModel => "";
+    string _selectedValues;
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _selectedValues = Model;
+    }
+
+}

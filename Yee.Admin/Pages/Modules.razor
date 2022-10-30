@@ -1,0 +1,70 @@
+﻿@page "/admin/modules"
+
+@using Yee.Services;
+@using Yee.Abstractions
+
+
+
+@inject YeeModuleManager moduleManager
+
+
+<AdminPage>
+    <Header>
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <!--begin::Page Heading-->
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Модули</h5>
+                <!--end::Page Title-->
+            </div>
+            <!--end::Page Heading-->
+        </div>
+    </Header>
+    <Body>
+        <div style="padding: 10px;">
+
+            <Yee.Admin.Component.Modules.ModulesTree Modules="moduleManager.Modules" 
+                                                     OnSelect="Select">
+
+            </Yee.Admin.Component.Modules.ModulesTree>
+
+            @if (SelectNode != null)
+                {
+                    <div>
+                        <h4>
+                            @SelectNode.AssemblyName.Name
+                        </h4>
+                        
+                    </div>
+                }
+            @*@foreach (var module in moduleManager.ToAlignmentTrees())
+                {
+
+                    <div>
+                        @module.AssemblyName
+                        <div>
+                            Модуль использует:
+                        </div>
+                        <div style="padding-left: 1rem;">
+                            @foreach (var builder in module.Builder)
+                            {
+                                <div>
+                                    @builder.Key
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }*@
+        </div>
+    </Body>
+</AdminPage>
+
+@code{
+    public BaseYeeModule SelectNode { get; set; }
+
+    public void Select(BaseYeeModule node)
+    {
+        SelectNode = node;
+        StateHasChanged();
+    }
+}

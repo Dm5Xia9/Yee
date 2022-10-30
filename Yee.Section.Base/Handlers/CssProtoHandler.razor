@@ -1,0 +1,43 @@
+﻿@inherits ProtoHandler<ProtoCssClass, List<string>>
+@using AntDesign 
+<div style=" width: 33rem; display: flex; align-items: center;">
+    <label style="padding-right: 2rem;">@(Proto.DisplayName ?? "Классы")</label>
+
+    <Select Mode="tags"
+            Placeholder="Please select"
+            @bind-Values="_selectedValues"
+            TItemValue="string"
+            TItem="string"
+            EnableSearch>
+        <SelectOptions>
+            @foreach (var item in _items)
+            {
+                <SelectOption TItemValue="string" TItem="string" Value=@item Label=@item />
+            }
+        </SelectOptions>
+    </Select>
+</div>
+
+@code {
+
+    protected override List<string> NewModel => new List<string> { };
+    IEnumerable<string> _selectedValues;
+    List<string> _items = new List<string>
+    {
+        "btn"
+    };
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _selectedValues = Model;
+    }
+
+    private void OnSelectedItemsChangedHandler(IEnumerable<string> values)
+    {
+        if (values != null)
+        {
+            Model = values.ToList();
+        }
+    }
+}

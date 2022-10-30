@@ -1,0 +1,49 @@
+﻿@using System.Linq
+@inject AdminCompose adminCompose
+@inject IEnumerable<Yee.Admin.Abstractions.INavPatch> patches
+<ul class="menu-nav">
+
+    @foreach (var item in adminCompose.Navigations)
+    {
+        if (item.IsGroup)
+        {
+            <AdminNavGroup Item="item"></AdminNavGroup>
+        }
+        else if (item.IsGroup == false)
+        {
+            <AdminNavItem Item="item"></AdminNavItem>
+        }
+
+    }
+
+    @foreach (var item in PatchMenuItems)
+    {
+        if (item.IsGroup)
+        {
+            <AdminNavGroup Item="item"></AdminNavGroup>
+        }
+        else if (item.IsGroup == false)
+        {
+
+            <AdminNavItem Item="item" Link="@item.Link"></AdminNavItem>
+        }
+
+    }
+</ul>
+
+@code{
+    public List<NavMenuItem> PatchMenuItems { get; set; }
+        = new List<NavMenuItem>();
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            foreach(var patch in patches)
+            {
+                patch.Patch(PatchMenuItems);
+                StateHasChanged();
+            }
+        }
+    }
+}

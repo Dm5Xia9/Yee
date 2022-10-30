@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col">
+        <div class="card card-custom mb-4">
+            <div class="card-body">
+                <!--begin::Top-->
+                <div class="d-flex">
+                    <!--begin: Info-->
+                    <div class="flex-grow-1">
+                        <!--begin::Title-->
+                        <div class="d-flex align-items-center justify-content-between flex-nowrap">
+                            <div>@ChildContent</div>
+                            <div class="d-flex align-items-center flex-nowrap">
+                                <a class="btn btn-icon btn-light-success btn-sm btn-circle mr-2" @onclick="@OnEdit"><i class="flaticon2-edit"></i></a>
+                                <a class="btn btn-icon btn-light-danger btn-sm btn-circle mr-2" @onclick="@OnDelete"><i class="flaticon2-trash"></i></a>
+                            </div>
+                        </div>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Info-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback OnDelete { get; set; }
+
+    [Parameter]
+    public EventCallback OnEdit { get; set; }
+}

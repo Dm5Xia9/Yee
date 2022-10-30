@@ -1,0 +1,133 @@
+﻿@page "/admin/files"
+@using Yee.FileStorage.Services
+@using Yee.Services
+@inject FileStorageCollection fileStorage
+@using AntDesign
+@using System
+@using System.IO
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Logging
+@using Microsoft.AspNetCore.Components.Forms
+<AdminPage>
+    <Header>
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <!--begin::Page Heading-->
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Файлы</h5>
+
+                <!--end::Page Title-->
+            </div>
+            <!--end::Page Heading-->
+        </div>
+    </Header>
+    <Body>
+        <div style="padding: 1rem;">
+
+            @foreach (var storage in fileStorage)
+            {
+                <div>
+                    <div style=" font-size: 2rem; font-weight: 600; width: 100%; text-align: center;">
+                        @storage.Name
+                    </div>
+                    <div>
+                        <InputFile OnChange="@(p => LoadFiles(storage, p))" multiple />
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-around; }">
+                        @foreach (var file in storage.GetAllFiles())
+                        {
+                            <div style=" display: flex; align-items: center; justify-content: center;">
+                                <a href="@($"/admin/file/{storage.Name}/?u={file.LocalPath}")">
+                                    @if (file.LocalPath.EndsWith(".jpg") || file.LocalPath.EndsWith(".png"))
+                                    {
+                                        <img src="@file.LocalPath" style=" width: 10rem; border: #9900FF 0.2rem solid;" />
+                                    }
+                                    else
+                                    {
+                                        <div style=" position: absolute; width: 10rem; height: 10rem; text-align: center; padding: 4rem 0; color: #33CC66; opacity: 1; font-weight: 800;">
+                                            @file.LocalPath
+                                        </div>
+                                        <img style="width: 10rem; border: #33CC66 0.2rem solid; opacity: 0.1; " src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAclBMVEX19fUAAAD4+Pj7+/suLi7V1dXd3d3t7e0JCQmTk5McHBzx8fH///+AgIAhISHi4uLPz8/JycmEhISLi4vh4eG+vr4oKCgTExObm5tQUFA6OjpsbGxKSkqgoKCpqakYGBhBQUE2NjZ1dXVWVla0tLRjY2OCcjCVAAADbUlEQVR4nO3di3KiQBCF4blEiQLi3bgbExOT93/FNVUGyJYWu0Wf7ik83wvAX6MCw4DOERERERERERERERHRcIUIFqwDNxOsp5FtY773cJPCMDCu8IHer6JdYfilUehXhqP4oFJomahU6JdmiVqFdqN4KfxdQjy3E41+bi6F4wLiydsnXgpHkINynCTwQdUstElULTRJVCmcWiaqFK5Whokqhcti6R+tEpUKY1mPovaVhlKhK5pE5VHUKTwf61uJuueoaoVmo6hX6OLSJFGx0EWTUdQs/PFBVTsNVy00GUXdQoufG63j4Tf9RJXCMuYXLlf/oKoU7mbT2mzrm0SNnxvd68O/HRQSbQt9jtjsT8aFY/xNG2zhy9ALQ/Y68EIXRseBF7oQxlfNH4dS+NV4TT6gwusyFsphIQgLBbEQhIWCWAjCQkEsBGGhIBaCsFAQC0FYKIiFICwUxEIQFgpioaD2JiwLQyiu30zpr7X0wrIwLvaz2RZgdnxp1iXYFebFxuM0C2jsCkN4Axb6yr7QVchAv/jejOX3cIcsHNkXBuhjs/u6x/RoUd7ew55OWRKFLlZzjHFoNmJYGG6tnhDQ2uwwz9raWCiIhSAsFMRCEBYKYiEICwVdKRz8eWmxni8gRq0HZEwL3z3KPonrw2J5ew97O9ajyHkaXGEY/lxbfKvfYAFQpVAInfNO4nsYF6fpDCKN+xZnAfNSrLNUjocqWCiIhSAsFMRCEBYKYiEICwXdZaHG6+dNr56yA+adwuVknMTVU1g3LxsVt0lgri3EEy7Q7+oX7hiOYQYM9H6ewDwNuPB7s5YzUchP6WuewBiGant7D/taJDHXFvIP0J+VvFRpHC2AR/zWZnnWJoiFICwUxEIQFgpiIQgLBd1noUKt7RMlEbOq7cept+lc2+a4fYB4e2pyLK/xPzxOWU+ZWj5hCf2rOT5hqVAYXNfbm3tJYOXeP7xkvIdTAnPe5y8iboHpZxIraJ0rsnUFsF5XaTxh6b6+i5hDfnuzPC8VxEIQFgpiIQgLBbEQhIWCWAjCQkEsBGGhIBaCsFAQC0FYKMimMOgXzl2uKttpF061ee1CKyxkYbf4bFtYde9i30LkwoRupcL/cscD8FUmXd41Fie5mI+sVEX37onA3A/933umRERERERERERERER35g971IMi8cgCwAAAAABJRU5ErkJggg==" />
+                                    }
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </Body>
+</AdminPage>
+
+
+
+@code{
+
+    //bool BeforeUpload(UploadFileItem file)
+    //{
+    //    return true;
+    //}
+
+    //void OnSingleCompleted(Yee.Abstractions.IFileStorage fileStorage, UploadInfo fileinfo)
+    //{
+    //    if (    )
+    //    {
+    //        var result = fileinfo.File.GetResponse<ResponseModel>();
+    //        HttpClient client = new HttpClient();
+    //        fileinfo.File.Url = result.url;
+
+    //        var content = client.GetStringAsync(result.url).Result;
+
+    //        fileStorage.SetFile(new Yee.Abstractions.YeeFileInfo(null, fileinfo.File.FileName), System.Text.Encoding.UTF8.GetBytes(content));
+    //    }
+    //}
+
+    private long maxFileSize = long.MaxValue;
+    private int maxAllowedFiles = 1000;
+    private bool isLoading;
+    private List<IBrowserFile> loadedFiles = new();
+
+
+    private async Task LoadFiles(Yee.Abstractions.IFileStorage fileStorage, InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        loadedFiles.Clear();
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            try
+            {
+
+                loadedFiles.Add(file);
+
+
+                using var stream = file.OpenReadStream(maxFileSize);
+                byte[] buffer = new byte[16 * 1024];
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    await stream.CopyToAsync(ms);
+                    fileStorage.SetFile(new Yee.Abstractions.YeeFileInfo(null, file.Name), ms.ToArray());
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        isLoading = false;
+    }
+
+    public class ResponseModel
+    {
+        public string name { get; set; }
+
+        public string status { get; set; }
+
+        public string url { get; set; }
+
+        public string thumbUrl { get; set; }
+    }
+
+}

@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Components.Web 
+@inject NavigationManager _navManager
+@using Yee.Section.Base 
+<li class="menu-item menu-item-submenu @(IsActive ? "menu-item-open" : "")" aria-haspopup="true" data-menu-toggle="hover">
+    <a href="#" class="menu-link menu-toggle" @onclick="ToggleGroupItem" @onclick:preventDefault>
+        <span class="menu-text">@Item.Title</span>
+        <i class="menu-arrow"></i>
+    </a>
+    <div class="menu-submenu" kt-hidden-height="80">
+        @if (Item.HasChilds)
+        {
+            <ul class="menu-subnav">
+                @foreach (var item in Item.ChildItems)
+                {
+                    @if (item.IsGroup)
+                    {
+                        <AdminNavGroup Item="item"></AdminNavGroup>
+                    }
+                    else if (item.IsGroup == false)
+                    {
+                        <AdminNavItem Item="@item" Link="@item.Link"></AdminNavItem>
+                    }
+                }
+            </ul>
+        }
+    </div>
+</li>
+
+
+@code{
+
+    [Parameter] public NavMenuItem Item { get; set; }
+    private bool IsActive = false;
+
+    protected override void OnInitialized()
+    {
+        var currentLink = "/" + _navManager.ToBaseRelativePath(_navManager.Uri);
+        IsActive = Item.ChildItems.Any(i => i.IsActive(currentLink, true));
+    }
+
+    public void ToggleGroupItem()
+    {
+        IsActive = !IsActive;
+        StateHasChanged();
+    }
+
+}

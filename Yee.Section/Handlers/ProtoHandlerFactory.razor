@@ -1,0 +1,92 @@
+﻿@using Yee.Section.Services
+@inject SectionState state
+@using AntDesign
+
+@if (Handlers == null)
+{
+    <div>Прототип @(ProtoType.Name) не имеет реализаций</div>
+}
+else
+{
+    if (Handlers.Count > 1)
+    {
+        <div style=" opacity: 0.7; padding-bottom: 2rem; text-align: center;">
+            <Select Mode="defualt"
+                    DataSource="@Handlers"
+                    Placeholder="Please"
+                    @bind-Value="Type"
+                    TItemValue="Type"
+                    TItem="Type"
+                    EnableSearch>
+                <ItemTemplate>
+                    <div>
+                        @GetDisplayTestFromType(context)
+                    </div>
+                </ItemTemplate>
+                <LabelTemplate>
+                    <div style=" line-height: 1.5rem; height: 100%; text-align: center; padding: 0.8rem 0rem;">
+                        @GetDisplayTestFromType(context)
+
+                    </div>
+                </LabelTemplate>
+            </Select>
+        </div>
+    }
+
+
+    @if (Type != null)
+    {
+        <DynamicComponent Type="Type" Parameters="CreateParameters()"></DynamicComponent>
+    }
+    else
+    {
+        <div>Реализация не выбрана</div>
+    }
+}
+
+
+@code {
+
+    public Type Type { get; set; }
+
+    [Parameter]
+    public Type ProtoType { get; set; }
+
+    [Parameter]
+    public EventCallback<object> OnInput { get; set; }
+
+    [Parameter]
+    public object InputValue { get; set; }
+
+    private List<Type> Handlers { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Handlers = state.ProtoHandlers.FirstOrDefault(p => p.Key == ProtoType).Value?.Handlers;
+        Type = Handlers.FirstOrDefault();
+        //Type = state.ProtoHandlers.FirstOrDefault(p => p.Key == ProtoType).Value;
+        base.OnInitialized();
+    }
+
+    private Dictionary<string, object> CreateParameters()
+    {
+        return new Dictionary<string, object>
+{
+            {"OnInput", OnInput },
+            {"InputValue", InputValue }
+        };
+    }
+
+    private string GetDisplayTestFromType(Type type)
+    {
+        var dText = (Attribute
+            .GetCustomAttribute(type, typeof(System.ComponentModel.DisplayNameAttribute))
+            as System.ComponentModel.DisplayNameAttribute)?.DisplayName;
+
+        if (dText == null)
+            return type.Name;
+
+        return dText;
+
+    }
+}

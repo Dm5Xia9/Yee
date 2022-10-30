@@ -1,0 +1,75 @@
+// Cab CTA Section Styles
+.cab-cta-section {
+    .cab-cta-content {
+        h1 {
+            color: $white;
+            font-weight: 400;
+            font-family: $primaryFont;
+        }
+        .cab-video-check-btn-box {
+            margin-top: 30px;
+            h6 {
+                color: $white;
+                font-family: $secondaryFont;
+                display: inline-block;
+                margin-right: 40px;
+            }
+            .open-video-btn {
+                display: inline-block;
+                width: 58px;
+                height: 58px;
+                line-height: 58px;
+                background: #e9161c88;
+                border-radius: 50%;
+                text-align: center;
+                padding-left: 2px;
+                cursor: pointer;
+                position: relative;
+                z-index: 1;
+                transition: all 0.3s ease;
+                &:hover {
+                    transform: scale(1.1);
+                }
+                &::before {
+                    position: absolute;
+                    content: '';
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    background: #e9161cbb;
+                    border-radius: 50%;
+                    width: 49px;
+                    height: 49px;
+                    z-index: -1;
+                }
+                i {
+                    color: $white;
+                    &::before {
+                        font-size: 20px;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+    &.v2{
+        padding: 130px 0;
+        .cab-cta-content-inner{
+            padding: 0 40px;
+        }
+    }
+    &.v3{
+        .cab-cta-content-inner{
+            h1{
+                padding: 0 40px;
+            }
+            h6{
+                color: $white;
+                font-family: $secondaryFont;
+                font-size: 26px;
+                padding: 20px 0 36px;
+
+            }
+        }
+    }
+}

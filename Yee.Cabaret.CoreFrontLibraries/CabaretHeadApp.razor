@@ -1,0 +1,10 @@
+﻿@inject YeeViewManager manager
+@using Yee.Web.Services
+
+@{
+    var baseUri = manager.CreateBaseUri(typeof(CabaretHeadApp).Assembly);
+}
+
+
+<link href="@(baseUri)/css/cab_app.css" rel="stylesheet" />
+<link href="@(baseUri)/css/cab_main.css" rel="stylesheet" />

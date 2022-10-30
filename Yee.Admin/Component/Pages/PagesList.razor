@@ -1,0 +1,96 @@
+﻿@using AntDesign
+@using Ability.Core.Models
+@using Yee.Page.Models
+@using Yee.Page
+@inject NavigationManager navManager
+@inject PageDbContext pageContext
+@inject Yee.EntityFrameworkCore.DbContextFactory contextFactory
+@using Microsoft.EntityFrameworkCore 
+@*@if (StateValue != null)
+{
+    <DbStateScreen State="StateValue">
+        @if (Users != null)
+        {
+            @foreach (var user in Users)
+            {
+                <div>
+                    @user.UserName
+                </div>
+            }
+        }
+    </DbStateScreen>
+}*@
+
+<div style="padding: 20px;">
+    <Table TItem="YeePage"
+           DataSource="@Pages"
+            Total="_total"
+            @bind-PageIndex="_pageIndex"
+            @bind-PageSize="_pageSize">
+        <Column @bind-Field="@context.Id" Sortable/>
+        <Column TData="string" Title="Страница" Sortable>
+            <a href="@(navManager.ToAbsoluteUri($"/admin/pageEngine/{context.Id}"))">@(context.DisplayName ?? $"/admin/pageEngine/{context.Id}")</a>
+        </Column>
+        <Column @bind-Field="@context.CreatedAt" Format="dd.MM.yyyy hh:mm"/>
+
+        <ActionColumn>
+            <Button OnClick="async () => await OnCopy.InvokeAsync(context)">
+                Скопировать
+            </Button>
+        </ActionColumn>
+        @*<ActionColumn>
+            <Space>
+                <SpaceItem><Button OnClick="() => Edit(context.Id)">Edit</Button></SpaceItem>
+            </Space>
+        </ActionColumn>
+        <ActionColumn>
+            <Space>
+                <SpaceItem><Button OnClick="() => ViewProfile(context.Id)">View Profile</Button></SpaceItem>
+            </Space>
+        </ActionColumn>
+        <ActionColumn>
+            <Space>
+                <SpaceItem><Switch OnChange="@(value => HandleActiveChanged(context, value))" @bind-Value="@(context.Active)"/></SpaceItem>
+            </Space>
+        </ActionColumn>*@
+    </Table>
+
+    <p>PageIndex: @_pageIndex | PageSize: @_pageSize</p>
+</div>
+
+@code {
+    public DbContextStateValue StateValue { get; set; }
+
+    [Parameter]
+    public EventCallback<YeePage> OnCopy { get; set; }
+
+    [Parameter]
+    public List<YeePage> Pages { get; set; }
+
+    private int _pageIndex = 1;
+    private int _pageSize = 20;
+    private int _total = 0;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+
+            await Refrash(Pages);
+        }
+    }
+
+    public async Task Refrash(List<YeePage> pages = null)
+    {
+        if(pages == null)
+        {
+            Pages = await pageContext.YeePages.OrderByDescending(p => p.CreatedAt).ToListAsync();
+        }
+        else
+        {
+            Pages = pages;
+        }
+        StateHasChanged();
+
+    }
+}

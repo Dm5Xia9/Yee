@@ -1,0 +1,50 @@
+﻿@inject NavigationManager _navManager
+
+
+
+@*<<<<<<< HEAD
+<li class="menu-item" aria-haspopup="true">
+    <NavLink href="@Item.Link.Value" @onclick="NavigationTo" class="menu-link">
+        <span class="menu-text">@Item.Title</span>
+    </NavLink>
+</li>
+@code{
+    [Parameter] public NavMenuItem Item { get; set; }
+=======*@
+<li class="menu-item @(IsActive ? "menu-item-active" : "")" aria-haspopup="true">
+    <NavLink href="@Item.Link" class="menu-link">
+        <span class="menu-text">@Item.Title</span>
+    </NavLink>
+</li>
+@code {
+    [Parameter] public string Link { get; set; }
+    [Parameter] public NavMenuItem Item { get; set; }
+    private bool IsActive { get; set; }
+
+    protected override void OnInitialized()
+    {
+        IsActive = IsItemActive();
+    }
+
+    public bool IsItemActive()
+    {
+        var currentLink = "/" + _navManager.ToBaseRelativePath(_navManager.Uri);
+        return currentLink == Link;
+    }
+
+    public void NavigationTo()
+    {
+        _navManager.NavigateTo(Item.Link);
+    }
+
+    private void HandleLocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        var currentLink = "/" + _navManager.ToBaseRelativePath(e.Location);
+        var isActive = currentLink == Link;
+        if (isActive != IsActive)
+        {
+            IsActive = isActive;
+            StateHasChanged();
+        }
+    }
+}

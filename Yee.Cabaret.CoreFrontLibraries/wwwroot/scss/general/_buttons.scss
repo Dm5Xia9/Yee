@@ -1,0 +1,276 @@
+// Buttons Styles
+.cab-btn {
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 15px 30px;
+    display: inline-block;
+    font-family: $primaryFont;
+    text-transform: capitalize;
+    transition: all 0.3s ease-in-out;
+    i {
+        font-size: 12px;
+        margin-left: 6px;
+    }
+    &.px-extra-padding {
+        padding: 20px 48px !important;
+    }
+    &.padding-v2 {
+        padding: 14px 40px !important;
+    }
+    &.padding-v3 {
+        padding: 8px 28px !important;
+    }
+    &.cab-btn-topbar {
+        background: $white !important;
+        padding: 12px 26px !important;
+    }
+    &:active,
+    &:focus {
+        outline: 0;
+        text-decoration: none;
+        box-shadow: none;
+    }
+    &.cab-btn-primary {
+        background: $accentColor;
+        color: $primaryColor;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0%;
+            left: -8%;
+            height: 100%;
+            width: 10%;
+            background: $primaryColor;
+            border-radius: 0 50% 50% 0;
+            z-index: -1;
+            visibility: hidden;
+            transform: translateY(-50%, -50%);
+            transition: all 0.4s ease-in-out;
+        }
+        &:hover {
+            color: $accentColor;
+            text-decoration: none;
+            &:before {
+                visibility: visible;
+                width: 140%;
+                border-radius: 0 80px 80px 0;
+            }
+        }
+    }
+    &.cab-btn-primary-outline {
+        background: transparent;
+        border: 2px solid $primaryColor;
+        color: $primaryColor;
+        padding: 15px 30px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0%;
+            left: -8%;
+            height: 100%;
+            width: 10%;
+            background: $primaryColor;
+            border-radius: 0 50% 50% 0;
+            z-index: -1;
+            visibility: hidden;
+            transform: translateY(-50%, -50%);
+            transition: all 0.4s ease-in-out;
+        }
+        &:hover {
+            color: $accentColor;
+            text-decoration: none;
+            &::before {
+                visibility: visible;
+                width: 140%;
+                border-radius: 0 80px 80px 0;
+            }
+        }
+    }
+    &.cab-btn-primary-filled {
+        background: $primaryColor;
+        border: 2px solid $primaryColor;
+        color: $white;
+        padding: 15px 30px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        &.alt{
+                &:before{
+                    background: $lightSecondaryDarkColor;
+                }
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0%;
+            left: -8%;
+            height: 100%;
+            width: 10%;
+            background: $white;
+            border-radius: 0 50% 50% 0;
+            z-index: -1;
+            visibility: hidden;
+            transform: translateY(-50%, -50%);
+            transition: all 0.4s ease-in-out;
+        }
+        &:hover {
+            color: $primaryColor;
+            text-decoration: none;
+            border: 2px solid $primaryColor;
+            &:before {
+                visibility: visible;
+                width: 140%;
+                border-radius: 0 80px 80px 0;
+            }
+        }
+    }
+    &.cab-btn-secondary {
+        background: $secondaryColor;
+        color: $white;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0%;
+            left: -8%;
+            height: 100%;
+            width: 10%;
+            background: $white;
+            border-radius: 0 50% 50% 0;
+            z-index: -1;
+            visibility: hidden;
+            transform: translateY(-50%, -50%);
+            transition: all 0.4s ease-in-out;
+        }
+        &:hover {
+            color: $secondaryColor;
+            text-decoration: none;
+            &:before {
+                visibility: visible;
+                width: 140%;
+                border-radius: 0 80px 80px 0;
+            }
+        }
+    }
+    &.cab-btn-secondary-outline {
+        background: transparent;
+        border: 2px solid $secondaryColor;
+        color: $secondaryColor;
+        padding: 15px 30px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0%;
+            left: -8%;
+            height: 100%;
+            width: 10%;
+            background: $secondaryColor;
+            border-radius: 0 50% 50% 0;
+            z-index: -1;
+            visibility: hidden;
+            transform: translateY(-50%, -50%);
+            transition: all 0.4s ease-in-out;
+        }
+        &:hover {
+            color: $white;
+            text-decoration: none;
+            &::before {
+                visibility: visible;
+                width: 140%;
+                border-radius: 0 80px 80px 0;
+            }
+        }
+    }
+    &.cab-btn-secondary-filled {
+        background: $secondaryColor;
+        border: 2px solid $secondaryColor;
+        color: $white;
+        padding: 15px 30px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0%;
+            left: -8%;
+            height: 100%;
+            width: 10%;
+            background: $white;
+            border-radius: 0 50% 50% 0;
+            z-index: -1;
+            visibility: hidden;
+            transform: translateY(-50%, -50%);
+            transition: all 0.4s ease-in-out;
+        }
+        &:hover {
+            color: $secondaryColor;
+            text-decoration: none;
+            border: 2px solid $secondaryColor;
+            &:before {
+                visibility: visible;
+                width: 140%;
+                border-radius: 0 80px 80px 0;
+            }
+        }
+    }
+}
+
+.secondary-link,
+.secondary-link:visited,
+.secondary-link:active {
+    display: inline-block;
+    background: $secondaryColor;
+    border: 2px solid $secondaryColor;
+    color: $white;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 42px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    &.primary,
+    &.primary:visited,
+    &.primary:active {
+        background: $primaryColor;
+        border-color: $primaryColor;
+        &:hover{
+            background: $white;
+        }
+    }
+    &:hover {
+        color: $primaryColor;
+        border: 2px solid $primaryColor;
+        text-decoration: none;
+        background: $white;
+    }
+}
+
+.cab-btn-default{
+    background: $lightGreyColor;
+    border: 2px solid $lightGreyColor;
+    color: $secondaryColor;
+    padding: 16px 30px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    &:hover{
+        color: $primaryColor;
+        border-color: $primaryColor;
+        background: $white;
+    }
+
+}

@@ -1,0 +1,11 @@
+﻿@inherits ProtoHandler<ProtoTextArea, string>
+
+<div style=" width: 33rem; display: flex; align-items: center;">
+    <label style="padding-right: 2rem;">@(Proto.DisplayName ?? "Строка")</label>
+    <AntDesign.TextArea Rows="3" @bind-Value="Model"></AntDesign.TextArea>
+</div>
+
+@code { 
+
+    protected override string NewModel => "";
+}

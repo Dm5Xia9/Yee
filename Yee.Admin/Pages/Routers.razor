@@ -1,0 +1,45 @@
+﻿@page "/admin/routers"
+
+@using Yee.Page.Services
+
+@inject PageCollection pageCollection
+@using AntDesign
+@inject Yee.Page.Repositories.PageRepository pageRepository
+@inject IMessageService message
+<AdminPage>
+    <Header>
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <!--begin::Page Heading-->
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Страницы</h5>
+                <!--end::Page Title-->
+            </div>
+            <!--end::Page Heading-->
+        </div>
+    </Header>
+    <Body>
+        <div>
+            @*<Input @bind-Value="CurrentName" placeholder="Название страницы" />
+            <Button Type="primary" OnClick="Create" Style="display: inline-block; margin-left: auto; margin: 20px;">
+                Добавить страницу
+            </Button>*@
+
+        </div>
+
+        @if (IsLoad == false)
+        {
+            <Yee.Admin.Component.Routers.RouterList @ref="RefPagesList"></Yee.Admin.Component.Routers.RouterList>
+        }
+    </Body>
+</AdminPage>
+
+@code{
+
+    public string CurrentName { get; set; }
+
+    public bool IsLoad { get; set; }
+
+    public Yee.Admin.Component.Routers.RouterList RefPagesList { get; set; }
+
+}

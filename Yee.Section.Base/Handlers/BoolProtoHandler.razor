@@ -1,0 +1,13 @@
+﻿@inherits ProtoHandler<ProtoBool, bool>
+
+<div style=" width: 33rem; display: flex; align-items: center;">
+    <label style="padding-right: 2rem; margin: 0;">@(Proto.DisplayName ?? "Bool")</label>
+    <AntDesign.Checkbox @bind-Value="Model">
+
+    </AntDesign.Checkbox>
+</div>
+
+@code {
+
+    protected override bool NewModel => false;
+}

@@ -1,0 +1,22 @@
+﻿@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+    [Parameter]
+    public string ClassName { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await Refrash(Id, ClassName);
+    }
+
+    public async Task Refrash(string id, string clas)
+    {
+        Id = id;
+        ClassName = clas;
+        await JS.InvokeVoidAsync("setAttributesAndClassToBody", Id, ClassName);
+    }
+}

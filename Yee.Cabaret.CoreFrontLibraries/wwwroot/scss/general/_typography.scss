@@ -1,0 +1,73 @@
+// Typography Styles
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script|Miniver|Rubik:300,400,500,700,900|Heebo:300,400,500,700,800&display=swap');
+
+$primaryFont: 'Kaushan Script';
+$secondaryFont: 'Miniver';
+$tertiaryFont: 'Rubik';
+$accentFont: 'Heebo';
+.display-1 {
+    font-size: 155px;
+    font-family: $primaryFont;
+    font-weight: 500;
+    color: $accentColor;
+}
+
+.display-2 {
+    font-size: 112px;
+    font-family: $primaryFont;
+    font-weight: 500;
+    color: $accentColor;
+    text-shadow: rgba(0, 0, 0, 0.9) 0px 4px 20px;
+}
+
+.display-3 {
+    font-size: 84px;
+    font-family: $primaryFont;
+    font-weight: 500;
+    color: $accentColor;
+    text-shadow: rgba(0, 0, 0, 0.9) 0px 4px 20px;
+}
+
+.display-4 {
+    font-size: 72px;
+    font-family: $primaryFont;
+    font-weight: 500;
+    color: $white;
+    text-shadow: none;
+}
+
+.heading-style{
+    font-family: $primaryFont;
+    font-weight: 500;
+    color: $secondaryColor;
+}
+
+h1 {
+    font-size: 60px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 50px;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+h4 {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+h5 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+h6 {
+    font-size: 20px;
+    font-weight: 500;
+}

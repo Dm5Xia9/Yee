@@ -1,0 +1,89 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@using Yee.Cabaret.Sections.Prototypes
+@attribute [System.ComponentModel.DisplayName("Предложения")]
+
+<section class="cab-offers-section">
+    <div class="container">
+        <div class="cab-heading-box">
+            <div class="cab-small-heading">
+                <h6>@Offers.Value.SmallHeading</h6>
+            </div>
+            <div class="cab-main-heading">
+                <h1>@Offers.Value.MainHeading.Content <span class="color-primary">@Offers.Value.MainHeading.PrimaryContent</span></h1>
+            </div>
+        </div>
+        <div class="cab-offers-content-box">
+            <div class="row" style="display: flex; justify-content: center;">
+
+                @foreach (var offer in Cards.Value.Where(p => p.Primary.Value == true))
+                {
+
+
+                    @if (offer.Popular.Value)
+                    {
+                        <div class="col-md-4 col-sm-6">
+                            <div class="cab-card popular">
+                                <div class="cab-top-img">
+                                    <img src="@Offers.Value.LogoImg" alt="Popular Image Logo">
+                                </div>
+                                <div class="cab-card-inner-content">
+                                    <h6>@offer.Title</h6>
+                                    <p>
+                                        @offer.Description
+                                    </p>
+                                    <p class="price-tag">@GetDisplayPrice(offer.Price.Value)</p>
+                                </div> 
+                                <div class="h-sep">
+
+                                </div>
+                                <div class="cab-offer-img">
+                                    <img src="@offer.Img" alt="Cabaret Offer Image">
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-4 col-sm-6">
+                            <div class="cab-card xs-pt-0">
+                                <div class="cab-card-inner-content">
+                                    <h6>@offer.Title</h6>
+                                    <p>
+                                        @offer.Description
+                                    </p>
+                                    <p class="price-tag">@GetDisplayPrice(offer.Price.Value)</p>
+                                </div>
+                                <div class="h-sep">
+
+                                </div>
+                                <div class="cab-offer-img">
+                                    <img src="@offer.Img" alt="Cabaret Offer Image">
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    [System.ComponentModel.DisplayName("Предложения")]
+    public ProtoOffers Offers { get; set; }
+
+
+    [Parameter]
+    [System.ComponentModel.DisplayName("Карточки")]
+    public ProtoOfferCards Cards { get; set; }
+
+    public string GetDisplayPrice(decimal price)
+    {
+        return $"{Offers.Value.PriceDisplay}: {Offers.Value.CurrencyDisplay}{price}";
+    }
+}

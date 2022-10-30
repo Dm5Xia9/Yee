@@ -1,0 +1,114 @@
+﻿@page "/admin/options/{name}"
+@inject Yee.Abstractions.IRootOptions rootOption;
+@using Yee.Abstractions 
+<AdminPage>
+    <Header>
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <!--begin::Page Heading-->
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Настройки</h5>
+                <!--end::Page Title-->
+            </div>
+            <!--end::Page Heading-->
+        </div>
+    </Header>
+    <Body>
+        <div style="padding: 10px">
+            @if (IsLoad)
+            {
+                if (OptionValue != null)
+                {
+
+                    <div style="display: flex; justify-content: space-between;">
+                        @*<div style=" width: 48%;">
+                            <div>
+                                Тут настройки типа
+                            </div>
+                        </div>*@
+                        <div style=" width: 50%;">
+                            <textarea @oninput="HandleOnChange" style=" width: 100%; height: 10rem; border: #bebebe 0.1rem solid; border-radius: 4px;">@OptionValue.Value</textarea>
+
+                            @if (CurrentErrors.Any())
+                            {
+                                <div>
+                                    @foreach (var error in CurrentErrors)
+                                    {
+                                        <div>@error</div>
+                                    }
+                                </div>
+                            }
+
+
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    <div>Такого не существует</div>
+                }
+            }
+        </div>
+
+    </Body>
+</AdminPage>
+
+@code {
+    [Parameter] public string Name { get; set; }
+
+    public RootOption<Newtonsoft.Json.Linq.JObject> OptionValue { get; set; }
+    public bool IsLoad { get; set; }
+
+    public List<string> CurrentErrors = new List<string>();
+
+    public object OptionObject { get; set; }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            OptionValue = rootOption.GetDetail<Newtonsoft.Json.Linq.JObject>(Name);
+
+            OptionObject = OptionValue.Value.ToObject(OptionValue.GetCurrentType());
+            IsLoad = true;
+            StateHasChanged();
+        }
+    }
+
+    private async Task HandleOnChange(ChangeEventArgs args)
+    {
+        try
+        {
+            var jObject = Newtonsoft.Json.Linq.JObject.Parse(args.Value.ToString());
+
+            var obj = jObject.ToObject(OptionValue.GetCurrentType());
+
+            OptionValue.Value = jObject;
+            OptionObject = obj;
+            if (CurrentErrors.Any())
+            {
+                CurrentErrors.Clear();
+                StateHasChanged();
+            }
+
+
+        }
+        catch (Exception ex)
+        {
+            if (CurrentErrors.Any())
+            {
+                CurrentErrors.Clear();
+            }
+
+            CurrentErrors.Add(ex.Message);
+            StateHasChanged();
+        }
+
+        if(CurrentErrors.Any() == false)
+        {
+            rootOption.Set(Name, OptionObject);
+        }
+
+    }
+
+}

@@ -1,0 +1,49 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@attribute [System.ComponentModel.DisplayName("Главная навигация")]
+
+@foreach (var item in MenuItems.Value)
+{
+    if (item.IsGroup)
+    {
+        <li class="has-dropdown @(Class.ToString())">
+            <a @onclick="() => ToNav(item.Link)" href="#" class="@Active(item)">@item.Title</a>
+            <div class="dropdown-wrapper">
+                <ul>
+                    @foreach (var child in item.ChildItems)
+                    {
+                        <li>
+                            <a @onclick="() => ToNav(child.Link)" href="#" class="@Active(child)">@child.Title</a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </li>
+    }
+    if (item.IsGroup == false)
+    {
+        <li>
+            <a @onclick="() => ToNav(item.Link)" href="#" class="@Active(item)">@item.Title</a>
+        </li>
+    }
+}
+
+@code {
+    [Parameter]
+    [System.ComponentModel.DisplayName("Элементы меню")]
+    public ProtoNavigation MenuItems { get; set; }
+
+    [Parameter]
+    public ProtoCssClass Class { get; set; }
+
+    public string Active(NavMenuItem menuItem)
+    {
+        if (menuItem.IsActive(NavigationManager.Uri))
+        {
+            return "active";
+        }
+
+        return "";
+    }
+}

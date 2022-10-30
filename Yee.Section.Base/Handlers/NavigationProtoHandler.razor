@@ -1,0 +1,206 @@
+﻿@inherits ProtoHandler<ProtoNavigation, List<NavMenuItem>>
+@using AntDesign
+
+<div style=" width: 33rem; display: flex; align-items: center;">
+    <label style="padding-right: 2rem;">@(Proto.DisplayName ?? "Навигация")</label>
+    <Tree ShowIcon
+          TItem="NavMenuItem"
+          MatchedClass="site-tree-search-value"
+          DataSource="Model"
+          TitleExpression="x => x.DataItem.Title"
+          
+          ChildrenExpression="GetChilds">
+
+        <TitleTemplate>
+            <div style="display:flex">
+                <div>
+                    <Button OnClick="() => AddElement(context)">+</Button>
+                </div>
+                <div style=" width: 20rem; padding-left: 1rem">
+                    <Input TValue="string" Value="@context.DataItem.Title"
+                           OnChange="p => ChangeTitleNode(context, p)" />
+                </div>
+                <div style=" width: 20rem; padding-left: 1rem">
+                    <Input Placeholder="Ссылка" TValue="string" Value="@context.DataItem.Link"
+                           OnChange="p => ChangeLinkNode(context, p)" />
+                </div>
+
+                <div style="padding-left: 1rem">
+                    @if (context.DataItem.IsGroup == false)
+                    {
+                        <Button OnClick="() => ToGroup(context)">в группу</Button>
+                    }
+                    else if (context.DataItem.IsGroup == true)
+                    {
+                        <Button OnClick="() => ToAction(context)">в элемент</Button>
+
+                    }
+                </div>
+            </div>
+        </TitleTemplate>
+    </Tree>
+</div>
+<style>
+    .site-tree-search-value {
+        color: #f50;
+    }
+
+    .ant-tree {
+        background-color: transparent;
+    }
+</style>
+@code {
+
+    protected override List<NavMenuItem> NewModel => new List<NavMenuItem>();
+
+    protected NavMenuItem GetParentFromItem(NavMenuItem menuItem, NavMenuItem root)
+    {
+    @foreach (var item in root.ChildItems)
+        {
+            if (item == menuItem)
+            {
+                return root;
+            }
+
+            if (item.IsGroup)
+            {
+                var result = GetParentFromItem(menuItem, item);
+
+                if (result != null)
+                    return result;
+            }
+        }
+
+        return null;
+    }
+
+    protected List<NavMenuItem> GetParentItemsFromItem(NavMenuItem menuItem)
+    {
+    @foreach (var item in Model)
+        {
+            if (item == menuItem)
+            {
+                return Model;
+            }
+
+            if (item.IsGroup)
+            {
+                var result = GetParentFromItem(menuItem, item);
+
+                if (result != null)
+                    return result.ChildItems;
+            }
+        }
+
+        return null;
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        if (Model.Any() == false)
+        {
+            Model.Add(new NavMenuItem
+            {
+                Title = "название",
+                Link = "Ссылка",
+                Icon = ""
+            });
+        }
+    }
+
+    public void AddElement(TreeNode<NavMenuItem> treeNode)
+    {
+        GetParentItemsFromItem(treeNode.DataItem)
+            .Add(new NavMenuItem
+            {
+                Title = treeNode.DataItem.Title,
+                Link = treeNode.DataItem.Link,
+                Icon = treeNode.DataItem.Icon
+            });
+
+        Input();
+        StateHasChanged();
+
+    }
+
+    public IEnumerable<NavMenuItem> GetChilds(TreeNode<NavMenuItem> treeNode)
+    {
+        if(treeNode.DataItem.IsGroup == false)
+            return new List<NavMenuItem>();
+
+        if (treeNode.DataItem.ChildItems == null || treeNode.DataItem.ChildItems.Any() == false)
+        {
+            treeNode.DataItem.ChildItems = new List<NavMenuItem>();
+
+            return new List<NavMenuItem>
+                {
+                        new NavMenuItem
+                        {
+                            Title = treeNode.DataItem.Title,
+                            Link = treeNode.DataItem.Link,
+                            Icon = treeNode.DataItem.Icon
+                        }
+                    };
+        }
+
+        return treeNode.DataItem.ChildItems;
+    }
+
+    public void ToAction(TreeNode<NavMenuItem> treeNode)
+    {
+        var list = GetParentItemsFromItem(treeNode.DataItem);
+
+        var index = list.IndexOf(treeNode.DataItem);
+
+        list[index] = new NavMenuItem
+        {
+            Title = treeNode.DataItem.Title,
+            Link = treeNode.DataItem.Link,
+            Icon = treeNode.DataItem.Icon
+        };
+        Input();
+        StateHasChanged();
+    }
+
+
+    public void ToGroup(TreeNode<NavMenuItem> treeNode)
+    {
+        var list = GetParentItemsFromItem(treeNode.DataItem);
+
+        var index = list.IndexOf(treeNode.DataItem);
+
+        list[index] = new NavMenuItem
+        {
+            Title = treeNode.DataItem.Title,
+            Link = treeNode.DataItem.Link,
+            Icon = treeNode.DataItem.Icon,
+            ChildItems = new List<NavMenuItem>()
+            {
+                new NavMenuItem
+                {
+                        Title = treeNode.DataItem.Title,
+                        Link = treeNode.DataItem.Link,
+                        Icon = treeNode.DataItem.Icon
+                }
+            }
+        };
+        Input();
+        StateHasChanged();
+    }
+
+    public void ChangeTitleNode(TreeNode<NavMenuItem> node, string value)
+    {
+        node.DataItem.Title = value;
+        Input();
+        StateHasChanged();
+    }
+
+    public void ChangeLinkNode(TreeNode<NavMenuItem> node, string value)
+    {
+        node.DataItem.Link = value;
+        Input();
+        StateHasChanged();
+    }
+}

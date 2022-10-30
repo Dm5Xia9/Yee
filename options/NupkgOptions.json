@@ -1,4 +1,0 @@
-{
-  "Sources": [ "https://api.nuget.org/v3/index.json", "http://49.12.227.30:555/v3/index.json" ],
-  "StoragePath": "C:\\Users\\jackf\\Documents\\ModuleGate\\src\\ModuleGate.Runtime\\bin\\Debug\\net6.0\\storage"
-}

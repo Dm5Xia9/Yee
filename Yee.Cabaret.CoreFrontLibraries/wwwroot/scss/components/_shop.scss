@@ -1,0 +1,460 @@
+// Cab Shop Styles
+.cab-shop-sidebar{
+  padding-right: 30px;
+}
+.ui-slider-horizontal{
+    width: 100%;
+    height: 7px;
+    border-radius: 0;
+}
+.ui-widget-header{
+    background: $primaryColor;
+    
+}
+.ui-widget.ui-widget-content {
+    border: none;
+    background: $lightGreyColor;
+}
+.ui-slider-handle.ui-corner-all.ui-state-default{
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    box-shadow: rgba(0,0,0,0.45) 0px 2px 20px;
+}
+.ui-slider-handle.ui-corner-all.ui-state-default:focus{
+    outline: none;
+}
+.price-range-bottom-bar {
+    margin-top: 32px;
+}
+.apply-filter-btn {
+    float: left;
+}
+.price-value-box {
+    float: right;
+    display: flex;
+    align-items: center;
+    height: 47px;
+    .price-text{
+        color: $tertiaryColor;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-right: 4px;
+    }
+    .sep{
+      display: inline-block;
+      width: 8px;
+      height: 1px;
+      background: $tertiaryColor;
+      position: relative;
+      top: 0px;
+      margin: 0 4px;
+    }
+    .price-range-values{
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 600;
+      color: $tertiaryColor;
+    }
+}
+.ui-slider-handle{
+  cursor: pointer !important;
+}
+.custom-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: $tertiaryColor;
+    font-weight: 400;
+  }
+  .custom-checkbox:hover{
+    color: $secondaryColor;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: transparent;
+    border: 1px solid $tertiaryColor;
+    transition: all 0.3s ease;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .custom-checkbox:hover input ~ .checkmark {
+    background-color: $lightGreyColor;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .custom-checkbox input:checked ~ .checkmark {
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+   
+  }
+  .custom-checkbox .text  {
+    transition: all 0.3s ease;
+  }
+  .custom-checkbox input:checked ~ .text  {
+    color: red !important;
+  }
+
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .custom-checkbox .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .cab-filter-catagories-widget{
+      .cata-list{
+          list-style: none;
+          padding-left: 0;
+          li{
+            padding: 14px 0;
+            border-bottom: 1px solid $lightGreyColor;
+            &:first-child{
+              padding-top: 6px;
+            }
+            &:last-child{
+              border-bottom: none;
+              padding-bottom: 0;
+            }
+          }
+      }
+  }
+
+  .cab-best-seller-widget{
+    .best-seller-box{
+      padding: 12px 0;
+      a{
+        display: block;
+        &:hover{
+          .seller-details{
+            h6{
+              color: $primaryColor
+            }
+          }
+        }
+        .img-box{
+          float: left;
+          width: 68px;
+          height: 68px;
+          background: $lightGreyColor;
+          overflow: hidden;
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+        .seller-details{
+          float: left;
+          padding-left: 18px;
+          width: calc(100% - 68px);
+          h6{
+            font-size: 18px;
+            color: $secondaryColor;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0;
+            
+          }
+          .rating-box{
+            margin: 8px 0 6px;
+            padding: 0;
+          }
+          .price{
+            color: $tertiaryColor;
+            font-size: 14px;
+          }
+        }
+      }
+      
+    }
+  }
+  .cab-offer-widget{
+    .cab-offer-inner{
+      height: 380px;
+      width: 100%;
+      position: relative;
+      .offer-text{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        text-align: center;
+        h5{
+          color: $white;
+          font-size: 36px;
+          font-weight: 300;
+          font-family: $primaryFont;
+        }
+        h3{
+          color: $white;
+          font-size: 64px;
+          font-weight: 300;
+          font-family: $primaryFont;
+        }
+      }
+    }
+  }
+
+  .cab-shop-products-inner{
+    .shop-top-bar{
+      .results-count-box{
+        float: left;
+        color: $tertiaryColor;
+        font-size: 14px;
+        font-weight: 400;
+        padding-top: 6px;
+        .sep{
+          display: inline-block;
+          position: relative;
+          top: -4px;
+          height: 1px;
+          width: 10px;
+          background: $tertiaryColor;
+        }
+      }
+      .sorting-box{
+        float: right;
+        .grid-type{
+          margin-left: 30px;
+          a{
+            display: inline-block;
+            margin-left: 6px;
+            font-size: 16px;
+            color: $tertiaryColor;
+            &:hover,
+            &.active{
+              color: $primaryColor;
+            }
+          }
+        }
+      }
+    }
+    .cab-shop-products-container{
+      margin-top: 18px;
+      
+    }
+  }
+  .cab-product-grid-layout{
+    .cab-product-box{
+      &:hover{
+        .product-img-box{
+          img{
+            transform: scale(1.1);
+          }
+          .overlay-box{
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        .product-details{
+          .title{
+            a{
+              color: $primaryColor;
+            }
+          }
+        }
+      }
+        .product-img-box{
+          position: relative;
+          width: 100%;
+          height: 360px;
+          background: $lightGreyColor;
+          overflow: hidden;
+          
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: all 0.4s ease;
+          }
+          .overlay-box{
+            position: absolute;
+            bottom: 40px;
+            left: 20px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.4s ease;
+            a{
+              display: block;
+              background: $white;
+              width: 40px;
+              height: 40px;
+              text-align: center;
+              line-height: 43px;
+              font-size: 14px;
+              margin-bottom: 5px;
+              color: $secondaryColor;
+              &:hover{
+                background: $primaryColor;
+                color: $white;
+              }
+            }
+          }
+        }
+        .product-details{
+          padding: 30px 0;
+          .title{
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+            margin-bottom: 6px;
+            transition: all 0.3s ease;
+            a{
+              color: $secondaryColor;
+            }
+          }
+          .price{
+            font-size: 15px;
+            color: $tertiaryColor;
+            font-weight: 400;
+          }
+        }
+      
+    }
+  }
+  .cab-product-list-layout{
+    padding-bottom: 10px;
+    .product-box{
+      margin-bottom: 60px;
+      &:nth-child(even){
+        .img-box{
+          float: right;
+        }
+        .product-details{
+          padding-left: 0;
+          padding-right: 20px;
+        }
+      }
+      &:hover{
+        .img-box{
+          img{
+            transform: scale(1.1);
+          }
+        }
+        .product-details{
+          h5{
+            a{
+              color: $primaryColor
+            }
+          }
+        }
+      }
+      .img-box{
+        float: left;
+        width: 280px;
+        height: 200px;
+        border: 0;
+        background: $lightGreyColor;
+        overflow: hidden;
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          transition: all 0.4s ease;
+        }
+      }
+      .product-details{
+        float: left;
+        width: calc(100% - 280px);
+        padding-left: 30px;
+        h5{
+          margin-bottom: 6px;
+          margin-top: 4px;
+          a{
+            color: $secondaryColor
+          }
+        }
+        small{
+          font-weight: 500;
+        }
+        p{
+          font-size: 14px;
+          color: $tertiaryColor;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+  .cab-pagination-box{
+    margin-top: 40px;
+    .cab-pagination-inner{
+      display: flex;
+      align-items: center;
+      a{
+        display: inline-flex;
+        background: $white;
+        height: 42px;
+        min-width: 44px;
+        align-items: center;
+        justify-content: center;
+        margin: 0 4px;
+        border: 2px solid $lightGreyColor;
+        color: $tertiaryColor;
+        &.prev,
+        &.next{
+          i{
+            &::before{
+              font-size: 13px;
+              font-weight: 600;
+            }
+          }
+          
+        }
+        &:hover{
+          background: $lightGreyColor;
+        }
+        &.active{
+          color: $white;
+          background: $primaryColor;
+          border-color: $primaryColor;
+        }
+      }
+    }
+  }

@@ -1,0 +1,201 @@
+﻿@using Yee.Nuget.Models
+@using NuGet.Protocol.Core.Types
+@using Microsoft.AspNetCore.Components.Web
+
+
+@if (_packageMetadata == null)
+{
+    <div style=" display: flex; justify-content: center;">
+        <div style=" display: flex; flex-direction: column;">
+            <div style=" font-size: 1.7rem; padding-bottom: 1rem;">
+                Подключаюсь к NuGet
+            </div>
+            <AntDesign.Spin size="large" />
+        </div>
+    </div>
+
+    return;
+}
+@if (Exception != null)
+{
+    <div style=" background: #FF6666; color: white; padding: 1rem; width: 78%;">
+        @Exception
+    </div>
+
+    return;
+}
+<div>
+    <div style="padding-bottom: 1rem;">
+        <AntDesign.Input @bind-Value="Source" DefaultValue="Source" TValue="string" OnChange="ChangeSource" Placeholder="Источник">
+
+        </AntDesign.Input>
+    </div>
+    @if (IsSourceLoad == false)
+    {
+        <div >
+            <AntDesign.Input @bind-Value="SearchTerm" TValue="string" OnChange="Search" Placeholder="Поиск">
+
+            </AntDesign.Input>
+        </div>
+        <div>
+
+
+            @if (IdLoad)
+            {
+                <AntDesign.SkeletonElement Type="input" Active="true" style="width:300px"></AntDesign.SkeletonElement>
+
+            }
+            else
+            {
+                foreach (var item in _packageMetadata)
+                {
+
+                    var style = "";
+
+                    if (SelectedList.Contains(item.Value.Identity))
+                    {
+                        style = "background: #CCCCCC;";
+                    }
+                    <div style="@(style) box-shadow: 0px 0px 30px 0px rgb(82 63 105 / 14%); cursor: pointer; display: flex; border-radius: 6px; padding: 0.6rem 2.2rem; margin-top: 1rem;" @onclick="() => Select(item.Value.Identity)">
+                        <div>
+                            <img src="@(item.Value.IconUrl?.AbsoluteUri ?? "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/NuGet_project_logo.svg/512px-NuGet_project_logo.svg.png")" style=" width: 85px; height: 85px; " />
+                        </div>
+                        <div style="padding-left: 1rem;">
+                            <dir style="display: flex;padding: 0.3rem 1rem;margin: 0;">
+                                <div style=" font-size: 1.2rem; font-weight: 600; overflow-wrap: anywhere;">
+                                    @item.Value.Title
+                                </div>
+                                <sup style=" top: 0.2em; font-size: 0.9rem; font-weight: 200; ">
+                                    @item.Value.Identity.Version
+                                </sup>
+                            </dir>
+                            <div style="padding: 0.3rem 1rem; font-size: 0.9rem; overflow-wrap: anywhere; ">
+                                @item.Value.Description
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            }
+
+
+        </div>
+    }
+    else
+    {
+        <div style=" display: flex; justify-content: center;">
+            <div style=" display: flex; flex-direction: column;">
+                <div style=" font-size: 1.7rem; padding-bottom: 1rem;">
+                    Подключаюсь к NuGet
+                </div>
+                <AntDesign.Spin size="large" />
+            </div>
+        </div>
+    }
+
+</div>
+
+
+
+@code {
+
+
+
+    private NugetRepository _repository;
+
+    private IEnumerable<PackageMetadata> _packageMetadata;
+
+    private string SearchTerm { get; set; }
+
+    private string Source { get; set; } = "http://49.12.227.30:555/v3/index.json";
+
+    private bool IdLoad { get; set; }
+
+    private bool IsSourceLoad { get; set; }
+
+    private Dictionary<string, IEnumerable<VersionInfo>> _versions = new Dictionary<string, IEnumerable<VersionInfo>>();
+
+    private Exception Exception { get; set; }
+    [Parameter]
+    public HashSet<NuGet.Packaging.Core.PackageIdentity> SelectedList { get; set; }
+        = new HashSet<NuGet.Packaging.Core.PackageIdentity>();
+
+    [Parameter]
+    public EventCallback OnUpdate { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await ChangeSource();
+        }
+    }
+
+    public void Select(NuGet.Packaging.Core.PackageIdentity packageIdentity)
+    {
+        if (SelectedList.Contains(packageIdentity))
+        {
+            SelectedList.Remove(packageIdentity);
+        }
+        else
+        {
+            SelectedList.Add(packageIdentity);
+        }
+
+        StateHasChanged();
+        OnUpdate.InvokeAsync();
+    }
+
+    private async Task ChangeSource()
+    {
+        IsSourceLoad = true;
+        StateHasChanged();
+
+        try
+        {
+            _repository = new NugetRepository(Source);
+            await _repository.Load();
+
+            await Search();
+        }
+        catch(Exception ex)
+        {
+            Exception = ex;
+        }
+
+        IsSourceLoad = false;
+        StateHasChanged();
+    }
+
+
+    private async Task Search()
+    {
+        //IdLoad = true;
+        //StateHasChanged();
+
+        try
+        {
+            Exception = null;
+            _packageMetadata = await _repository.Search(null, new NuGet.Protocol.Core.Types.SearchFilter(true), SearchTerm);
+            IdLoad = false;
+            _versions = new Dictionary<string, IEnumerable<VersionInfo>>();
+
+        }
+        catch (Exception ex)
+        {
+            Exception = ex;
+        }
+        StateHasChanged();
+
+        //foreach (var item in _packageMetadata)
+        //{
+        //    _versions.Add(item.Value.Identity.Id, await item.Value.GetVersionsAsync());
+
+        //    StateHasChanged();
+        //}
+    }
+
+
+
+}

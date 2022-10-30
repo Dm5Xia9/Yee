@@ -1,0 +1,34 @@
+// Reduced CSS4 var length to only 'v(*)'
+@function v($var) {
+    @return var(--#{$var});
+}
+
+// Color Theme Variables
+$primaryColor: #e9161c;
+$primaryHoverColor: #fde7e8;
+$secondaryColor: #233d62;
+$secondaryDarkColor: #16282f;
+$tertiaryColor: #687693;
+$tertiaryColor2: #8893aa;
+$tertiaryColor3: #a9aaab;
+$accentColor: #eef0f3;
+$accentColor2: #14252c;
+$lightGreyColor: #ebebeb;
+$lightGreyColor2: #f8f5f2;
+$lightGreyColor3: #f8f8f8;
+$lightGreyColor4: #fcfcfc;
+$greyColor: #bcbcbc;
+$greyColor2: #d6d9e0;
+$greyColor3: #d0d6de;
+$darkGreyColor: #4e4e4e;
+$darkGreyColor2: #999999;
+$white: #ffffff;
+$black: #000000;
+$lightSecondaryColor: lighten($secondaryColor, 10%);
+$lightSecondaryDarkColor: lighten($secondaryDarkColor, 5%);
+$darkSecondaryColor: darken($secondaryColor, 10%);
+// Root Variables
+:root {
+    --primary-color: #{$primaryColor};
+    --secondary-color: #{$secondaryColor};
+}

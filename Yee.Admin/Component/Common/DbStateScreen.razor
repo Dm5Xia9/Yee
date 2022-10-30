@@ -1,0 +1,17 @@
+﻿
+@if (State.IsWorked)
+{
+    @ChildContent;
+}
+else
+{
+    @State.Exception
+}
+
+@code {
+
+    [Parameter]
+    public DbContextStateValue State { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

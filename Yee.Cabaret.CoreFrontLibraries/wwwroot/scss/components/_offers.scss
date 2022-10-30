@@ -1,0 +1,71 @@
+// Offers Section Styles
+.cab-offers-section{
+    .cab-offers-content-box{
+        margin-top: 50px;
+        .cab-card{
+            padding: 60px 30px;
+            background: $white;
+            text-align: center;
+            font-family: $accentFont;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+            &.popular{
+                box-shadow: rgba(0,0,0,0.06) 0px 4px 20px;
+                .cab-top-img{
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+                &:hover{
+                    box-shadow: rgba(0,0,0,0.1) 0px 4px 26px;
+                }
+            }
+            &:hover{
+                box-shadow: rgba(0,0,0,0.06) 0px 4px 20px;
+                h6{
+                    color: $primaryColor;
+                }
+            }
+            h6{
+                color: $secondaryColor;
+                margin-bottom: 26px;
+                transition: all 0.3s ease-in-out;
+            }
+            p{
+                color: $tertiaryColor;
+                font-size: 15px;
+            }
+            .price-tag{
+                color: $primaryColor;
+                display: block;
+                margin: 18px 0 20px;
+                font-weight: 500;
+            }
+            .h-sep{
+                width: 70%;
+                height: 1px;
+                margin: 30px auto 40px;
+                position: relative;
+                background: $lightGreyColor;
+                &::before{
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: rotate(45deg) translateX(-50%);
+                    width: 8px;
+                    height: 8px;
+                    background: $primaryColor;
+                }
+            }
+            .cab-offer-img{
+                img{
+                    width: 180px;
+                    height: 120px;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+}

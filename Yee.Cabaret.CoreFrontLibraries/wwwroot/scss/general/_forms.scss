@@ -1,0 +1,188 @@
+// Form Styles
+.form-group{
+    margin-bottom: 36px !important;
+    .form-control{
+        &.basic{
+            border-radius: 0;
+            border: 1px solid $lightGreyColor;
+            height: 54px;
+            font-size: 16px;
+            font-family: $secondaryFont;
+            color: $secondaryColor;
+            box-shadow: none;
+            padding: 20px;
+            &::placeholder{
+                color: $tertiaryColor3;
+            }
+            &:hover{
+                border-color: $tertiaryColor3;
+            }
+            &:focus{
+                border-color: $primaryColor;
+            }
+            &.comment-input{
+                font-family: $accentFont;
+            }
+        }
+        
+    }
+    textarea{
+        height: auto !important;
+        resize: none;
+    }
+    .cab-input-group{
+        position: relative;
+        margin-bottom: 10px;
+        .input-icon{
+            position: absolute;
+            left: 10px;
+            top: 0;
+            font-weight: 400;
+            color: $primaryColor;
+            z-index: 1;
+            i{
+                &:before{
+                    font-size: 24px;
+                }
+            }
+        }
+        .caret-icon-custom{
+            right: 0;
+            position: absolute;
+            top: 10px;
+        }
+        .form-control{
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid $lightGreyColor;
+            box-shadow: none;
+            padding-left: 80px;
+            height: 42px;
+            font-size: 14px;
+            font-weight: 400;
+            border-radius: 0;
+            color: $secondaryColor;
+            transition: all 0.3s ease;
+            &::placeholder{
+                color: $secondaryColor;
+            }
+            
+            &:focus{
+                border-color: $primaryColor;
+            }
+        }
+        
+    }
+    .custom-select-style{
+        .form-control{
+            padding-left: 0;
+        }
+        .bootstrap-select>.dropdown-toggle{
+            background: $white;
+            border: none;
+            border-bottom: 1px solid $lightGreyColor;
+            box-shadow: none;
+            font-family: $accentFont;
+            padding-left: 80px;
+            height: 42px;
+            font-size: 14px;
+            font-weight: 400;
+            border-radius: 0;
+            color: $secondaryColor;
+            transition: all 0.3s ease;
+            &:active,
+            &:focus{
+                outline: none !important;
+                box-shadow: none;
+                border-color: $primaryColor;
+            }
+        }
+        .dropdown-menu{
+            border: 1px solid $lightGreyColor3;
+            border-radius: 0;
+            margin-top: 0;
+            padding: 0;
+            border-radius: 4px;
+            box-shadow: rgba(0,0,0,0.07) 0px 5px 6px;
+            &>.inner{
+                margin-top: 0;
+                
+                &>.inner{
+                    padding: 8px 0;
+                    margin-top: 0;
+                    border: none;
+                    border-radius: 0;
+                }
+            }
+            ul{
+                li{
+                    a{
+                        padding: 12px 76px;
+                        font-size: 14px;
+                        font-weight: 400;
+                        &:focus{
+                            outline: none;
+                        }
+                    }
+                    &.active{
+                        a{
+                            background: $lightGreyColor2;
+                            color: $primaryColor;
+                            font-weight: 600;
+                        }
+                    }
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
+        }
+    }
+}
+.form-dark-version{
+    .form-group{
+        .cab-input-group{
+            .form-control{
+                color: $white;
+                text-align: center;
+                padding-left: 0;
+                border-color: rgba(256, 256, 256, 0.15);
+                &::placeholder{
+                    color: $white;
+                }
+                &:focus{
+                    border-color: rgba(256, 256, 256, 0.65);
+                }
+            }
+        }
+        .custom-select-style{
+            .bootstrap-select>.dropdown-toggle{
+                background: transparent;
+                border: none;
+                border-color: 1px solid rgba(256, 256, 256, 0.15);
+                color: $white;
+                padding-left: 24px;
+                text-align: center;
+                &:active,
+                &:focus{
+                    border-color: rgba(256, 256, 256, 0.65);
+                }
+                .filter-option-inner{
+                    text-align: center;
+                }
+            }
+            .dropdown-menu{
+                
+                ul{
+                    li{
+                        a{
+                            padding: 10px 20px;
+                            font-size: 13px;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

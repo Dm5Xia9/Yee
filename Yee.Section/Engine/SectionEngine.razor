@@ -1,0 +1,145 @@
+﻿@using Yee.Section.Services
+@using System.Reflection;
+@using Microsoft.AspNetCore.Components.Forms
+@inject SectionState state
+@using Microsoft.AspNetCore.Components.Web
+
+<div>
+    <div style="background: white;">
+        @if (IsLoad)
+        {
+            <DynamicComponent Type="SectionType" Parameters="CreateParameters()">
+
+            </DynamicComponent>
+        }
+    </div>
+    <div @onclick="Show" style="width: 100%; height: 1.6rem; background: #d1d1d1; cursor: pointer;" class="section-divider">
+        <div style=" height: 100%; line-height: 1.7rem; padding-left: 2rem; font-weight: 700; color: green;">
+            @("<<<")
+        </div>
+    </div>
+    @if (IsShow)
+    {
+        <div style="padding: 20px; background-color: #333333; border-radius: 0.42rem; margin: 20px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); color: white; ">
+            <EditForm Model="DefualtProtos">
+                @foreach (var proto in Protos)
+                {
+                    var prop = proto;
+                    <div style="border-radius: 11px; margin: 10px 0;">
+                        @if (PropertyHeader != null)
+                        {
+                            @PropertyHeader(prop)
+                        }
+                        <Yee.Section.Handlers.ProtoHandlerFactory InputValue="DefualtProtos[proto]" ProtoType="proto.PropertyType" OnInput="p => OnInput(prop, p)"></Yee.Section.Handlers.ProtoHandlerFactory>
+                    </div>
+                }
+
+                @*<div style="height: 3rem;">
+                    <div style=" padding: 1rem; float: right; padding-right: 10rem;">
+                        <AntDesign.Button OnClick="Save" Class="btn btn-success">Сохранить</AntDesign.Button>
+                    </div>
+                </div>*@
+            </EditForm>
+
+
+        </div>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment<PropertyInfo> PropertyHeader { get; set; }
+
+    [Parameter]
+    public Type SectionType { get; set; }
+
+    public bool IsLoad { get; set; } = false;
+
+    public bool IsShow = false;
+
+    public void Show()
+    {
+        IsShow = !IsShow;
+        StateHasChanged();
+    }
+
+    public IEnumerable<PropertyInfo> Protos { get; set; }
+
+    [Parameter]
+    public Dictionary<string, Newtonsoft.Json.Linq.JObject> DefualtDataProtos { get; set; }
+
+    [Parameter]
+    public EventCallback<Dictionary<PropertyInfo, object>> OnInputEvent { get; set; }
+
+    public Dictionary<PropertyInfo, object> DefualtProtos { get; set; }
+
+    public void OnInput(PropertyInfo propertyInfo, object obj)
+    {
+        DefualtProtos[propertyInfo] = obj;
+        OnInputEvent.InvokeAsync(DefualtProtos);
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+
+
+
+
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if(IsLoad == false)
+        {
+            Protos = SectionType.GetProperties()
+                .Where(p => p.GetCustomAttribute<ParameterAttribute>() != null);
+
+            DefualtProtos = new Dictionary<PropertyInfo, object>();
+            if (DefualtDataProtos == null)
+            {
+                foreach (var proto in Protos)
+                {
+                    DefualtProtos.Add(proto, Yee.Section.Extensions.ProtoHelper.CreateObjectProto(type: proto.PropertyType));
+                }
+            }
+            else
+            {
+                foreach (var proto in Protos)
+                {
+                    var value = DefualtDataProtos.GetValueOrDefault(proto.Name);
+                    if (value == default)
+                    {
+                        DefualtProtos.Add(proto, Yee.Section.Extensions.ProtoHelper.CreateObjectProto(type: proto.PropertyType));
+                    }
+                    else
+                    {
+                        DefualtProtos.Add(proto, value.ToObject(proto.PropertyType));
+                    }
+                }
+            }
+
+
+            IsLoad = true;
+            StateHasChanged();
+        }
+    }
+
+    public Dictionary<string, object> CreateParameters()
+    {
+        var dic = new Dictionary<string, object>();
+
+        foreach (var item in DefualtProtos)
+        {
+            dic.Add(item.Key.Name, item.Value);
+        }
+        return dic;
+    }
+
+    public void Save()
+    {
+
+    }
+}
