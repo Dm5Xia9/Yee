@@ -18,6 +18,7 @@ namespace Yee.Cabaret.Sections
                 .YeeSections(p =>
                 {
                     p.AddSection<CabNavigation>();
+                    p.AddSection<CabSecondaryNavigationSection>();
                     p.AddSection<CabOffersSection>();
                     p.AddSection<CabOneNavigation>();
                     p.AddSection<CabSwiperSection>();
@@ -63,6 +64,7 @@ namespace Yee.Cabaret.Sections
                     p.AddPrototype<ProtoShowcases, ProtoShowcasesHandler>();
                     p.AddPrototype<ProtoFAQ, ProtoFAQHandler>();
                     p.AddPrototype<ProtoQuestions, ProtoQuestionsHandler>();
+                    p.AddPrototype<ProtoSecondaryNavigation, ProtoSecondaryNavigationHandler>();
                 });
 
         }

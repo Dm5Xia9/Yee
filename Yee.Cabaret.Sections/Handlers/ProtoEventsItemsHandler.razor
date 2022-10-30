@@ -5,7 +5,7 @@
 
 <div style=" padding-top: 1rem;">
     <div style="display: flex; justify-content: center; align-items: center; flex-flow: column; margin-top: 10px;">
-        <h5>Новости</h5>
+        <h5>События</h5>
         <AntDesign.Button OnClick="AddNew" Style="margin-left: 1.1rem;">Добавить</AntDesign.Button>
     </div>
     <div style=" display: flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap; }">
@@ -16,6 +16,7 @@
                 <ProtoHandlerFactory InputValue="card.Place" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="card.Date" ProtoType="typeof(ProtoDate)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="card.Image" ProtoType="typeof(ProtoImg)" OnInput="Input"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="card.Url" ProtoType="typeof(ProtoLink)" OnInput="Input"></ProtoHandlerFactory>
             </div>
         }
     </div>
