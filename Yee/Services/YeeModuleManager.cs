@@ -12,12 +12,20 @@ namespace Yee.Services
 {
     public class YeeModuleManager
     {
+        private readonly List<BaseYeeModule> _modules;
+
         public YeeModuleManager(IEnumerable<BaseYeeModule> modules)
         {
-            Modules = modules;
+            _modules = modules.ToList();
         }
 
-        public IEnumerable<BaseYeeModule> Modules { get; private set; }
+        public IEnumerable<BaseYeeModule> Modules => _modules;
+
+
+        public void Add(IEnumerable<BaseYeeModule> modules)
+        {
+            _modules.AddRange(modules);
+        }
 
         public void HandlersFromId<T>(string id, T buffer)
         {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Yee.Abstractions;
 
-namespace Yee.Runtime.Builder.Abstractions
+namespace Yee.Abstractions
 {
     public interface IYeeProvider<out T> where T:
         BaseYeeModule

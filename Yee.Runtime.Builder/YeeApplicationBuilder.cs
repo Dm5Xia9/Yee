@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using Yee.Abstractions;
 using Yee.Extensions;
 using Yee.Options;
-using Yee.Runtime.Builder.Abstractions;
 using Yee.Runtime.Builder.Helpers;
 using Yee.Services;
 using Yee.Web.Middlewares;
@@ -73,7 +72,7 @@ namespace Yee.Runtime.Builder
             WebBuilder.Services.AddRazorPages();
             WebBuilder.Services.AddServerSideBlazor();
             WebBuilder.Services.AddSingleton<ISourceService, SourceService>();
-
+            WebBuilder.Services.AddSingleton<IForceHandler, ForceResolveHandler>();
             var alignmentModules = yeModuleManager.ToAlignmentTrees();
             foreach(var module in alignmentModules)
             {

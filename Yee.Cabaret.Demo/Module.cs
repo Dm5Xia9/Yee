@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,10 @@ using Yee.Abstractions;
 using Yee.Cabaret.Sections;
 using Yee.Cabaret.Sections.Handlers;
 using Yee.Cabaret.Sections.Prototypes;
+using Yee.Extensions;
 using Yee.Section.Extensions;
+using Yee.Section.Services;
+using Yee.Services;
 using Yee.Web.Extensions;
 
 namespace Yee.Cabaret.Demo
@@ -73,7 +77,15 @@ namespace Yee.Cabaret.Demo
                      p.AddPrototype<ProtoFAQ, ProtoFAQHandler>();
                      p.AddPrototype<ProtoQuestions, ProtoQuestionsHandler>();
                      p.AddPrototype<ProtoSecondaryNavigation, ProtoSecondaryNavigationHandler>();
-                 });
+                 })
+                .Resolve(p =>
+                {
+                    var builder = new YeeBuilder();
+                    new Yee.Section.Module()
+                        .Build(new YeeBuilder());
+
+                    YeeBuilderHandler.Go(builder, YeeBuilderTags.AspPostBuild, p);
+                });
         }
     }
 }
