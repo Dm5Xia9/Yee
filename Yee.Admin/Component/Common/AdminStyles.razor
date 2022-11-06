@@ -1,0 +1,9 @@
+﻿@using Yee.Web.Services
+
+@inject YeeViewManager manager
+
+@{ 
+    var baseUri = manager.CreateBaseUri(typeof(AdminStyles).Assembly);
+}
+
+<link href="@(baseUri)/lib/css/admin.css" rel="stylesheet" type="text/css" />

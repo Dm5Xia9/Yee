@@ -29,13 +29,17 @@
             @bind-PageSize="_pageSize">
         <Column @bind-Field="@context.Id" Sortable/>
         <Column TData="string" Title="Страница" Sortable>
-            <a href="@(navManager.ToAbsoluteUri($"/admin/pageEngine/{context.Id}"))">@(context.DisplayName ?? $"/admin/pageEngine/{context.Id}")</a>
+            @*<a href=@(navManager.ToAbsoluteUri()></a>*@
+            @(context.DisplayName ?? $"/admin/pageEngine/{context.Id}")
         </Column>
         <Column @bind-Field="@context.CreatedAt" Format="dd.MM.yyyy hh:mm"/>
 
-        <ActionColumn>
-            <Button OnClick="async () => await OnCopy.InvokeAsync(context)">
+        <ActionColumn Style="display: flex; gap: 10px; padding: 5px;">
+            <Button Class="admin-button-secondary" OnClick="async () => await OnCopy.InvokeAsync(context)">
                 Скопировать
+            </Button>
+            <Button Class="admin-button-secondary" OnClick="@(() => navManager.NavigateTo($"/admin/pageEngine/{context.Id}"))">
+                Перейти на страницу
             </Button>
         </ActionColumn>
         @*<ActionColumn>

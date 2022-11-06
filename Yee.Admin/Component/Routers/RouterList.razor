@@ -10,7 +10,7 @@
 @using Microsoft.EntityFrameworkCore
 
 <div>
-    <Button Type="primary" OnClick="@(async () => await ShowCreate())" Style="display: inline-block; margin-left: auto; margin: 20px;">
+    <Button Class="admin-button-primary" OnClick="@(async () => await ShowCreate())" Style="display: inline-block; margin-left: auto; margin: 20px;">
         Добавить путь
     </Button>
 </div>
@@ -35,13 +35,10 @@
             }
         </Column>
         <Column @bind-Field="@context.CreatedAt" Format="dd.MM.yyyy hh:mm" />
-        <ActionColumn>
-            <Button OnClick="@(async () => await ShowModal(context))">
+        <ActionColumn Style="display: flex; gap: 10px; padding: 5px;">
+            <Button Class="admin-button-secondary" OnClick="@(async () => await ShowModal(context))">
                 Редактировать
             </Button>
-
-
-
         </ActionColumn>
     </Table>
 
