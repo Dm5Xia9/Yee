@@ -13,24 +13,29 @@ namespace Yee.Nuget
 {
     public class YeeModuleStorage
     {
-        private readonly Modules _modules = new Modules();
+        private readonly ListBox<NupkgModuleMetadata> _modules = new ListBox<NupkgModuleMetadata>();
         private readonly IRootOptions _rootOptions;
 
         public YeeModuleStorage(IRootOptions rootOptions)
         {
             _rootOptions = rootOptions;
 
-            _modules = rootOptions.Get<Modules>("CurrentModules");
+            _modules = rootOptions.Get<ListBox<NupkgModuleMetadata>>("CurrentModules");
             if(_modules == null)
             {
-                _modules = new Modules();
+                _modules = new ListBox<NupkgModuleMetadata>();
             }
 
         }
 
         public void AddModule(NupkgModuleMetadata mgModule)
         {
-            _modules.Add(mgModule);
+            _modules.Value.Add(mgModule);
+        }
+
+        public void Clear()
+        {
+            _modules.Value.Clear();
         }
 
         public void Save()
@@ -38,7 +43,7 @@ namespace Yee.Nuget
             _rootOptions.Set("CurrentModules", _modules);
         }
 
-        public Modules GetAllModules()
+        public ListBox<NupkgModuleMetadata> GetAllModules()
         {
             return _modules;
         }

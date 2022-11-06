@@ -1,0 +1,38 @@
+// Cab Book a Table Section Styles
+.cab-book-table-section {
+    padding-bottom: 110px;
+    &.v2 {
+        text-align: center;
+        height: 440px;
+        padding: 0 !important;
+        h2 {
+            font-family: $primaryFont;
+            font-weight: 400;
+            color: $secondaryColor;
+            margin-bottom: 50px;
+            margin-top: 0;
+            padding-top: 0;
+            font-size: 35px;
+        }
+        .cab-book-table-form-box {
+            padding: 54px 50px;
+            position: absolute;
+            top: -110px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+    .cab-book-table-form-box {
+        margin: auto auto;
+        background: #ffffff;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 20px;
+        padding: 70px 50px;
+        width: 92%;
+    }
+    &.v3{
+        .cab-book-table-form-box {
+            box-shadow: none;
+            padding: 20px 50px 0;
+        }
+    }
+}

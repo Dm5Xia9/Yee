@@ -1,0 +1,122 @@
+// All Cab Testimonials Styles
+.cab-testimonials-section{
+    &.v1{
+        .cab-testimonials-slider-box{
+            width: 62%;
+            margin: 4px auto auto;
+            .swiper-wrapper{
+                padding-bottom: 46px;
+            }
+            .testimonial-words{
+                p{
+                    color: $white;
+                    font-size: 22px;
+                    font-family: $secondaryFont;
+                    text-align: center;
+                }
+            }
+            .testimonial-author{
+                margin-top: 30px;
+                text-align: center;
+                h6{
+                    font-size: 18px;
+                    font-weight: 500;
+                    margin-bottom: 5px;
+                }
+                small{
+                    color: $white;
+                    font-size: 14px;
+                }
+            }
+            .swiper-pagination{
+                .swiper-pagination-bullet{
+                    background: $primaryColor;
+                    opacity: 0.5;
+                    transition: width 0.4s ease;
+                    &.swiper-pagination-bullet-active{
+                        opacity: 1;
+                        width: 50px;
+                        border-radius: 5px;
+                    }
+                }
+            }
+        }
+    }
+    &.v2{
+        .cab-testimonials-slider-box{
+            width: 100%;
+            margin: 4px auto auto;
+            .swiper-wrapper{
+                padding-bottom: 46px;
+            }
+        }
+        &.page{
+            padding-bottom: 20px;
+            .testimonial-card{
+                margin-bottom: 76px;
+            }
+        }
+    }
+}
+
+.testimonial-card{
+    .testimonial-words{
+        background: $white;
+        padding: 46px 46px;
+        position: relative;
+        box-shadow: rgba(0,0,0,0.14) 0 7px 20px;
+        &::before{
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 32px;
+            background: $white;
+            width: 20px;
+            height: 20px;
+            clip-path: polygon(0 0, 0% 100%, 100% 0);
+        }
+        p{
+            color: $tertiaryColor;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+    }
+    .testimonial-author{
+        margin-top: 40px;
+        .author-avatar{
+            float: left;
+            margin-right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: $lightGreyColor;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+        .author-details{
+            &.alt{
+                h6{
+                    color: $secondaryColor;
+                }
+                small{
+                    color: $tertiaryColor;
+                }
+            }
+            h6{
+                font-size: 16px;
+                font-weight: 500;
+                margin-bottom: 0px;
+            }
+            small{
+                color: $white;
+                font-size: 14px;
+            }
+        }
+        
+    }
+}

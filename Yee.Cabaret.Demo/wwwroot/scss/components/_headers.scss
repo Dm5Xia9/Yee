@@ -1,0 +1,577 @@
+// All Headers Styles
+.headroom--unpinned {
+    transform: translateY(-100%); /* or whatever is appropriate */
+}
+  .headroom--pinned{
+    transform: translateY(0);
+}
+header {
+    transition: all 0.3s ease;
+    &.cab-header {
+        &.fixed-top{
+            box-shadow: rgba(0,0,0,0.06) 0 4px 12px;
+            .cab-centered-logo-box {
+                a {
+                    &:before {
+                        content: '';
+                        box-shadow: rgba(0,0,0,0.06) 0 8px 7px;
+                    }
+                }
+            }
+        }
+        li{
+            &.has-dropdown {
+                position: relative;
+                &:hover{
+                    &>.dropdown-wrapper{
+                        opacity: 1;
+                        visibility: visible;
+                        transform: scale(1) translateY(0);
+                    }
+                }
+                &.left-menu{
+                    .dropdown-wrapper{
+                        left: 0;
+                        right: inherit;
+                    }
+                    .has-dropdown{
+                        .dropdown-wrapper{
+                            left: 100%;
+                            top: 0;
+                        }
+                    }
+                }
+                &.right-menu{
+                    .dropdown-wrapper{
+                        right: 0;
+                        left: inherit;
+                    }
+                    .has-dropdown{
+                        .dropdown-wrapper{
+                            right: 100%;
+                            top: 0;
+                        }
+                    }
+                }
+                .dropdown-wrapper {
+                    position: absolute;
+                    top: 100%;
+                    opacity: 0;
+                    visibility: hidden;
+                    background: $lightGreyColor2;
+                    z-index: 9999;
+                    min-width: 200px;
+                    padding: 0;
+                    box-shadow: rgba(0,0,0,0.1) 0 12px 10px;
+                    transition: all 0.3s ease;
+                    transform: scale(0.98) translateY(-10px);
+                        &.cart-dropdown{
+                            min-width: 310px;
+                            padding-top: 0;
+                            .cart-dropdown-inner{
+                                padding: 10px 24px;
+                                .cart-dropdown-item{
+                                    &>a{
+                                        display: flex;
+                                        align-items: flex-start;
+                                        padding: 20px 0;
+                                        transition: all 0.3s ease;
+                                        border-bottom: 1px solid $lightGreyColor;
+                                        &:hover{
+                                            border-bottom: 1px solid $primaryColor;
+                                            .item-title{
+                                                h6{
+                                                    color: $primaryColor;
+                                                }
+                                            }
+                                        }
+                                        .img-box{
+                                            width: 50px;
+                                            height: 50px;
+                                            overflow: hidden;
+                                            background: $lightGreyColor;
+                                            img{
+                                                width: 100%;
+                                                height: 100%;
+                                                object-fit: cover;
+                                                object-position: center;
+                                            }
+                                        }
+                                        .item-title{
+                                            flex: 1;
+                                            padding: 0 14px;
+                                            h6{
+                                                margin-top: 4px;
+                                                margin-bottom: 4px;
+                                                font-size: 14px;
+                                                color: $secondaryColor;
+                                                transition: all 0.3s ease;
+                                            }
+                                            small{
+                                                color: $tertiaryColor;
+                                                font-weight: 500;
+                                            }
+                                        }
+                                        .quantity-box{
+                                            font-size: 14px;
+                                            color: $tertiaryColor;
+                                        }
+                                    }
+                                    
+                                }
+                                .total-amount{
+                                    padding: 20px;
+                                    color: $secondaryColor;
+                                    font-weight: 500;
+                                    font-size: 18px;
+                                    text-align: center;
+                                }
+                                .view-cart-btn{
+                                    text-align: center;
+                                    padding-bottom: 10px;
+                                    .cart-dropdown-btn{
+                                        display: inline-block;
+                                        width: auto;
+                                        border: 2px solid $primaryColor;
+                                        padding: 5px 20px;
+                                        color: $primaryColor;
+                                        text-align: center;
+                                        text-transform: uppercase;
+                                        &:hover{
+                                            color: $white;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ul{
+                        padding-left: 0;
+                        li{
+                            list-style: none;
+                            padding: 0 24px;
+                            &:first-child{
+                                padding: 10px 24px 0 24px;
+                            }
+                            &:last-child{
+                                padding: 0 24px 10px 24px;
+                            }
+                            a{
+                                display: block;
+                                color: $secondaryColor;
+                                padding: 6px 0;
+                                margin: 3px 0;
+                                font-size: 15px;
+                                text-align: left;
+                                border-bottom: 2px solid transparent;
+                                &:hover,
+                                &.active{
+                                    border-color: $primaryColor;
+                                    color: $primaryColor;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &.v1 {
+            background: $white;
+            .cab-main-navbar {
+                text-align: center;
+                padding: 0;
+                transition: all 0.3s ease-in-out;
+                .main-menu{
+                    &>ul {
+                        padding-left: 0;
+                        margin-bottom: 0;
+                        &>li {
+                            list-style: none;
+                            display: inline-block;
+                            padding: 24px 0;
+                            &>a {
+                                padding: 11px 18px;
+                                font-size: 15px;
+                                font-weight: 500;
+                                border-radius: 40px;
+                                display: inline-block;
+                                color: $secondaryColor;
+                                font-family: $accentFont;
+                                transition: all 0.3s ease-in-out;
+                                &:hover,
+                                &.active {
+                                    background: $primaryHoverColor;
+                                    color: $primaryColor;
+                                    border-radius: 40px;
+                                    text-decoration: none;
+                                }
+                            }
+                        }
+                    }
+                }
+                .cab-left-nav-links {
+                    display: inline-block;
+                    text-align: right;
+                    position: relative;
+                    right: 26px;
+                }
+                .cab-centered-logo-box {
+                    width: 270px;
+                    display: inline-block;
+                    background: $white;
+                    text-align: center;
+                    z-index: 99;
+                    position: relative;
+                    a {
+                        position: absolute;
+                        display: block;
+                        width: 100%;
+                        height: 140px;
+                        top: -50px;
+                        left: -30px;
+                        border-radius: 60%;
+                        padding-top: 20px;
+                        text-align: center;
+                        text-decoration: none !important;
+                        transition: all 0.3s ease-in-out;
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            top: -18%;
+                            left: 2px;
+                            background: $white;
+                            width: 100%;
+                            height: 190px;
+                            border-radius: 50%;
+                            z-index: -1;
+                            text-decoration: none !important;
+                        }
+                        &:hover,
+                        &:visited,
+                        &:active {
+                            text-decoration: none !important;
+                        }
+                        img {
+                            width: 64px;
+                        }
+                        .brand-name {
+                            display: block;
+                            margin: auto;
+                            font-size: 24px;
+                            padding-left: 10px;
+                            text-align: center;
+                            color: $primaryColor;
+                            font-family: $primaryFont;
+                        }
+                    }
+                }
+                .cab-right-nav-links {
+                    display: inline-block;
+                    text-align: left;
+                    position: relative;
+                    left: -26px;
+                }
+            }
+            .cab-sidebar-nav {
+                display: none;
+            }
+        }
+        &.v2 {
+            &.fixed-top {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 999;
+                background: rgba(0,0,0,0.6);
+            }
+            li{
+                &.has-dropdown {
+                    &>.dropdown-wrapper{
+                        background: $white;
+                    }
+                }
+            }
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            background: rgba(0, 0, 0, 0.2);
+            .cab-header-inner {
+                padding: 0 84px;
+                .cab-top-bar {
+                    .cab-top-bar-contact-info {
+                        float: left;
+                        .cab-top-bar-info-box {
+                            display: inline-block;
+                            padding: 10px 40px;
+                            border-right: 1px solid #ffffff33;
+                            color: $white;
+                            color: $white;
+                            font-size: 14px;
+                            font-weight: 400;
+                            &:first-child {
+                                padding-left: 0;
+                            }
+                            &:last-child {
+                                padding-right: 0;
+                                border: none;
+                            }
+                            a {
+                                color: $white;
+                                font-size: 14px;
+                                font-weight: 400;
+                                &:hover {
+                                    color: $greyColor;
+                                }
+                            }
+                            &.icon-r-space {
+                                a {
+                                    i {
+                                        margin-right: 4px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .cab-top-bar-social-links {
+                        float: right;
+                        padding: 9px 0;
+                        span {
+                            font-size: 14px;
+                            font-weight: 400;
+                            color: $white;
+                            display: inline-block;
+                            margin-right: 12px;
+                        }
+                        a {
+                            color: $white;
+                            font-size: 12px;
+                            padding: 0 2px;
+                            margin: 0 3px;
+                            &:hover {
+                                color: $greyColor;
+                            }
+                        }
+                    }
+                }
+                .cab-main-navbar {
+                    &.sticky {
+                        position: fixed;
+                        top: 0;
+                        left: 49.99%;
+                        transform: translateX(-50%);
+                        right: 0;
+                        padding: 0 82px;
+                        width: 100%;
+                        z-index: 999;
+                        background: rgba(0, 0, 0, 0.8);
+                    }
+                    .cab-navbar-inner {
+                        .cab-logo-box {
+                            float: left;
+                            margin-right: 68px;
+                            padding: 14px 0 14px;
+                            &:hover {
+                                .logo-text {
+                                    color: $primaryColor;
+                                }
+                            }
+                            img {
+                                width: 60px;
+                            }
+                            .logo-text {
+                                color: $white;
+                                font-size: 26px;
+                                transition: all 0.3s ease;
+                                font-family: $primaryFont;
+                            }
+                        }
+                        .cab-main-left-links-box {
+                            float: left;
+                            .clode-sidebar-v2 {
+                                display: none;
+                            }
+                            &>ul {
+                                padding-left: 0;
+                                &>li {
+                                    list-style: none;
+                                    display: inline-block;
+                                    &>a {
+                                        color: $white;
+                                        font-size: 16px;
+                                        font-weight: 500;
+                                        display: inline-block;
+                                        padding: 35px 24px;
+                                        &:hover {
+                                            color: $primaryColor;
+                                        }
+                                        &.active {
+                                            color: $primaryColor;
+                                            font-weight: 400;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .cab-main-right-links-box {
+                            float: right;
+                            padding: 0;
+                            display: flex;
+                            align-items: center;
+                            .nav-round-links {
+                                margin-right: 10px;
+                                ul{
+                                    display: inline-flex;
+                                    align-items: center;
+                                    li{
+                                        display: inline-block;
+                                        padding: 24px 0;
+                                        &>a {
+                                            display: inline-block;
+                                            width: 44px;
+                                            height: 44px;
+                                            line-height: 47px;
+                                            border-radius: 50%;
+                                            text-align: center;
+                                            font-size: 17px;
+                                            color: $secondaryColor;
+                                            background: $greyColor2;
+                                            margin-right: 8px;
+                                            position: relative;
+                                            &:hover {
+                                                background: $greyColor;
+                                                color: $primaryColor;
+                                            }
+                                            .red-dot {
+                                                font-size: 11px;
+                                                color: $white;
+                                                padding: 4px;
+                                                width: 18px;
+                                                height: 18px;
+                                                line-height: 12px;
+                                                display: block;
+                                                background: $primaryColor;
+                                                border-radius: 50%;
+                                                position: absolute;
+                                                left: -1px;
+                                                top: -4px;
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &.v3,
+        &.v4 {
+            border-bottom: 1px solid #ffffff33;
+            &.fixed-top {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.7);
+            }
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            background: transparent;
+            .cab-header-inner {
+                padding: 0 84px;
+                .cab-main-navbar {
+                    &.sticky {
+                        position: fixed;
+                        top: 0;
+                        left: 49.99%;
+                        transform: translateX(-50%);
+                        right: 0;
+                        padding: 0 58px;
+                        width: 100%;
+                        z-index: 9999;
+                        background: rgba(0, 0, 0, 0.8);
+                    }
+                    .cab-navbar-inner {
+                        .cab-logo-box {
+                            float: left;
+                            margin-right: 68px;
+                            padding: 20px 0;
+                            &:hover {
+                                .logo-text {
+                                    color: $primaryColor;
+                                }
+                            }
+                            img {
+                                width: 60px;
+                            }
+                            .logo-text {
+                                color: $white;
+                                font-size: 26px;
+                                transition: all 0.3s ease;
+                                font-family: $primaryFont;
+                            }
+                        }
+                        .cab-main-left-links-box {
+                            float: left;
+                            .clode-sidebar-v2 {
+                                display: none;
+                            }
+                            &>ul {
+                                padding-left: 0;
+                                &>li {
+                                    list-style: none;
+                                    padding: 35px 0px;
+                                    display: inline-block;
+                                    &>a {
+                                        color: $white;
+                                        font-size: 16px;
+                                        font-weight: 500;
+                                        display: inline-block;
+                                        padding: 8px 24px;
+                                        border-radius: 30px;
+                                        &:hover {
+                                            background: rgba(256, 256, 256, 0.1);
+                                        }
+                                        &.active {
+                                            background: rgba(256, 256, 256, 0.1);
+                                            font-weight: 400;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .cab-main-right-links-box {
+                            float: right;
+                            padding: 31px 0;
+                            display: flex;
+                            align-items: center;
+                            .contact-info {
+                                color: $lightGreyColor;
+                                font-size: 16px;
+                                padding-right: 30px;
+                                a {
+                                    color: $lightGreyColor;
+                                    font-size: 16px;
+                                    &:hover {
+                                        color: $primaryColor;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &.v4{
+            background: url(../img/header-v4-bg.jpg) no-repeat center !important;
+            background-size: cover !important;
+            border: none;
+        }
+    }
+}

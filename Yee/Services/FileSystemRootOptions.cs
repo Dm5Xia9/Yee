@@ -33,6 +33,7 @@ namespace Yee.Services
             foreach(var file in Directory.GetFiles(_optionsDirectory))
             {
                 var json = File.ReadAllText(file);
+
                 var option = JsonConvert.DeserializeObject<RootOption<JObject>>(json);
 
                 options.Add(option);

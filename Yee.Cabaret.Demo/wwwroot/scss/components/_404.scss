@@ -1,0 +1,25 @@
+// Cab 404 Error Section Styles
+.cab-404-section{
+    padding-top: 80px;
+    .cab-404-inner{
+        text-align: center;
+        .error-text{
+            margin: 0;
+            font-size: 250px;
+            font-weight: 300;
+            font-family: $primaryFont;
+            color: $secondaryColor;
+        }
+        h5{
+            color: $secondaryColor;
+            font-size: 30px;
+        }
+        p{
+            padding: 20px 0 30px;
+            max-width: 670px;
+            margin: auto;
+            font-size: 16px;
+            color: $tertiaryColor;
+        }
+    }
+}

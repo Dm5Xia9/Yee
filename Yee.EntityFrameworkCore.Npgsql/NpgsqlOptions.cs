@@ -9,6 +9,5 @@ namespace Yee.EntityFrameworkCore.Npgsql
     public class NpgsqlOptions
     {
         public string ConnectionString { get; set; }
-        public int Timeout { get; set; }
     }
 }

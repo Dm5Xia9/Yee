@@ -1,0 +1,35 @@
+﻿@using Yee.Section.Handlers
+@using Yee.Cabaret.Sections.Prototypes
+@using Yee.Section.Extensions
+@inherits ProtoHandler<ProtoTestimonialItems, List<Testimonial>>
+
+<div style=" padding-top: 1rem;">
+    <div style="display: flex; justify-content: center; align-items: center; flex-flow: column;">
+        <div style="margin-top: 10px;">
+            <h5>Отзывы</h5>
+            <AntDesign.Button OnClick="AddReview" Style="margin-left: 1.1rem;">Добавить</AntDesign.Button>
+        </div>
+    </div>
+    <div style=" display: flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap; }">
+        @foreach (var testimonial in Model)
+        {
+            <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
+                <ProtoHandlerFactory InputValue="testimonial.Caption" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="testimonial.Text" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="testimonial.Author" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="testimonial.Avatar" ProtoType="typeof(ProtoImg)" OnInput="Input"></ProtoHandlerFactory>
+            </div>
+        }
+    </div>
+</div>
+@code {
+    protected override List<Testimonial> NewModel =>
+           ProtoHelper.CreateDefualt<List<Testimonial>>();
+
+    public void AddReview()
+    {
+        Model.Add(ProtoHelper.CreateDefualt<Testimonial>());
+        Input();
+        StateHasChanged();
+    }
+}

@@ -30,7 +30,6 @@ namespace Yee.EntityFrameworkCore.Npgsql
             return new DbContextOptionsBuilder()
                 .UseNpgsql(_options.ConnectionString, 
                     p => p
-                        .CommandTimeout(_options.Timeout)
                         .MigrationsHistoryTable("__EFMigrationsHistory", schema))
                 .Options;
         }

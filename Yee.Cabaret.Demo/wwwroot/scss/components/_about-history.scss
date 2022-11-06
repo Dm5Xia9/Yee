@@ -1,0 +1,95 @@
+// Cab About History Styles
+.cab-about-history-section{
+    .cab-about-history-inner{
+        .cab-about-history-timeline{
+            .cab-about-timeline-box{
+                display: flex;
+                &:nth-child(even){
+                    .timeline-title{
+                        order: 3;
+                        text-align: left;
+                    }
+                    .timeline-line{
+                        order: 2;
+                    }
+                    .timeline-description{
+                        order: 1;
+                        padding: 60px 0;
+                        .inner{
+                            float: right;
+                        }
+                    }
+                }
+                &:last-child{
+                    .timeline-line{
+                        &::after{
+                            top: 60%;
+                            transform: translate(-50%, 0%);
+                        }
+                    }
+                    .timeline-description,
+                    .timeline-title{
+                        padding: 60px 0 0;
+                    }
+                }
+                .timeline-title{
+                    font-size: 22px;
+                    color: $secondaryColor;
+                    text-align: right;
+                    flex: 1;
+                    align-self: center;
+                    span{
+                        display: block;
+                        &.year{
+                            font-family: $primaryFont;
+                        }
+                        &.title{
+                            font-family: $secondaryFont;
+                        }
+                    }
+                }
+                .timeline-line{
+                    min-width: 100px;
+                    min-height: 100%;
+                    position: relative;
+                    overflow: hidden;
+                    
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        left: 50%;
+                        top: 0;
+                        height: 100%;
+                        width: 2px;
+                        background: $lightGreyColor3;
+                        transform: translateX(-50%);
+                    }
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        background: $lightGreyColor3;
+                        border: 6px solid $primaryColor;
+                        border-radius: 50%;
+                        width: 16px;
+                        height: 16px;
+                    }
+                }
+                .timeline-description{
+                    flex: 1;
+                    
+                    .inner{
+                        max-width: 350px;
+                        border-radius: 0;
+                        background: $lightGreyColor3;
+                        padding: 36px;
+                        font-size: 14px;
+                        color: $tertiaryColor;
+                    }
+                }
+            }
+        }
+    }
+}
