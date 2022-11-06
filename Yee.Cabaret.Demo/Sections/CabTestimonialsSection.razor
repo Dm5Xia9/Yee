@@ -1,0 +1,101 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@using Yee.Cabaret.Sections.Prototypes
+@attribute [System.ComponentModel.DisplayName("Отзывы")]
+
+<section class="cab-testimonials-section v1" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(assets/img/testimonials-bg1.jpg) no-repeat center fixed; background-size: cover">
+    <div class="container">
+        <div class="cab-heading-box">
+            <div class="cab-small-heading">
+                <h6>Testimonials</h6>
+            </div>
+            <div class="cab-main-heading light">
+                <h1>Happy customers</h1>
+            </div>
+        </div>
+        <div class="cab-testimonials-slider-box v1">
+            <div class="swiper-container swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="cursor: grab;">
+                <div class="swiper-wrapper" style="transition-duration: 0ms;">
+                    <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" data-swiper-slide-index="2" style="width: 707px; transition-duration: 0ms; opacity: 0; transform: translate3d(0px, 0px, 0px);">
+                        <div class="testimonial-words">
+                            <p>
+                                NextTxt
+                            </p>
+                        </div>
+                        <div class="testimonial-author">
+                            <h6 class="color-primary">
+                                Michel Jhone
+                            </h6>
+                            <small>Happy client</small>
+                        </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="0" style="width: 707px; transition-duration: 0ms; opacity: 0; transform: translate3d(-707px, 0px, 0px);">
+                        <div class="testimonial-words">
+                            <p>
+                                PrevTxt
+                            </p>
+                        </div>
+                        <div class="testimonial-author">
+                            <h6 class="color-primary">
+                                Michel Jhone
+                            </h6>
+                            <small>Happy client</small>
+                        </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="1" style="width: 707px; transition-duration: 0ms; opacity: 1; transform: translate3d(-1414px, 0px, 0px);">
+                        <div class="testimonial-words">
+                            <p>
+                                Active
+                            </p>
+                        </div>
+                        <div class="testimonial-author">
+                            <h6 class="color-primary">
+                                Michel Jhone
+                            </h6>
+                            <small>Happy client</small>
+                        </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="2" style="width: 707px; transition-duration: 0ms; opacity: 0; transform: translate3d(-2121px, 0px, 0px);">
+                        <div class="testimonial-words">
+                            <p>
+                                NextTxt
+                            </p>
+                        </div>
+                        <div class="testimonial-author">
+                            <h6 class="color-primary">
+                                Michel Jhone
+                            </h6>
+                            <small>Happy client</small>
+                        </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-prev" data-swiper-slide-index="0" style="width: 707px; transition-duration: 0ms; opacity: 0; transform: translate3d(-2828px, 0px, 0px);">
+                        <div class="testimonial-words">
+                            <p>
+                                PrevTxt
+                            </p>
+                        </div>
+                        <div class="testimonial-author">
+                            <h6 class="color-primary">
+                                Michel Jhone
+                            </h6>
+                            <small>Happy client</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span></div>
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    [System.ComponentModel.DisplayName("Панель отзывов")]
+    public ProtoTestimonial Testimonial { get; set; }
+    
+    [Parameter]
+    [System.ComponentModel.DisplayName("Отзывы")]
+    public ProtoTestimonialItems TestimonialItems { get; set; }
+}

@@ -72,6 +72,8 @@ namespace Yee.Runtime.Builder
             WebBuilder.Services.AddSingleton(yeModuleManager);
             WebBuilder.Services.AddRazorPages();
             WebBuilder.Services.AddServerSideBlazor();
+            WebBuilder.Services.AddSingleton<ISourceService, SourceService>();
+
             var alignmentModules = yeModuleManager.ToAlignmentTrees();
             foreach(var module in alignmentModules)
             {

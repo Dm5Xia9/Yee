@@ -1,0 +1,22 @@
+﻿@inject RouteState state
+@inject NavigationManager manager
+@using Yee.Page.Models
+
+
+@if (StyleType != null)
+{
+    <DynamicComponent Type="StyleType">
+
+    </DynamicComponent>
+}
+
+@code{
+    public Type? StyleType { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        StyleType = state.GetCurrent(manager)?.Page?.StyleLink?.ToType();
+
+        return Task.CompletedTask;
+    }
+} 

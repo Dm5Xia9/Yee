@@ -44,11 +44,6 @@ namespace Yee.Admin.Defualt
                 },
                 new NavMenuItem
                 {
-                    Title = "Формы",
-                    Link = "/admin/forms",
-                },
-                new NavMenuItem
-                {
                     Title = "Файлы",
                     Link = "/admin/files",
                 },

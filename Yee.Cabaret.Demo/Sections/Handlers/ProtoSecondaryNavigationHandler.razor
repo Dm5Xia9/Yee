@@ -1,0 +1,16 @@
+﻿@using Yee.Section.Handlers
+@using Yee.Cabaret.Sections.Prototypes
+@using Yee.Section.Extensions
+@inherits ProtoHandler<ProtoSecondaryNavigation, SecondaryNavigation>
+
+<div style="display: flex; flex-wrap: wrap; flex-direction: column; align-items: center;">
+    <ProtoHandlerFactory InputValue="Model.Logo" ProtoType="typeof(ProtoImg)" OnInput="Input"></ProtoHandlerFactory>
+    <ProtoHandlerFactory InputValue="Model.Header" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+    <ProtoHandlerFactory InputValue="Model.SearchUrl" ProtoType="typeof(ProtoLink)" OnInput="Input"></ProtoHandlerFactory>
+    <ProtoHandlerFactory InputValue="Model.ButtonContent" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+    <ProtoHandlerFactory InputValue="Model.ButtonUrl" ProtoType="typeof(ProtoLink)" OnInput="Input"></ProtoHandlerFactory>
+</div>
+
+@code {
+    protected override SecondaryNavigation NewModel => ProtoHelper.CreateDefualt<SecondaryNavigation>();
+}

@@ -1,0 +1,78 @@
+// All Cab Newsletter Styles
+.cab-newsletter-section{
+    .cab-newsletter-inner{
+        width: 52%;
+        margin: auto;
+        h3{
+            margin-top: 0;
+        }
+        p{
+            margin-top: 20px;
+            margin-bottom: 30px;
+            color: $tertiaryColor;
+        }
+    }
+    &.v2{
+        background: $lightGreyColor3;
+    }
+    &.v3{
+        .cab-newsletter-inner{
+            h3{
+                color: $white;
+            }
+            p{
+                color: $greyColor2;
+            }
+        }
+    }
+}
+.cab-newsletter-form-box{
+    position: relative;
+    width: 100%;
+    input{
+        width: 100%;
+        height: 70px;
+        padding: 14px 160px 14px 26px;
+        border: 2px solid $greyColor3;
+        border-radius: 50px;
+        font-size: 18px;
+        color: $secondaryColor;
+        font-family: $secondaryFont;
+        transition: all 0.3s ease;
+        &::placeholder{
+            color: $tertiaryColor2;
+            font-family: $secondaryFont;
+            text-transform: capitalize;
+        }
+        &:focus{
+            outline: 0;
+            background: $lightGreyColor3;
+        }
+    }
+    .newsletter-btn{
+        min-width: 140px;
+        height: 64px;
+        border-radius: 50px;
+        background: $primaryColor;
+        outline: 0;
+        font-size: 18px;
+        border: 2px solid $primaryColor;
+        color: $white;
+        font-family: $secondaryFont;
+        position: absolute;
+        right: 4px;
+        top: 3px;
+        transition: all 0.3s ease;
+        &:hover{
+            background: $secondaryColor;
+            border-color: $secondaryColor;
+        }
+    }
+    &.v3{
+        input{
+            &:focus{
+                background: $greyColor3;
+            }
+        }
+    }
+}

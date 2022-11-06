@@ -1,0 +1,245 @@
+// Cab Single Product Styles
+.cab-single-product-section{
+    .cab-single-product-inner{
+        .single-product-main-slider {
+            margin-bottom: 30px;
+            .swiper-slide{
+                .img-box{
+                    height: 480px;
+                    width: 100%;
+                    background: $lightGreyColor;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+            }
+        }
+        .single-product-thumbs {
+            .swiper-slide{
+                opacity: 0.7;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                &.swiper-slide-active{
+                    .img-box{
+                        background: $greyColor;
+                    }
+                    opacity: 1;
+                    &:hover{
+                        opacity: 1;
+                    }
+                }
+                &:hover{
+                    opacity: 0.9;
+                }
+                .img-box{
+                    height: 92px;
+                    width: 100%;
+                    background: $lightGreyColor;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+            }
+        }
+        .single-product-details-box{
+            .title{
+                padding-bottom: 5px;
+                border-bottom: 2px solid $lightGreyColor;
+                h4{
+                    color: $secondaryColor;
+                    font-weight: 500;
+                    margin-bottom: 16px;
+                    margin-top: 0;
+                }
+                .price{
+                    color: $secondaryColor;
+                    font-weight: 400;
+                   
+                }
+            }
+            .brief {
+                margin: 28px 0 16px;
+                p{
+                    color: $tertiaryColor;
+                }
+            }
+            .add-to-cart-options{
+                padding-top: 16px;
+                .product-count-spinner{
+                    .counter-box {
+                        &:hover{
+                            border-color: $tertiaryColor;
+                        }
+                        float: left;
+                        margin: 0 auto;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        border: 1px solid $lightGreyColor;
+                        height: 54px;
+                        margin-right: 20px;
+                        transition: all 0.3s ease;
+                        .value-button {
+                            &:first-child{
+                                font-size: 24px;
+                            }
+                          display: inline-block;
+                          width: 30px;
+                          height: 20px;
+                          text-align: center;
+                          vertical-align: middle;
+                          background: $white;
+                          user-select: none;
+                          color: $secondaryColor;
+                          font-size: 18px;
+                          line-height: 22px;
+                          cursor: pointer;
+                          &:hover{
+                              color: $primaryColor
+                          }
+                        }
+                                 
+                        input#no_of_products {
+                          text-align: center;
+                          border: none;
+                          margin: 0px;
+                          width: 34px;
+                          height: 40px;
+                          color: $secondaryColor;
+                          font-size: 14px;
+                          outline: 0;
+                        }
+                        
+                        input[type=number]::-webkit-inner-spin-button,
+                        input[type=number]::-webkit-outer-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+                      }
+                      
+                }
+                .add-to-cart-btn{
+                    .cart-btn{
+                        padding: 12px 120px !important;
+                        background: $tertiaryColor ;
+                        border: 2px solid $tertiaryColor;
+                        color: $white;
+                        &:hover{
+                            background: $primaryColor;
+                            border-color: $primaryColor;
+                        }
+                    }
+                }
+                
+            }
+            .extra-options{
+                padding: 24px 0;
+                
+                span{
+                    display: inline-block;
+                    margin-right: 40px;
+                    a{
+                        &:hover{
+                            color: $primaryColor;
+                        }
+                        i{
+                            margin-right: 5px;
+                        }
+                        display: inline-block;
+                        color: $tertiaryColor;
+                        font-size: 14px;
+                        font-weight: 500;
+                        transition: all 0.3s ease;
+                    }
+                }
+            }
+            .extra-info{
+                p{
+                    color: $tertiaryColor;
+                    font-size: 14px;
+                    font-weight: 400;
+                    margin-bottom: 2px;
+                }
+            }
+        }
+        .cab-single-product-full-description{
+            padding: 64px 0 0;
+            .cab-tabs{
+                text-align: center;
+                border-bottom: 2px solid $lightGreyColor;
+                li{
+                    float: none;
+                    display: inline-block;
+                    &.active{
+                        a{
+                            color: $primaryColor;
+                        }
+                    }
+                    a{
+                        background: transparent;
+                        color: $secondaryColor;
+                        font-size: 18px;
+                        font-weight: 500;
+                        padding: 14px 24px;
+                        &:hover{
+                            color: $primaryColor;
+                        }
+                    }
+                }
+            }
+            .cab-tabs-content{
+                padding: 36px 0;
+                p{
+                    color: $tertiaryColor;
+                    margin-bottom: 20px;
+                }
+                .reviews-section{
+                    h5{
+                        margin-top: 0;
+                    }
+                    small{
+                        font-size: 14px;
+                        color: $tertiaryColor;
+                    }
+                    .cab-rating-review-container{
+                        margin-top: 16px;
+                        .rating-box{
+                            color: $secondaryColor;
+                            font-weight: 500;
+                            margin-bottom: 20px;
+                            .rating-fields{
+                                display: inline-block;
+                                position: relative;
+                                top: 3px;
+                                margin-left: 14px;
+                            }
+                        }
+                        label{
+                            color: $tertiaryColor;
+                            font-size: 15px;
+                            font-weight: 400;
+                            margin-bottom: 12px;
+                        }
+                        .form-control{
+                            font-family: $accentFont;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.cab-related-products-container{
+    .widget-title{
+        &.v2{
+            margin-bottom: 50px;
+        }
+    }
+}

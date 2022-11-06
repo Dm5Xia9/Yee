@@ -3,7 +3,9 @@
 @using Yee.Web.Services
 
 @inject YeeViewManager manager
-
+@inject NavigationManager navigation
+@inject DbContextState state
+@using System.Linq 
 <div class="page">
     <main>
         <div class="top-row admin-header text-right px-5 ml-0" style="z-index: 9;">
@@ -12,6 +14,7 @@
             </a>
             <div class="container" style="width: auto !important; margin-left: 20px;">
                 <AdminNavigation></AdminNavigation>
+
             </div>
         </div>
         <div class="content container">
@@ -20,3 +23,17 @@
     </main>
 </div>
 
+
+@code{
+
+    protected override void OnInitialized()
+    {
+        var uri = new Uri(navigation.Uri);
+        if (state.All(p => p.Value.IsWorked == false) && uri.LocalPath.StartsWith("/admin/required-options") == false)
+        {
+            navigation.NavigateTo("/admin/required-options");
+            return;
+        }
+        base.OnInitialized();
+    }
+}

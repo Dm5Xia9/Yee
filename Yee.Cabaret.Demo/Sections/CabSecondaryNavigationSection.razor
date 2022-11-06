@@ -1,0 +1,92 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@using Yee.Cabaret.Sections.Prototypes
+@attribute [System.ComponentModel.DisplayName("Навигация v2")]
+
+<header style="position: initial;" class="cab-header v2" data-headroom="" data-tolerance="5" data-offset="140">
+    <div class="cab-header-inner">
+        <!-- Main Navbar Starts Here -->
+        <nav class="cab-main-navbar">
+            <div class="cab-navbar-inner clearfix">
+                <div class="cab-logo-box">
+                    <a href="/" class="cab-brand">
+                        <img src="@Menu.Value.Logo" alt="Cab Logo">
+                        <span class="logo-text">
+                            @Menu.Value.Header
+                        </span>
+                    </a>
+                </div>
+                <div class="cab-main-left-links-box">
+                    <div class="close-sidebar-v2">
+                    </div>
+                    <ul>
+                        @foreach (var item in MenuItems.Value)
+                        {
+                            if (item.IsGroup)
+                            {
+                                <li class="has-dropdown left-menu">
+                                    <a @onclick="() => ToNav(item.Link)" class="@Active(item)" style="cursor: pointer;">@item.Title</a>
+                                    <div class="dropdown-wrapper">
+                                        <ul>
+                                            @foreach (var child in item.ChildItems)
+                                            {
+                                                <li>
+                                                    <a @onclick="() => ToNav(child.Link)" class="@Active(child)" style="cursor: pointer;">@child.Title</a>
+                                                </li>
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            if (item.IsGroup == false)
+                            {
+                                <li>
+                                    <a @onclick="() => ToNav(item.Link)" class="@Active(item)" style="cursor: pointer;">@item.Title</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <div class="cab-main-right-links-box">
+                    <div class="nav-round-links">
+                        <ul>
+                            <li>
+                                <a href="@Menu.Value.SearchUrl" class="open-search-btn">
+                                    <i class="ti-search"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="open-side-nav v2 show-on-sm-down">
+                                    <i class="ti-menu"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="@Menu.Value.ButtonUrl" class="cab-btn cab-btn-primary cab-btn-topbar">@Menu.Value.ButtonContent</a>
+                </div>
+            </div>
+        </nav>
+        <!-- Main Navbar Ends Here-->
+    </div>
+</header>
+
+@code {
+    [Parameter]
+    [System.ComponentModel.DisplayName("Меню")]
+    public ProtoSecondaryNavigation Menu { get; set; }
+
+    [Parameter]
+    [System.ComponentModel.DisplayName("Элементы меню")]
+    public ProtoNavigation MenuItems { get; set; }
+
+    public string Active(NavMenuItem menuItem)
+    {
+        if (menuItem.IsActive(NavigationManager.Uri))
+        {
+            return "active";
+        }
+
+        return "";
+    }
+}

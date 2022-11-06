@@ -1,0 +1,72 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@using Yee.Cabaret.Sections.Prototypes
+@attribute [System.ComponentModel.DisplayName("Слайды")]
+
+<section class="cab-hero-section v1 p-0">
+    <div class="cab-hero-slider swiper-container">
+        <div class="swiper-wrapper">
+            @foreach (var slide in SwiperSlidesItems.Value)
+            {
+                <div class="swiper-slide">
+                    <div class="cab-hero-slide-inner">
+                        <img src="@slide.Img.Value" alt="Hero Slide Image">
+                        <div class="cab-hero-slide-caption">
+                            <div class="cab-sub-heading-box">
+                                @foreach (var word in GetSubheaderWords(slide))
+                                                                {
+                                    <h6>@word</h6>
+                                    <span class="sep"></span>
+                                }
+                            </div>
+                            <div class="cab-big-heading">
+                                <h1 class="display-1">
+                                    @slide.CabBigHeading
+                                </h1>
+                            </div>
+                            <div class="cab-hero-cta-btn-box text-center">
+                                <Yee.Web.Components.BlazLink Class="cab-btn cab-btn-primary" Href="@slide.ButtonLink.Value">
+                                    <Child>
+                                        @slide.ButtonContent
+                                    </Child>
+                                </Yee.Web.Components.BlazLink>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next">
+            @foreach (var ch in SwiperSlides.Value.NextButtonContent.Value ?? "")
+            {
+                <span>@ch</span>
+
+            }
+        </div>
+        <div class="swiper-button-prev">
+            @foreach (var ch in SwiperSlides.Value.PrevButtonContent.Value ?? "")
+            {
+                <span>@ch</span>
+
+            }
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    [System.ComponentModel.DisplayName("SwiperSlides")]
+    public ProtoSwiperSlides SwiperSlides { get; set; }
+    
+    [Parameter]
+    [System.ComponentModel.DisplayName("SwiperSlidesItems")]
+    public ProtoSwiperSlidesItems SwiperSlidesItems { get; set; }
+
+    private string[] GetSubheaderWords(SwiperSlide slide)
+    {
+        if (slide?.CabSubHeading?.Value == null)
+            return new string[0];
+        return slide.CabSubHeading.Value.Split(" ");
+    }
+}

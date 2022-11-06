@@ -1,9 +1,22 @@
 ﻿@using Yee.Web.Services
+@inject NavigationManager navigation
 
 @inject YeeViewManager manager
 
-@{ 
+@if (IsAdmin)
+{
     var baseUri = manager.CreateBaseUri(typeof(AdminStyles).Assembly);
-}
 
-<link href="@(baseUri)/lib/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="@(baseUri)/lib/css/admin.css" rel="stylesheet" type="text/css" />
+
+}
+@code{
+
+
+    private bool IsAdmin { get; set; }
+    protected override void OnInitialized()
+    {
+        IsAdmin = new Uri(navigation.Uri).LocalPath.StartsWith("/admin");
+        base.OnInitialized();
+    }
+}
