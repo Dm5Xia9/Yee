@@ -34,11 +34,12 @@ namespace Yee.Admin
                 {
                     p.Navigations.AddRange(DefualtNavigations.Value);
                 })
-                .UseMetronic()
+                //.UseMetronic()
                 .UseAntDesign()
                 .WebApp(p =>
                 {
                     //p.AddRouter(typeof(App));
+                    p.AddHead(typeof(HeadApp));
                     p.AddLayout(typeof(AdminLayout));
                 })
                 .AspPostBuild(p =>

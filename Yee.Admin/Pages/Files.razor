@@ -33,14 +33,14 @@
                     <div>
                         <InputFile OnChange="@(p => LoadFiles(storage, p))" multiple />
                     </div>
-                    <div style="display: flex; flex-wrap: wrap; justify-content: space-around; }">
+                    <div class="admin-file-storage-container">
                         @foreach (var file in storage.GetAllFiles())
                         {
-                            <div style=" display: flex; align-items: center; justify-content: center;">
+                            <div class="admin-file-storage-item">
                                 <a href="@($"/admin/file/{storage.Name}/?u={file.LocalPath}")">
                                     @if (file.LocalPath.EndsWith(".jpg") || file.LocalPath.EndsWith(".png"))
                                     {
-                                        <img src="@file.LocalPath" style=" width: 10rem; border: #9900FF 0.2rem solid;" />
+                                        <img src="@file.LocalPath" class="admin-file-img" />
                                     }
                                     else
                                     {

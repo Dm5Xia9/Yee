@@ -11,11 +11,17 @@
 @code{
     [Parameter] public NavMenuItem Item { get; set; }
 =======*@
-<li class="menu-item @(IsActive ? "menu-item-active" : "")" aria-haspopup="true">
+@*<li class="menu-item @(IsActive ? "menu-item-active" : "")" aria-haspopup="true">
     <NavLink href="@Item.Link" class="menu-link">
         <span class="menu-text">@Item.Title</span>
     </NavLink>
-</li>
+</li>*@
+<div class="nav-item admin-nav col">
+    <NavLink class="nav-link admin-nav-link" href="@Item.Link">
+        <span class="menu-text">@Item.Title</span>
+    </NavLink>
+</div>
+
 @code {
     [Parameter] public string Link { get; set; }
     [Parameter] public NavMenuItem Item { get; set; }
