@@ -47,7 +47,7 @@ namespace Yee.Admin
                 {
                     p.Navigations.AddRange(DefualtNavigations.Value);
                 })
-                //.UseMetronic()
+                .UseMetronic()
                 .UseAntDesign()
                 .WebApp(p =>
                 {

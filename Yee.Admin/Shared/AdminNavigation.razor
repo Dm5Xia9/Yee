@@ -1,66 +1,7 @@
 ﻿@using System.Linq
 @inject AdminCompose adminCompose
 @inject IEnumerable<Yee.Admin.Abstractions.INavPatch> patches
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <div class="container px-0">
-        <nav class="admin-nav-container">
-            @foreach (var item in adminCompose.Navigations)
-            {
-                if (item.IsGroup == false)
-                {
-                    <AdminNavItem Item="item"></AdminNavItem>
-                }
-
-            }
-
-            @foreach (var item in PatchMenuItems)
-            {
-                if (item.IsGroup == false)
-                {
-                    <AdminNavItem Item="item" Link="@item.Link"></AdminNavItem>
-                }
-
-            }
-            @*<div class="nav-item custom-nav col">
-                <NavLink class="nav-link custom-nav-link" href="/siteparser">
-                    Поиск
-                </NavLink>
-            </div>
-            <div class="nav-item custom-nav col">
-                <NavLink class="nav-link custom-nav-link" href="/suppliers">
-                    Поставщики
-                </NavLink>
-            </div>
-            <div class="nav-item custom-nav col">
-                <NavLink class="nav-link custom-nav-link" href="/" Match="NavLinkMatch.All">
-                    Товарные позиции
-                </NavLink>
-            </div>
-            <div class="nav-item custom-nav col">
-                <NavLink class="nav-link custom-nav-link" href="/customers">
-                    Клиенты
-                </NavLink>
-            </div>*@
-
-        </nav>
-    </div>
-</div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
-
-
-
-@*<ul class="menu-nav">
+<ul class="menu-nav">
 
     @foreach (var item in adminCompose.Navigations)
     {
@@ -88,9 +29,9 @@
         }
 
     }
-</ul>*@
+</ul>
 
-@code{
+@code {
     public List<NavMenuItem> PatchMenuItems { get; set; }
         = new List<NavMenuItem>();
 
@@ -98,7 +39,7 @@
     {
         if (firstRender)
         {
-            foreach(var patch in patches)
+            foreach (var patch in patches)
             {
                 patch.Patch(PatchMenuItems);
                 StateHasChanged();

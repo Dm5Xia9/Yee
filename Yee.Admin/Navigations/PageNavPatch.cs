@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,18 @@ namespace Yee.Admin.Navigations
 {
     public class PageNavPatch : INavPatch
     {
-        private readonly PageRepository _pageRepository;
-        public PageNavPatch(PageRepository pageRepository)
+        private readonly IServiceScopeFactory _scope;
+        public PageNavPatch(IServiceScopeFactory scope)
         {
-            _pageRepository = pageRepository;
+            _scope = scope;
 
         }
+
         public void Patch(List<NavMenuItem> navMenuItems)
         {
-            var state = _pageRepository.GetState();
+            using var scope = _scope.CreateScope();
+            var pageRepository = scope.ServiceProvider.GetRequiredService<PageRepository>();
+            var state = pageRepository.GetState();
             if (state.IsWorked == false)
                 return;
 
@@ -34,7 +38,7 @@ namespace Yee.Admin.Navigations
 
             try
             {
-                var allComponents = _pageRepository.GetModelDatas();
+                var allComponents = pageRepository.GetModelDatas();
                 foreach (var component in allComponents)
                 {
 
