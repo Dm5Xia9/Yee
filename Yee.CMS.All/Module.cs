@@ -12,13 +12,9 @@ namespace Yee.CMS.All
         public void Build(YeeBuilder builder)
         {
             var a1 = typeof(Yee.Admin.Module);
-            var a2 = typeof(Yee.Admin.Models.Module);
-            var a3 = typeof(Yee.Admin.PageEngine.Module);
             var a4 = typeof(Yee.EntityFrameworkCore.Npgsql.Module);
 
             Console.WriteLine(a1);
-            Console.WriteLine(a2);
-            Console.WriteLine(a3);
             Console.WriteLine(a4);
         }
     }

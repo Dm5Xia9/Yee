@@ -90,7 +90,7 @@
     }
 </ul>*@
 
-@code{
+@code {
     public List<NavMenuItem> PatchMenuItems { get; set; }
         = new List<NavMenuItem>();
 
@@ -98,7 +98,7 @@
     {
         if (firstRender)
         {
-            foreach(var patch in patches)
+            foreach (var patch in patches)
             {
                 patch.Patch(PatchMenuItems);
                 StateHasChanged();

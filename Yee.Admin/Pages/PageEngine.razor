@@ -44,22 +44,20 @@
                         </Yee.Admin.Component.PageEngine.SelectSection>
                     </div>
 
-                    <div style="display: flex; align-items: center;">
-                        <div style="padding: 1rem; color: white; ">Body</div>
 
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="padding: 1rem; color: white; ">Body</div>
                         <AntDesign.Input TValue="string" OnChange="ChangeId" DefaultValue="Page.BodyId" Placeholder="Id"></AntDesign.Input>
                         <AntDesign.Input TValue="string" OnChange="ChangeClass" DefaultValue="Page.BodyClass" Placeholder="Class"></AntDesign.Input>
-
                     </div>
                 </div>
                 <div style="display: flex">
-
-                    <AntDesign.Button Style="height: 32px; margin: 9px; margin-left: 0px;">
+                    <AntDesign.Button Class="admin-button-secondary" Style="height: 32px; margin: 9px; margin-left: 0px;">
                         <NavLink href="/admin" style="color: black;">
                             Перейти в админку
                         </NavLink>
                     </AntDesign.Button>
-                    <AntDesign.Button OnClick="Save" Style="height: 32px; margin: 9px;">
+                    <AntDesign.Button Class="admin-button-secondary" OnClick="Save" Style="height: 32px; margin: 9px;">
                         Сохранить
                     </AntDesign.Button>
                 </div>

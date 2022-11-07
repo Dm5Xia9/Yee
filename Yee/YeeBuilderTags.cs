@@ -17,5 +17,7 @@ namespace Yee
 
         public const string Deps = "Deps";
 
+        public const string LoadForce = "LoadForce";
+        public const string Resolve = "Resolve";
     }
 }

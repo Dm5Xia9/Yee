@@ -1,7 +1,6 @@
 ﻿using Yee.Abstractions;
 using Yee.Nuget.Models;
 using Yee.Nuget;
-using Yee.Runtime.Builder.Abstractions;
 using System.Runtime.Loader;
 using System.Reflection;
 using Microsoft.Extensions.FileProviders;
@@ -251,8 +250,4 @@ namespace Yee.Runtime.YeeProviders
 
     }
 
-    public class NupkgModule : BaseYeeModule
-    {
-
-    }
 }

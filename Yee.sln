@@ -73,7 +73,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cms", "cms", "{62170A76-368
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.CMS.All", "Yee.CMS.All\Yee.CMS.All.csproj", "{093D99F6-D2EA-4E99-9605-4CAD3FD05278}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yee.Cabaret.Demo", "Yee.Cabaret.Demo\Yee.Cabaret.Demo.csproj", "{DEE02EA7-3505-478A-8336-592CB8BC801C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cms (2)", "cms (2)", "{B9420D85-72EB-4D5D-B15E-B624C9211787}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yee.Cabaret.Demo", "Yee.Cabaret.Demo\Yee.Cabaret.Demo.csproj", "{DEE02EA7-3505-478A-8336-592CB8BC801C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

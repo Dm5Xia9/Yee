@@ -9,7 +9,7 @@
 	  <PackageTags>yee; nuget;</PackageTags>
 	  <AssemblyVersion>0.2.1</AssemblyVersion>
 	  <FileVersion>0.2.1</FileVersion>
-	  <Version>0.3.0-alpha</Version>
+	  <Version>0.5.0-alpha</Version>
 	  <Authors>Yee</Authors>
 	  <Company>Yee</Company>
 	  <Product>Yee</Product>
@@ -30,7 +30,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Routing.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Yee.Ant" Version="0.3.0-alpha" />
+    <PackageReference Include="Yee.Ant" Version="0.5.0-alpha" />
   </ItemGroup>
 
 </Project>

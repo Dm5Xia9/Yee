@@ -3,9 +3,11 @@
 @inject NupkgStorage nupkgStorage
 @inject YeeModuleStorage yeeModuleStorage
 @inject NupkgOptions options
+@inject Yee.Services.YeeModuleManager moduleManager
 @inject Microsoft.Extensions.Hosting.IHost host
 @using Microsoft.AspNetCore.Components.Web
-
+@inject Yee.Abstractions.IYeeProvider<Yee.Abstractions.BaseYeeModule> provider
+@inject IEnumerable<Yee.Abstractions.IForceHandler> handlers 
 <div style="position: fixed; background: white; padding: 12px; z-index: 100; right: 10px; border-radius: 10px; height: inherit;
 box-shadow: 0px 0px 30px 0px rgb(82 63 105 / 14%); width: 30rem; ">
     <div style=" font-size: 1.3rem; font-weight: 400;">
@@ -34,8 +36,8 @@ box-shadow: 0px 0px 30px 0px rgb(82 63 105 / 14%); width: 30rem; ">
         </div>
 
 
-        <div style=" position: absolute; bottom: 1rem; width: 100%; display: flex; justify-content: center;">
-            <AntDesign.Button type="primary" Style="width: 17rem;" OnClick="Build">
+        <div style="margin-top: 10px; bottom: 1rem; width: 100%; display: flex; justify-content: center;">
+            <AntDesign.Button Class="admin-button-primary" Style="width: 17rem;" OnClick="Build">
                 Собрать решение
             </AntDesign.Button>
         </div>
@@ -69,8 +71,8 @@ box-shadow: 0px 0px 30px 0px rgb(82 63 105 / 14%); width: 30rem; ">
     public async Task Build()
     {
         var combineNugetRepository =
-                new CombineNugetRepository(
-                    options.Sources.Select(p => new NugetRepository(p)).ToArray());
+        new CombineNugetRepository(
+            options.Sources.Select(p => new NugetRepository(p)).ToArray());
 
         await combineNugetRepository.Load();
         yeeModuleStorage.Clear();
@@ -85,6 +87,27 @@ box-shadow: 0px 0px 30px 0px rgb(82 63 105 / 14%); width: 30rem; ">
             yeeModuleStorage.AddModule(metaPack);
         }
         yeeModuleStorage.Save();
+
+        if (moduleManager.Modules.Any())
+        {
+            var modules = provider.Resolve();
+
+            var newModules = Yee.Extensions.ModuleHelper.FindNewModules(moduleManager.Modules, modules);
+
+            if (newModules.Any())
+            {
+                if (newModules.All(p => p.Builder.ContainsKey(YeeBuilderTags.LoadForce)))
+                {
+                    foreach(var handler in handlers)
+                    {
+                        handler.Up(newModules);
+                    }
+
+                    moduleManager.Add(newModules);
+                    return;
+                }
+            }
+        }
 
         await host.StopAsync();
     }

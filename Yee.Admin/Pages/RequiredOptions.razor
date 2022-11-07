@@ -1,6 +1,5 @@
 ﻿@page "/admin/required-options"
 @inject Yee.Abstractions.IRootOptions rootOption
-@inject Yee.EntityFrameworkCore.Abstractions.IDbContextOptionsProvider provider
 <AdminPage>
     <Header>
         <div class="d-flex align-items-center flex-wrap mr-1">
@@ -14,14 +13,16 @@
         </div>
     </Header>
     <Body>
-        <AntDesign.Input Placeholder="Строка подключения к базе данных" TValue="string" DefaultValue="NOptions.ConnectionString" 
-                         @bind-Value="NOptions.ConnectionString">
+        <div style="padding: 15px;">
+            <AntDesign.Input Placeholder="Строка подключения к базе данных" TValue="string" DefaultValue="NOptions.ConnectionString"
+                             @bind-Value="NOptions.ConnectionString">
 
-        </AntDesign.Input>
+            </AntDesign.Input>
 
-        <AntDesign.Button OnClick="Save">
-            Сохранить
-        </AntDesign.Button>
+            <AntDesign.Button Style="margin-top: 10px; width: 170px;" Class="admin-button-primary" OnClick="Save">
+                Сохранить
+            </AntDesign.Button>
+        </div>
     </Body>
 </AdminPage>
 

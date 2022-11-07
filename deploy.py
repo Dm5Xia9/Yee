@@ -5,8 +5,8 @@
 import os
 import xml.etree.ElementTree as ET
 
-targetVersion = "0.3.0-alpha"
-Output = "C:\\Users\\jackf\\Desktop\\testPacs"
+targetVersion = "0.5.0-alpha"
+Output = "C:\\Users\\jackf\\Desktop\\pacs"
 Source = "http://49.12.227.30:555/v3/index.json"
 class ProjectNode:
     def __init__(self, filePath):

@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+  <Version>0.5.0-alpha</Version></PropertyGroup>
 
 
   <ItemGroup>
@@ -13,13 +13,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
+    <PackageReference Include="Yee.Section.Base" Version="0.5.0-alpha" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Yee.Section.Base\Yee.Section.Base.csproj" />
-    <ProjectReference Include="..\Yee.Section\Yee.Section.csproj" />
-    <ProjectReference Include="..\Yee.Web\Yee.Web.csproj" />
-    <ProjectReference Include="..\Yee\Yee.csproj" />
-  </ItemGroup>
 
 </Project>
