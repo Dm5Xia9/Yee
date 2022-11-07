@@ -7,12 +7,12 @@
 <div style=" padding-top: 1rem;">
     <div style="margin-top: 10px; display: flex; justify-content: center; align-items: center;">
         <h5>Элементы</h5>
-        <AntDesign.Button OnClick="AddItem" Style="margin-left: 1.1rem;">Добавить</AntDesign.Button>
+        <AntDesign.Button Class="admin-button-secondary" OnClick="AddItem" Style="margin-left: 1.1rem;">Добавить</AntDesign.Button>
     </div>
     <div style=" display: flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap; }">
         @foreach (var card in Model)
         {
-            <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
+            <div style="border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
                 <ProtoHandlerFactory InputValue="card.Image" ProtoType="typeof(ProtoImg)" OnInput="Input"></ProtoHandlerFactory>
             </div>
         }

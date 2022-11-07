@@ -1,10 +1,10 @@
 ﻿@inherits ProtoHandler<ProtoNumber, decimal>
 
 <div style=" width: 33rem; display: flex; align-items: center;">
-    <label style="padding-right: 2rem;">@(Proto.DisplayName ?? "Строка")</label>
-
-    <AntDesign.InputNumber TValue="decimal" @bind-Value="Model">
-
+    <div class="handler-form-item-label ant-col ant-col-9">
+        <label>@(Proto.DisplayName ?? "Число")</label>
+    </div>
+    <AntDesign.InputNumber Class="ant-col ant-col-15" TValue="decimal" @bind-Value="Model">
     </AntDesign.InputNumber>
 </div>
 

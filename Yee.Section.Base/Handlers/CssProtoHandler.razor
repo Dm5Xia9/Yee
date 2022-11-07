@@ -1,14 +1,16 @@
 ﻿@inherits ProtoHandler<ProtoCssClass, List<string>>
 @using AntDesign 
 <div style=" width: 33rem; display: flex; align-items: center;">
-    <label style="padding-right: 2rem;">@(Proto.DisplayName ?? "Классы")</label>
-
+    <div class="handler-form-item-label ant-col ant-col-9">
+        <label>@(Proto.DisplayName ?? "Классы")</label>
+    </div>
     <Select Mode="tags"
             Placeholder="Please select"
             @bind-Values="_selectedValues"
             TItemValue="string"
             TItem="string"
-            EnableSearch>
+            EnableSearch
+            Class="ant-col ant-col-15">
         <SelectOptions>
             @foreach (var item in _items)
             {

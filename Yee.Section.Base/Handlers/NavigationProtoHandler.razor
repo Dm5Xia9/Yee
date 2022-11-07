@@ -2,7 +2,9 @@
 @using AntDesign
 
 <div style=" width: 33rem; display: flex; align-items: center;">
-    <label style="padding-right: 2rem;">@(Proto.DisplayName ?? "Навигация")</label>
+    <div class="handler-form-item-label ant-col ant-col-9">
+        <label>@(Proto.DisplayName ?? "Навигация")</label>
+    </div>
     <Tree ShowIcon
           TItem="NavMenuItem"
           MatchedClass="site-tree-search-value"
