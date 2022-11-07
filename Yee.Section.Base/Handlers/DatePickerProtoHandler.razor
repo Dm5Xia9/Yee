@@ -1,8 +1,10 @@
 ﻿@inherits ProtoHandler<ProtoDate, DateTime?>
 
 <div style=" width: 33rem; display: flex; align-items: center;">
-    <label style="padding-right: 2rem;">@(Proto.DisplayName ?? "Дата")</label>
-    <AntDesign.DatePicker TValue="DateTime?" @bind-Value="Model" />
+    <div class="handler-form-item-label ant-col ant-col-9">
+        <label>@(Proto.DisplayName ?? "Дата")</label>
+    </div>
+    <AntDesign.DatePicker Class="ant-col ant-col-15" TValue="DateTime?" @bind-Value="Model" />
 </div>
 
 @code { 

@@ -1,8 +1,10 @@
 ﻿@inherits ProtoHandler<ProtoString, string>
 
 <div style=" width: 33rem; display: flex; align-items: center;">
-    <label style="padding-right: 2rem;">@(Proto.DisplayName ?? "Строка")</label>
-    <AntDesign.Input TValue="string" @bind-Value="Model"></AntDesign.Input>
+    <div class="handler-form-item-label ant-col ant-col-9">
+        <label>@(Proto.DisplayName ?? "Строка")</label>
+    </div>
+    <AntDesign.Input Class="ant-col ant-col-15" TValue="string" @bind-Value="Model"></AntDesign.Input>
 </div>
 
 @code { 

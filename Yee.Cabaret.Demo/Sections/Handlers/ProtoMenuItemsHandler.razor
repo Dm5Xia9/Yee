@@ -6,12 +6,12 @@
 <div style=" padding-top: 1rem;">
     <div style=" display: flex; justify-content: center; align-items: center; flex-flow: column; margin-top: 10px;">
         <h5>Элементы меню</h5>
-        <AntDesign.Button OnClick="@(() => AddMenuItem())" Style="margin-left: 1.1rem;">Добавить элемент</AntDesign.Button>
+        <AntDesign.Button Class="admin-button-secondary" OnClick="@(() => AddMenuItem())" Style="margin-left: 1.1rem;">Добавить элемент</AntDesign.Button>
     </div>
     <div style="display: flex; justify-content: space-evenly; flex-direction: column; flex-wrap: wrap; margin-right: 20px;">
         @foreach (var item in Model)
         {
-            <div style="border-left: #3bae20 1px solid; border-radius: 10px; padding-left: 20px; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
+            <div style="border-radius: 10px; padding-left: 20px; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
                 <ProtoHandlerFactory InputValue="@item.Category" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="@item.ItemName" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
                 <ProtoHandlerFactory InputValue="@item.Ingridients" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
