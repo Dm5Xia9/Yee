@@ -1,0 +1,182 @@
+// All Cab Footer Styles
+footer{
+    min-height: 500px;
+        .cab-footer-about-section{
+            padding: 80px 0 60px;
+            .cab-footer-about-content{
+                text-align: center;
+                .cab-footer-logo{
+                    img{
+                        width: 70px;
+                    }
+                    .logo-title{
+                        display: block;
+                        font-size: 28px;
+                        font-weight: 400;
+                        font-family: $primaryFont;
+                        color: $primaryColor;
+                        margin-top: -4px;
+                    }
+                }
+                .cab-footer-text{
+                    width: 48%;
+                    margin: 24px auto auto;
+                    p{
+                        color: $greyColor;
+                    }
+                }
+                .cab-footer-social-icons-box{
+                    margin-top: 36px;
+                    a{
+                        color: $white;
+                        background: $darkGreyColor;
+                        height: 45px;
+                        width: 45px;
+                        display: inline-block;
+                        border-radius: 50%;
+                        border-radius: 50%;
+                        line-height: 47px;
+                        text-align: center;
+                        margin: 0 1px;
+                        transition: width 0.5s ease, color 0.3s ease;
+                        &:hover{
+                            color: $primaryColor;
+                            background: $greyColor;
+                            width: 80px;
+                            border-radius: 40px;
+                        }
+                    }
+                }
+            }
+        }
+        .footer-seperator{
+            img{
+                width: 100%;
+            }
+        }
+        .cab-footer-info-section{
+            padding: 70px 0 100px;
+            .cab-footer-info-box{
+                text-align: center;
+                .icon-box{
+                    line-height: 28px;
+                    &.size-sm{
+                        i{
+                            &::before{
+                                font-size: 60px; 
+                            }
+                        }
+                    }
+                    i{
+                        &::before{
+                            font-size: 70px;
+                            color: $darkGreyColor2;
+                        }
+                    }
+                }
+                .info-title{
+                    h5{
+                        color: $white;
+                        font-size: 22px;
+                        font-weight: 500;
+                        font-family: $primaryFont;
+                        margin-bottom: 20px;
+                        text-transform: capitalize;
+                    }
+                }
+                .info-details{
+                    p{
+                        color: $greyColor;
+                        font-size: 15px;
+                        padding: 0 20px;
+                        a{
+                            color: $greyColor;
+                            &:hover{
+                                color: $primaryColor;
+                            }
+                        }
+                    }
+                }
+            }
+            .cab-footer-book-table-btn-box{
+                text-align: center;
+                margin-top: 60px;
+            }
+        }
+        .cab-copyright-section{
+            padding: 44px 0;
+            background: $white;
+            text-align: center;
+            position: relative;
+            .cab-to-top-arrow-box{
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                background: $white;
+                width: 82px;
+                height: 76px;
+                line-height: 64px;
+                text-align: center;
+                a{
+                    transform: rotate(90deg);
+                    display: block;
+                    color: $secondaryColor;
+                    &:hover{
+                        color: $primaryColor;
+                    }
+                }
+            }
+            .cab-footer-menu-box{
+                margin-bottom: 10px;
+                a{
+                    font-size: 14px;
+                    font-weight: 500;
+                    padding: 0 10px;
+                    color: $secondaryColor;
+                    &:hover{
+                        color: $tertiaryColor;
+                    }
+                }
+            }
+            .cab-copyright-text{
+                p{
+                    font-size: 14px;
+                    font-weight: 300;
+                    color: $tertiaryColor;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    &.v2{
+        .cab-footer-info-section{
+            padding: 110px 0 80px;
+      
+        }
+        .cab-copyright-section{
+            padding: 44px 0;
+            border-top: 1px solid #ffffff22;
+            background: transparent;
+            .cab-footer-menu-box{
+                margin-bottom: 14px;
+                a{
+                    color: $white;
+                    &:hover{
+                        color: $tertiaryColor2;
+                    }
+                }
+            }
+            .cab-copyright-text{
+                p{
+                    color: $white;
+                    a{
+                        &:hover{
+                            color: $tertiaryColor2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

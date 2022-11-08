@@ -1,0 +1,38 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@using Yee.Cabaret.Sections.Prototypes
+@attribute [System.ComponentModel.DisplayName("Обзоры клиентов")]
+
+<section class="cab-testimonials-section v2 page">
+    <div class="container">
+        <div style="display: flex; flex-wrap: wrap;">
+            @foreach(var testimonial in Reviews.Value)
+            {
+                <div class="col-sm-6">
+                    <div class="testimonial-card">
+                        <div class="testimonial-words">
+                            <p>@testimonial.Text</p>
+                        </div>
+                        <div class="testimonial-author clearfix">
+                            <div class="author-avatar">
+                                <img src="@testimonial.Avatar" alt="Author Avatar">
+                            </div>
+                            <div class="author-details alt">
+                                <h6 class="color-primary">
+                                    @testimonial.Author
+                                </h6>
+                                <small>@testimonial.Caption</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    [System.ComponentModel.DisplayName("Отзывы")]
+    public ProtoTestimonialItems Reviews { get; set; }
+}

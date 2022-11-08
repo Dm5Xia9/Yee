@@ -1,0 +1,301 @@
+// All Cab About Us Section Styles
+.cab-about-section {
+    background: $lightGreyColor2;
+    position: relative;
+    padding-bottom: 40px;
+    .cab-about-bg-shape {
+        width: 80%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        clip-path: polygon(0 0, 100% 0%, 70% 100%, 0% 100%);
+        background: #0a0c0e;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+            z-index: 0;
+        }
+        img {
+            width: 82%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .cab-about-section-inner {
+        position: relative;
+        z-index: 1;
+        .left-side-content {
+            padding-right: 30px;
+            .small-tagline {
+                color: $primaryColor;
+                font-family: $secondaryFont;
+                display: inline-block;
+                position: relative;
+                padding-left: 7px;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: -54px;
+                    top: 50%;
+                    height: 1px;
+                    width: 50px;
+                    background: $primaryColor;
+                }
+            }
+            h1 {
+                font-family: $primaryFont;
+                color: $white;
+                margin-top: 10px;
+                font-weight: 500;
+            }
+            p {
+                padding: 36px 44px 40px 0;
+                color: $white;
+                line-height: 1.8;
+            }
+        }
+        .cab-about-image-box {
+            padding-top: 20px;
+            padding-left: 20px;
+            img {
+                width: 42em;
+                height: 100%;
+                object-fit: contain;
+                // animation: rotation 4s infinite linear;
+                // transform-origin: 50% 50%;
+            }
+        }
+    }
+    &.v2 {
+        padding-bottom: 92px;
+        .cab-about-bg-shape {
+            width: 64%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            clip-path: polygon(0 0, 100% 0%, 70% 100%, 0% 100%);
+            background: $secondaryColor;
+            opacity: 0.6;
+        }
+    }
+    &.v3 {
+        background: $white;
+        padding-bottom: 0;
+        padding-top: 0 !important;
+        .cab-about-section-inner {
+            position: relative;
+            z-index: 1;
+            .left-side-content {
+                h1 {
+                    font-family: $primaryFont;
+                    color: $secondaryColor;
+                }
+                p {
+                    color: $tertiaryColor;
+                }
+            }
+            .right-side-content {
+                position: relative;
+                .play-icon {
+                    position: absolute;
+                    z-index: 2;
+                    top: 50%;
+                    left: 0;
+                    transform: translate(-50%, -50%);
+                    .open-video-btn {
+                        display: inline-block;
+                        width: 62px;
+                        height: 62px;
+                        line-height: 62px;
+                        background: #e9161c88;
+                        border-radius: 50%;
+                        text-align: center;
+                        padding-left: 2px;
+                        cursor: pointer;
+                        position: relative;
+                        z-index: 1;
+                        transition: all 0.3s ease;
+                        &:hover {
+                            transform: scale(1.1);
+                        }
+                        &::before {
+                            position: absolute;
+                            content: '';
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%, -50%);
+                            background: #e9161cbb;
+                            border-radius: 50%;
+                            width: 52px;
+                            height: 52px;
+                            z-index: -1;
+                        }
+                        i {
+                            color: $white;
+                            &::before {
+                                font-size: 20px;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+                }
+                .about-v3-img-box {
+                    width: 100%;
+                    height: 520px;
+                    position: relative;
+                    overflow: hidden;
+                    background: $lightGreyColor;
+                    img {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        width: 100%;
+                        z-index: 1;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                    .exp-text {
+                        position: relative;
+                        z-index: 1;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        h1 {
+                            font-size: 182px;
+                            font-family: $primaryFont;
+                            font-weight: 500;
+                            color: $accentColor;
+                            margin-bottom: -20px;
+                            text-shadow: rgba(0, 0, 0, 0.9) 0px 4px 20px;
+                        }
+                        h5{
+                            font-size: 36px;
+                            font-family: $primaryFont;
+                            font-weight: 500;
+                            color: $accentColor;
+                            text-shadow: rgba(0, 0, 0, 0.9) 0px 4px 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.v4 {
+        background: url(../img/about-v4-bg.jpg) no-repeat center;
+        background-size: cover;
+        padding: 120px 0 100px;
+        .cab-about-section-inner {
+            position: relative;
+            z-index: 1;
+            .left-side-content {
+                h1 {
+                    font-family: $primaryFont;
+                    color: $white;
+                }
+                p {
+                    color: $tertiaryColor3;
+                }
+            }
+            .right-side-content {
+                position: relative;
+                .play-icon {
+                    position: absolute;
+                    z-index: 2;
+                    top: 50%;
+                    left: 0;
+                    transform: translate(-50%, -50%);
+                    .open-video-btn {
+                        display: inline-block;
+                        width: 62px;
+                        height: 62px;
+                        line-height: 62px;
+                        background: #e9161c88;
+                        border-radius: 50%;
+                        text-align: center;
+                        padding-left: 2px;
+                        cursor: pointer;
+                        position: relative;
+                        z-index: 1;
+                        transition: all 0.3s ease;
+                        &:hover {
+                            transform: scale(1.1);
+                        }
+                        &::before {
+                            position: absolute;
+                            content: '';
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%, -50%);
+                            background: #e9161cbb;
+                            border-radius: 50%;
+                            width: 52px;
+                            height: 52px;
+                            z-index: -1;
+                        }
+                        i {
+                            color: $white;
+                            &::before {
+                                font-size: 20px;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+                }
+                .about-v3-img-box {
+                    width: 100%;
+                    height: 520px;
+                    position: relative;
+                    overflow: hidden;
+                    background: $lightGreyColor;
+                    img {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        width: 100%;
+                        z-index: 1;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                    .exp-text {
+                        position: relative;
+                        z-index: 1;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        h1 {
+                            font-size: 182px;
+                            font-family: $primaryFont;
+                            font-weight: 500;
+                            color: $primaryColor;
+                            margin-bottom: -20px;
+                            text-shadow: $secondaryColor 0px 4px 30px;
+                        }
+                        h5{
+                            font-size: 36px;
+                            font-family: $primaryFont;
+                            font-weight: 500;
+                            color: $secondaryColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

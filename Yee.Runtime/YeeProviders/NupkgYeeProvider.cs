@@ -1,11 +1,13 @@
 ﻿using Yee.Abstractions;
 using Yee.Nuget.Models;
 using Yee.Nuget;
-using Yee.Runtime.Builder.Abstractions;
 using System.Runtime.Loader;
 using System.Reflection;
 using Microsoft.Extensions.FileProviders;
 using Yee.Runtime.Builder.Helpers;
+using System.Reflection.Metadata.Ecma335;
+using Microsoft.Extensions.Options;
+using Yee.Runtime.Abstractions;
 
 namespace Yee.Runtime.YeeProviders
 {
@@ -19,8 +21,9 @@ namespace Yee.Runtime.YeeProviders
         private AssemblyName CurrentAssemblyName;
         private readonly IWebHostEnvironment _webHost;
         private readonly List<NupkgModule> _cache = new List<NupkgModule>();
-
-        public NupkgYeeProvider(NupkgOptions options, NupkgStorage storage, YeeModuleStorage yeeModuleStorage, IWebHostEnvironment webHost)
+        private readonly IOptions<StarterNuGetPack> _starterPack;
+        public NupkgYeeProvider(NupkgOptions options, NupkgStorage storage, YeeModuleStorage yeeModuleStorage, 
+            IWebHostEnvironment webHost, IOptions<StarterNuGetPack> starterPack)
         {
             _yeeModuleStorage = yeeModuleStorage;
             _nupkgStorage = storage;
@@ -31,33 +34,53 @@ namespace Yee.Runtime.YeeProviders
                 new CombineNugetRepository(
                     options.Sources.Select(p => new NugetRepository(p)).ToArray());
             _webHost = webHost;
+            _starterPack = starterPack;
         }
 
 
         public IEnumerable<BaseYeeModule> Resolve()
         {
-            return _yeeModuleStorage.GetAllModules()
+            _combineNugetRepository.Load().Wait();
+
+            var modules = _yeeModuleStorage.GetAllModules()
+                .Value
                 .Select(p => LoadSingleModule(p)).ToList();
+
+            if (modules.Any())
+            {
+                return modules;
+            }
+
+            var startModule = _nupkgStorage.GetAssemblyMetadataFromAssemblyName(_starterPack.Value, _combineNugetRepository).Result;
+
+            return new List<BaseYeeModule> { LoadSingleModule(startModule) };
         }
 
         private System.Reflection.Assembly? _context_Resolving(AssemblyLoadContext arg1, System.Reflection.AssemblyName arg2)
         {
             return Task.Run(async () =>
             {
-                var realVersion = await GetRealVersion(arg2);
-                var assemblyPath = _nupkgStorage
-                    .GetAssemblyMetadataFromAssemblyName(new NugetPacket
-                    {
-                        Id = arg2.Name,
-                        Version = realVersion
-                    }, _combineNugetRepository)
-                    .Result;
+                try
+                {
+                    var realVersion = await GetRealVersion(arg2);
+                    var assemblyPath = _nupkgStorage
+                        .GetAssemblyMetadataFromAssemblyName(new NugetPacket
+                        {
+                            Id = arg2.Name,
+                            Version = realVersion
+                        }, _combineNugetRepository)
+                        .Result;
 
-                if (assemblyPath == null)
+                    if (assemblyPath == null)
+                        return null;
+
+
+                    return GetAssemblyByMetadata(assemblyPath);
+                }
+                catch(Exception ex)
+                {
                     return null;
-
-
-                return GetAssemblyByMetadata(assemblyPath);
+                }
             }).Result;
         }
 
@@ -82,7 +105,7 @@ namespace Yee.Runtime.YeeProviders
             {
                 _webHost.WebRootFileProvider =
                     new CompositeFileProvider(_webHost.WebRootFileProvider,
-                    new PhysicalFileProvider(mgModuleMetadata.StaticWebAssetsPath));
+                    new AssemblyPhysicalFileProvider(mgModuleMetadata.StaticWebAssetsPath, mgModuleMetadata.ModuleName));
             }
 
             return _context.LoadFromAssemblyPath(mgModuleMetadata.Source);
@@ -101,7 +124,7 @@ namespace Yee.Runtime.YeeProviders
                 {
                     _webHost.WebRootFileProvider =
                         new CompositeFileProvider(_webHost.WebRootFileProvider,
-                        new PhysicalFileProvider(mgModule.StaticWebAssetsPath));
+                        new AssemblyPhysicalFileProvider(mgModule.StaticWebAssetsPath, mgModule.ModuleName));
                 }
 
                 assembly = _context.LoadFromAssemblyPath(mgModule.Source);
@@ -168,19 +191,29 @@ namespace Yee.Runtime.YeeProviders
                 {
                     _webHost.WebRootFileProvider =
                         new CompositeFileProvider(_webHost.WebRootFileProvider,
-                        new PhysicalFileProvider(mgModule.StaticWebAssetsPath));
+                        new AssemblyPhysicalFileProvider(mgModule.StaticWebAssetsPath, mgModule.ModuleName));
                 }
             }
 
             NupkgModule depNodeAssembly = new NupkgModule();
             depNodeAssembly.Assembly = assembly;
             depNodeAssembly.YeeModule = YeeAssemblyHelpers.CreateYeeModule(assembly);
-            var builder = new YeeBuilder();
-            depNodeAssembly.YeeModule.Build(builder);
 
+            List<Assembly> appDeps;
+            if (depNodeAssembly.YeeModule != null)
+            {
+                var builder = new YeeBuilder();
+                depNodeAssembly.YeeModule.Build(builder);
+                depNodeAssembly.Builder = builder;
 
-            var appDeps = YeeAssemblyHelpers.GetDepsFromModule(depNodeAssembly);
+                appDeps = YeeAssemblyHelpers.GetDepsFromModule(depNodeAssembly);
 
+            }
+            else
+            {
+                appDeps = new List<Assembly>();
+                depNodeAssembly.Builder = new YeeBuilder();
+            }
             depNodeAssembly.Deps = new List<BaseYeeModule>();
             var deps = assembly.GetReferencedAssemblies();
 
@@ -217,8 +250,4 @@ namespace Yee.Runtime.YeeProviders
 
     }
 
-    public class NupkgModule : BaseYeeModule
-    {
-
-    }
 }

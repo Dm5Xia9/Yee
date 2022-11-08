@@ -1,0 +1,36 @@
+﻿@using Yee.Section.Handlers
+@using Yee.Cabaret.Sections.Prototypes
+@using Yee.Section.Extensions
+@inherits ProtoHandler<ProtoMenuItems, List<MenuItem>>
+
+<div style=" padding-top: 1rem;">
+    <div style=" display: flex; justify-content: center; align-items: center; flex-flow: column; margin-top: 10px;">
+        <h5>Элементы меню</h5>
+        <AntDesign.Button Class="admin-button-secondary" OnClick="@(() => AddMenuItem())" Style="margin-left: 1.1rem;">Добавить элемент</AntDesign.Button>
+    </div>
+    <div style="display: flex; justify-content: space-evenly; flex-direction: column; flex-wrap: wrap; margin-right: 20px;">
+        @foreach (var item in Model)
+        {
+            <div style="border-radius: 10px; padding-left: 20px; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
+                <ProtoHandlerFactory InputValue="@item.Category" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="@item.ItemName" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="@item.Ingridients" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="@item.Price" ProtoType="typeof(ProtoNumber)" OnInput="Input"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="@item.IsNew" ProtoType="typeof(ProtoBool)" OnInput="Input"></ProtoHandlerFactory>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+
+    protected override List<MenuItem> NewModel =>
+       ProtoHelper.CreateDefualt<List<MenuItem>>();
+
+    public void AddMenuItem()
+    {
+        Model.Add(ProtoHelper.CreateDefualt<MenuItem>());
+        Input();
+        StateHasChanged();
+    }
+}

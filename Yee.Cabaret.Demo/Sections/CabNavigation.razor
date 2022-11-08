@@ -1,0 +1,71 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@attribute [System.ComponentModel.DisplayName("Навигация")]
+
+<header class="cab-header v1">
+    <div class="container">
+        <nav class="cab-main-navbar">
+            <span class="open-side-nav v1 show-on-sm-down">
+                <i class="ti-menu"></i>
+            </span>
+            <div class="main-menu cab-left-nav-links d-sm-none">
+                <ul>
+                    <CabOneNavigation MenuItems="LeftMenuItems" Class="@(ProtoCssClass.Instance("left-menu"))"></CabOneNavigation>
+                </ul>
+            </div>
+            <div class="cab-centered-logo-box">
+                <a href="/">
+                    <img src="@Logo.Value" alt="Main Cabaret logo" class="cab-centered-logo">
+                    <span class="brand-name">@BrandName.Value</span>
+                </a>
+            </div>
+            <div class="main-menu cab-right-nav-links d-sm-none">
+                <ul>
+                    <CabOneNavigation MenuItems="RightMenuItems" Class="@(ProtoCssClass.Instance("right-menu"))"></CabOneNavigation>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <aside class="cab-sidebar-nav">
+        <span class="close-side-nav-btn">
+            <i class="ti-close"></i>
+        </span>
+        <div class="cab-sidebar-inner">
+            <ul>
+                <CabOneNavigation MenuItems="LeftMenuItems" Class="@(ProtoCssClass.Instance())"></CabOneNavigation>
+                <CabOneNavigation MenuItems="RightMenuItems" Class="@(ProtoCssClass.Instance())"></CabOneNavigation>
+            </ul>
+        </div>
+    </aside>
+</header>
+@code {
+
+
+    [Parameter]
+    [System.ComponentModel.DisplayName("Логотип")]
+    public ProtoImg Logo { get; set; }
+
+    [Parameter]
+    [System.ComponentModel.DisplayName("Название компании")]
+    public ProtoString BrandName { get; set; }
+
+    [Parameter]
+    [System.ComponentModel.DisplayName("Левое меню")]
+    public ProtoNavigation LeftMenuItems { get; set; }
+
+    [Parameter]
+    [System.ComponentModel.DisplayName("Правое меню меню")]
+    public ProtoNavigation RightMenuItems { get; set; }
+
+    public string Active(NavMenuItem menuItem)
+    {
+        if (menuItem.IsActive(NavigationManager.Uri))
+        {
+            return "active";
+        }
+
+        return "";
+    }
+
+}
+

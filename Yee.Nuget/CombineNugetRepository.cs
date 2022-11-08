@@ -76,6 +76,12 @@ namespace Yee.Nuget
 
             return list;
         }
+
+        public async Task Load()
+        {
+            foreach (var rep in _nugetRepositories)
+                await rep.Load();
+        }
     }
 
 }

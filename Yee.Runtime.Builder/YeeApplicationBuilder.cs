@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using Yee.Abstractions;
 using Yee.Extensions;
 using Yee.Options;
-using Yee.Runtime.Builder.Abstractions;
 using Yee.Runtime.Builder.Helpers;
 using Yee.Services;
 using Yee.Web.Middlewares;
@@ -19,6 +18,8 @@ using Yee.Web.Extensions;
 using Yee.Web.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 namespace Yee.Runtime.Builder
 {
@@ -30,7 +31,20 @@ namespace Yee.Runtime.Builder
             WebBuilder = WebApplication.CreateBuilder(args);
             Services = new ServiceCollection();
             Services.AddSingleton(WebBuilder.Environment);
-            Services.Configure<RootOptions>(WebBuilder.Configuration);
+            var manager = new ConfigurationManager();
+
+            var dirExe = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var dir = Path.Combine(dirExe, "options");
+
+            if (Directory.Exists(dir) == false)
+                Directory.CreateDirectory(dir);
+
+            manager.AddInMemoryCollection(new Dictionary<string, string>
+            {
+                {"OptionsDirectory", dir }
+            });
+
+            Services.Configure<RootOptions>(manager);
             Services.AddSingleton<IRootOptions, FileSystemRootOptions>();
             Services.AddSingleton<YeeModuleManager>();
             Services.AddSingleton<FileStorageCollection>();
@@ -57,10 +71,12 @@ namespace Yee.Runtime.Builder
             WebBuilder.Services.AddSingleton(yeModuleManager);
             WebBuilder.Services.AddRazorPages();
             WebBuilder.Services.AddServerSideBlazor();
+            WebBuilder.Services.AddSingleton<ISourceService, SourceService>();
+            WebBuilder.Services.AddSingleton<IForceHandler, ForceResolveHandler>();
             var alignmentModules = yeModuleManager.ToAlignmentTrees();
             foreach(var module in alignmentModules)
             {
-                YeeBuilderHandler.Go
+                YeeBuilderHandler.Go 
                     (module.Builder, YeeBuilderTags.AspConfigureServices, WebBuilder.Services);
 
                 YeeBuilderHandler.Go
@@ -74,6 +90,8 @@ namespace Yee.Runtime.Builder
 
             var app = WebBuilder.Build();
 
+            var ss = app.Services.GetRequiredService<IRootOptions>();
+            ss.GetAll();
             foreach (var module in alignmentModules)
             {
                 YeeBuilderHandler.Go
@@ -97,7 +115,6 @@ namespace Yee.Runtime.Builder
             }
 
             app.Run();
-
         }
         
     }

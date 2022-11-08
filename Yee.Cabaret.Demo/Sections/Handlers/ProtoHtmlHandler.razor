@@ -1,0 +1,28 @@
+﻿@using Yee.Section.Handlers
+@using Yee.Cabaret.Sections.Prototypes
+@using Yee.Section.Extensions
+@inherits ProtoHandler<ProtoHtml, HtmlText>
+
+
+<div style=" padding-top: 1rem;">
+    <div class="html-text-area" style="display: flex; justify-content: center; align-items: center; flex-flow: column;">
+        <div style="border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
+            <ProtoHandlerFactory InputValue="@Model.Html" ProtoType="typeof(ProtoTextArea)" OnInput="Input"></ProtoHandlerFactory>
+        </div>
+    </div>
+</div>
+
+<style>
+    .html-text-area > div > div {
+        width: 1000px !important;
+    }
+
+    /*.html-text-area > div > div > textarea {
+        height: 100px !important;
+    }*/
+</style>
+
+@code {
+    protected override HtmlText NewModel =>
+       ProtoHelper.CreateDefualt<HtmlText>();
+}

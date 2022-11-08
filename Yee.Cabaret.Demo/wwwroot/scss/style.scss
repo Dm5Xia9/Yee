@@ -1,0 +1,38 @@
+// Import General Styles
+@import "general/colors";
+@import "general/typography";
+@import "general/global";
+@import "general//buttons";
+@import "general/forms";
+
+// Import Components Styles
+@import "components/coming-soon";
+@import "components/search-overlays";
+@import "components/headers";
+@import "components/hero-sections";
+@import "components/offers";
+@import "components/features";
+@import "components/about-section";
+@import "components/about-brief";
+@import "components/about-history";
+@import "components/contact-details";
+@import "components/contact-map";
+@import "components/special-dishes";
+@import "components/menu-section";
+@import "components/cta-section";
+@import "components/faqs";
+@import "components/404";
+@import "components/book-table-section";
+@import "components/showcase";
+@import "components/team-section";
+@import "components/testimonials";
+@import "components/news-events";
+@import "components/newsletter";
+@import "components/blog";
+@import "components/shop";
+@import "components/single-product";
+@import "components/footer";
+
+// Import Media Styles
+@import "media/media-screens";
+@import "media/media-print";

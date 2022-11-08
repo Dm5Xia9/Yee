@@ -1,0 +1,43 @@
+﻿@page "/admin/required-options"
+@inject Yee.Abstractions.IRootOptions rootOption
+@*@inject Yee.EntityFrameworkCore.Abstractions.IDbContextOptionsProvider provider*@
+<AdminPage>
+    <Header>
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <!--begin::Page Heading-->
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Обязательные настройки</h5>
+                <!--end::Page Title-->
+            </div>
+            <!--end::Page Heading-->
+        </div>
+    </Header>
+    <Body>
+        <div style="padding: 15px;">
+            <AntDesign.Input Placeholder="Строка подключения к базе данных" TValue="string" DefaultValue="NOptions.ConnectionString" 
+                             @bind-Value="NOptions.ConnectionString">
+
+            </AntDesign.Input>
+
+            <AntDesign.Button Style="margin-top: 10px; width: 170px;" Class="admin-button-primary" OnClick="Save">
+                Сохранить
+            </AntDesign.Button>
+        </div>
+    </Body>
+</AdminPage>
+
+@code{
+    private Yee.EntityFrameworkCore.Npgsql.NpgsqlOptions NOptions { get; set; }
+
+    protected override void OnInitialized()
+    {
+        NOptions = rootOption.Get<Yee.EntityFrameworkCore.Npgsql.NpgsqlOptions>("NpgsqlOptions");
+    }
+
+    public void Save()
+    {
+        rootOption.Set("NpgsqlOptions", NOptions);
+    }
+
+}

@@ -1,0 +1,212 @@
+// All Hero Sections Styles
+.cab-hero-section{
+    &.v1 {
+        .cab-hero-slider {
+            .cab-hero-slide-inner {
+                width: 100%;
+                height: 870px;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: $greyColor;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: top;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+                .cab-hero-slide-caption {
+                    z-index: 1;
+                    color: #fff;
+                    text-align: center;
+                    .cab-sub-heading-box {
+                        min-width: 440px;
+                        min-height: 55px;
+                        background: url(../img/small-heading-bg-shape.png) no-repeat;
+                        background-position: center;
+                        background-size: contain;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        h6 {
+                            color: #fff;
+                            font-family: $secondaryFont;
+                        }
+                        .sep {
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 50%;
+                            background: $white;
+                            margin: 0 16px;
+                        }
+                    }
+                    .cab-big-heading {
+                        margin-top: 0;
+                        h1 {
+                            span {
+                                display: inline-block;
+                                position: relative;
+                            }
+                        }
+                    }
+                    .cab-hero-cta-btn-box {
+                        margin-top: 50px;
+                        a {
+                            display: inline-block;
+                            position: relative;
+                        }
+                    }
+                }
+            }
+            .swiper-button-prev {
+                left: 60px;
+            }
+            .swiper-button-prev,
+            .swiper-button-next {
+                background: rgba(256, 256, 256, 0.2);
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                padding: 10px 22px 10px 20px;
+                justify-content: center;
+                align-items: center;
+                transition: all 0.3s ease-in-out;
+                transform: translateY(-40%);
+                &:after {
+                    display: none;
+                }
+                &:hover {
+                    background: rgba(256, 256, 256, 0.3);
+                }
+                span {
+                    color: $white;
+                    font-family: $primaryFont;
+                    font-size: 16px;
+                    text-transform: uppercase;
+                }
+            }
+            .swiper-button-next {
+                right: 60px;
+            }
+        }
+    }
+    &.v2 {
+        .cab-hero-inner {
+            padding: 230px 0;
+            text-align: center;
+            .cab-small-heading {
+                display: inline-block;
+                background: url(../img/hero-v2-subtitle.png) no-repeat;
+                background-size: 100% 100%;
+                padding: 12px 22px;
+                font-family: $secondaryFont;
+                color: $primaryColor;
+                font-size: 18px;
+                margin-bottom: -4px;
+                span {
+                    display: inline-block;
+                    width: 5px;
+                    height: 5px;
+                    margin: 0 1px;
+                    background: $primaryColor;
+                    border-radius: 50%;
+                    position: relative;
+                    top: -3px;
+                }
+            }
+            .cab-hero-date-text {
+                font-family: $secondaryFont;
+                color: $white;
+                font-size: 18px;
+                margin-top: 34px;
+                span {
+                    display: inline-block;
+                    position: relative;
+                    &::before,
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        width: 110px;
+                        height: 1px;
+                        background: $white;
+                        top: 45%;
+                    }
+                    &::before {
+                        left: -130px;
+                    }
+                    &::after {
+                        right: -130px;
+                    }
+                }
+            }
+        }
+    }
+    &.v3 {
+        .cab-hero-inner {
+            padding: 160px 0;
+            text-align: center;
+            .cab-big-heading{
+                h1{
+                    position: relative;
+                    height: 330px;
+                    img{
+                        position: absolute;
+                        left: 50%;
+                        top: 0;
+                        max-width: 100%;
+                        transform: translateX(-50%);
+                        
+                    }
+                    span{
+                        position: relative;
+                        top: 50%;
+                        display: block;
+                    }
+                }
+            }
+            .cab-hero-date-text {
+                font-family: $secondaryFont;
+                color: $white;
+                font-size: 18px;
+                margin-top: 34px;
+                span {
+                    display: inline-block;
+                    position: relative;
+                    &::before,
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        width: 50px;
+                        height: 1px;
+                        background: $white;
+                        top: 45%;
+                    }
+                    &::before {
+                        left: -70px;
+                    }
+                    &::after {
+                        right: -70px;
+                    }
+                }
+            }
+        }
+    }
+    &.v4 {
+        .cab-hero-inner {
+            padding: 110px 0 10px;
+            .cab-hero-reservation-box{
+                background: $primaryColor;
+                max-width: 420px;
+                min-height: 400px;
+                margin-left: auto;
+                background: url(../img/hero-reservation-bg.jpg) no-repeat center;
+                background-size: cover;
+                padding: 40px 70px 50px;
+            }
+        }
+    }
+}

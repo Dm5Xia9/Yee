@@ -28,7 +28,7 @@
 
             </Yee.Admin.Component.Modules.ModulesTree>
 
-            @if (SelectNode != null)
+            @*@if (SelectNode != null)
                 {
                     <div>
                         <h4>
@@ -36,7 +36,7 @@
                         </h4>
                         
                     </div>
-                }
+                }*@
             @*@foreach (var module in moduleManager.ToAlignmentTrees())
                 {
 
@@ -56,6 +56,10 @@
                     </div>
                 }*@
         </div>
+
+        <Yee.Nuget.WebComponent.NuGetWebClient>
+
+        </Yee.Nuget.WebComponent.NuGetWebClient>
     </Body>
 </AdminPage>
 

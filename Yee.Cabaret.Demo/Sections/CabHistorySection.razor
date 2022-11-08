@@ -1,0 +1,45 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@using Yee.Cabaret.Sections.Prototypes
+@attribute [System.ComponentModel.DisplayName("История")]
+
+<section class="cab-about-history-section">
+    <div class="container">
+        <div class="cab-about-history-inner">
+            <div class="cab-heading-box v3">
+                <div class="cab-main-heading img-alt">
+                    <img src="/heading-vector.png" alt="">
+                    <h1>@History.Value.Header</h1>
+                </div>
+            </div>
+            <div class="cab-about-history-timeline d-flex">
+                @foreach(var item in HistoryItems.Value)
+                {
+                    <div class="cab-about-timeline-box">
+                        <div class="timeline-title">
+                            <span class="year">@item.Year</span>
+                            <span class="title">@item.Title</span>
+                        </div>
+                        <div class="timeline-line">
+                        </div>
+                        <div class="timeline-description">
+                            <div class="inner" style="min-width: 350px;">
+                                @item.Description
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    [System.ComponentModel.DisplayName("History")]
+    public ProtoHistory History { get; set; }
+    
+    [Parameter]
+    [System.ComponentModel.DisplayName("History items")]
+    public ProtoHistoryItems HistoryItems { get; set; }
+}

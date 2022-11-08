@@ -1,0 +1,77 @@
+﻿@inherits YeeSection
+@inject NavigationManager _navManager
+@using Yee.Cabaret.Sections.Prototypes
+@attribute [System.ComponentModel.DisplayName("Меню")]
+
+<section class="cab-menu-section">
+<div class="container">
+    <div class="cab-heading-box">
+        <div class="cab-small-heading">
+            <h6>@Menu.Value.CabSubHeading</h6>
+        </div>
+        <div class="cab-main-heading">
+            <h1>@Menu.Value.CabBigHeading</h1>
+        </div>
+    </div>
+    <div class="cab-menu-content-box">
+        <ul class="nav nav-pills" role="tablist">
+            @foreach(var tab in MenuItems.Value.GroupBy(k => k.Category.Value).Select((v, i) => (v, i)))
+            {
+                <li class="@(tab.i == 0 ? "active" : "")">
+                    <a href="@($"#menu{tab.i}")" aria-controls="@($"menu{tab.i}")" role="tab" data-toggle="tab" aria-expanded="true">
+                        @tab.v.Key
+                    </a>
+                </li>
+            }
+        </ul>
+
+        <div class="tab-content">
+            @foreach(var tab in MenuItems.Value.GroupBy(k => k.Category.Value).Select((v, i) => (v, i)))
+            {
+                <div role="tabpanel" class="@($"tab-pane fade {(tab.i == 0 ? "active" : "")} in")" id="@($"menu{tab.i}")">
+                    <div class="row">
+                        <div class="cab-menu-list custom-cab-menu-list" style="padding: 0px; display: flex; flex-wrap: wrap;">
+                            @foreach(var item in tab.v.Select((v, i) => (v, i)))
+                            {
+                                <div class="cab-menu-item custom-cab-menu-item clearfix" style="@("box-sizing: border-box; width: 50%; padding: 20px;" + (item.i % 2 != 0 ? "background: #fcfcfc !important;" : "background: #f8f8f8 !important"))">
+                                    <div class="menu-title">
+                                        <h6>
+                                            @item.v.ItemName
+                                            @if (item.v.IsNew.Value)
+                                            {
+                                                <span class="tag-new">New</span>
+                                            }
+                                        </h6>
+                                        <p>@item.v.Ingridients</p>
+                                    </div>
+                                    <div class="menu-price">
+                                        <span class="price-tag">
+                                            @($"{item.v.Price}{Menu.Value.PriceDisplay}")
+                                        </span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="view-all-menu-btn">
+                        <a href="@Menu.Value.ButtonUrl" class="secondary-link">@Menu.Value.ButtonContent</a>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="cab-menu-section-bottom text-center">
+            <img src="@Menu.Value.Img" alt="Cab Menu Image">
+        </div>
+    </div>
+</div>
+</section>
+
+@code {
+    [Parameter]
+    [System.ComponentModel.DisplayName("Меню")]
+    public ProtoMenu Menu { get; set; }
+    
+    [Parameter]
+    [System.ComponentModel.DisplayName("Элементы меню")]
+    public ProtoMenuItems MenuItems { get; set; }
+}

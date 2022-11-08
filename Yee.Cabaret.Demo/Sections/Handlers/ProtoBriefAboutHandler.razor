@@ -1,0 +1,19 @@
+﻿@using Yee.Section.Handlers
+@using Yee.Cabaret.Sections.Prototypes
+@using Yee.Section.Extensions
+@inherits ProtoHandler<ProtoBriefAbout, BriefAbout>
+@namespace Yee.Cabaret.Sections.Handlers
+
+<div style=" padding-top: 1rem;">
+    <div style="display: flex; justify-content: center; align-items: center; flex-flow: column;">
+        <div style="border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
+            <ProtoHandlerFactory InputValue="Model.SubHeader" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+            <ProtoHandlerFactory InputValue="Model.Header" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+            <ProtoHandlerFactory InputValue="Model.Text" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+        </div>
+    </div>
+</div>
+@code {
+    protected override BriefAbout NewModel =>
+       ProtoHelper.CreateDefualt<BriefAbout>();
+}

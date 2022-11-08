@@ -1,0 +1,3000 @@
+// Media For All Screen
+@media (max-width: 1640px) {
+
+    /* Cab Header Styles */
+    header {
+        &.cab-header {
+            &.v2 {
+                .cab-header-inner {
+                    padding: 0 58px;
+
+                    .cab-main-navbar {
+                        &.sticky {
+                            padding: 0 58px;
+                        }
+
+                        .cab-navbar-inner {
+                            .cab-logo-box {
+                                margin-right: 50px;
+                            }
+
+                            .cab-main-left-links-box {
+                                &>ul {
+                                    &>li {
+                                        &>a {
+                                            padding: 35px 18px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.v3,
+            &.v4 {
+                .cab-header-inner {
+                    .cab-main-navbar {
+                        .cab-navbar-inner {
+                            .cab-main-left-links-box {
+                                &>ul {
+                                    &>li {
+                                        &>a {
+                                            color: #ffffff;
+                                            font-size: 16px;
+                                            font-weight: 500;
+                                            display: inline-block;
+                                            padding: 8px 16px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .cab-main-right-links-box {
+                                .contact-info {
+                                    font-size: 14px;
+                                    padding-right: 20px;
+
+                                    a {
+                                        font-size: 14px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Hero Slider */
+    .cab-hero-section {
+        &.v1 {
+            .cab-hero-slider {
+                .cab-hero-slide-inner {
+                    width: 100%;
+                    height: 730px;
+                }
+            }
+        }
+
+        &.v3 {
+            .cab-hero-inner {
+                padding: 110px 0;
+            }
+        }
+    }
+
+    /* Cab About Section */
+    .cab-about-section {
+        .cab-about-bg-shape {
+            width: 85%;
+        }
+
+        .cab-about-section-inner {
+            .cab-about-image-box {
+                img {
+                    width: 42em;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1400px) {
+
+    /* Cab Search Overlay */
+    .cab-search-overlay {
+        .cab-search-inner {
+            .search-form {
+                width: 45%;
+            }
+        }
+    }
+
+    /* Cab Header Styles */
+    header {
+        &.cab-header {
+            &.v2 {
+                .cab-header-inner {
+                    padding: 0 58px;
+
+                    .cab-top-bar {
+                        .cab-top-bar-contact-info {
+                            .cab-top-bar-info-box {
+                                font-size: 12px;
+                                padding: 6px 20px;
+
+                                a {
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+
+                        .cab-top-bar-social-links {
+                            padding: 3px 0;
+                        }
+                    }
+
+                    .cab-main-navbar {
+                        .cab-navbar-inner {
+                            .cab-logo-box {
+                                padding: 12px 0 10px;
+                                margin-right: 20px;
+
+                                img {
+                                    width: 50px;
+                                }
+
+                                .logo-text {
+                                    font-size: 22px;
+                                }
+                            }
+
+                            .cab-main-left-links-box {
+                                &>ul {
+                                    &>li {
+                                        &>a {
+                                            font-size: 14px;
+                                            padding: 26px 14px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .cab-main-right-links-box {
+                                padding: 0 0 6px;
+
+                                .nav-round-links {
+                                    ul {
+                                        li {
+                                            padding: 12px 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.v3 {
+                .cab-header-inner {
+                    padding: 0 54px;
+
+                    .cab-main-navbar {
+                        .cab-navbar-inner {
+                            .cab-logo-box {
+                                margin-right: 60px;
+                                padding: 20px 0 4px;
+                            }
+
+                            .cab-main-left-links-box {
+                                &>ul {
+                                    &>li {
+                                        padding: 35px 0px 20px;
+
+                                        &:nth-child(n+6) {
+                                            display: none;
+                                        }
+
+                                        &>a {
+                                            font-size: 14px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .cab-main-right-links-box {
+                                padding: 26px 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Hero Slider */
+    .cab-hero-section {
+        &.v1 {
+            .cab-hero-slider {
+                .cab-hero-slide-inner {
+                    width: 100%;
+                    height: 630px;
+                }
+            }
+        }
+
+        &.v2 {
+            .cab-hero-inner {
+                padding: 170px 0;
+                text-align: center;
+            }
+        }
+    }
+
+    /* Cab About Section */
+    .cab-about-section {
+        padding-bottom: 90px;
+
+        .cab-about-bg-shape {
+            width: 86%;
+        }
+
+        .cab-about-section-inner {
+            .cab-about-image-box {
+                img {
+                    width: 36em;
+                }
+            }
+        }
+    }
+
+    // Cab Contact Map Styles
+    .cab-contact-map-section {
+        height: 560px;
+    }
+}
+
+@media (max-width: 1199px) {
+
+    /* Typography */
+    .display-1 {
+        font-size: 110px;
+    }
+
+    .display-2 {
+        font-size: 80px;
+    }
+
+    .display-3 {
+        font-size: 60px;
+    }
+
+    h1 {
+        font-size: 54px;
+    }
+
+    h2 {
+        font-size: 48px;
+    }
+
+    h3 {
+        font-size: 40px;
+    }
+
+    h4 {
+        font-size: 34px;
+    }
+
+    h5 {
+        font-size: 24px;
+    }
+
+    h6 {
+        font-size: 18px;
+    }
+
+    .cab-btn.cab-btn-topbar {
+        padding: 10px 16px !important;
+    }
+
+    /* Global Styles */
+    .cab-heading-box {
+        .cab-small-heading {
+            background-size: 25% 100%;
+        }
+
+        &.v3 {
+            .cab-main-heading {
+                min-height: 170px;
+
+                h1 {
+                    font-size: 40px;
+                }
+
+                img {
+                    width: 122px;
+                }
+            }
+        }
+    }
+
+    /* Header Styles */
+    header {
+        &.cab-header {
+            &.v1 {
+                .cab-main-navbar {
+                    .cab-left-nav-links {
+                        ul {
+                            li {
+                                a {
+                                    padding: 8px 14px;
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+                    }
+
+                    .cab-centered-logo-box {
+                        width: 200px;
+
+                        a {
+                            &::before {
+                                height: 180px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.v2 {
+                .cab-header-inner {
+                    .cab-main-navbar {
+                        .cab-navbar-inner {
+                            .cab-main-left-links-box {
+                                &>ul {
+                                    &>li:nth-child(n+6) {
+                                        &>a {
+                                            display: none;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .cab-main-right-links-box {
+                                .nav-round-links {
+                                    &>a {
+                                        width: 36px;
+                                        height: 36px;
+                                        line-height: 40px;
+                                        font-size: 14px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.v3 {
+                .cab-header-inner {
+                    padding: 0 24px;
+
+                    .cab-main-navbar {
+                        .cab-navbar-inner {
+                            .cab-logo-box {
+                                margin-right: 60px;
+                                padding: 22px 0 12px;
+
+                                img {
+                                    width: 50px;
+                                }
+
+                                .logo-text {
+                                    font-size: 20px;
+                                }
+                            }
+
+                            .cab-main-left-links-box {
+                                &>ul {
+                                    &>li {
+                                        padding: 30px 0px 20px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Hero Slider */
+    .cab-hero-section {
+        &.v1 {
+            .cab-hero-slider {
+                .cab-hero-slide-inner {
+                    width: 100%;
+                    height: 550px;
+                }
+            }
+        }
+
+        &.v2 {
+            .cab-hero-inner {
+                padding: 130px 0;
+
+                .cab-hero-date-text {
+                    span {
+                        &::before {
+                            left: -80px;
+                        }
+
+                        &::before,
+                        &:after {
+                            width: 66px;
+                        }
+
+                        &:after {
+                            right: -80px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.v3 {
+            .cab-hero-inner {
+                padding: 90px 0;
+
+                .cab-big-heading {
+                    h1 {
+                        position: relative;
+                        height: 320px;
+
+                        img {
+                            width: 30%;
+                        }
+                    }
+                }
+
+                .cab-hero-date-text {
+                    font-size: 16px;
+                    margin-top: 0px;
+                }
+            }
+        }
+    }
+
+    /* Cab About Section */
+    .cab-about-section {
+        .cab-about-bg-shape {
+            width: 90%;
+        }
+
+        .cab-about-section-inner {
+            .cab-about-image-box {
+                img {
+                    width: 30em;
+                }
+            }
+        }
+    }
+
+    /* Cab Features Section Styles */
+    .cab-features-section {
+        &.v1 {
+            .cab-features-inner {
+                .feature-box {
+                    .feature-img {
+                        i {
+                            &::before {
+                                font-size: 4em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab Menu Section */
+    .cab-menu-section {
+        .cab-menu-content-box {
+            .nav-pills {
+                li {
+                    a {
+                        font-size: 16px;
+                        padding: 8px 24px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Special Dish Section */
+    .cab-special-dishes-section {
+        .cab-special-dishes-content-box {
+            .cab-card {
+                .cab-offer-img {
+                    img {
+                        width: 160px;
+                        height: 160px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab Showcase Section Styles */
+    .cab-showcase-section {
+        .cab-showcase-inner {
+            .showcase-box {
+                height: 450px;
+            }
+        }
+
+        &.v2 {
+            .cab-showcase-inner {
+                .showcase-box {
+                    height: 350px;
+                }
+            }
+        }
+    }
+
+    /* Cab CTA Styles */
+    .cab-cta-section {
+        &.v2 {
+            padding: 70px 0;
+        }
+    }
+
+    /* Cab Book Table */
+    .cab-book-table-section {
+        .cab-book-table-form-box {
+            width: 100%;
+        }
+    }
+
+    /* Cab Testimonials */
+    .cab-testimonials-section {
+        &.v1 {
+            .cab-testimonials-slider-box {
+                width: 80%;
+                margin: 4px auto auto;
+            }
+        }
+    }
+
+    /* Footer Styles */
+    footer {
+        &.v1 {
+            .cab-footer-about-section {
+                .cab-footer-about-content {
+                    .cab-footer-text {
+                        width: 60%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+
+    /* Typography */
+    .display-1 {
+        font-size: 90px;
+    }
+
+    .display-3 {
+        font-size: 52px;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    h2 {
+        font-size: 44px;
+    }
+
+    h3 {
+        font-size: 38px;
+    }
+
+    h4 {
+        font-size: 30px;
+    }
+
+    h5 {
+        font-size: 24px;
+    }
+
+    h6 {
+        font-size: 17px;
+    }
+
+    /* Global Styles */
+    section {
+        padding: 80px 0;
+    }
+
+    .d-sm-none {
+        display: none !important;
+    }
+
+    .show-on-sm-down {
+        display: inline-block !important;
+    }
+
+    .cab-btn {
+        font-size: 14px;
+        padding: 14px 28px;
+
+        &.px-extra-padding {
+            padding: 17px 40px;
+        }
+    }
+
+    .cab-heading-box {
+        .cab-small-heading {
+            background-size: 36% 100%;
+        }
+
+        &.v3 {
+            .cab-main-heading {
+                min-height: 178px;
+
+                img {
+                    width: 126px;
+                }
+            }
+        }
+    }
+
+    .cab-mini-hero-section {
+        padding: 220px 0 100px;
+
+        .cab-mini-hero-inner {
+            text-align: center;
+
+            h5 {
+                font-family: $secondaryFont;
+                color: $white;
+                margin: 0;
+                font-weight: 400;
+            }
+
+            h2 {
+                margin-top: 0;
+            }
+        }
+    }
+
+    .brief-description {
+        max-width: 98%;
+    }
+
+    /* Cab Search Overlay Styles */
+    .cab-search-overlay {
+        .cab-search-inner {
+            .search-form {
+                width: 58%;
+            }
+        }
+    }
+
+    /* Cab Coming Soon Styles */
+    .cab-coming-soon-section {
+        .cab-coming-soon-inner {
+            .cab-get-ready-tag {
+                margin-top: 20px;
+            }
+
+            .cab-countdown-timer {
+                &>div {
+                    min-width: 132px;
+                    margin: 0 4px;
+                    margin-top: 10px !important;
+                    padding: 20px 12px 26px;
+                }
+            }
+        }
+    }
+
+    /* Header Styles */
+    header {
+        &.cab-header {
+            li {
+                &.has-dropdown {
+                    &.left-menu {
+                        .dropdown-wrapper {
+                            left: 10px;
+                            // position: relative;
+                            // opacity: 1;
+                            // visibility: visible;
+                            // transform: none;
+                            // transition: none;
+                        }
+
+                        .has-dropdown {
+                            .dropdown-wrapper {
+                                border: 1px solid $lightGreyColor;
+                                left: 0;
+                                top: 0;
+                            }
+                        }
+                    }
+
+                    &.right-menu {
+                        .has-dropdown {
+                            .dropdown-wrapper {
+                                border: 1px solid $lightGreyColor;
+                                right: 0;
+                                top: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.v1 {
+                .cab-main-navbar {
+                    padding: 24px 0;
+
+                    .cab-centered-logo-box {
+                        a {
+                            left: 0;
+                        }
+                    }
+                }
+
+                .open-side-nav {
+                    position: absolute;
+                    left: 20px;
+                    top: 14px;
+                    background: $primaryColor;
+                    color: $white;
+                    width: 44px;
+                    height: 44px;
+                    line-height: 48px;
+                    text-align: center;
+                    border-radius: 50%;
+                    font-size: 18px;
+                    cursor: pointer;
+                }
+
+                .cab-sidebar-nav {
+                    .has-dropdown {
+                        &:hover {
+                            &>.dropdown-wrapper {
+                                transform: scale(1) translate(-50%, 0);
+                            }
+                        }
+
+                        .dropdown-wrapper {
+                            left: 50%;
+                            border-radius: 14px;
+                            transform: scale(0.98) translate(-50%, -10px);
+
+                            li {
+                                a {
+                                    text-align: center;
+                                }
+                            }
+
+                            .has-dropdown {
+                                .dropdown-wrapper {
+                                    border: 1px solid $greyColor;
+                                }
+                            }
+                        }
+                    }
+
+                    &.open {
+                        opacity: 1;
+                        visibility: visible;
+                        transform: scale(1);
+                    }
+
+                    display: block;
+                    position: fixed;
+                    z-index: 9999;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100vh;
+                    overflow-y: auto;
+                    opacity: 0;
+                    visibility: hidden;
+                    transform: scale(0.95);
+                    transition: all 0.3s ease;
+
+                    &::before {
+                        position: absolute;
+                        content: '';
+                        width: 100%;
+                        height: 100%;
+                        background: $lightGreyColor2;
+                        z-index: -1;
+                        opacity: 0.95;
+                    }
+
+                    .close-side-nav-btn {
+                        position: absolute;
+                        left: 20px;
+                        top: 13px;
+                        display: inline-block;
+                        border-radius: 50%;
+                        width: 44px;
+                        height: 44px;
+                        line-height: 48px;
+                        text-align: center;
+                        background: $lightGreyColor;
+                        cursor: pointer;
+                    }
+
+                    .cab-sidebar-inner {
+                        text-align: center;
+                        min-height: 100vh;
+                        max-height: 100vh;
+                        overflow-y: auto;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        &>ul {
+                            padding-left: 0;
+
+                            &>li {
+                                list-style: none;
+
+                                &>a {
+                                    color: $primaryColor;
+                                    display: block;
+                                    font-size: 26px;
+                                    font-weight: 300;
+                                    padding: 8px 22px;
+                                    border-radius: 40px;
+                                    &.active {
+                                        background: #e9161c99;
+                                        color: $white;
+                                        border-radius: 40px;
+
+                                        &:hover {
+                                            background: #e9161c99;
+                                        }
+                                        
+                                    }
+                                    &:hover {
+                                        background: $white;
+                                        border-radius: 40px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.v2 {
+                .cab-header-inner {
+                    .cab-top-bar {
+                        .cab-top-bar-contact-info {
+                            .cab-top-bar-info-box {
+                                &:nth-child(2) {
+                                    border: none;
+                                }
+
+                                &.address {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+
+                    .cab-main-navbar {
+                        .cab-navbar-inner {
+                            .cab-main-left-links-box {
+                                display: block;
+                                position: fixed;
+                                background: rgba(0, 0, 0, 0.3);
+                                top: 0;
+                                left: 0;
+                                min-height: 100vh;
+                                height: 100%;
+                                width: 100%;
+                                z-index: 9999;
+                                opacity: 0;
+                                overflow-y: auto;
+                                visibility: hidden;
+                                transition: all 0.2s ease;
+
+                                .close-sidebar-v2 {
+                                    display: block;
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    height: 100vh;
+                                    width: calc(100% - 220px);
+                                    background: transparent;
+                                }
+
+                                &.open {
+                                    visibility: visible;
+                                    opacity: 1;
+
+                                    ul {
+                                        transform: translateX(0);
+                                    }
+                                }
+
+                                &>ul {
+                                    padding-left: 0;
+                                    height: 100vh;
+                                    width: 220px;
+                                    background: $lightGreyColor2;
+                                    position: absolute;
+                                    right: 0;
+                                    padding-top: 10px;
+                                    transition: all 0.3s ease;
+                                    box-shadow: rgba(0, 0, 0, 0.1) -15px 0 30px;
+                                    transform: translateX(16%);
+
+                                    &>li {
+                                        display: block;
+
+                                        &:nth-child(n+6) {
+                                            display: block;
+
+                                            a {
+                                                display: block;
+                                            }
+                                        }
+
+                                        &>a {
+                                            display: block;
+                                            color: $darkGreyColor;
+                                            padding: 14px 34px;
+                                            font-size: 15px;
+                                            font-weight: 300;
+                                            border-bottom: 1px solid $lightGreyColor;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .cab-main-right-links-box {
+                                padding: 2px 0 5px;
+
+                                .nav-round-links {
+                                    margin-right: 2px;
+
+                                    a {
+                                        &.open-side-nav {
+                                            cursor: pointer;
+
+                                            &.v2 {
+                                                background: $primaryColor;
+                                                color: $white;
+                                                margin-left: 1px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.v3 {
+                .cab-header-inner {
+                    .cab-main-navbar {
+                        .cab-navbar-inner {
+                            .cab-logo-box {
+                                margin-right: 60px;
+                                padding: 22px 0 12px;
+
+                                img {
+                                    width: 50px;
+                                }
+
+                                .logo-text {
+                                    font-size: 20px;
+                                }
+                            }
+
+                            .cab-main-left-links-box {
+                                display: block !important;
+                                position: fixed !important;
+                                background: rgba(0, 0, 0, 0.3);
+                                top: 0;
+                                left: 0;
+                                height: 100vh;
+                                width: 100%;
+                                z-index: 9999;
+                                opacity: 0;
+                                visibility: hidden;
+                                transition: all 0.2s ease;
+
+                                .close-sidebar-v2 {
+                                    display: block;
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    height: 100vh;
+                                    width: calc(100% - 220px);
+                                    background: transparent;
+                                }
+
+                                &.open {
+                                    visibility: visible;
+                                    opacity: 1;
+
+                                    ul {
+                                        transform: translateX(0);
+                                    }
+                                }
+
+                                &>ul {
+                                    padding-left: 0;
+                                    height: 100vh;
+                                    width: 220px;
+                                    background: $lightGreyColor2;
+                                    position: absolute;
+                                    right: 0;
+                                    padding-top: 10px;
+                                    transition: all 0.3s ease;
+                                    box-shadow: rgba(0, 0, 0, 0.1) -15px 0 30px;
+                                    transform: translateX(16%);
+
+                                    &>li {
+                                        display: block;
+                                        padding: 0 0 6px;
+
+                                        &:nth-child(n+6) {
+                                            display: block;
+
+                                            a {
+                                                display: block;
+                                            }
+                                        }
+
+                                        &>a {
+                                            display: block !important;
+                                            color: $darkGreyColor;
+                                            padding: 14px 34px;
+                                            font-size: 15px;
+                                            font-weight: 300;
+                                            border-radius: 0;
+                                            border-bottom: 1px solid $lightGreyColor;
+
+                                            &.active {
+                                                color: $primaryColor;
+                                                border-color: $primaryColor;
+                                            }
+
+                                            &:hover {
+                                                color: $primaryColor;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .cab-main-right-links-box {
+                                .open-side-nav {
+                                    margin-left: 16px;
+                                    margin-right: 0;
+                                    background: #fff;
+                                    width: 42px;
+                                    height: 42px;
+                                    text-align: center;
+                                    line-height: 44px;
+                                    font-size: 17px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Hero Slider */
+    .cab-hero-section {
+        &.v1 {
+            .cab-hero-slider {
+                .cab-hero-slide-inner {
+                    width: 100%;
+                    height: 550px;
+
+                    .cab-hero-slide-caption {
+                        .cab-sub-heading-box {
+                            min-height: 50px;
+                        }
+                    }
+                }
+
+                .swiper-button-prev {
+                    left: 10px;
+                    padding: 8px 18px 8px 18px;
+
+                    span {
+                        font-size: 12px;
+                    }
+                }
+
+                .swiper-button-next {
+                    right: 10px;
+                    padding: 8px 18px 8px 18px;
+
+                    span {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+
+        &.v3 {
+            .cab-hero-inner {
+                padding: 80px 0 0px;
+
+                .cab-big-heading {
+                    h1 {
+                        height: 176px;
+
+                        img {
+                            width: 172px;
+                        }
+                    }
+                }
+
+                .cab-hero-date-text {
+                    font-size: 16px;
+                    margin-top: 16px;
+                }
+            }
+        }
+    }
+
+    /* Cab About Section */
+    .cab-about-section {
+        .cab-about-section-inner {
+            .cab-about-image-box {
+                padding-top: 80px;
+                padding-left: 0;
+                position: relative;
+                left: -34px;
+            }
+        }
+
+        &.v2 {
+            .cab-about-bg-shape {
+                width: 80%;
+            }
+        }
+
+        &.v3,
+        &.v4 {
+            .cab-about-section-inner {
+                .right-side-content {
+                    .about-v3-img-box {
+                        width: 100%;
+                        height: 520px;
+                        position: relative;
+                        overflow: hidden;
+                        margin-top: 30px;
+                    }
+
+                    .play-icon {
+                        left: 50%;
+                        transform: (-50%, -50%);
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab About Brief Styles */
+    .cab-about-brief-section {
+        .cab-about-brief-section-inner {
+            .cab-about-brief-content {
+                .about-brief-img-gallery {
+                    .about-brief-img-box {
+                        height: 370px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab Features Section Styles */
+    .cab-features-section {
+        &.v1 {
+            .cab-features-inner {
+                top: -92px;
+
+                .feature-box {
+                    padding: 26px 16px 34px;
+                }
+            }
+        }
+    }
+
+    /* Cab Contact Page Styles */
+    .cab-contact-details-section {
+        .cab-contact-details-section-inner {
+            .cab-contact-details-content {
+                .brief-description {
+                    max-width: 86%;
+                }
+            }
+        }
+    }
+
+    // Cab Contact Map Styles
+    .cab-contact-map-section {
+        height: 460px;
+    }
+
+    /* Cab Book Table v2 */
+    .cab-book-table-section {
+        &.v2 {
+            height: 420px;
+        }
+    }
+
+    /* Offers Section */
+    .cab-offers-section {
+        .cab-offers-content-box {
+            margin-top: 30px;
+
+            .cab-card {
+                margin-top: 26px;
+            }
+        }
+    }
+
+    /* Cab Special Dishes Styles */
+    .cab-special-dishes-section {
+        .cab-special-dishes-content-box {
+            .cab-card {
+                margin-bottom: 40px;
+            }
+        }
+    }
+
+    /* Cab Menu Section */
+    .cab-menu-section {
+        .cab-menu-content-box {
+            .tab-content {
+                .cab-menu-list {
+                    .cab-menu-item {
+                        .menu-price {
+                            top: -85px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab Testimonials Section Styles */
+    .cab-testimonials-section {
+        &.v2 {
+            &.page {
+                .testimonial-card {
+                    margin-bottom: 46px;
+                }
+            }
+        }
+    }
+
+    /* Cab News Events Section */
+    .cab-news-events-section {
+        &.v1 {
+            .cab-news-events-content {
+                .cab-news-event-box {
+                    .news-event-img-box {
+                        height: 170px;
+                    }
+
+                    .news-event-title-box {
+                        h6 {
+                            font-size: 16px;
+                        }
+
+                        .date {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.v2 {
+            &.page {
+                .cab-news-events-content {
+                    .cab-news-event-box {
+                        margin-bottom: 24px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab Newsletter Styles */
+    .cab-newsletter-section {
+        .cab-newsletter-inner {
+            width: 74%;
+        }
+    }
+
+    // Cab 404 Error Section Styles
+    .cab-404-section {
+        .cab-404-inner {
+            .error-text {
+                font-size: 150px;
+            }
+        }
+    }
+
+    // Cab Blog Section Styles
+    .cab-blog-posts-section {
+        .cab-blog-sidebar {
+            margin-top: 70px;
+            padding-left: 0;
+        }
+    }
+
+    /* Shop Styles */
+    .cab-shop-sidebar {
+        padding-right: 0;
+    }
+    .single-product-details-box{
+        margin-top: 50px;
+    }
+    .cab-related-products-container{
+        .cab-product-grid-layout{
+            .cab-product-box{
+                .product-img-box {
+                    position: relative;
+                    width: 100%;
+                    height: 240px;
+                }
+            }
+        }
+    }
+    .cab-single-product-section{
+        .cab-single-product-inner{
+            .cab-single-product-full-description {
+                padding: 40px 0 0;
+            }
+        }
+    }
+
+    /* Footer */
+    footer {
+        &.v1 {
+            .cab-footer-about-section {
+                padding: 70px 0 54px;
+
+                .cab-footer-about-content {
+                    .cab-footer-text {
+                        width: 70%;
+                    }
+                }
+            }
+
+            .cab-footer-book-table-btn-box {
+                margin-top: 40px;
+            }
+
+            .cab-footer-info-section {
+                padding: 70px 0 90px;
+            }
+
+            .cab-copyright-section {
+                padding: 40px 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+
+    /* Typography */
+    .display-1 {
+        font-size: 70px;
+    }
+
+    .display-2 {
+        font-size: 60px;
+    }
+
+    /* General Styles */
+    .cab-btn-topbar {
+        display: none;
+    }
+
+    .cab-widget-box {
+        margin-bottom: 44px;
+    }
+
+    .cab-mini-hero-section {
+        padding: 200px 0 100px;
+
+        .cab-mini-hero-inner {
+            text-align: center;
+
+            h5 {
+                font-family: $secondaryFont;
+                color: $white;
+                margin: 0;
+                font-weight: 400;
+            }
+
+            h2 {
+                margin-top: 0;
+            }
+        }
+    }
+
+    /* Cab Search Overlay Styles */
+    .cab-search-overlay {
+        .cab-search-inner {
+            .search-form {
+                width: 78%;
+            }
+        }
+    }
+
+    /* Header Styles */
+    header {
+        &.cab-header {
+            &.v2 {
+                .cab-header-inner {
+                    padding: 0 24px;
+
+                    .cab-main-navbar {
+                        &.sticky {
+                            padding: 0 24px;
+                        }
+
+                        .cab-navbar-inner {
+                            .cab-main-right-links-box {
+                                .nav-round-links {
+                                    margin-right: 0px;
+
+                                    a {
+                                        &:last-child {
+                                            margin-right: 0;
+                                        }
+
+                                        &.open-side-nav {
+                                            &.v2 {
+                                                margin-left: 8px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.v3 {
+                .cab-header-inner {
+                    .cab-main-navbar {
+                        .cab-navbar-inner {
+                            .cab-logo-box {
+                                margin-right: 10px;
+                                padding: 12px 0 10px;
+                            }
+
+                            .cab-main-right-links-box {
+                                padding: 18px 0;
+
+                                .cab-btn-topbar {
+                                    display: inline-block !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Hero Slider */
+    .cab-hero-section {
+        &.v1 {
+            .cab-hero-slider {
+                .cab-hero-slide-inner {
+                    width: 100%;
+                    height: 550px;
+
+                    .cab-hero-slide-caption {
+                        .cab-sub-heading-box {
+                            min-height: 46px;
+                        }
+                    }
+                }
+
+                .swiper-button-prev {
+                    left: 0;
+                    padding: 8px 16px 8px 15px;
+
+                    span {
+                        font-size: 12px;
+                    }
+                }
+
+                .swiper-button-next {
+                    right: 0px;
+                    padding: 8px 16px 8px 15px;
+
+                    span {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+
+        &.v2 {
+            .cab-hero-inner {
+                padding: 110px 0 30px;
+
+                .cab-small-heading {
+                    font-size: 16px;
+                }
+
+                .cab-hero-date-text {
+                    font-size: 14px;
+                    margin-top: 22px;
+                }
+            }
+        }
+
+        &.v4 {
+            padding: 60px 0 50px;
+
+            .cab-hero-inner {
+                padding: 60px 0 0;
+            }
+        }
+    }
+
+    /* Cab Features Section Styles */
+    .cab-features-section {
+        padding: 100px 0;
+        height: auto;
+
+        &.v1 {
+            .cab-features-inner {
+                top: 0;
+            }
+        }
+    }
+
+    /* Cab Offers Section */
+    .cab-offers-section {
+        .cab-offers-content-box {
+            margin-top: 0px;
+
+            .cab-card {
+                &.popular {
+                    margin-top: 60px;
+                }
+            }
+        }
+    }
+
+    /* Cab Menu Section */
+    .cab-menu-section {
+        .cab-menu-content-box {
+            .tab-content {
+                .cab-menu-list {
+                    .cab-menu-item {
+                        .menu-price {
+                            top: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab About Section */
+    .cab-about-section {
+        .cab-about-bg-shape {
+            width: 100%;
+            clip-path: none;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .cab-about-section-inner {
+            .left-side-content {
+                .small-tagline {
+                    padding-left: 50px;
+
+                    &::before {
+                        left: -10px;
+                    }
+                }
+            }
+
+            .cab-about-image-box {
+                text-align: right;
+
+                img {
+                    width: 22em;
+                }
+            }
+        }
+
+        &.v2 {
+            .cab-about-bg-shape {
+                width: 100%;
+                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+            }
+        }
+
+        &.v3 {
+            .cab-about-section-inner {
+                .right-side-content {
+                    .about-v3-img-box {
+                        width: 100%;
+                        height: 400px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab Showcase Section Styles */
+    .cab-showcase-section {
+        .cab-showcase-inner {
+            .showcase-box {
+                height: 400px;
+            }
+        }
+    }
+
+    /* Cab Book Table v2 */
+    .cab-book-table-section {
+        &.v2 {
+            height: auto;
+
+            .cab-book-table-form-box {
+                padding: 70px 50px;
+                position: relative;
+                top: 0px;
+                left: 0;
+                transform: translateX(0%);
+            }
+        }
+    }
+
+    /* Cab News & Events Section */
+    .cab-news-events-section {
+        &.v1 {
+            .cab-news-events-content {
+                .cab-news-event-box {
+                    margin-bottom: 40px;
+
+                    &:hover {
+                        .news-event-img-box {
+                            img {
+                                transform: rotate(5deg) scale(1.4);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.v2 {
+            .cab-news-events-content {
+                .cab-news-event-box {
+                    margin-bottom: 24px;
+                }
+            }
+        }
+    }
+
+    /* Testimonials */
+    .cab-testimonials-slider-box {
+        &.v2 {
+            .testimonial-card {
+                .testimonial-words {
+                    padding: 30px 32px;
+                }
+            }
+        }
+    }
+
+    /* Blog Page Styles */
+    .cab-blog-posts-section {
+        .cab-blog-posts-inner {
+            .cab-blog-post-card {
+                margin-bottom: 40px;
+
+                .blog-post-card-header {
+                    height: 400px;
+
+                    .swiper-slide {
+                        height: 400px;
+                    }
+                }
+            }
+        }
+
+        .cab-blog-pagination-box {
+            margin-top: 26px;
+        }
+    }
+
+    /* Single Blog Styles */
+    .cab-blog-posts-section {
+        .cab-single-blog-inner {
+            .cab-single-blog-main-banner {
+                height: 360px;
+            }
+        }
+    }
+
+    /* Shop Page */
+    .cab-offer-widget{
+        .cab-offer-inner {
+            height: 300px;
+        }
+    }
+    .cab-single-product-section{
+        .cab-single-product-inner{
+            .single-product-main-slider{
+                .swiper-slide{
+                    .img-box {
+                        height: 380px;
+                        width: 100%;
+                        background: #ebebeb;
+                    }
+                }
+            }
+        }
+    }
+    .cab-related-products-container{
+        .cab-product-grid-layout{
+            .cab-product-box{
+                .product-img-box {
+                    height: 300px;
+                }
+            }
+        }
+    }
+
+    /* Footer Styles */
+    footer {
+        &.v1 {
+            .cab-footer-info-section {
+                padding: 16px 0 90px;
+
+                .cab-footer-info-box {
+                    margin-bottom: 42px;
+                }
+
+                .cab-footer-book-table-btn-box {
+                    margin-top: 30px;
+                }
+            }
+        }
+
+        &.v2 {
+            .cab-footer-info-section {
+                .cab-footer-info-box {
+                    margin-bottom: 42px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 575px) {
+
+    /* General Styles */
+    .display-4 {
+        font-size: 60px;
+    }
+
+    .widget-t-m {
+        margin-top: 60px;
+    }
+
+    .cab-heading-box {
+        .cab-small-heading {
+            background-size: 60% 100%;
+        }
+    }
+
+    .cab-heading-box {
+        &.v3 {
+            .cab-main-heading {
+                min-height: 144px;
+
+                img {
+                    width: 102px;
+                }
+            }
+        }
+    }
+
+    .cab-mini-hero-section {
+        padding: 200px 0 100px;
+
+        .cab-mini-hero-inner {
+            text-align: center;
+
+            h5 {
+                font-family: $secondaryFont;
+                color: $white;
+                margin: 0;
+                font-weight: 400;
+            }
+
+            h2 {
+                margin-top: 0;
+            }
+        }
+    }
+
+    /* Cab Search Overlay Styles */
+    .cab-search-overlay {
+        .cab-search-inner {
+            .search-form {
+                width: 88%;
+            }
+        }
+    }
+
+    /* Header Styles */
+    header {
+        &.cab-header {
+            &.v2 {
+                .cab-header-inner {
+                    padding: 0 16px;
+
+                    .cab-top-bar {
+                        .cab-top-bar-contact-info {
+                            float: none;
+                            text-align: center;
+                        }
+
+                        .cab-top-bar-social-links {
+                            text-align: center;
+                            float: none;
+                        }
+                    }
+
+                    .cab-main-navbar {
+                        &.sticky {
+                            padding: 0 16px;
+                        }
+
+                        .cab-navbar-inner {
+                            .cab-logo-box {
+                                img {
+                                    width: 46px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.v3 {
+                .cab-header-inner {
+                    .cab-main-navbar {
+                        .cab-navbar-inner {
+                            .cab-main-right-links-box {
+                                .open-side-nav {
+                                    margin-left: 10px;
+                                }
+
+                                .contact-info {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab Menu Styles */
+    .cab-menu-section {
+        .cab-menu-content-box {
+            .nav-pills {
+                flex-wrap: wrap;
+
+                li {
+
+                    &.active,
+                    &:hover {
+                        a {
+                            background-size: 100% 68%;
+                        }
+                    }
+
+                    a {
+                        font-size: 14px;
+                        padding: 8px 16px;
+                    }
+                }
+            }
+
+            .tab-content {
+                .cab-menu-list {
+                    padding: 20px 16px 42px;
+                }
+            }
+
+            .cab-menu-section-bottom {
+                img {
+                    left: -6px;
+                    width: 390px;
+                    height: 180px;
+                }
+            }
+        }
+
+        &.v2 {
+            .cab-menu-content-box {
+                .nav-pills {
+                    &.v2 {
+                        li {
+                            a {
+                                min-width: 80px;
+                                padding: 6px 8px !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab About Section Styles */
+    .cab-about-section {
+        .cab-about-section-inner {
+            .left-side-content {
+                p {
+                    padding: 36px 0px 40px 0;
+                    line-height: 1.7;
+                }
+            }
+        }
+    }
+
+    /* Cab About Hisotry Styles */
+    .cab-about-history-section {
+        .cab-about-history-inner {
+            .cab-about-history-timeline {
+                .cab-about-timeline-box {
+                    display: flex;
+
+                    &:nth-child(even) {
+                        .timeline-title {
+                            order: 2;
+                            text-align: left;
+                        }
+
+                        .timeline-line {
+                            order: 1;
+                        }
+
+                        .timeline-description {
+                            order: 3;
+                            padding: 20px 0;
+
+                            .inner {
+                                float: left;
+                            }
+                        }
+                    }
+
+                    &:last-child {
+                        .timeline-line {
+                            &::after {
+                                top: 58%;
+                                transform: translate(-50%, -50%);
+                            }
+                        }
+
+                        .timeline-description,
+                        .timeline-title {
+                            padding: 20px 0 0;
+                        }
+                    }
+
+                    .timeline-title {
+                        order: 2;
+                        font-size: 16px;
+                        text-align: left;
+                        max-width: 100px;
+                    }
+
+                    .timeline-line {
+                        order: 1;
+                        min-width: 40px;
+
+                        &::before {
+                            left: 23%;
+                        }
+
+                        &::after {
+                            left: 22%;
+                        }
+                    }
+
+                    .timeline-description {
+                        order: 3;
+
+                        .inner {
+                            padding: 20px;
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Cab Contact Map Styles
+    .cab-contact-map-section {
+        height: 360px;
+    }
+
+    /* Cab Newsletter Styles */
+    .cab-newsletter-section {
+        .cab-newsletter-inner {
+            width: 95%;
+        }
+    }
+
+    /* Cab Blog Styles */
+    .cab-blog-posts-section {
+        .cab-blog-posts-inner {
+            .cab-blog-post-card {
+                .blog-post-card-header {
+                    height: 340px;
+
+                    .swiper-button-prev,
+                    .swiper-button-next {
+                        width: 50px;
+                        height: 50px;
+                    }
+
+                    .swiper-button-prev {
+                        right: 50px;
+                    }
+
+                    .swiper-slide {
+                        height: 340px;
+                    }
+                }
+
+                .blog-post-card-body {
+                    .post-title {
+                        h4 {
+                            font-size: 22px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Single Blog Styles */
+    .cab-blog-posts-section {
+        .cab-single-blog-inner {
+            .cab-single-blog-main-banner {
+                height: 330px;
+            }
+
+            .cab-single-blog-post-details {
+                .post-title {
+                    h4 {
+                        font-size: 24px;
+                    }
+                }
+
+                .single-post-description {
+                    margin-top: 20px;
+                    h5 {
+                        font-size: 18px;
+                    }
+                    blockquote {
+                        margin: 54px 0;
+                        padding: 24px 24px 26px 96px;
+                        font-size: 18px;
+
+                        &::before {
+
+                            font-size: 2.1em;
+
+                            left: 27px;
+                            top: 20px;
+
+                        }
+                    }
+                }
+
+                .single-post-pagination {
+                    padding-bottom: 0;
+
+                    .prev-pag-box,
+                    .next-pag-box {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-bottom: 30px;
+                    }
+                }
+
+                .post-author-full-details {
+                    padding: 24px 24px;
+                }
+                .single-post-comments-section{
+                    .single-post-comments-content {
+                        padding: 22px 0 22px 22px;
+                        .media{
+                            & > .media {
+                                padding-left: 20px;
+                            }
+                            .media-left{
+                                .img-bg {
+                                    width: 60px;
+                                    height: 60px;
+                                }
+                            }
+                            .media-body{
+                                padding-left: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Shop Styles */
+    .cab-shop-products-inner{
+        .shop-top-bar{
+            .results-count-box {
+                width: 100%;
+                text-align: center;
+            }
+            .sorting-box {
+                width: 100%;
+                text-align: center;
+                margin-top: 10px;
+                .grid-type {
+                    margin-left: 10px;
+                }
+            }
+        }
+        
+    }
+    .cab-product-grid-layout{
+        .cab-product-box{
+            .product-img-box {
+                height: 280px;
+            }
+        }
+    }
+    .cab-product-list-layout{
+        .product-box{
+            margin-bottom: 40px;
+            .img-box {
+                width: 100%;
+                height: 240px;
+            }
+            .product-details {
+                width: 100%;
+                padding-left: 0;
+                padding-top: 20px;
+            }
+        }
+    }
+    .cab-single-product-section{
+        .cab-single-product-inner{
+            .single-product-main-slider{
+                .swiper-slide{
+                    .img-box {
+                        height: 280px;
+                        width: 100%;
+                        background: #ebebeb;
+                    }
+                }
+            }
+        }
+    }
+    .cab-related-products-container{
+        .cab-product-grid-layout{
+            .cab-product-box{
+                .product-img-box {
+                    height: 300px;
+                }
+            }
+        }
+    }
+
+
+    /* Cab Footer Styles */
+    footer {
+        &.v2 {
+            .cab-footer-info-section {
+                padding: 110px 0 50px;
+            }
+        }
+
+        .cab-footer-info-section {
+            .cab-footer-book-table-btn-box {
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Typography Styles */
+    .display-1 {
+        font-size: 54px;
+    }
+
+    .display-3 {
+        font-size: 44px;
+    }
+
+    h1 {
+        font-size: 44px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    h3 {
+        font-size: 36px;
+    }
+
+    h4 {
+        font-size: 30px;
+    }
+
+    h5 {
+        font-size: 24px;
+    }
+
+    /* General */
+    body {
+        p {
+            font-size: 15px;
+        }
+    }
+
+    .form-group {
+        margin-bottom: 16px !important;
+
+        .cab-input-group {
+            margin-bottom: 20px;
+        }
+    }
+
+    .cab-heading-box {
+        &.v3 {
+            .cab-main-heading {
+                min-height: 140px;
+
+                h1 {
+                    font-size: 30px;
+                }
+
+                &.img-alt {
+                    img {
+                        width: 140px;
+                    }
+                }
+            }
+        }
+    }
+
+    .form-group {
+        .cab-input-group {
+            .form-control {
+                padding-left: 60px;
+            }
+        }
+
+        .custom-select-style {
+            .dropdown-menu {
+                ul {
+                    li {
+                        a {
+                            padding: 8px 56px;
+                            font-size: 14px;
+                            font-weight: 400;
+                        }
+                    }
+                }
+            }
+
+            .bootstrap-select {
+                &>.dropdown-toggle {
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+
+    /* Cab Search Overlay Styles */
+    .cab-search-overlay {
+        .cab-search-inner {
+            .search-form {
+                form {
+                    input {
+                        height: 64px;
+                        padding: 14px 146px 14px 26px;
+                        font-size: 16px;
+                    }
+
+                    button {
+                        min-width: 124px;
+                        height: 58px;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Header Styles */
+    header {
+        &.cab-header {
+            li {
+                &.has-dropdown {
+                    .dropdown-wrapper {
+                        &.cart-dropdown {
+                            min-width: 270px;
+                            right: -100%;
+                        }
+                    }
+                }
+            }
+
+            &.v1 {
+                .cab-sidebar-nav {
+                    .cab-sidebar-inner {
+                        &>ul {
+                            &>li {
+                                &>a {
+                                    font-size: 20px;
+                                    padding: 6px 18px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .cab-main-navbar {
+                    .cab-centered-logo-box {
+                        width: 190px;
+
+                        a {
+                            &::before {
+                                top: -32%;
+                            }
+
+                            img {
+                                width: 54px;
+                            }
+
+                            .brand-name {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.v3 {
+                .cab-header-inner {
+                    .cab-main-navbar {
+                        .cab-navbar-inner {
+                            .cab-main-right-links-box {
+                                padding: 18px 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Hero Slider Styles */
+    .cab-hero-section {
+        &.v1 {
+            .cab-hero-slider {
+                .cab-hero-slide-inner {
+                    height: 450px;
+                }
+            }
+        }
+
+        &.v2 {
+            .cab-hero-inner {
+                .cab-hero-date-text {
+                    span {
+                        &::before {
+                            left: -40px;
+                        }
+
+                        &::before,
+                        &:after {
+                            width: 30px;
+                        }
+
+                        &:after {
+                            right: -40px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.v3 {
+            .cab-hero-inner {
+                padding: 60px 0 30px;
+
+                .cab-big-heading {
+                    h1 {
+                        height: 160px;
+
+                        img {
+                            width: 154px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.v4 {
+            .cab-hero-inner {
+                .cab-hero-reservation-box {
+                    padding: 32px 40px 50px;
+                }
+            }
+        }
+    }
+
+    /* Cab About Section Styles */
+    .cab-about-section {
+        &.v3 {
+            .cab-about-section-inner {
+                .right-side-content {
+                    .about-v3-img-box {
+                        height: 360px;
+
+                        .exp-text {
+                            h1 {
+                                font-size: 130px;
+                            }
+
+                            h5 {
+                                font-size: 24px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab Contact Page Styles */
+    .cab-contact-details-section {
+        .cab-contact-details-section-inner {
+            .cab-contact-details-content {
+                .brief-description {
+                    max-width: 98%;
+                }
+            }
+        }
+
+        .cab-contact-form-box {
+            margin-top: 50px;
+        }
+    }
+
+    /* Cab Menu Section Styles */
+    .cab-menu-section.v2 {
+        .cab-menu-content-box {
+            .nav-pills {
+                li {
+                    a {
+                        padding: 8px 16px;
+                    }
+
+                    &.active {
+                        a {
+
+                            &::before,
+                            &::after {
+                                width: 12px;
+                            }
+
+                            &::before {
+                                left: 0;
+                            }
+
+                            &::after {
+                                right: 0;
+                            }
+
+                            &:hover {
+
+                                &::after,
+                                &::before {
+                                    width: 12px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab Book Table Section Styles */
+    .cab-book-table-section {
+        .cab-book-table-form-box {
+            padding: 50px 24px;
+            width: 100%;
+        }
+    }
+
+    /* Cab Masters Chef Section Styles */
+    .cab-chef-card {
+        .chef-img-box {
+            height: 340px;
+        }
+    }
+
+    /* Cab CTA Section Styles */
+    .cab-cta-section {
+        &.v3 {
+            .cab-cta-content-inner {
+                h1 {
+                    padding: 0 10px;
+                }
+            }
+        }
+    }
+
+    // Cab 404 Error Section Styles
+    .cab-404-section {
+        .cab-404-inner {
+            .error-text {
+                font-size: 100px;
+            }
+        }
+    }
+
+    /* Cab Blog Page Styles */
+    .cab-blog-posts-section {
+        .cab-blog-posts-inner {
+            .cab-blog-post-card {
+                .blog-post-card-header {
+                    height: 300px;
+
+                    .swiper-slide {
+                        height: 300px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab Shop Styles */
+    .cab-single-product-section{
+        .cab-single-product-inner{
+            .single-product-details-box{
+                .add-to-cart-options{
+                    .add-to-cart-btn{
+                        .cart-btn {
+                            padding: 12px 54px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 430px) {
+
+    /* General Styles */
+    body{
+        font-size: 15px;
+    }
+    
+    .xs-pt-0 {
+        padding-top: 0 !important;
+    }
+
+    .display-4 {
+        font-size: 50px;
+    }
+
+    h5 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 24px;
+    }
+
+    .cab-mini-hero-section {
+        padding: 160px 0 60px;
+    }
+
+    /* Cab Header Section */
+    header {
+        &.cab-header {
+            &.v3 {
+                .cab-header-inner {
+                    padding: 0px 14px;
+
+                    .cab-main-navbar {
+                        .cab-navbar-inner {
+                            .cab-main-right-links-box {
+                                .contact-info {
+                                    padding-right: 0px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab Hero Section */
+    .cab-hero-section {
+        &.v2 {
+            .cab-hero-inner {
+                padding: 114px 0 0;
+            }
+        }
+    }
+
+    /* Cab Offers Section */
+    .cab-offers-section {
+        .cab-offers-content-box {
+            .cab-card {
+                &.xs-pt-0 {
+                    padding: 0 30px 60px;
+                }
+            }
+        }
+    }
+
+    /* Cab About Section */
+    .cab-about-section {
+        .cab-about-section-inner {
+            .left-side-content {
+                .small-tagline {
+                    padding-left: 50px;
+
+                    &::before {
+                        left: -10px;
+                    }
+                }
+            }
+
+            .cab-about-image-box {
+                text-align: right;
+
+                img {
+                    width: 17em;
+                }
+            }
+        }
+    }
+
+    // Cab Contact Map Styles
+    .cab-contact-map-section {
+        height: 300px;
+    }
+
+    /* Cab Testimonials Slider */
+    .cab-testimonials-section {
+        &.v1 {
+            .cab-testimonials-slider-box {
+                width: 90%;
+                margin: 4px auto auto;
+
+                p {
+                    font-size: 20x;
+                }
+            }
+        }
+    }
+
+    /* Cab Book Table Section Styles */
+    .cab-book-table-section {
+        &.v3 {
+            .cab-book-table-form-box {
+                padding: 20px 24px 0;
+            }
+        }
+    }
+
+    /* Cab Showcase Section Stypes */
+    .cab-showcase-section {
+        .cab-showcase-inner {
+            .showcase-box {
+                height: 250px;
+            }
+        }
+    }
+
+    /* Cab Newsletter Styles */
+    .cab-newsletter-section {
+        &.v1 {
+            .cab-newsletter-inner {
+                width: 100%;
+            }
+
+            .cab-newsletter-form-box {
+                input {
+                    width: 100%;
+                    min-width: auto;
+                    height: 62px;
+                    font-size: 14px;
+                    padding: 14px 110px 14px 26px;
+                }
+
+                .newsletter-btn {
+                    min-width: 90px;
+                    height: 56px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    /* Cab Blog Page Styles */
+    .cab-blog-posts-section {
+        .cab-blog-posts-inner {
+            .cab-blog-post-card {
+                .blog-post-card-header {
+                    height: 260px;
+
+                    .swiper-slide {
+                        height: 260px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab Single Blog Styles */
+    .cab-blog-posts-section{
+        .cab-single-blog-inner{
+            .cab-single-blog-main-banner {
+                height: 240px;
+            }
+            .cab-single-blog-post-details{
+                .single-post-extras-box{
+                    .post-tags {
+                        padding: 6px 20px 6px 8px;
+                        font-size: 11px;
+                    }
+                    .post-social-sharing{
+                        a {
+                            width: 30px;
+                            height: 30px;
+                            line-height: 31px;
+                        }
+                    }
+                }
+                .single-post-pagination{
+                    .prev-pag-box,
+                    .next-pag-box{
+                        .img-box {
+                            width: 80px;
+                            height: 60px;
+                        }
+                        .post-title {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Shop Styles */
+    .cab-product-list-layout{
+        .product-box{
+            .img-box {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    }
+    .cab-single-product-section{
+        .cab-single-product-inner{
+            .single-product-main-slider{
+                .swiper-slide{
+                    .img-box {
+                        height: 220px;
+                        width: 100%;
+                        background: #ebebeb;
+                    }
+                }
+            }
+            .single-product-thumbs{
+                .swiper-slide{
+                    .img-box {
+                        height: 68px;
+                        width: 100%;
+                        background: #ebebeb;
+                    }
+                }
+            }
+        }
+    }
+    .cab-related-products-container{
+        .cab-product-grid-layout{
+            .cab-product-box{
+                .product-img-box {
+                    height: 220px;
+                }
+            }
+        }
+    }
+    
+    
+
+    /* Cab Footer Styles */
+    footer {
+        &.v1 {
+            .cab-footer-about-section {
+                .cab-footer-about-content {
+                    .cab-footer-text {
+                        width: 90%;
+                    }
+                }
+            }
+
+            .cab-copyright-section {
+                padding: 34px 0 24px;
+            }
+        }
+    }
+}
+
+@media (max-width: 360px) {
+
+    /* Cab Offers Styles */
+    .cab-heading-box {
+        .cab-small-heading {
+            background-size: 66% 100%;
+        }
+    }
+
+    /* Header Styles */
+    header {
+        &.cab-header {
+            li {
+                &.has-dropdown {
+                    .dropdown-wrapper {
+                        min-width: 190px;
+
+                        &.cart-dropdown {
+                            right: -150%;
+                        }
+                    }
+                }
+            }
+
+            &.v2 {
+                .cab-header-inner {
+                    .cab-main-navbar {
+                        .cab-navbar-inner {
+                            .cab-logo-box {
+                                .logo-text {
+                                    display: none;
+                                }
+                            }
+
+                            .cab-main-left-links-box {
+                                &>ul {
+                                    width: 210px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.v3 {
+                .cab-header-inner {
+                    .cab-main-navbar {
+                        .cab-navbar-inner {
+                            .cab-main-left-links-box {
+                                &>ul {
+                                    width: 210px;
+                                }
+                            }
+
+                            .cab-main-right-links-box {
+                                .cab-btn-topbar {
+                                    display: none !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Cab About Section Styles */
+    .cab-about-section {
+        .cab-about-section-inner {
+            .cab-about-image-box {
+                text-align: right;
+                padding-left: 30%;
+            }
+        }
+    }
+
+    /* Cab Menu Section */
+    .cab-menu-section {
+        .cab-menu-content-box {
+            .cab-menu-section-bottom {
+                img {
+                    left: -6px;
+                    width: 264px;
+                    height: 110px;
+                }
+            }
+        }
+    }
+
+    /* Shop Styles */
+    .cab-product-grid-layout{
+        .cab-product-box{
+            .product-img-box {
+                height: 240px;
+            }
+        }
+    }
+
+}

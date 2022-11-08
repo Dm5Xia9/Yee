@@ -1,0 +1,33 @@
+﻿@using Yee.Section.Handlers
+@using Yee.Cabaret.Sections.Prototypes
+@using Yee.Section.Extensions
+@inherits ProtoHandler<ProtoFooterInfoItems, List<FooterInfoItem>>
+
+<div style=" padding-top: 1rem;">
+    <div style="display: flex; justify-content: center; align-items: center; flex-flow: column; margin-top: 10px;">
+        <h5>Элементы</h5>
+        <AntDesign.Button Class="admin-button-secondary" OnClick="AddItem" Style="margin-left: 1.1rem;">Добавить</AntDesign.Button>
+    </div>
+    <div style=" display: flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap; }">
+        @foreach (var card in Model)
+        {
+            <div style="border-radius: 10px; padding-left: 1rem; margin-top: 1rem; display: flex; flex-flow: column; gap: 10px;">
+                <ProtoHandlerFactory InputValue="card.Title" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+                <ProtoHandlerFactory InputValue="card.Description" ProtoType="typeof(ProtoString)" OnInput="Input"></ProtoHandlerFactory>
+                @*<ProtoHandlerFactory InputValue="card.icon" ProtoType="typeof(ProtoImg)" OnInput="Input"></ProtoHandlerFactory>*@
+            </div>
+        }
+    </div>
+</div>
+@code {
+
+    protected override List<FooterInfoItem> NewModel =>
+       ProtoHelper.CreateDefualt<List<FooterInfoItem>>();
+
+    public void AddItem()
+    {
+        Model.Add(ProtoHelper.CreateDefualt<FooterInfoItem>());
+        Input();
+        StateHasChanged();
+    }
+}

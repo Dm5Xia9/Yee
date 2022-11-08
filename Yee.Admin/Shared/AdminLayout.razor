@@ -3,6 +3,9 @@
 @using Yee.Web.Services
 
 @inject YeeViewManager manager
+@inject NavigationManager navigation
+@inject DbContextState state
+@using System.Linq 
 
 @*<BodySetter Id="kt_body" ClassName="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize aside-minimize-hoverable page-loading"></BodySetter>*@
 <div class="d-flex flex-column flex-root">
@@ -115,3 +118,20 @@
     </span>
 </div>
 <!--end::Scrolltop-->
+
+
+@code{
+
+    protected override void OnAfterRender(bool isFirstRender)
+    {
+        if (!isFirstRender)
+            return;
+        var uri = new Uri(navigation.Uri);
+        if (state.All(p => p.Value.IsWorked == false) && uri.LocalPath.StartsWith("/admin/required-options") == false)
+        {
+            navigation.NavigateTo("/admin/required-options");
+            return;
+        }
+        base.OnInitialized();
+    }
+}

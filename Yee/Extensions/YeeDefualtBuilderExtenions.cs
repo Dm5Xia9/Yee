@@ -57,6 +57,27 @@ namespace Yee.Extensions
             return builder;
         }
 
+        public static YeeBuilder ForceIgnore(this YeeBuilder builder)
+        {
+            builder.Add(YeeBuilderTags.LoadForce, p =>
+            {
+            });
+
+            return builder;
+        }
+
+        public static YeeBuilder Resolve(this YeeBuilder builder,
+            Action<IServiceProvider> action)
+        {
+            builder.ForceIgnore();
+            builder.Add(YeeBuilderTags.Resolve, p =>
+            {
+                action((IServiceProvider)p);
+            });
+
+            return builder;
+        }
+
     }
 
     public class ServiceCollectionAndModules

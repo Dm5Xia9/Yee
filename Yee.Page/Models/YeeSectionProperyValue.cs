@@ -7,6 +7,7 @@ namespace Yee.Page.Models
     public class YeeProperty : BaseRecord
     {
         public string Property { get; set; }
+        public Guid YeePropertyValueId { get; set; }
         public YeePropertyValue YeePropertyValue { get; set; }
         public YeeComponentValues YeeComponentValues { get; set; }
     }
