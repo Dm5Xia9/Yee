@@ -5,7 +5,7 @@
 import os
 import xml.etree.ElementTree as ET
 
-targetVersion = "0.5.0-alpha"
+targetVersion = "0.7.3"
 Output = "C:\\Users\\jackf\\Desktop\\pacs"
 Source = "http://49.12.227.30:555/v3/index.json"
 class ProjectNode:
@@ -30,6 +30,22 @@ class ProjectNode:
            self.props.append(version)
         else:
             version.text = targetVersion
+
+        v = self.props.find("FileVersion")
+        if version is None:
+            v = ET.Element("FileVersion")
+            v.text = targetVersion
+            self.props.append(v)
+        else:
+            v.text = targetVersion
+
+        v2 = self.props.find("AssemblyVersion")
+        if version is None:
+            v2 = ET.Element("AssemblyVersion")
+            v2.text = targetVersion
+            self.props.append(v2)
+        else:
+            v2.text = targetVersion
 
         for dep in self.nodeDeps:
             attr = dep.attrib.get("Include")

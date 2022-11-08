@@ -4,13 +4,13 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-  <Version>0.5.0-alpha</Version></PropertyGroup>
+  <Version>0.7.2</Version></PropertyGroup>
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-    <PackageReference Include="Yee.Web" Version="0.5.0-alpha" />
+    <PackageReference Include="Yee.Web" Version="0.7.3" />
   </ItemGroup>
 
 </Project>

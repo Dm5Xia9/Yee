@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-  <Version>0.5.0-alpha</Version></PropertyGroup>
+  <Version>0.7.2</Version></PropertyGroup>
 
 
   <ItemGroup>
@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
-    <PackageReference Include="Yee.Section.Base" Version="0.5.0-alpha" />
+    <PackageReference Include="Yee.Section.Base" Version="0.7.2" />
   </ItemGroup>
 
 
